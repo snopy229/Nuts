@@ -1,0 +1,19 @@
+[project]
+name = "pythonproject"
+version = "0.1.0"
+description = ""
+authors = [
+    {name = "snopy229",email = "jastcraft278@gmail.com"}
+]
+requires-python = "^3.13"
+dependencies = [
+    "wagtail (>=7.3.1,<8.0.0)",
+    "django-unfold (>=0.92.0,<0.93.0)",
+    "celery (>=5.6.3,<6.0.0)",
+    "redis (>=7.4.0,<8.0.0)"
+]
+
+
+[build-system]
+requires = ["poetry-core>=2.0.0,<3.0.0"]
+build-backend = "poetry.core.masonry.api"
