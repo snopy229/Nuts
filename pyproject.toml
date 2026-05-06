@@ -10,7 +10,8 @@ dependencies = [
     "wagtail (>=7.3.1,<8.0.0)",
     "django-unfold (>=0.92.0,<0.93.0)",
     "celery (>=5.6.3,<6.0.0)",
-    "redis (>=7.4.0,<8.0.0)"
+    "redis (>=7.4.0,<8.0.0)",
+    "django-environ (>=0.13.0,<0.14.0)"
 ]
 
 
@@ -38,3 +39,7 @@ dev = [
 
 [tool.ruff]
 line-length = 120
+
+[tool.ruff.lint]
+select = ["E", "F", "W"]
+ignore = ["F403", "F405"]
