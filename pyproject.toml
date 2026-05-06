@@ -5,7 +5,7 @@ description = ""
 authors = [
     {name = "snopy229",email = "jastcraft278@gmail.com"}
 ]
-requires-python = "^3.13"
+requires-python = ">=3.13,<4.0"
 dependencies = [
     "wagtail (>=7.3.1,<8.0.0)",
     "django-unfold (>=0.92.0,<0.93.0)",
@@ -17,3 +17,24 @@ dependencies = [
 [build-system]
 requires = ["poetry-core>=2.0.0,<3.0.0"]
 build-backend = "poetry.core.masonry.api"
+
+[tool.bandit]
+exclude_dirs = ["migrations", "tests", ".venv"]
+skips = ["B101"]
+
+[tool.mypy]
+strict = true
+ignore_missing_imports = true
+
+[tool.django-stubs]
+django_settings_module = "config.settings.dev"
+[dependency-groups]
+dev = [
+    "pre-commit (>=4.6.0,<5.0.0)",
+    "mypy (>=1.13.0,<1.20.0)",
+    "django-stubs (>=6.0.3,<7.0.0)",
+    "wagtail-stubs (>=7.3.0b1,<8.0.0)"
+]
+
+[tool.ruff]
+line-length = 120
