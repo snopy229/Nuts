@@ -33,8 +33,6 @@ environ.Env.read_env(os.path.join(BASE_DIR, ".env"))
 # Application definition
 
 INSTALLED_APPS = [
-    "home",
-    "search",
     "wagtail.contrib.forms",
     "wagtail.contrib.redirects",
     "wagtail.embeds",
