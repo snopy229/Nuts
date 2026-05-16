@@ -67,6 +67,8 @@ INSTALLED_APPS = [
     "django_vite",
     "src.user",
     "src.main",
+    "src.core",
+    "wagtailgeowidget",
 ]
 
 MIDDLEWARE = [
@@ -103,7 +105,14 @@ TEMPLATES = [
 ]
 
 WSGI_APPLICATION = "config.wsgi.application"
-
+WAGTAILGEOWIDGET_SETTINGS = {
+    "default_center": [45.3508, 28.8394],
+    "default_zoom": 13,
+    "provider": "leaflet",
+    "leaflet_tile_url": "https://{s}.basemaps.cartocdn.com/rastertiles/voyager/{z}/{x}/{y}{r}.png",
+    "leaflet_tile_attribute": '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors &copy; <a href="https://carto.com/attributions">CARTO</a>',
+}
+SECURE_REFERRER_POLICY = "strict-origin-when-cross-origin"
 
 # Database
 # https://docs.djangoproject.com/en/6.0/ref/settings/#databases

@@ -527,6 +527,39 @@ django-permissionedforms = ">=0.1,<1.0"
 django-stubs = ">=5.2.0"
 
 [[package]]
+name = "django-phonenumber-field"
+version = "8.4.0"
+description = "An international phone number field for django models."
+optional = false
+python-versions = ">=3.10"
+groups = ["main"]
+files = [
+    {file = "django_phonenumber_field-8.4.0-py3-none-any.whl", hash = "sha256:7a1cb3a6456edb54d879f11ffa0acb227ded08c93b587035d0f28093f0e46511"},
+    {file = "django_phonenumber_field-8.4.0.tar.gz", hash = "sha256:2b83e843dac35eec6a69880a166487235b737a71a1e38c9a52e5ad67d6996083"},
+]
+
+[package.dependencies]
+Django = ">=4.2"
+
+[package.extras]
+phonenumbers = ["phonenumbers (>=7.0.2)"]
+phonenumberslite = ["phonenumberslite (>=7.0.2)"]
+
+[[package]]
+name = "django-phonenumbers"
+version = "1.0.1"
+description = "Phone number field for Django admin"
+optional = false
+python-versions = "*"
+groups = ["main"]
+files = [
+    {file = "django_phonenumbers-1.0.1-py3-none-any.whl", hash = "sha256:cd617e4ee924f6492e0106d738fea619c95f3659e41dbeb97df83c1f3b51f453"},
+]
+
+[package.dependencies]
+phonenumbers = "*"
+
+[[package]]
 name = "django-stubs"
 version = "6.0.3"
 description = "Mypy stubs for Django"
@@ -1082,6 +1115,18 @@ files = [
 hyperscan = ["hyperscan (>=0.7)"]
 optional = ["typing-extensions (>=4)"]
 re2 = ["google-re2 (>=1.1)"]
+
+[[package]]
+name = "phonenumbers"
+version = "9.0.30"
+description = "Python version of Google's common library for parsing, formatting, storing and validating international phone numbers."
+optional = false
+python-versions = ">=2.5"
+groups = ["main"]
+files = [
+    {file = "phonenumbers-9.0.30-py2.py3-none-any.whl", hash = "sha256:e0890d4cda206ef6ac18ef07e8f3ab225c31c7edce237ac870b4729d4c1d2520"},
+    {file = "phonenumbers-9.0.30.tar.gz", hash = "sha256:d42d232ccde69c1af1bb5916a7e46f4edbcc72975b02759830f4ea1fba7b00c9"},
+]
 
 [[package]]
 name = "pillow"
@@ -1775,6 +1820,24 @@ wagtail = ">=7.3,<7.4"
 willow-stubs = ">=1.13.0a1"
 
 [[package]]
+name = "wagtailgeowidget"
+version = "9.1.0"
+description = "Wagtail-Geo-Widget is the complete map solution for your Wagtail site."
+optional = false
+python-versions = "*"
+groups = ["main"]
+files = [
+    {file = "wagtailgeowidget-9.1.0-py3-none-any.whl", hash = "sha256:6f098c052715362bd6a2526687674fe258a6ceca4fc00f27b050ffcc6f0bd3ef"},
+    {file = "wagtailgeowidget-9.1.0.tar.gz", hash = "sha256:40051187d4920be84442a999ce3f9dc6494a9fffc3dfe042aad11bc5df2356f8"},
+]
+
+[package.dependencies]
+Wagtail = ">=6.3"
+
+[package.extras]
+test = ["factory-boy", "pytest", "pytest-django"]
+
+[[package]]
 name = "wcwidth"
 version = "0.7.0"
 description = "Measures the displayed width of unicode strings in a terminal"
@@ -1829,4 +1892,4 @@ willow = ">=1.11,<2.0"
 [metadata]
 lock-version = "2.1"
 python-versions = ">=3.13,<4.0"
-content-hash = "0e5cf2d5cd0fb275201dbadffe17618b399f41b83759f064753b0ed7282884ee"
+content-hash = "80f5d03cdd3a3142a1fc2bc73f15b82d3c8c2c2de593f6c80b547a15b76514f9"
