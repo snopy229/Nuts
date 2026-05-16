@@ -1,0 +1,44 @@
+{
+  "name": "pythonproject",
+  "version": "1.0.0",
+  "description": "",
+  "main": "vite.config.mjs",
+  "scripts": {
+    "dev": "vite",
+    "build": "vite build",
+    "watch": "vite build --watch"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/snopy229/Nuts.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/snopy229/Nuts/issues"
+  },
+  "homepage": "https://github.com/snopy229/Nuts#readme",
+  "devDependencies": {
+    "glob": "^13.0.6",
+    "sass": "^1.99.0",
+    "vite": "^8.0.12",
+    "vite-plugin-static-copy": "^4.1.0"
+  },
+  "dependencies": {
+    "detect-libc": "^2.1.2",
+    "fdir": "^6.5.0",
+    "jquery": "^4.0.0",
+    "jquery-mousewheel": "^3.2.2",
+    "lightningcss": "^1.32.0",
+    "lightningcss-linux-x64-gnu": "^1.32.0",
+    "nanoid": "^3.3.12",
+    "picocolors": "^1.1.1",
+    "picomatch": "^4.0.4",
+    "postcss": "^8.5.14",
+    "rolldown": "^1.0.0",
+    "source-map-js": "^1.2.1",
+    "swiper": "^12.1.4",
+    "tinyglobby": "^0.2.16"
+  }
+}
