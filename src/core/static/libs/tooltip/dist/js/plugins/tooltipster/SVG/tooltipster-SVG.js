@@ -74,7 +74,6 @@
 			// if there is no content yet, let's look for a <title> child element
                     if (self.__instance.content() === null) {
 
-				// TODO: when there are several <title> tags (not supported in
 				// today's browsers yet though, still an RFC draft), pick the right
 				// one based on its "lang" attribute
                         var $title = self.__instance._$origin.find('>title');
