@@ -63,6 +63,8 @@ INSTALLED_APPS = [
     "django.contrib.messages",
     "django.contrib.staticfiles",
     "django.contrib.postgres",
+    "django_vite",
+    "src.user",
 ]
 
 MIDDLEWARE = [
@@ -82,7 +84,8 @@ TEMPLATES = [
     {
         "BACKEND": "django.template.backends.django.DjangoTemplates",
         "DIRS": [
-            PROJECT_DIR / "templates",
+            BASE_DIR / "src/core/templates",
+            BASE_DIR / "templates",
         ],
         "APP_DIRS": True,
         "OPTIONS": {
@@ -154,7 +157,7 @@ STATICFILES_FINDERS = [
 ]
 
 STATICFILES_DIRS = [
-    PROJECT_DIR / "static",
+    BASE_DIR / "src/core/static/dist",
 ]
 
 STATIC_ROOT = BASE_DIR / "static"
