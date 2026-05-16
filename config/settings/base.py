@@ -69,6 +69,7 @@ INSTALLED_APPS = [
     "src.main",
     "src.core",
     "wagtailgeowidget",
+"wagtail.contrib.styleguide"
 ]
 
 MIDDLEWARE = [
