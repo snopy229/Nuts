@@ -33,6 +33,9 @@ environ.Env.read_env(os.path.join(BASE_DIR, ".env"))
 # Application definition
 
 INSTALLED_APPS = [
+    "src.user",
+    "src.main",
+    "src.core",
     "wagtail.contrib.forms",
     "wagtail.contrib.redirects",
     "wagtail.contrib.settings",
@@ -65,9 +68,6 @@ INSTALLED_APPS = [
     "django.contrib.staticfiles",
     "django.contrib.postgres",
     "django_vite",
-    "src.user",
-    "src.main",
-    "src.core",
     "wagtailgeowidget",
 'cities_light',
 "wagtail.contrib.styleguide",
