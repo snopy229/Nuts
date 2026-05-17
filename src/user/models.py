@@ -25,13 +25,17 @@ class Individual(models.Model):
 class LegalEntity(models.Model):
     user = models.OneToOneField(User, on_delete=models.CASCADE)
     edrpou = models.CharField(max_length=8, blank=True, null=True)
-    legal_country = models.ForeignKey(Country, on_delete=models.SET_NULL, blank=True, null=True)
-    legal_region = models.ForeignKey(Region, on_delete=models.SET_NULL, blank=True, null=True)
-    legal_city = models.ForeignKey(City, on_delete=models.PROTECT)
+    legal_country = models.ForeignKey(
+        Country, on_delete=models.SET_NULL, blank=True, null=True, related_name="legal_country"
+    )
+    legal_region = models.ForeignKey(
+        Region, on_delete=models.SET_NULL, blank=True, null=True, related_name="legal_region"
+    )
+    legal_city = models.ForeignKey(City, on_delete=models.PROTECT, related_name="legal_city")
     legal_address = models.CharField(max_length=255, blank=True, null=True)
     postal_code = models.CharField(max_length=5, blank=True)
     reg_number = models.CharField(max_length=8, blank=True, null=True)
-    sp_country = models.ForeignKey(Country, on_delete=models.SET_NULL, blank=True, null=True)
-    sp_region = models.ForeignKey(Region, on_delete=models.SET_NULL, blank=True, null=True)
-    sp_city = models.ForeignKey(City, on_delete=models.PROTECT)
+    sp_country = models.ForeignKey(Country, on_delete=models.SET_NULL, blank=True, null=True, related_name="sp_country")
+    sp_region = models.ForeignKey(Region, on_delete=models.SET_NULL, blank=True, null=True, related_name="sp_region")
+    sp_city = models.ForeignKey(City, on_delete=models.PROTECT, related_name="sp_city")
     sp_address = models.CharField(max_length=255, blank=True, null=True)
