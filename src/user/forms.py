@@ -1,7 +1,7 @@
 from django import forms
 from django.contrib.auth.forms import UserCreationForm
 
-from user.models import User, Individual
+from user.models import User, Individual, LegalEntity
 
 
 class UserForm(UserCreationForm[User]):
@@ -88,3 +88,41 @@ class IndividualForm(forms.ModelForm[Individual]):
         model = Individual
         fields = ["is_sole_proprietor"]
         widgets = {"is_sole_proprietor": forms.CheckboxInput(attrs={"class": "checkbox-custom"})}
+
+
+class LegalEntityForm(forms.ModelForm[LegalEntity]):
+    class Meta:
+        model = LegalEntity
+        fields = ["edrpou", "legal_country", "legal_region", "legal_city", "legal_address", "postal_code"]
+        widgets = {
+            "edrpou": forms.TextInput(
+                attrs={
+                    "placeholder": "ОКПО",
+                }
+            ),
+            "legal_country": forms.Select(
+                attrs={
+                    "placeholder": "Страна",
+                }
+            ),
+            "legal_region": forms.Select(
+                attrs={
+                    "placeholder": "Область",
+                }
+            ),
+            "legal_city": forms.Select(
+                attrs={
+                    "placeholder": "Город*",
+                }
+            ),
+            "legal_address": forms.TextInput(
+                attrs={
+                    "placeholder": "Адрес",
+                }
+            ),
+            "postal_card": forms.TextInput(
+                attrs={
+                    "placeholder": "Индекс",
+                }
+            ),
+        }
