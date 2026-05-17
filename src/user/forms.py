@@ -1,7 +1,7 @@
 from django import forms
 from django.contrib.auth.forms import UserCreationForm
 
-from user.models import User
+from user.models import User, Individual
 
 
 class UserForm(UserCreationForm[User]):
@@ -81,3 +81,10 @@ class UserForm(UserCreationForm[User]):
                 }
             ),
         }
+
+
+class IndividualForm(forms.ModelForm[Individual]):
+    class Meta:
+        model = Individual
+        fields = ["is_sole_proprietor"]
+        widgets = {"is_sole_proprietor": forms.CheckboxInput(attrs={"class": "checkbox-custom"})}
