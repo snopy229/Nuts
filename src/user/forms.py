@@ -15,6 +15,7 @@ class UserForm(UserCreationForm[User]):
             "region",
             "city",
             "address",
+            "avatar",
             "password1",
             "password2",
         ]
@@ -40,13 +41,11 @@ class UserForm(UserCreationForm[User]):
             "country": forms.Select(
                 attrs={
                     "placeholder": "Страна",
-                    "required": True,
                 }
             ),
             "region": forms.Select(
                 attrs={
                     "placeholder": "Область",
-                    "required": True,
                 }
             ),
             "city": forms.TextInput(
@@ -58,6 +57,27 @@ class UserForm(UserCreationForm[User]):
             "address": forms.TextInput(
                 attrs={
                     "placeholder": "Адрес",
+                }
+            ),
+            "avatar": forms.FileInput(
+                attrs={
+                    "type": "file",
+                    "name": "file",
+                    "id": "file2",
+                    "class": "inputfile",
+                    "placeholder": "Загрузить фото",
+                }
+            ),
+            "password1": forms.TextInput(
+                attrs={
+                    "required": True,
+                    "placeholder": "Пароль*",
+                }
+            ),
+            "password2": forms.TextInput(
+                attrs={
+                    "required": True,
+                    "placeholder": "Подтвердите пароль*",
                 }
             ),
         }
