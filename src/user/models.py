@@ -28,4 +28,4 @@ class LegalEntity(models.Model):
     legal_region = models.ForeignKey(Region, on_delete=models.SET_NULL, blank=True, null=True)
     legal_city = models.ForeignKey(City, on_delete=models.PROTECT)
     legal_address = models.CharField(max_length=255, blank=True, null=True)
-    postal_code = models.CharField(max_length=10, blank=True)
+    postal_code = models.CharField(max_length=5, blank=True)
