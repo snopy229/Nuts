@@ -14,3 +14,9 @@ class User(AbstractUser):
     address = models.CharField(max_length=255, blank=True, null=True)
     USERNAME_FIELD: str = "email"
     REQUIRED_FIELDS = ["username"]
+
+
+class Individual(models.Model):
+    user = models.OneToOneField(User, on_delete=models.CASCADE)
+    is_sole_proprietor = models.BooleanField()
+    pass
