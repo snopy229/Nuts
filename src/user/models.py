@@ -12,6 +12,7 @@ class User(AbstractUser):
     region = models.ForeignKey(Region, on_delete=models.SET_NULL, blank=True, null=True)
     city = models.ForeignKey(City, on_delete=models.PROTECT)
     address = models.CharField(max_length=255, blank=True, null=True)
+    avatar = models.FileField(upload_to="avatars", blank=True, null=True)
     USERNAME_FIELD: str = "email"
     REQUIRED_FIELDS = ["username"]
 
