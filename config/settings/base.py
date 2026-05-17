@@ -69,6 +69,7 @@ INSTALLED_APPS = [
     "src.main",
     "src.core",
     "wagtailgeowidget",
+'cities_light',
 "wagtail.contrib.styleguide"
 ]
 
@@ -226,4 +227,12 @@ WAGTAILDOCS_EXTENSIONS = [
     "txt",
     "xlsx",
     "zip",
+]
+
+CITIES_LIGHT_TRANSLATION_LANGUAGES = ['uk', 'en', 'ru']
+
+CITIES_LIGHT_INCLUDE_COUNTRIES=['UK', 'RU', 'UA']
+
+CITIES_LIGHT_INCLUDE_CITY_TYPES = [
+    'PPL', 'PPLA', 'PPLA2', 'PPLA3', 'PPLA4', 'PPLC', 'PPLF', 'PPLG', 'PPLL', 'PPLR', 'PPLS', 'STLMT',
 ]
