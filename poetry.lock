@@ -581,20 +581,6 @@ phonenumbers = ["phonenumbers (>=7.0.2)"]
 phonenumberslite = ["phonenumberslite (>=7.0.2)"]
 
 [[package]]
-name = "django-phonenumbers"
-version = "1.0.1"
-description = "Phone number field for Django admin"
-optional = false
-python-versions = "*"
-groups = ["main"]
-files = [
-    {file = "django_phonenumbers-1.0.1-py3-none-any.whl", hash = "sha256:cd617e4ee924f6492e0106d738fea619c95f3659e41dbeb97df83c1f3b51f453"},
-]
-
-[package.dependencies]
-phonenumbers = "*"
-
-[[package]]
 name = "django-stubs"
 version = "6.0.3"
 description = "Mypy stubs for Django"
@@ -2025,4 +2011,4 @@ willow = ">=1.11,<2.0"
 [metadata]
 lock-version = "2.1"
 python-versions = ">=3.13,<4.0"
-content-hash = "e8e80d091ae08817fed2cf16e0742736768b47c14b8453ef72328b3fdef9156c"
+content-hash = "78a68be9554d8789f87826f330a5ef9ab7a6c5f903460e109d715f41a2ec1ceb"

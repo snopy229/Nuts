@@ -12,22 +12,22 @@ from wagtailgeowidget.panels import LeafletPanel
 
 @register_setting
 class Contacts(BaseGenericSetting):
-    phone_number: StreamField[Any] = StreamField(
+    phone_number = StreamField(
         [
             ("phone_number", CharBlock(max_length=20)),
         ],
         blank=True,
         use_json_field=True,
     )
-    viber_url: models.URLField[Any, Any] = models.URLField(blank=True)
-    telegram_url: models.URLField[Any, Any] = models.URLField(blank=True)
-    whatsapp_url: models.URLField[Any, Any] = models.URLField(blank=True)
-    facebook_url: models.URLField[Any, Any] = models.URLField(blank=True)
-    instagram_url: models.URLField[Any, Any] = models.URLField(blank=True)
-    youtube_url: models.URLField[Any, Any] = models.URLField(blank=True)
-    office_address: models.CharField[Any, Any] = models.CharField(max_length=255, blank=True)
-    production_address: models.CharField[Any, Any] = models.CharField(max_length=255, blank=True)
-    location: models.CharField[Any, Any] = models.CharField(max_length=250, blank=True)
+    viber_url = models.URLField(blank=True)
+    telegram_url = models.URLField(blank=True)
+    whatsapp_url = models.URLField(blank=True)
+    facebook_url = models.URLField(blank=True)
+    instagram_url = models.URLField(blank=True)
+    youtube_url = models.URLField(blank=True)
+    office_address = models.CharField(max_length=255, blank=True)
+    production_address = models.CharField(max_length=255, blank=True)
+    location = models.CharField(max_length=250, blank=True)
     panels = [
         FieldPanel("phone_number"),
         FieldPanel("viber_url"),

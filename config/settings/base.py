@@ -70,7 +70,8 @@ INSTALLED_APPS = [
     "src.core",
     "wagtailgeowidget",
 'cities_light',
-"wagtail.contrib.styleguide"
+"wagtail.contrib.styleguide",
+"phonenumber_field"
 ]
 
 MIDDLEWARE = [
@@ -83,7 +84,7 @@ MIDDLEWARE = [
     "django.middleware.clickjacking.XFrameOptionsMiddleware",
     "wagtail.contrib.redirects.middleware.RedirectMiddleware",
 ]
-
+AUTH_USER_MODEL = 'user.User'
 ROOT_URLCONF = "config.urls"
 
 TEMPLATES = [
