@@ -20,4 +20,12 @@ class User(AbstractUser):
 class Individual(models.Model):
     user = models.OneToOneField(User, on_delete=models.CASCADE)
     is_sole_proprietor = models.BooleanField()
-    pass
+
+
+class LegalEntity(models.Model):
+    edrpou = models.CharField(max_length=8, blank=True, null=True)
+    legal_country = models.ForeignKey(Country, on_delete=models.SET_NULL, blank=True, null=True)
+    legal_region = models.ForeignKey(Region, on_delete=models.SET_NULL, blank=True, null=True)
+    legal_city = models.ForeignKey(City, on_delete=models.PROTECT)
+    legal_address = models.CharField(max_length=255, blank=True, null=True)
+    postal_code = models.CharField(max_length=10, blank=True)
