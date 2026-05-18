@@ -57,19 +57,22 @@ class UserForm(UserCreationForm[User]):
                     "placeholder": "Загрузить фото",
                 }
             ),
-            "password1": forms.TextInput(
-                attrs={
-                    "required": True,
-                    "placeholder": "Пароль*",
-                }
-            ),
-            "password2": forms.TextInput(
-                attrs={
-                    "required": True,
-                    "placeholder": "Подтвердите пароль*",
-                }
-            ),
         }
+
+    def __init__(self, *args, **kwargs):
+        super().__init__(*args, **kwargs)
+        self.fields["password1"].widget = forms.PasswordInput(
+            attrs={
+                "placeholder": "Пароль*",
+                "required": True,
+            }
+        )
+        self.fields["password2"].widget = forms.PasswordInput(
+            attrs={
+                "placeholder": "Подтвердите пароль*",
+                "required": True,
+            }
+        )
 
 
 class IndividualForm(forms.ModelForm[Individual]):
