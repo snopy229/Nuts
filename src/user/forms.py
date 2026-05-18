@@ -93,7 +93,19 @@ class IndividualForm(forms.ModelForm[Individual]):
 class LegalEntityForm(forms.ModelForm[LegalEntity]):
     class Meta:
         model = LegalEntity
-        fields = ["edrpou", "legal_country", "legal_region", "legal_city", "legal_address", "postal_code"]
+        fields = [
+            "edrpou",
+            "legal_country",
+            "legal_region",
+            "legal_city",
+            "legal_address",
+            "postal_code",
+            "reg_number",
+            "sp_country",
+            "sp_region",
+            "sp_city",
+            "sp_address",
+        ]
         widgets = {
             "edrpou": forms.TextInput(
                 attrs={
@@ -113,6 +125,7 @@ class LegalEntityForm(forms.ModelForm[LegalEntity]):
             "legal_city": forms.Select(
                 attrs={
                     "placeholder": "Город*",
+                    "required": True,
                 }
             ),
             "legal_address": forms.TextInput(
@@ -125,4 +138,22 @@ class LegalEntityForm(forms.ModelForm[LegalEntity]):
                     "placeholder": "Индекс",
                 }
             ),
+            "reg_number": forms.TextInput(
+                attrs={
+                    "placeholder": "ЕДРПО",
+                }
+            ),
+            "sp_country": forms.Select(
+                attrs={
+                    "placeholder": "Страна",
+                }
+            ),
+            "sp_region": forms.Select(attrs={"placeholder": "Область"}),
+            "sp_city": forms.Select(
+                attrs={
+                    "placeholder": "Город*",
+                    "required": True,
+                }
+            ),
+            "sp_address": forms.TextInput(attrs={"placeholder": "Адрес"}),
         }
