@@ -5,6 +5,7 @@
 // window.onload = function () {
 
 // }
+import './scripts.min.js';
 import '../css/main.min.css';
 // инициализируем параллакс
 jQuery(document).ready(function($){
@@ -240,7 +241,7 @@ function initMap() {
     var menuElem = document.getElementById('lang-menu'),
         titleElem = menuElem.querySelector('.title');
     document.onclick = function(event) {
-        var target = elem = event.target;
+        var target = event.target, elem = event.target;
         while (target != this) {
             if (target == menuElem) {
                 if(elem.tagName == 'A') {
