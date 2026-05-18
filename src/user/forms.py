@@ -1,10 +1,15 @@
+from cities_light.models import Country, Region, City
 from django import forms
 from django.contrib.auth.forms import UserCreationForm
 
-from user.models import User, Individual, LegalEntity
+from src.user.models import User, Individual, LegalEntity
 
 
 class UserForm(UserCreationForm[User]):
+    country = forms.ModelChoiceField(queryset=Country.objects.all(), empty_label="Страна", widget=forms.Select())
+    region = forms.ModelChoiceField(queryset=Region.objects.all(), empty_label="Область", widget=forms.Select())
+    city = forms.ModelChoiceField(queryset=City.objects.all(), empty_label="Город*", widget=forms.Select())
+
     class Meta:
         model = User
         fields = [
@@ -35,22 +40,6 @@ class UserForm(UserCreationForm[User]):
             "phone_number": forms.TextInput(
                 attrs={
                     "placeholder": "Телефон*",
-                    "required": True,
-                }
-            ),
-            "country": forms.Select(
-                attrs={
-                    "placeholder": "Страна",
-                }
-            ),
-            "region": forms.Select(
-                attrs={
-                    "placeholder": "Область",
-                }
-            ),
-            "city": forms.TextInput(
-                attrs={
-                    "placeholder": "Город*",
                     "required": True,
                 }
             ),
@@ -99,7 +88,7 @@ class LegalEntityForm(forms.ModelForm[LegalEntity]):
             "legal_region",
             "legal_city",
             "legal_address",
-            "postal_code",
+            "postal_card",
             "reg_number",
             "sp_country",
             "sp_region",
