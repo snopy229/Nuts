@@ -83,6 +83,13 @@ class IndividualForm(forms.ModelForm[Individual]):
 
 
 class LegalEntityForm(forms.ModelForm[LegalEntity]):
+    legal_country = forms.ModelChoiceField(queryset=Country.objects.all(), empty_label="Страна", widget=forms.Select())
+    legal_region = forms.ModelChoiceField(queryset=Region.objects.all(), empty_label="Область", widget=forms.Select())
+    legal_city = forms.ModelChoiceField(queryset=City.objects.all(), empty_label="Город*", widget=forms.Select())
+    sp_country = forms.ModelChoiceField(queryset=Country.objects.all(), empty_label="Страна", widget=forms.Select())
+    sp_region = forms.ModelChoiceField(queryset=Region.objects.all(), empty_label="Область", widget=forms.Select())
+    sp_city = forms.ModelChoiceField(queryset=City.objects.all(), empty_label="Город*", widget=forms.Select())
+
     class Meta:
         model = LegalEntity
         fields = [
@@ -104,22 +111,6 @@ class LegalEntityForm(forms.ModelForm[LegalEntity]):
                     "placeholder": "ОКПО",
                 }
             ),
-            "legal_country": forms.Select(
-                attrs={
-                    "placeholder": "Страна",
-                }
-            ),
-            "legal_region": forms.Select(
-                attrs={
-                    "placeholder": "Область",
-                }
-            ),
-            "legal_city": forms.Select(
-                attrs={
-                    "placeholder": "Город*",
-                    "required": True,
-                }
-            ),
             "legal_address": forms.TextInput(
                 attrs={
                     "placeholder": "Адрес",
@@ -133,18 +124,6 @@ class LegalEntityForm(forms.ModelForm[LegalEntity]):
             "reg_number": forms.TextInput(
                 attrs={
                     "placeholder": "ЕДРПО",
-                }
-            ),
-            "sp_country": forms.Select(
-                attrs={
-                    "placeholder": "Страна",
-                }
-            ),
-            "sp_region": forms.Select(attrs={"placeholder": "Область"}),
-            "sp_city": forms.Select(
-                attrs={
-                    "placeholder": "Город*",
-                    "required": True,
                 }
             ),
             "sp_address": forms.TextInput(attrs={"placeholder": "Адрес"}),
