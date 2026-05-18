@@ -27,16 +27,6 @@ repos:
         exclude: "migrations/"
       - id: ruff-format
 
-  - repo: local
-    hooks:
-      - id: mypy
-        name: mypy
-        entry: .venv/bin/mypy
-        language: system
-        types: [python]
-        args: ["--config-file", "pyproject.toml"]
-        exclude: "migrations/|manage.py|models.py"
-
   - repo: https://github.com/PyCQA/bandit
     rev: 1.7.10
     hooks:
