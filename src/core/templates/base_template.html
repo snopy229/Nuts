@@ -31,6 +31,7 @@
     <link rel="apple-touch-icon" sizes="128x128" href="{% static 'img/apple.png' %}">
 
 </head>
+<body class="page">
 <header class="top-header">
 		<div class="top-header__line">
 			<div class="container">
@@ -180,15 +181,10 @@
 			</div>
 		</div>
 	</header>
-<body class="page">
-
     {% wagtailuserbar %}
     {% block content %}
     {% endblock content %}
 
-    {% vite_asset 'src/core/static/js/common.js' %}
-
-</body>
 <footer class="footer__bottom footer__bottom_gray">
 		<div class="gray_section">
 			<div class="container">
@@ -312,4 +308,7 @@
 			</div>
 		</div>
 	</footer>
+<script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+    {% vite_asset 'src/core/static/js/common.js' %}
+</body>
 </html>
