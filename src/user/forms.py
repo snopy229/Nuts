@@ -1,6 +1,6 @@
 from cities_light.models import Country, Region, City
 from django import forms
-from django.contrib.auth.forms import UserCreationForm
+from django.contrib.auth.forms import UserCreationForm, AuthenticationForm
 
 from src.user.models import User, Individual, LegalEntity
 
@@ -128,3 +128,19 @@ class LegalEntityForm(forms.ModelForm[LegalEntity]):
             ),
             "sp_address": forms.TextInput(attrs={"placeholder": "Адрес"}),
         }
+
+
+class UserLoginForm(AuthenticationForm):
+    username = forms.CharField(
+        label="Email",
+        widget=forms.TextInput(attrs={"class": "form-control", "placeholder": "E-mail*"}),
+    )
+    password = forms.CharField(
+        label="Пароль",
+        widget=forms.PasswordInput(
+            attrs={
+                "class": "form-control custom-password",
+                "placeholder": "Введите ваш пароль*",
+            }
+        ),
+    )
