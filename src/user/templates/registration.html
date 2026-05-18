@@ -28,49 +28,33 @@
 							<div class="col-lg-7 col-md-6"></div>
 						</div>
 						<div class="tabs__content active">
-								<form action="#">
+								<form action="{% url 'user:registration' %}">
 							<div class="row">
 								<div class="col-lg-5 col-md-6">
-									<input type="text" required="required" placeholder="ФИО*">
-									<input type="email" required="required" placeholder="Email*">
-									<input type="tel" required="required" placeholder="Телефон*">
+									{{ user_form.fullname }}
+									{{ user_form.email }}
+									{{ user_form.phone_number }}
 									<div class="form__title">
 											2. Адрес
 									</div>
-									<select>
-										<option value="hide">Страна</option>
-										<option value="lorem">lorem</option>
-										<option value="lorem">lorem</option>
-										<option value="lorem">lorem</option>
-										<option value="lorem">lorem</option>
-										<option value="lorem">lorem</option>
-										<option value="lorem">lorem</option>
-									</select>
-									<select>
-										<option value="hide">Область</option>
-										<option value="lorem">lorem</option>
-										<option value="lorem">lorem</option>
-										<option value="lorem">lorem</option>
-										<option value="lorem">lorem</option>
-										<option value="lorem">lorem</option>
-										<option value="lorem">lorem</option>
-									</select>
-									<input type="text" required="required" placeholder="Город*">
-									<input type="text"  placeholder="Адрес">
+									{{ user_form.country }}
+									{{ user_form.region }}
+									{{ user_form.city }}
+									{{ user_form.address }}
 									<div class="form__title">
 											3. Пароль
 									</div>
-									<input type="password" required="required"  placeholder="Пароль*">
-									<input type="password" required="required"  placeholder="Подтвердите пароль*">
+									{{ user_form.password1 }}
+									{{ user_form.password2 }}
 								</div>
 								<div class="col-lg-5 col-md-6 offset-lg-1">
 									<div class="wrapper">
 											<div class="file__wrap">
-													<input type="file" name="file" id="file2" class="inputfile" />
+													{{ user_form.avatar }}
 													<label for="file2"><span>Загрузить фото</span></label>
 											</div>
 											<div class="checkbox__wrap">
-													<input id="checkbox-1" class="checkbox-custom" name="checkbox-1" type="checkbox">
+													{{individual_form.is_sole_proprietor }}
 													<label for="checkbox-1" class="checkbox-custom-label"><span>Являюсь ФОП</span></label>
 											</div>
 									</div>
@@ -87,45 +71,29 @@
 						</form>
 						</div>
 						<div class="tabs__content">
-								<form action="#">
+								<form action="{% url 'user:registration' %}">
 										<div class="row">
 											<div class="col-lg-5 col-md-6">
-												<input type="text" required="required" placeholder="ФИО*">
-												<input type="email" required="required" placeholder="Email*">
-												<input type="tel" required="required" placeholder="Телефон*">
+												{{ user_form.fullname }}
+									            {{ user_form.email }}
+									            {{ user_form.phone_number }}
 												<div class="form__title">
 														2. Адрес
 												</div>
-												<select>
-													<option value="hide">Страна</option>
-													<option value="lorem">lorem</option>
-													<option value="lorem">lorem</option>
-													<option value="lorem">lorem</option>
-													<option value="lorem">lorem</option>
-													<option value="lorem">lorem</option>
-													<option value="lorem">lorem</option>
-												</select>
-												<select>
-													<option value="hide">Область</option>
-													<option value="lorem">lorem</option>
-													<option value="lorem">lorem</option>
-													<option value="lorem">lorem</option>
-													<option value="lorem">lorem</option>
-													<option value="lorem">lorem</option>
-													<option value="lorem">lorem</option>
-												</select>
-												<input type="text" required="required" placeholder="Город*">
-												<input type="text"  placeholder="Адрес">
+                                                {{ user_form.country }}
+									            {{ user_form.region }}
+									            {{ user_form.city }}
+									            {{ user_form.address }}
 												<div class="form__title">
 														3. Пароль
 												</div>
-												<input type="password" required="required"  placeholder="Пароль*">
-												<input type="password" required="required"  placeholder="Подтвердите пароль*">
+												{{ user_form.password1 }}
+									            {{ user_form.password2 }}
 											</div>
 											<div class="col-lg-5 col-md-6 offset-lg-1">
 												<div class="wrapper">
 														<div class="file__wrap">
-																<input type="file" name="file" id="file" class="inputfile" />
+																{{ user_form.avatar }}
 																<label for="file"><span>Загрузить фото</span></label>
 														</div>
 														<div class="radio__wrap">
@@ -138,61 +106,30 @@
 																<div class="ur box">
 																		<div class="form__title">
 																				1. Реквизиты
+                                                                                {{ legal_form.edrpou }}
 																		</div>
-																		<input type="text"  placeholder="ОКПО">
+
 																		<div class="form__title">
 																				2. Юридический адрес
 																		</div>
-																		<select>
-																				<option value="hide">Страна</option>
-																				<option value="lorem">lorem</option>
-																				<option value="lorem">lorem</option>
-																				<option value="lorem">lorem</option>
-																				<option value="lorem">lorem</option>
-																				<option value="lorem">lorem</option>
-																				<option value="lorem">lorem</option>
-																			</select>
-																			<select>
-																				<option value="hide">Область</option>
-																				<option value="lorem">lorem</option>
-																				<option value="lorem">lorem</option>
-																				<option value="lorem">lorem</option>
-																				<option value="lorem">lorem</option>
-																				<option value="lorem">lorem</option>
-																				<option value="lorem">lorem</option>
-																			</select>
-																			<input type="text" required="required" placeholder="Город*">
-																			<input type="text"  placeholder="Адрес">
-																		<input type="text"  placeholder="Индекс">
+																		    {{ legal_form.legal_country }}
+																			{{ legal_form.legal_region }}
+																			{{ legal_form.legal_city }}
+																			{{ legal_from.legal_address }}
+                                                                            {{ legal_form.postal_code }}
 																</div>
 																<div class="fop box">
 																		<div class="form__title">
 																				1. Реквизиты
 																		</div>
-																		<input type="text"  placeholder="ЕДРПО">
+																		{{ legal_form.reg_number }}
 																		<div class="form__title">
 																				2. Адрес ФОП
 																		</div>
-																		<select>
-																				<option value="hide">Страна</option>
-																				<option value="lorem">lorem</option>
-																				<option value="lorem">lorem</option>
-																				<option value="lorem">lorem</option>
-																				<option value="lorem">lorem</option>
-																				<option value="lorem">lorem</option>
-																				<option value="lorem">lorem</option>
-																			</select>
-																			<select>
-																				<option value="hide">Область</option>
-																				<option value="lorem">lorem</option>
-																				<option value="lorem">lorem</option>
-																				<option value="lorem">lorem</option>
-																				<option value="lorem">lorem</option>
-																				<option value="lorem">lorem</option>
-																				<option value="lorem">lorem</option>
-																			</select>
-																			<input type="text" required="required" placeholder="Город*">
-																			<input type="text"  placeholder="Адрес">
+                                                                            {{ legal_form.sp_country }}
+                                                                            {{ legal_form.sp_region }}
+                                                                            {{ legal_form.sp_city }}
+                                                                            {{ legal_form.sp_address }}
 																</div>
 														</div>
 												</div>
