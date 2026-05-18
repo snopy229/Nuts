@@ -1,7 +1,9 @@
+from django.contrib.auth.views import LoginView
 from django.shortcuts import render, redirect
+from django.urls import reverse_lazy
 from django.views import View
 
-from src.user.forms import UserForm, IndividualForm, LegalEntityForm
+from src.user.forms import UserForm, IndividualForm, LegalEntityForm, UserLoginForm
 
 
 # Create your views here.
@@ -36,7 +38,7 @@ class RegistrationView(View):
             profile = profile_form.save(commit=False)
             profile.user = user
             profile.save()
-            return redirect("home")
+            return redirect("main:home")
         else:
             print("user_form errors:", user_form.errors)
             print("profile_form errors:", profile_form.errors)
@@ -51,3 +53,11 @@ class RegistrationView(View):
                 "legal_form": LegalEntityForm(),
             },
         )
+
+
+class UserLoginView(LoginView):
+    form_class = UserLoginForm
+    template_name = "login.html"
+
+    def get_success_url(self):
+        return reverse_lazy("main:home")
