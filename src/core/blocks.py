@@ -31,3 +31,8 @@ class TabBlock(blocks.StructBlock):
     title = blocks.CharBlock()
     description = blocks.RichTextBlock()
     image = ImageChooserBlock()
+
+
+class TwoColumnsBlock(blocks.StructBlock):
+    first_block = blocks.RichTextBlock()
+    second_block = blocks.RichTextBlock()
