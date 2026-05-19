@@ -5,15 +5,25 @@ from django.urls import reverse
 from wagtail.admin.panels import FieldPanel
 from wagtail.fields import StreamField
 from wagtail.images.blocks import ImageChooserBlock
+from wagtail.models import Page
 from wagtail.snippets.models import register_snippet
 from wagtail.snippets.views.snippets import SnippetViewSet
 
 from src.core.blocks import VideoBlock, CardBlock
 
 
+class GalleryPage(Page):
+    banner = StreamField([("banner", VideoBlock())], max_num=1, blank=True)
+
+    parent_page_types = ["wagtailcore.Page"]
+    max_count = 1
+    template = "gallery_page.html"
+    content_panels = Page.content_panels + [
+        FieldPanel("banner"),
+    ]
+
+
 class Gallery(models.Model):
-    title = models.CharField(max_length=255)
-    description = models.TextField()
     content = StreamField(
         [
             ("image", ImageChooserBlock()),
@@ -23,8 +33,6 @@ class Gallery(models.Model):
         use_json_field=True,
     )
     panels = [
-        FieldPanel("title"),
-        FieldPanel("description"),
         FieldPanel("content"),
     ]
 
