@@ -69,9 +69,10 @@ INSTALLED_APPS = [
     "django.contrib.postgres",
     "django_vite",
     "wagtailgeowidget",
-'cities_light',
-"wagtail.contrib.styleguide",
-"phonenumber_field"
+    "cities_light",
+    "wagtail.contrib.styleguide",
+    "phonenumber_field",
+    "wagtailmedia",
 ]
 
 MIDDLEWARE = [

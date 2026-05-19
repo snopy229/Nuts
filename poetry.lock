@@ -2160,6 +2160,26 @@ Wagtail = ">=6.3"
 test = ["factory-boy", "pytest", "pytest-django"]
 
 [[package]]
+name = "wagtailmedia"
+version = "0.17.2"
+description = "A Wagtail module for audio and video files."
+optional = false
+python-versions = ">=3.9"
+groups = ["main"]
+files = [
+    {file = "wagtailmedia-0.17.2-py3-none-any.whl", hash = "sha256:abe10c6341fbc41ebc30d2955fff00abf6160bc473a5f9f1106d69111045c202"},
+    {file = "wagtailmedia-0.17.2.tar.gz", hash = "sha256:4457e267fc53d8db4c9eb9a48d27f4b47b0823a9f7d0820f2dd98f1ba5d58600"},
+]
+
+[package.dependencies]
+Django = ">=4.2"
+Wagtail = ">=6.3"
+
+[package.extras]
+linting = ["pre-commit (>=4.3.0)"]
+testing = ["coverage (>=7.10.0)", "tox (>=4.28.4)"]
+
+[[package]]
 name = "wcwidth"
 version = "0.7.0"
 description = "Measures the displayed width of unicode strings in a terminal"
@@ -2214,4 +2234,4 @@ willow = ">=1.11,<2.0"
 [metadata]
 lock-version = "2.1"
 python-versions = ">=3.13,<4.0"
-content-hash = "82d5597eedd0c8265693805882c7d347993bef744ef3d79dc49e899e3d6cb76a"
+content-hash = "a81a83b0b8b12ea0f8a6e44c86a1a6e541c1a147f6d52e2b6225829192192dc5"

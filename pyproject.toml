@@ -19,6 +19,7 @@ dependencies = [
     "django-cities-light (>=3.11,<4.0)",
     "phonenumbers (>=9.0.30,<10.0.0)",
     "django-ninja (>=1.6.2,<2.0.0)",
+    "wagtailmedia (>=0.17.2,<0.18.0)",
 ]
 
 
