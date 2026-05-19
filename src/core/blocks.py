@@ -25,3 +25,9 @@ class GardenInfoBlock(blocks.StructBlock):
     metric = blocks.IntegerBlock()
     unit = blocks.CharBlock()
     title = blocks.CharBlock()
+
+
+class TabBlock(blocks.StructBlock):
+    title = blocks.CharBlock()
+    description = blocks.CharBlock()
+    image = ImageChooserBlock()
