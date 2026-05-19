@@ -19,3 +19,9 @@ class PhotoBlock(blocks.StructBlock):
     title = blocks.CharBlock()
     description = blocks.CharBlock()
     image = ImageChooserBlock()
+
+
+class GardenInfoBlock(blocks.StructBlock):
+    metric = blocks.IntegerBlock()
+    unit = blocks.CharBlock()
+    title = blocks.CharBlock()
