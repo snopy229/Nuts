@@ -73,6 +73,22 @@ class UserForm(UserCreationForm[User]):
                 "required": True,
             }
         )
+        data = args[0] if args else kwargs.get("data", None)
+        if data:
+            if "country" in data:
+                try:
+                    country_id = int(data.get("country"))
+                    self.fields["region"].queryset = Region.objects.filter(country_id=country_id)
+                    self.fields["region"].widget.attrs.pop("disabled", None)
+                except (ValueError, TypeError):
+                    pass
+            if "region" in data:
+                try:
+                    region_id = int(data.get("region"))
+                    self.fields["city"].queryset = City.objects.filter(region_id=region_id)
+                    self.fields["city"].widget.attrs.pop("disabled", None)
+                except (ValueError, TypeError):
+                    pass
 
 
 class IndividualForm(forms.ModelForm[Individual]):
