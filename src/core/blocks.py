@@ -12,6 +12,7 @@ class VideoBlock(blocks.StructBlock):
     title = blocks.CharBlock()
     description = blocks.CharBlock()
     video = VideoChooserBlock()
+    preview_image = ImageChooserBlock()
 
 
 class PhotoBlock(blocks.StructBlock):
