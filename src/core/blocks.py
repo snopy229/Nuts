@@ -29,5 +29,5 @@ class GardenInfoBlock(blocks.StructBlock):
 
 class TabBlock(blocks.StructBlock):
     title = blocks.CharBlock()
-    description = blocks.CharBlock()
+    description = blocks.RichTextBlock()
     image = ImageChooserBlock()
