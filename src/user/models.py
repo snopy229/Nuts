@@ -10,7 +10,7 @@ class User(AbstractUser):
     phone_number = PhoneNumberField(blank=True, null=True)
     country = models.ForeignKey(Country, on_delete=models.SET_NULL, blank=True, null=True)
     region = models.ForeignKey(Region, on_delete=models.SET_NULL, blank=True, null=True)
-    city = models.ForeignKey(City, on_delete=models.PROTECT)
+    city = models.ForeignKey(City, on_delete=models.PROTECT, blank=True, null=True)
     address = models.CharField(max_length=255, blank=True, null=True)
     avatar = models.FileField(upload_to="avatars", blank=True, null=True)
     USERNAME_FIELD: str = "email"
