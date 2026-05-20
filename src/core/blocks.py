@@ -31,3 +31,9 @@ class TabBlock(blocks.StructBlock):
 class TwoColumnsBlock(blocks.StructBlock):
     first_block = blocks.RichTextBlock()
     second_block = blocks.RichTextBlock()
+
+
+class ListForTabBlock(blocks.StructBlock):
+    icon = ImageChooserBlock()
+    title = blocks.CharBlock()
+    description = blocks.CharBlock()
