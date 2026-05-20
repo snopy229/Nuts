@@ -1,4 +1,5 @@
 from wagtail import blocks
+from wagtail.blocks import StreamBlock
 from wagtail.images.blocks import ImageChooserBlock
 from wagtailmedia.blocks import VideoChooserBlock
 
@@ -37,3 +38,13 @@ class ListForTabBlock(blocks.StructBlock):
     icon = ImageChooserBlock()
     title = blocks.CharBlock()
     description = blocks.CharBlock()
+
+
+class TabListBlock(blocks.StructBlock):
+    title = blocks.CharBlock()
+    content = StreamBlock(
+        [
+            ("Paragraph", ListForTabBlock()),
+        ]
+    )
+    image = ImageChooserBlock()
