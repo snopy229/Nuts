@@ -4,12 +4,11 @@ from django.shortcuts import redirect
 from django.urls import reverse
 from wagtail.admin.panels import FieldPanel
 from wagtail.fields import StreamField
-from wagtail.images.blocks import ImageChooserBlock
 from wagtail.models import Page
 from wagtail.snippets.models import register_snippet
 from wagtail.snippets.views.snippets import SnippetViewSet
 
-from src.core.blocks import VideoBlock, CardBlock
+from src.core.blocks import VideoBlock, PhotoBlock
 
 
 class GalleryPage(Page):
@@ -26,9 +25,8 @@ class GalleryPage(Page):
 class Gallery(models.Model):
     content = StreamField(
         [
-            ("image", ImageChooserBlock()),
+            ("image", PhotoBlock()),
             ("video", VideoBlock()),
-            ("card", CardBlock()),
         ],
         use_json_field=True,
     )
@@ -61,7 +59,7 @@ class GalleryViewSet(SnippetViewSet):
     icon = "image"
     add_to_admin_menu = True
 
-    def index_view(self, request):
+    def index_view(self):
         gallery = Gallery.get()
         url = reverse(f"{self.url_namespace}:edit", args=[gallery.pk])
         return redirect(url)
