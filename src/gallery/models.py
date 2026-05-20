@@ -59,7 +59,7 @@ class GalleryViewSet(SnippetViewSet):
     icon = "image"
     add_to_admin_menu = True
 
-    def index_view(self):
+    def index_view(self, request):
         gallery = Gallery.get()
         url = reverse(f"{self.url_namespace}:edit", args=[gallery.pk])
         return redirect(url)

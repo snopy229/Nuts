@@ -1,0 +1,37 @@
+{% load wagtailimages_tags gallery_tags %}
+
+{% with r=counter|mod:6 %}
+<div class="
+  {% if r == 1 %}col-lg-7 col-md-6
+  {% elif r == 2 %}col-lg-5 col-md-6
+  {% elif r == 3 %}col-lg-12 col-md-12
+  {% elif r == 4 %}col-lg-4 col-md-6
+  {% elif r == 5 %}col-lg-4 col-md-6
+  {% else %}col-lg-4 col-md-6
+  {% endif %} col-12">
+
+  {% if block.block_type == "image" %}
+    <div class="wrap">
+      {% image block.value.image original as img %}
+      <div class="benefit__item" style="background-image: url({{ img.url }})"></div>
+      <div class="benefit__item item_hover overlay_green overlay_green_bg">
+        <h3>{{ block.value.title }}</h3>
+        <p>{{ block.value.description }}</p>
+      </div>
+    </div>
+
+  {% elif block.block_type == "video" %}
+    <div class="wrap">
+      {% image block.value.preview_image original as img %}
+      <a href="{{ block.value.video.file.url }}"
+         class="benefit__item overlay benefit__item_video_text"
+         style="background-image: url({{ img.url }})">
+        <span><i class="nut-icon icons-play-icon"></i></span>
+        <h3>{{ block.value.title }}</h3>
+        <p>{{ block.value.description }}</p>
+      </a>
+    </div>
+  {% endif %}
+
+</div>
+{% endwith %}

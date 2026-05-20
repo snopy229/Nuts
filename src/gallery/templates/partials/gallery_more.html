@@ -1,0 +1,19 @@
+{% load gallery_tags wagtailimages_tags %}
+
+{% for block in blocks %}
+    {% include "partials/gallery_block.html" with block=block counter=forloop.counter %}
+{% endfor %}
+
+<div class="row justify-content-center" id="gallery-more" hx-swap-oob="true">
+  {% if has_more %}
+  <div class="wrapper">
+    <a class="button button_transparent"
+       hx-get="{% url 'gallery:gallery-more' %}?offset={{ next_offset }}"
+       hx-target="#gallery-grid"
+       hx-swap="beforeend">
+      Показать ещё
+    </a>
+  </div>
+  {% else %}
+  {% endif %}
+</div>
