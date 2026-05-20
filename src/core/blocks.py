@@ -40,6 +40,11 @@ class ListForTabBlock(blocks.StructBlock):
     description = blocks.CharBlock()
 
 
+class PhotoWithoutDescriptionBlock(blocks.StructBlock):
+    title = blocks.CharBlock()
+    image = ImageChooserBlock()
+
+
 class TabListBlock(blocks.StructBlock):
     title = blocks.CharBlock()
     content = StreamBlock(
