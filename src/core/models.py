@@ -9,10 +9,25 @@ from src.core.blocks import GardenInfoBlock
 
 
 class GardenInfo(models.Model):
-    tab = StreamField(
+    tab_1 = StreamField(
         [("block", GardenInfoBlock())],
         use_json_field=True,
-        max_num=4,
+        max_num=1,
+    )
+    tab_2 = StreamField(
+        [("block", GardenInfoBlock())],
+        use_json_field=True,
+        max_num=1,
+    )
+    tab_3 = StreamField(
+        [("block", GardenInfoBlock())],
+        use_json_field=True,
+        max_num=1,
+    )
+    tab_4 = StreamField(
+        [("block", GardenInfoBlock())],
+        use_json_field=True,
+        max_num=1,
     )
 
     def __str__(self):

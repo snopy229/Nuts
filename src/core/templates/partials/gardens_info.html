@@ -1,0 +1,43 @@
+{% load wagtailcore_tags %}
+<section class="timer gray_section">
+		<div class="container">
+			<div class="row">
+                {% for block in snippet.tab_1 %}
+				<div class="col-lg-3 col-md-6 col-12">
+					<div class="wrap">
+						<span class="timer__single" data-from="1" data-to="{{ block.value.metric }}" data-speed="3000" data-refresh-interval="50"></span>
+						<sup>{{ block.value.unit }}</sup>
+						<div class="timer__descr">{{ block.value.title}}</div>
+					</div>
+				</div>
+                {% endfor %}
+            {% for block in snippet.tab_2 %}
+				<div class="col-lg-2 col-md-6 col-12">
+					<div class="wrap">
+						<span class="timer__single" data-from="1" data-to="{{ block.value.metric }}" data-speed="3000" data-refresh-interval="50"></span>
+						<sup>{{ block.value.unit }}</sup>
+						<div class="timer__descr">{{ block.value.title }}</div>
+					</div>
+				</div>
+            {% endfor %}
+            {% for block in snippet.tab_3 %}
+				<div class="col-lg-4 col-md-6 col-12">
+					<div class="wrap">
+						<span class="timer__single" data-from="1" data-to="{{ block.value.metric }}" data-speed="5000" ></span>
+						<sup>{{ block.value.unit }}</sup>
+						<div class="timer__descr">{{ block.value.title }}</div>
+					</div>
+				</div>
+            {% endfor %}
+            {% for block in snippet.tab_4 %}
+				<div class="col-lg-3 col-md-6 col-12">
+					<div class="wrap">
+						<span class="timer__single" data-from="1" data-to="{{ block.value.metric }}" data-speed="3000" data-refresh-interval="50"></span>
+						<sup>{{ block.value.unit }}</sup>
+						<div class="timer__descr">{{ block.value.title }}</div>
+					</div>
+				</div>
+            {% endfor %}
+			</div>
+		</div>
+	</section>
