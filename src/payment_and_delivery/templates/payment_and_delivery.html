@@ -1,0 +1,140 @@
+{% extends "base_template.html" %}
+{% load wagtailcore_tags wagtailimages_tags my_tags %}
+{% block content %}
+    {% for block in page.upper_banner %}
+        {% image block.value.image original as img %}
+    <section class="first-section overlay" style="background-image: url({{ img.url }})">
+		<div class="container">
+			<div class="breadcrumbs">
+				<ul>
+					<li>
+						<a href="/">Главная</a>
+					</li>
+					<li>
+							Оплата и доставка
+					</li>
+				</ul>
+			</div>
+			<div class="row align-items-center justify-content-center">
+					<h1>{{ block.value.title }}</h1>
+			</div>
+		</div>
+	</section>
+    {% endfor %}
+	<section class="payment">
+		<div class="tabs">
+			<div class="tabs__wrap">
+				<div class="container">
+						<div class="row">
+							<ul class="tabs__caption">
+								<li class="active"><i class="nut-icon icons-vector12"></i> <span>Оплата заказа</span></li>
+								<li><i class="nut-icon icons-lorry"></i> <span>Доставка партии</span></li>
+								<li><i class="nut-icon icons-package"></i> <span>Возврат товара</span></li>
+							</ul>
+						</div>
+					</div>
+			</div>
+		<div class="container">
+			<div class="row">
+				<div class="col-12">
+					<div class="tabs__content active">
+                        {% for block in page.payment %}
+						<div class="row">
+							<div class="col-md-5 col-12 align-self-center">
+								<div class="tabs__content_block">
+									<p class="tabs__content_title">
+										{{ block.value.title }}
+									</p>
+									<ul>
+                                        {% for sub_block in block.value.content  %}
+                                            <li>
+                                            {% image sub_block.value.icon original as img %}
+											    <span><img src="{{ img.url }}" alt="alt">{{sub_block.value.title }}</span>
+											    <p> {{sub_block.value.title }} }}</p>
+										    </li>
+                                        {% endfor %}
+									</ul>
+								</div>
+							</div>
+							<div class="col-md-7 col-12">
+                                {% image block.value.image original as img %}
+								<img src="{{ img.url }}" class="tabs__content_img" alt="alt">
+							</div>
+						</div>
+                        {% endfor %}
+					</div>
+					<div class="tabs__content">
+						{% for block in page.delivery %}
+						<div class="row">
+							<div class="col-md-5 col-12 align-self-center">
+								<div class="tabs__content_block">
+									<p class="tabs__content_title">
+										{{ block.value.title }}
+									</p>
+									<ul>
+                                        {% for sub_block in block.value.content  %}
+                                            <li>
+                                            {% image sub_block.value.icon original as img %}
+											    <span><img src="{{ img.url }}" alt="alt">{{sub_block.value.title }}</span>
+											    <p> {{sub_block.value.title }} }}</p>
+										    </li>
+                                        {% endfor %}
+									</ul>
+								</div>
+							</div>
+							<div class="col-md-7 col-12">
+                                {% image block.value.image original as img %}
+								<img src="{{ img.url }}" class="tabs__content_img" alt="alt">
+							</div>
+						</div>
+                        {% endfor %}
+					</div>
+					<div class="tabs__content">
+						{% for block in page.refund %}
+						<div class="row">
+							<div class="col-md-5 col-12 align-self-center">
+								<div class="tabs__content_block">
+									<p class="tabs__content_title">
+										{{ block.value.title }}
+									</p>
+									<ul>
+                                        {% for sub_block in block.value.content  %}
+                                            <li>
+                                            {% image sub_block.value.icon original as img %}
+											    <span><img src="{{ img.url }}" alt="alt">{{sub_block.value.title }}</span>
+											    <p> {{sub_block.value.title }} }}</p>
+										    </li>
+                                        {% endfor %}
+									</ul>
+								</div>
+							</div>
+							<div class="col-md-7 col-12">
+                                {% image block.value.image original as img %}
+								<img src="{{ img.url }}" class="tabs__content_img" alt="alt">
+							</div>
+						</div>
+                        {% endfor %}
+					</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</section>
+    	{% render_garden_info %}
+    {% for block in page.down_banner %}
+    <div class="parallax" data-scrollax-parent="true">
+        {% image block.value.preview_image original as img %}
+		<section class="goal overlay cover" style="background-image: url({{ img.url }})" data-scrollax="properties: { translateY: '30%' }">
+			<div class="container">
+				<div class="row align-items-center justify-content-center">
+					<a href="{{ block.value.video.file.url }}" data-scrollax="properties: { 'translateY': '5%', 'opacity': 1 }">
+						<h2>{{ block.value.title }}</h2>
+						<span><i class="nut-icon icons-play-icon"></i></span>
+						<p><i>{{ block.value.description }}</i></p>
+					</a>
+				</div>
+			</div>
+		</section>
+	</div>
+    {% endfor %}
+{% endblock content %}
