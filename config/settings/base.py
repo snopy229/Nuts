@@ -40,6 +40,7 @@ INSTALLED_APPS = [
     "src.production",
     "src.payment_and_delivery",
     "src.b2b_client",
+    "src.news_and_articles",
     "wagtail.contrib.forms",
     "wagtail.contrib.redirects",
     "wagtail.contrib.settings",
