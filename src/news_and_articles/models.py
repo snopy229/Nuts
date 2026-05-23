@@ -5,7 +5,8 @@ from wagtail.blocks import RichTextBlock
 from wagtail.fields import StreamField
 from wagtail.images.blocks import ImageChooserBlock
 from wagtail.models import Page
-from wagtailmedia.blocks import VideoChooserBlock
+
+from src.core.blocks import VideoWithPreviewBlock
 
 
 class NewsAndArticlesPage(Page):
@@ -21,12 +22,19 @@ class NewsAndArticlesPage(Page):
     subpage_types = ["NewsAndArticlesDetailPage"]
     template = "news_and_articles.html"
 
+    def get_context(self, request):
+        context = super().get_context(request)
+        latest_news = NewsAndArticlesDetailPage.objects.live().order_by("-created_at")
+        context["latest_news"] = latest_news[:1].first()
+        context["previous_news"] = latest_news[1:4]
+        return context
+
 
 class NewsAndArticlesDetailPage(Page):
     preview = StreamField(
         [
             ("image", ImageChooserBlock()),
-            ("video", VideoChooserBlock()),
+            ("video", VideoWithPreviewBlock()),
         ],
         max_num=1,
         min_num=1,

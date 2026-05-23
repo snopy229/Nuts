@@ -45,6 +45,11 @@ class PhotoWithoutDescriptionBlock(blocks.StructBlock):
     image = ImageChooserBlock()
 
 
+class VideoWithPreviewBlock(blocks.StructBlock):
+    preview_image = ImageChooserBlock()
+    video = VideoChooserBlock()
+
+
 class TabListBlock(blocks.StructBlock):
     title = blocks.CharBlock()
     content = StreamBlock(
