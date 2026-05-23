@@ -15,7 +15,7 @@ class NewsAndArticlesPage(Page):
 
     content_panels = Page.content_panels + [
         FieldPanel("page_title", heading="Верхний баннер"),
-        FieldPanel("description", heading="Оплата"),
+        FieldPanel("description", heading="Описание"),
     ]
     max_count = 1
     parent_page_types = ["wagtailcore.Page"]
@@ -24,9 +24,32 @@ class NewsAndArticlesPage(Page):
 
     def get_context(self, request):
         context = super().get_context(request)
-        latest_news = NewsAndArticlesDetailPage.objects.live().order_by("-created_at")
-        context["latest_news"] = latest_news[:1].first()
-        context["previous_news"] = latest_news[1:4]
+
+        news_queryset = NewsAndArticlesDetailPage.objects.live().order_by("-created_at")
+
+        top_news = news_queryset[:1].first()
+        context["latest_news"] = top_news
+
+        previous_news_list = list(news_queryset[1:4])
+
+        if top_news:
+            first_text = ""
+            for block in top_news.description:
+                if block.block_type == "text":
+                    first_text = block.value
+                    break
+            context["latest_news_first_text"] = first_text
+
+        for news in previous_news_list:
+            news_text = ""
+            for block in news.description:
+                if block.block_type == "text":
+                    news_text = block.value
+                    break
+            news.first_text = news_text
+
+        context["previous_news"] = previous_news_list
+
         return context
 
 

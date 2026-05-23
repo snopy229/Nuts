@@ -1,0 +1,108 @@
+{% extends "base_template.html" %}
+{% load wagtailcore_tags wagtailimages_tags my_tags %}
+{% block content %}
+    <section class="benefit-news">
+       <div class="container">
+          <div class="row align-items-center justify-content-center">
+             <div class="col-12">
+                <h1>{{ page.page_title }}</h1>
+                <p>{{ page.description }}</p>
+             </div>
+          </div>
+          <div class="row justify-content-center align-items-start">
+
+             {# ——— ГЛАВНАЯ НОВОСТЬ ——— #}
+             <div class="col-lg-8 py-4">
+                <div class="benefit-news__img" style="width:100%; overflow:hidden;">
+                   {% for block in latest_news.preview %}
+                      {% if block.block_type == "image" %}
+                         {% image block.value original as img %}
+                         <img src="{{ img.url }}" alt="alt"
+                              style="width:100%; height:320px; object-fit:cover; display:block;">
+                      {% endif %}
+                      {% if block.block_type == "video" %}
+                         {% image block.value.preview_image original as img %}
+                         <a href="{{ block.value.video.file.url }}"
+                            class="benefit-news__item overlay benefit-news__item_video_text"
+                            style="background-image: url({{ img.url }}); display:block; width:100%; height:320px; background-size:cover; background-position:center; position:relative;">
+                            <span style="position:absolute; top:50%; left:50%; transform:translate(-50%,-50%);">
+                               <i class="nut-icon icons-play-icon"></i>
+                            </span>
+                         </a>
+                      {% endif %}
+                   {% endfor %}
+                </div>
+             </div>
+             <div class="col-lg-4 py-4">
+                <div class="news__item">
+                   <div class="wraper">
+                      <div class="item_data">{{ latest_news.created_at|date:"d.m.Y" }}</div>
+                      <h3>{{ latest_news.page_title }}</h3>
+                      <p>{{ latest_news_first_text|striptags|truncatechars:300 }}</p>
+                      <a href="{% pageurl latest_news %}">Читать <i class="nut-icon icons-read-more"></i></a>
+                   </div>
+                </div>
+             </div>
+
+             {# ——— ОСТАЛЬНЫЕ НОВОСТИ ——— #}
+             {% for news in previous_news %}
+             <div class="col-lg-4 col-md-6 col-12 py-4">
+                <div class="news__item" style="display:flex; flex-direction:column;">
+
+                   {% for block in news.preview %}
+                      {% if block.block_type == "image" %}
+                         {% image block.value original as img %}
+                         <div class="video_wrap" style="width:100%; overflow:hidden; margin-bottom:12px;">
+                            <img src="{{ img.url }}" alt="alt"
+                                 style="width:100%; height:280px; object-fit:cover; display:block;">
+                         </div>
+                      {% endif %}
+                      {% if block.block_type == "video" %}
+                         {% image block.value.preview_image original as img %}
+                         <div class="video_wrap" style="width:100%; overflow:hidden; margin-bottom:12px; position:relative;">
+                            <a href="{{ block.value.video.file.url }}"
+                               class="overlay benefit-news__item_video_text"
+                               style="background-image: url({{ img.url }}); display:block; width:100%; height:280px; background-size:cover; background-position:center; position:relative;">
+                               <span style="position:absolute; top:50%; left:50%; transform:translate(-50%,-50%);">
+                                  <i class="nut-icon icons-play-icon"></i>
+                               </span>
+                            </a>
+                         </div>
+                      {% endif %}
+                   {% endfor %}
+
+                   <div class="wraper" style="padding: 0 0 8px 0;">
+                      <div class="item_data">{{ news.created_at|date:"d.m.Y" }}</div>
+                      <h3>{{ news.page_title }}</h3>
+                      <p>{{ news.first_text|striptags|truncatechars:150 }}</p>
+                      <a href="{% pageurl news %}">Читать <i class="nut-icon icons-read-more"></i></a>
+                   </div>
+
+                </div>
+             </div>
+             {% endfor %}
+
+             {# ——— ВИДЕО-БАННЕР ——— #}
+             <div class="col-lg-12 col-md-12 col-12 py-4">
+                <div class="wrap">
+                   <a href="#" class="benefit-news__item overlay benefit-news__item_video_text"
+                      style="background-image: url(img/peoples.jpg)">
+                      <span><i class="nut-icon icons-play-icon"></i></span>
+                      <h3>Проект UBHDP</h3>
+                      <p>Вчера к нам приезжал американский агроном Рон, спасибо Мельнику<br>
+                         Евгению и проекту <strong>UBHDP</strong> за возможность получить консультацию<br>
+                         от мировых специалистов!</p>
+                   </a>
+                </div>
+             </div>
+
+             <div class="row">
+                <div class="wrapper">
+                   <a href="#" class="button button_transparent">Посмотреть еще</a>
+                </div>
+             </div>
+
+          </div>
+       </div>
+    </section>
+{% endblock %}

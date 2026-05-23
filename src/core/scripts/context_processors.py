@@ -1,4 +1,4 @@
-from news_and_articles.models import NewsAndArticlesPage
+from src.news_and_articles.models import NewsAndArticlesPage
 from src.gallery.models import GalleryPage
 from src.payment_and_delivery.models import PaymentAndDeliveryPage
 
