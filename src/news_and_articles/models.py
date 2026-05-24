@@ -6,6 +6,7 @@ from wagtail.fields import StreamField
 from wagtail.images.blocks import ImageChooserBlock
 from wagtail.models import Page
 
+from src.gallery.models import Gallery
 from src.core.blocks import VideoWithPreviewBlock
 
 
@@ -49,6 +50,11 @@ class NewsAndArticlesPage(Page):
             news.first_text = news_text
 
         context["previous_news"] = previous_news_list
+        gallery = Gallery.objects.first()
+        if gallery and gallery.content:
+            context["first_block"] = gallery.content[0]
+        else:
+            context["first_block"] = None
 
         return context
 
@@ -80,3 +86,10 @@ class NewsAndArticlesDetailPage(Page):
 
     parent_page_types = ["NewsAndArticlesPage"]
     template = "news_and_articles_detail.html"
+
+    def get_context(self, request):
+        context = super().get_context(request)
+        news_queryset = NewsAndArticlesDetailPage.objects.live().order_by("-created_at")
+
+        context["latest_news"] = news_queryset[:3]
+        return context

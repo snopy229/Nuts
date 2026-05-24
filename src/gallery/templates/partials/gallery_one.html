@@ -8,7 +8,7 @@
 
 <div class="row justify-content-center align-items-start" id="gallery-grid">
     {% for block in gallery_blocks %}
-        {% include "partials/gallery_block.html" with block=block counter=forloop.counter %}
+        {% include "partials/gallery_block.html" with block=block counter=3 %}
     {% endfor %}
 </div>
 
@@ -16,7 +16,7 @@
 <div class="row justify-content-center" id="gallery-more">
   <div class="wrapper">
     <a class="button button_transparent"
-       hx-get="{% url 'gallery:gallery-more' %}?offset=6"
+       hx-get="{% url 'gallery:gallery-more' %}?offset=1"
        hx-target="#gallery-grid"
        hx-swap="beforeend">
       Показать ещё

@@ -16,6 +16,18 @@ def render_gallery():
     }
 
 
+@register.inclusion_tag("partials/gallery_one.html")
+def render_gallery_one():
+    gallery = Gallery.get()
+    blocks = list(gallery.content)
+    preview = blocks[:1]
+    has_more = len(blocks) > 6
+    return {
+        "gallery_blocks": preview,
+        "has_more": has_more,
+    }
+
+
 @register.filter
 def mod(value, arg):
     return value % arg

@@ -1,0 +1,109 @@
+{% extends "base_template.html" %}
+{% load wagtailcore_tags wagtailimages_tags my_tags %}
+{% block content %}
+    <section class="first-section no-bg">
+       <div class="container">
+          <div class="breadcrumbs">
+             <ul>
+                <li>
+                   <a href="/">Главная</a>
+                </li>
+                <li>
+                   {{ page.page_title }}
+                </li>
+             </ul>
+          </div>
+       </div>
+    </section>
+
+    <div class="single-news">
+       <div class="container">
+          <div class="row">
+             <div class="col-lg-5">
+                <h1>{{ page.page_title }}</h1>
+                <div class="single-news__data">
+                   {{ page.created_at|date:"d.m.Y" }}
+                </div>
+             </div>
+             <div class="col-lg-7"></div>
+          </div>
+          <div class="row" >
+             <div class="col-lg-9 col-md-8 col-12">
+                <main class="main" style="min-height: 650px;">
+                        {% for block in page.description %}
+                            {% if block.block_type == "image" %}
+                               {% image block.value original as img %}
+                                <img src="{{ img.url }}" alt="alt">
+                            {% endif %}
+                            {% if block.block_type == "text" %}
+                                {{ block.value | richtext }}
+                            {% endif %}
+                        {% endfor %}
+                </main>
+             </div>
+             <div class="col-lg-3 col-md-4 d-none d-md-block col-12" style="position: relative; z-index: 10;">
+                <aside class="aside">
+                   <div class="sidebar__inner sticky">
+                      <div class="aside__title">
+                         Последние публикации
+                      </div>
+                      <ul>
+                                {% for news in latest_news %}
+                         <li>
+                            <div class="aside__item">
+                                        {% for block in news.preview %}
+                                            {% if block.block_type == "image" %}
+                                                {% image block.value original as img %}
+                                               <div class="aside__item_img">
+                                                  <img src="{{ img.url }}" alt="{{ news.page_title }}">
+                                               </div>
+                                            {% endif %}
+                                            {% if block.block_type == "video" %}
+                                                {% image block.value.preview_image original as img %}
+                                               <div class="aside__item_img">
+                                                    <img src="{{ img.url }}" alt="{{ news.page_title }}">
+                                               </div>
+                                            {% endif %}
+                                        {% empty %}
+                                               <div class="aside__item_img">
+                                                  <img src="img/pic6.jpg" alt="default">
+                                               </div>
+                                        {% endfor %}
+
+                               <div class="aside__item_data">
+                                  {{ news.created_at|date:"d.m.Y" }}
+                               </div>
+                               <div class="aside__item_title">
+                                            <p>{{ news.page_title }}</p>
+                               </div>
+                               <a href="{% pageurl news %}">Читать <i class="nut-icon icons-read-more"></i></a>
+                            </div>
+                         </li>
+                                {% endfor %}
+                      </ul>
+                      <div class="banner">
+                         <div class="banner__title">
+                            ОРЕХ ПРИЧЕРНОМОРЬЯ
+                         </div>
+                         <div class="banner__descr">
+                            Присоединяйтесь к нам в соц. сетях
+                         </div>
+                         <ul class="banner__social">
+                            <li>
+                               <a href="{{ settings.main.Contacts.facebook_url }}"><i class="nut-icon icons-facebook"></i></a>
+                            </li>
+                            <li>
+                               <a href="{{ settings.main.Contacts.instagram_url }}"><i class="nut-icon icons-instagram"></i></a>
+                            </li>
+                            <li>
+                               <a href="{{ settings.main.Contacts.youtube_url }}"><i class="nut-icon icons-youtube"></i></a>
+                            </li>
+                         </ul>
+                      </div>
+                   </div>
+                </aside>
+             </div>
+          </div>
+       </div>
+    </div>
+{% endblock content %}
