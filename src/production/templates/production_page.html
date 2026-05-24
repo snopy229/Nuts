@@ -1,0 +1,196 @@
+{% extends "base_template.html" %}
+{% load wagtailcore_tags wagtailimages_tags my_tags gallery_tags %}
+
+{% block content %}
+    <!-- Upper Banner -->
+    {% for block in page.upper_banner %}
+        {% image block.value.preview_image original as img %}
+        <section class="first-section overlay" style="background-image: url({{ img.url }})">
+           <div class="container">
+              <div class="breadcrumbs">
+                 <ul>
+                    <li><a href="/">Главная</a></li>
+                    <li>О производстве</li>
+                 </ul>
+              </div>
+              <div class="row align-items-center justify-content-center">
+                 <a href="{{ block.value.video.file.url }}">
+                    <h1>{{ block.value.title }}</h1>
+                    <p>{{ block.value.description }}</p>
+                    <span><i class="nut-icon icons-play-icon"></i></span>
+                 </a>
+              </div>
+           </div>
+        </section>
+    {% endfor %}
+
+    <!-- Manufacturer section with Gallery Slider -->
+    <section class="manufacturer">
+       <div class="container">
+          <div class="row align-items-center">
+             <div class="col-md-5">
+                <h2>{{ page.page_title }}</h2>
+                <p class="manufacturer__descr">{{ page.description }}</p>
+             </div>
+             <div class="col-md-7">
+                <!-- Swiper -->
+                <div class="manufacturer-container swiper-container">
+                   <div class="swiper-wrapper">
+                      {% for block in page.gallery %}
+                         {% if block.block_type == "photo" %}
+                            {% image block.value original as img %}
+                            <div class="swiper-slide">
+                               <img src="{{ img.url }}" alt="alt">
+                            </div>
+                         {% endif %}
+                         {% if block.block_type == "video" %}
+                            {% image block.value.preview_image original as img %}
+                            <div class="swiper-slide">
+                               <a href="{{ block.value.video.file.url }}"
+                                  target="_blank">
+                                   <div class="manufacturer__item manufacturer__item_video">
+									<img src="{{ img.url }}" alt="alt">
+								</div>
+                               </a>
+                            </div>
+                         {% endif %}
+                      {% endfor %}
+                   </div>
+                   <!-- Add Arrows -->
+                   <div class="wrap">
+                      <div class="swiper-button-next"></div>
+                      <div class="swiper-button-prev"></div>
+                   </div>
+                </div>
+             </div>
+          </div>
+       </div>
+    </section>
+
+    <!-- History / Founder Section -->
+    <section class="history gray_section">
+       <div class="container">
+          <div class="row no-gutters">
+             <div class="col-lg-7 col-12">
+                <div class="history__blockquote">
+                   <div class="row no-gutters">
+                      <div class="col-md-5">
+                         {% image page.founder_photo original as img %}
+                         <img src="{{ img.url }}" alt="alt">
+                      </div>
+                      <div class="col-md-7">
+                         <div class="blockquote_block">
+                            <h3>{{ page.founder_fullname }}</h3>
+                            <p>{{ page.founder_information }}</p>
+                            <blockquote>
+                               {{ page.founder_quote }}
+                            </blockquote>
+                            <a href="#" class="button button_transparent">Написать нам</a>
+                         </div>
+                      </div>
+                   </div>
+                </div>
+             </div>
+             <div class="col-lg-5 col-12">
+                <div class="history__content">
+                   <h3>История предприятия</h3>
+                   <p>{{ page.history }}</p>
+                </div>
+             </div>
+          </div>
+       </div>
+    </section>
+
+    {% render_garden_info %}
+
+    <section class="benefit gray_section gallery_section">
+       <div class="container">
+          {% render_gallery %}
+       </div>
+    </section>
+
+    <!-- Down Banner -->
+    {% for block in page.down_banner %}
+        {% image block.value.preview_image original as img %}
+        <div class="parallax" data-scrollax-parent="true">
+           <section class="eco overlay" style="background-image: url({{ img.url }})" data-scrollax="properties: { translateY: '30%' }">
+              <div class="container">
+                 <div class="row align-items-center justify-content-center">
+                    <a href="{{ block.value.video.file.url }}" data-scrollax="properties: { 'translateY': '5%', 'opacity': 1 }">
+                       <i class="nut-icon icons-eco"></i>
+                       <h2>{{ block.value.title }}</h2>
+                       <p>{{ block.value.description }}</p>
+                    </a>
+                 </div>
+              </div>
+           </section>
+        </div>
+    {% endfor %}
+
+    <!-- News Slider Section -->
+    <section class="news gray_section">
+        <div class="container">
+            <div class="row align-items-center">
+                <div class="col-md-6 col-12">
+                    <h2>Новости</h2>
+                    <p class="news__descr">Свежие новости и полезная информация</p>
+                </div>
+                <div class="col-md-6 col-12 d-flex justify-content-end">
+                    <div class="wrap">
+                        <div class="navigation"><div class="swiper-button-next"></div>
+                        <div class="swiper-button-prev"></div></div>
+                    </div>
+                </div>
+                <div class="col-12">
+                    <!-- Swiper — стрелки и слайды в одном контейнере -->
+                    <div class="news-container swiper-container">
+
+                        <div class="swiper-wrapper">
+                            {% for new in news %}
+                                <div class="swiper-slide">
+                                    {% if new.preview.0.block_type == "video" %}
+                                        <div class="news__item news__item_video">
+                                            <span class="video_wrap">
+                                                {% image new.preview.0.value.preview_image original as img %}
+                                                <img src="{{ img.url }}" alt="{{ new.title }}">
+                                            </span>
+                                            <div class="wraper">
+                                                <div class="item_data">{{ new.date|date:"d.m.Y" }}</div>
+                                                <h3>{{ new.title }}</h3>
+                                                <p>{{ new.first_text|truncatewords:20 }}</p>
+                                                <a href="{% pageurl new %}">Читать <i class="nut-icon icons-read-more"></i></a>
+                                            </div>
+                                        </div>
+                                    {% else %}
+                                        <div class="news__item">
+                                            <span class="video_wrap">
+                                                {% if new.preview.0.value %}
+                                                    {% image new.preview.0.value original as img %}
+                                                    <img src="{{ img.url }}" alt="{{ new.title }}">
+                                                {% else %}
+                                                    <img src="/static/img/pic.jpg" alt="{{ new.title }}">
+                                                {% endif %}
+                                            </span>
+                                            <div class="wraper">
+                                                <div class="item_data">{{ new.date|date:"d.m.Y" }}</div>
+                                                <h3>{{ new.title }}</h3>
+                                                <p>{{ new.first_text|striptags|truncatewords:20 }}</p>
+                                                <a href="{% pageurl new %}">Читать <i class="nut-icon icons-read-more"></i></a>
+                                            </div>
+                                        </div>
+                                    {% endif %}
+                                </div>
+                            {% endfor %}
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="wrapper">
+                    <a href="{% pageurl news_page %}" class="button button_transparent">Смотреть все новости</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+{% endblock content %}
