@@ -41,6 +41,13 @@ class ProductTaste(models.Model):
         return self.title
 
 
+class ProductWeight(models.Model):
+    title = models.CharField(unique=True, max_length=255)
+
+    def __str__(self):
+        return self.title
+
+
 class ProductDetailPage(Page):
     gallery = StreamField([("images", ImageChooserBlock())], use_json_field=True)
     package = models.ForeignKey(ProductPackage, on_delete=models.PROTECT)
@@ -48,12 +55,14 @@ class ProductDetailPage(Page):
     nuts_type = models.CharField(max_length=255)
     nuts_title = models.CharField(max_length=255)
     compound = models.TextField()
-    mass = models.CharField(max_length=255)
+    cost = models.IntegerField()
+    mass = models.ForeignKey(ProductWeight, on_delete=models.PROTECT)
     energy_value = models.CharField(max_length=255)
     shelf_life = models.CharField(max_length=255)
-    discount_value = models.IntegerField(null=True, blank=True)
+    discount = models.IntegerField(null=True, blank=True)
     article = models.CharField(max_length=20, unique=True, blank=True, null=True)
     blocks = StreamField([("block", TabBlock())], max_num=4, min_num=1, use_json_field=True)
+    created_at = models.DateTimeField(auto_now_add=True)
     template = "products_detail_page.html"
     parent_page_types = ["ProductsPage"]
     content_panels = Page.content_panels + [
@@ -66,9 +75,15 @@ class ProductDetailPage(Page):
         FieldPanel("mass", heading="Масса"),
         FieldPanel("energy_value", heading="Энергетическая ценность"),
         FieldPanel("shelf_life", heading="Срок годности"),
-        FieldPanel("discount_value", heading="Скидка(%)"),
+        FieldPanel("discount", heading="Скидка(%)"),
         FieldPanel("blocks", heading="Разделы"),
     ]
+
+    @property
+    def cost_with_discount(self):
+        if self.discount:
+            return self.cost - self.discount
+        return self.cost
 
     def save(self, *args, **kwargs):
         if self.article:
