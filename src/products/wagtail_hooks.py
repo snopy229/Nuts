@@ -1,7 +1,7 @@
 from wagtail.snippets.models import register_snippet
 from wagtail.snippets.views.snippets import SnippetViewSet
 
-from src.products.models import ProductTaste, ProductPackage
+from src.products.models import ProductTaste, ProductPackage, ProductWeight
 
 
 class ProductTasteViewSet(SnippetViewSet):
@@ -28,3 +28,16 @@ class ProductPackageViewSet(SnippetViewSet):
 
 
 register_snippet(ProductPackageViewSet)
+
+
+class ProductWeightViewSet(SnippetViewSet):
+    model = ProductWeight
+    icon = "tag"
+    add_to_admin_menu = True
+    menu_label = "Масса"
+    menu_order = 300
+    list_display = ["title"]
+    search_fields = ["title"]
+
+
+register_snippet(ProductWeightViewSet)
