@@ -23,3 +23,10 @@ class ProductPackage(models.Model):
 
     def __str__(self):
         return self.title
+
+
+class ProductTaste(models.Model):
+    title = models.CharField(unique=True, max_length=255)
+
+    def __str__(self):
+        return self.title
