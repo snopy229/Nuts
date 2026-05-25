@@ -28,21 +28,21 @@ class ProductsPage(Page):
 
 
 class ProductPackage(models.Model):
-    title = models.CharField(unique=True, max_length=255)
+    title = models.CharField("Упаковка", unique=True, max_length=255)
 
     def __str__(self):
         return self.title
 
 
 class ProductTaste(models.Model):
-    title = models.CharField(unique=True, max_length=255)
+    title = models.CharField("Название вкуса", unique=True, max_length=255)
 
     def __str__(self):
         return self.title
 
 
 class ProductWeight(models.Model):
-    title = models.CharField(unique=True, max_length=255)
+    title = models.CharField("Масса", unique=True, max_length=255)
 
     def __str__(self):
         return self.title

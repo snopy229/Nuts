@@ -1,0 +1,191 @@
+{% extends "base_template.html" %}
+{% block content %}
+<section class="first-section no-bg">
+			<div class="container">
+				<div class="breadcrumbs">
+					<ul>
+						<li>
+							<a href="/">Главная</a>
+						</li>
+						<li>
+								Карточка товара
+						</li>
+					</ul>
+				</div>
+			</div>
+		</section>
+
+	<section class="product">
+			<div class="container">
+				<div class="row no-gutters">
+					<div class="col-lg-5 col-md-6">
+							<div class="wrap">
+									<div class="product__item">
+										<div class="sticker">
+											<i class="nut-icon icons-actciya"></i>
+											<p>Акция</p>
+										</div>
+										<!-- Slider main container -->
+										<div class="products-container swiper-container">
+											<!-- Additional required wrapper -->
+											<div class="swiper-wrapper">
+												<!-- Slides -->
+                                                {% for block in page.gallery %}
+                                                	<div class="swiper-slide">
+                                                    {% image block.value original as img %}
+												    	<a href="#"><img src="{{ img.url }}" alt="alt"/></a>
+												    </div>
+                                                {% endfor %}
+											</div>
+
+											<!-- If we need navigation buttons -->
+											<div class="swiper-button-prev"></div>
+											<div class="swiper-button-next"></div>
+											<img class="zoom" src="static/img/zoom.svg" alt="alt">
+										</div>
+									</div>
+								</div>
+					</div>
+					<div class="col-lg-7 col-md-6">
+						<div class="product__content">
+							<div class="row">
+								<div class="col-md-6">
+									<div class="product__content_name">
+											{{ page.nuts_type }}
+									</div>
+								</div>
+								<div class="col-md-6">
+									<div class="product__content_art">
+											Арт:<span> {{ page.article }}</span>
+									</div>
+								</div>
+								<div class="col-lg-9">
+									<h1>{{ page.nuts_title }}</h1>
+								</div>
+								<div class="col-lg-3"></div>
+								<div class="col-12">
+									<div class="product__content_descr">
+										<ul>
+											<li>
+												<div class="row">
+														<div class="col-md-5">
+															<strong>Состав:</strong>
+														</div>
+														<div class="col-md-7">
+															<span>{{ page.compound }}</span>
+														</div>
+													</div>
+											</li>
+											<li>
+												<div class="row">
+													<div class="col-md-5">
+														<strong>Масса нетто:</strong>
+													</div>
+													<div class="col-md-7">
+														<span>{{ page.mass }}</span>
+													</div>
+												</div>
+											</li>
+											<li>
+													<div class="row">
+														<div class="col-md-5">
+															<strong>Энергетическая ценность:</strong>
+														</div>
+														<div class="col-md-7">
+															<span>{{ page.energy_value }}</span>
+														</div>
+													</div>
+												</li>
+												<li>
+														<div class="row">
+															<div class="col-md-5">
+																<strong>Срок годности:</strong>
+															</div>
+															<div class="col-md-7">
+																<span>{{ page.shelf_life }}</span>
+															</div>
+														</div>
+													</li>
+										</ul>
+									</div>
+								</div>
+								<div class="col-12">
+									<div class="warning">
+											<i class="nut-icon icons-warning-sigh"></i>
+											<p>Хранить в помещениях, защищенных от попадания прямых, солнечных лучей, при температуре от +3 °C до +20 °C, и относительной влажности воздуха не более 75 %</p>
+									</div>
+								</div>
+								<div class="col-12">
+										<div class="product__content_sum">
+												<div class="sum_item">
+													<div class="sum_item_title">
+														<p>Ваша цена: </p>
+													</div>
+                                                    {% if page.discount %}
+                                                    	<div class="sum_item_new">
+														<p>{{ page.cost_with_discount}} <i>грн.</i></p>
+													</div>
+													<div class="sum_item_old">
+														<p>{{ page.cost }} <i>грн.</i></p>
+													</div>
+                                                        {% else %}
+                                                        <div class="sum_item_new">
+														<p>{{ page.cost }} <i>грн.</i></p>
+													</div>
+                                                    {% endif %}
+												</div>
+												<div class="sum_item">
+													<div class="sum_item_button">
+														<a href="#" class="button">Заказать</a>
+													</div>
+												</div>
+											</div>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</section>
+
+		<section class="payment payment__product">
+				<div class="tabs">
+					<div class="tabs__wrap">
+						<div class="container">
+								<div class="row">
+									<ul class="tabs__caption">
+                                        {% for block in page.blocks%}
+                                        	{% if forloop.counter == 1 %}
+                                        		<li class="active"><span>{{ block.value.title }}</span></li>
+                                            {% else %}
+                                                <li><span>{{ block.value.title }}</span></li>
+                                        	{% endif %}
+                                        {% endfor %}
+									</ul>
+								</div>
+							</div>
+					</div>
+				<div class="container">
+					<div class="row">
+						<div class="col-12">
+                            {% for block in page.blocks %}
+							<div class="tabs__content active">
+								<div class="row">
+									<div class="col-lg-4 col-md-6 col-12">
+                                        {% image block.value.image original as img %}
+										<img src="{{ img.url }}" class="tabs__content_img" alt="alt">
+									</div>
+									<div class="col-lg-8 col-md-6 col-12 align-self-center">
+										<div class="tabs__content_product">
+											{{ block.value.description|text }}
+										</div>
+									</div>
+								</div>
+							</div>
+                            {% endfor %}
+                        </div>
+                    </div>
+                </div>
+                </div>
+        </section>
+{% endblock content %}
