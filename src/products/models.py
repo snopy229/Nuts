@@ -1,4 +1,5 @@
 # Create your models here.
+from django.db import models
 from wagtail.blocks import RichTextBlock
 from wagtail.fields import StreamField
 from wagtail.images.blocks import ImageChooserBlock
@@ -15,3 +16,10 @@ class ProductsPage(Page):
             ("gallery", ImageChooserBlock()),
         ]
     )
+
+
+class ProductPackage(models.Model):
+    title = models.CharField(unique=True, max_length=255)
+
+    def __str__(self):
+        return self.title
