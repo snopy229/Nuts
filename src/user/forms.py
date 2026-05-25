@@ -1,4 +1,4 @@
-from cities_light.models import Country, Region, City
+from cities_light.models import Region, City
 from django import forms
 from django.contrib.auth.forms import UserCreationForm, AuthenticationForm
 
@@ -6,13 +6,19 @@ from src.user.models import User, Individual, LegalEntity
 
 
 class UserForm(UserCreationForm[User]):
-    country = forms.ModelChoiceField(queryset=Country.objects.all(), empty_label="Страна", widget=forms.Select())
-    region = forms.ModelChoiceField(queryset=Region.objects.all(), empty_label="Область", widget=forms.Select())
-    city = forms.ModelChoiceField(queryset=City.objects.all(), empty_label="Город*", widget=forms.Select())
+    region = forms.ModelChoiceField(
+        queryset=Region.objects.none(),  # пустой, будет заполняться через ajax
+        required=False,
+        widget=forms.Select(),
+    )
+    city = forms.ModelChoiceField(queryset=City.objects.none(), required=False, widget=forms.Select())
 
     class Meta:
         model = User
         fields = [
+            "country",
+            "region",
+            "city",
             "fullname",
             "email",
             "phone_number",
@@ -25,6 +31,7 @@ class UserForm(UserCreationForm[User]):
             "password2",
         ]
         widgets = {
+            "country": forms.Select(),
             "fullname": forms.TextInput(
                 attrs={
                     "placeholder": "ФИО*",
@@ -99,12 +106,10 @@ class IndividualForm(forms.ModelForm[Individual]):
 
 
 class LegalEntityForm(forms.ModelForm[LegalEntity]):
-    legal_country = forms.ModelChoiceField(queryset=Country.objects.all(), empty_label="Страна", widget=forms.Select())
-    legal_region = forms.ModelChoiceField(queryset=Region.objects.all(), empty_label="Область", widget=forms.Select())
-    legal_city = forms.ModelChoiceField(queryset=City.objects.all(), empty_label="Город*", widget=forms.Select())
-    sp_country = forms.ModelChoiceField(queryset=Country.objects.all(), empty_label="Страна", widget=forms.Select())
-    sp_region = forms.ModelChoiceField(queryset=Region.objects.all(), empty_label="Область", widget=forms.Select())
-    sp_city = forms.ModelChoiceField(queryset=City.objects.all(), empty_label="Город*", widget=forms.Select())
+    legal_region = forms.ModelChoiceField(queryset=Region.objects.none(), required=False, widget=forms.Select())
+    legal_city = forms.ModelChoiceField(queryset=City.objects.none(), required=False, widget=forms.Select())
+    sp_region = forms.ModelChoiceField(queryset=Region.objects.none(), required=False, widget=forms.Select())
+    sp_city = forms.ModelChoiceField(queryset=City.objects.none(), required=False, widget=forms.Select())
 
     class Meta:
         model = LegalEntity
@@ -122,6 +127,8 @@ class LegalEntityForm(forms.ModelForm[LegalEntity]):
             "sp_address",
         ]
         widgets = {
+            "legal_country": forms.Select(),
+            "sp_country": forms.Select(),
             "edrpou": forms.TextInput(
                 attrs={
                     "placeholder": "ОКПО",

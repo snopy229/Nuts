@@ -78,6 +78,7 @@ INSTALLED_APPS = [
     "wagtail.contrib.styleguide",
     "phonenumber_field",
     "wagtailmedia",
+    "django_select2",
 ]
 
 MIDDLEWARE = [
