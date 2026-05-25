@@ -2,6 +2,9 @@ from cities_light.models import City, Country, Region
 from django.contrib.auth.models import AbstractUser
 from django.db import models
 from phonenumber_field.modelfields import PhoneNumberField
+from wagtail.admin.panels import FieldPanel
+from wagtail.fields import RichTextField
+from wagtail.models import Page
 
 
 class User(AbstractUser):
@@ -39,3 +42,17 @@ class LegalEntity(models.Model):
     sp_region = models.ForeignKey(Region, on_delete=models.SET_NULL, blank=True, null=True, related_name="sp_region")
     sp_city = models.ForeignKey(City, on_delete=models.PROTECT, related_name="sp_city", null=True, blank=True)
     sp_address = models.CharField(max_length=255, blank=True, null=True)
+
+
+class TermsPage(Page):
+    content = RichTextField()
+    page_title = models.CharField(max_length=255)
+    content_panels = Page.content_panels + [
+        FieldPanel("page_title", heading="Соглашение"),
+        FieldPanel("content", heading="Условия"),
+    ]
+
+    template = "terms-of-use.html"
+    max_count = 1
+    min_count = 1
+    parent_page_types = ["wagtailcore.Page"]

@@ -4,28 +4,29 @@ from django.urls import reverse_lazy
 from django.views import View
 
 from src.user.forms import UserForm, IndividualForm, LegalEntityForm, UserLoginForm
+from .models import TermsPage
 
 
 # Create your views here.
 class RegistrationView(View):
     template_name = "registration.html"
 
+    def get_context(self, **kwargs):
+        page = TermsPage.objects.live().first()
+        return {
+            "terms_url": page.url if page else "#",
+            "user_form_individual": UserForm(prefix="individual"),
+            "user_form_legal": UserForm(prefix="legal"),
+            "individual_form": IndividualForm(),
+            "legal_form": LegalEntityForm(),
+            **kwargs,
+        }
+
     def get(self, request):
-        return render(
-            request,
-            self.template_name,
-            {
-                "user_form_individual": UserForm(prefix="individual"),
-                "user_form_legal": UserForm(prefix="legal"),
-                "individual_form": IndividualForm(),
-                "legal_form": LegalEntityForm(),
-            },
-        )
+        return render(request, self.template_name, self.get_context())
 
     def post(self, request):
         tab = request.POST.get("tab")
-        user_form = UserForm(request.POST, request.FILES)
-
         if tab == "individual":
             user_form = UserForm(request.POST, request.FILES, prefix="individual")
             profile_form = IndividualForm(request.POST, request.FILES)
@@ -39,19 +40,16 @@ class RegistrationView(View):
             profile.user = user
             profile.save()
             return redirect("main:home")
-        else:
-            print("user_form errors:", user_form.errors)
-            print("profile_form errors:", profile_form.errors)
 
         return render(
             request,
             self.template_name,
-            {
-                "user_form_individual": UserForm(prefix="individual"),
-                "user_form_legal": UserForm(prefix="legal"),
-                "individual_form": IndividualForm(),
-                "legal_form": LegalEntityForm(),
-            },
+            self.get_context(
+                user_form_individual=user_form if tab == "individual" else UserForm(prefix="individual"),
+                user_form_legal=user_form if tab == "legal" else UserForm(prefix="legal"),
+                individual_form=profile_form if tab == "individual" else IndividualForm(),
+                legal_form=profile_form if tab == "legal" else LegalEntityForm(),
+            ),
         )
 
 
