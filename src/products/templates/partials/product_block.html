@@ -1,0 +1,83 @@
+{% load wagtailcore_tags wagtailimages_tags %}
+<div class="col-lg-4 col-md-6	col-12">
+    <div class="wrap">
+        <div class="production__item">
+            <div class="sticker">
+                <i class="nut-icon icons-novinka"></i>
+                <p>Новинка</p>
+            </div>
+            <!-- Slider main container -->
+            <div class="products-container swiper-container">
+                <!-- Additional required wrapper -->
+                <div class="swiper-wrapper">
+                    <!-- Slides -->
+                    {% for block in product.gallery %}
+                        {% image block.value original as img %}
+                        <div class="swiper-slide">
+                            <a href="{% pageurl product %}"><img src="{{ img.url }}" alt="alt"/></a>
+                        </div>
+                    {% endfor %}
+                </div>
+                <!-- If we need navigation buttons -->
+                <div class="swiper-button-prev"></div>
+                <div class="swiper-button-next"></div>
+                <img class="zoom" src="static/img/zoom.svg" alt="alt">
+            </div>
+            <div class="wrap">
+                <div class="production__item_title">
+                    {{ product.nuts_type }}
+                </div>
+                <div class="production__item_art">
+                    <span>Арт:</span> {{ product.article }}
+                </div>
+                <div class="production__item_descr">
+                    {{ product.title }}
+                </div>
+                <div class="production__item_weight">
+                    <div class="weight_item">
+                        <div class="weight_item_icon">
+                            <i class="nut-icon icons-food-scale-tool"></i>
+                        </div>
+                        <div class="weight_item_descr">
+                            <p>Масса</p>
+                            <p><span>{{ product.mass }}</span></p>
+                        </div>
+                    </div>
+                    <div class="weight_item">
+                        <div class="weight_item_icon">
+                            <i class="nut-icon icons-group"></i>
+                        </div>
+                        <div class="weight_item_descr">
+                            <p>Упаковка</p>
+                            <p><span>{{ product.package }}</span></p>
+                        </div>
+                    </div>
+                </div>
+                <div class="production__item_sum">
+                    <div class="sum_item">
+                        <div class="sum_item_title">
+                            <p>Цена: </p>
+                        </div>
+                        {% if product.discount %}
+                            <div class="sum_item_new">
+                                <p>{{ product.cost_with_discount }} <i>грн.</i></p>
+                            </div>
+                            <div class="sum_item_old">
+                                <p>{{ product.cost }} <i>грн.</i></p>
+                            </div>
+                            {% else %}
+                            <div class="sum_item_new">
+                                <p>{{ product.cost }}<i>грн.</i></p>
+                            </div>
+                        {% endif %}
+                    </div>
+                    <div class="sum_item">
+                        <div class="sum_item_button">
+                            <a href="#" class="button">Купить</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

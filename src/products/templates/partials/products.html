@@ -1,0 +1,20 @@
+{% load gallery_tags wagtailimages_tags %}
+
+<div class="row justify-content-center align-items-start" id="product-grid">
+    {% for product in products %}
+        {% include "partials/product_block.html" with product=product counter=forloop.counter %}
+    {% endfor %}
+</div>
+
+{% if has_more %}
+<div class="row justify-content-center" id="product-more">
+  <div class="wrapper">
+    <a class="button button_transparent"
+       hx-get="{% url 'products:product-more' %}?offset={{ next_offset }}&taste={{ taste }}&mass={{ mass }}&order={{ order }}"
+       hx-target="#product-grid"
+       hx-swap="beforeend">
+      Показать ещё
+    </a>
+  </div>
+</div>
+{% endif %}

@@ -26,6 +26,14 @@ class ProductsPage(Page):
         FieldPanel("gallery", heading="Галерея"),
     ]
 
+    def get_context(self, request):
+        context = super().get_context(request)
+        tastes = ProductTaste.objects.all()
+        weights = ProductWeight.objects.all()
+        context["tastes"] = tastes
+        context["weights"] = weights
+        return context
+
 
 class ProductPackage(models.Model):
     title = models.CharField("Упаковка", unique=True, max_length=255)
@@ -68,6 +76,7 @@ class ProductDetailPage(Page):
     content_panels = Page.content_panels + [
         FieldPanel("gallery", heading="Галерея"),
         FieldPanel("package", heading="Упаковка"),
+        FieldPanel("cost", heading="Цена"),
         FieldPanel("taste", heading="Вкус"),
         FieldPanel("nuts_type", heading="Вид ореха"),
         FieldPanel("nuts_title", heading="Название ореха"),
