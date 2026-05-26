@@ -11,48 +11,53 @@ from src.core.blocks import VideoBlock, VideoWithPreviewBlock
 class ProductionPage(Page):
     upper_banner = StreamField(
         [
-            ("banner", VideoBlock()),
+            ("banner", VideoBlock(label="Баннер")),
         ],
         max_num=1,
         min_num=1,
         use_json_field=True,
+        verbose_name="Верхний баннер",
     )
-    page_title = models.CharField(max_length=255)
-    description = models.TextField()
+    page_title = models.CharField(max_length=255, verbose_name="Название страницы")
+    description = models.TextField(verbose_name="Описание")
     gallery = StreamField(
         [
-            ("photo", ImageChooserBlock()),
-            ("video", VideoWithPreviewBlock()),
+            ("photo", ImageChooserBlock(label="Фото")),
+            ("video", VideoWithPreviewBlock(label="Видео")),
         ],
         min_num=1,
         use_json_field=True,
+        verbose_name="Галерея",
     )
     founder_photo = models.ForeignKey(
         "wagtailimages.Image",
         on_delete=models.CASCADE,
+        verbose_name="Фото основателя",
     )
-    founder_fullname = models.CharField(max_length=255)
-    founder_information = models.TextField()
-    founder_quote = models.TextField()
-    history = models.TextField()
+    founder_fullname = models.CharField(max_length=255, verbose_name="Имя основателя")
+    founder_information = models.TextField(verbose_name="Информация об основателе")
+    founder_quote = models.TextField(verbose_name="Цитата основателя")
+    history = models.TextField(verbose_name="История")
     down_banner = StreamField(
         [
-            ("banner", VideoBlock()),
+            ("banner", VideoBlock(label="Баннер")),
         ],
         max_num=1,
         min_num=1,
         use_json_field=True,
+        verbose_name="Нижний баннер",
     )
     content_panels = Page.content_panels + [
-        FieldPanel("upper_banner", heading="Верхний баннер"),
-        FieldPanel("page_title", heading="Название страницы"),
-        FieldPanel("description", heading="Описание"),
-        FieldPanel("gallery", heading="Галерея"),
-        FieldPanel("founder_photo", heading="Фото основателя"),
-        FieldPanel("founder_fullname", heading="Имя основателя"),
-        FieldPanel("founder_information", heading="Информация о основателе"),
-        FieldPanel("founder_quote", heading="Цитата основателя"),
-        FieldPanel("down_banner", heading="Нижний баннер"),
+        FieldPanel("upper_banner"),
+        FieldPanel("page_title"),
+        FieldPanel("description"),
+        FieldPanel("gallery"),
+        FieldPanel("founder_photo"),
+        FieldPanel("founder_fullname"),
+        FieldPanel("founder_information"),
+        FieldPanel("founder_quote"),
+        FieldPanel("history"),
+        FieldPanel("down_banner"),
     ]
     template = "production_page.html"
     max_count = 1

@@ -11,12 +11,12 @@ from src.core.blocks import VideoWithPreviewBlock
 
 
 class NewsAndArticlesPage(Page):
-    page_title = models.CharField(max_length=255)
-    description = models.TextField()
+    page_title = models.CharField(max_length=255, verbose_name="Заголовок страницы")
+    description = models.TextField(verbose_name="Описание")
 
     content_panels = Page.content_panels + [
-        FieldPanel("page_title", heading="Верхний баннер"),
-        FieldPanel("description", heading="Описание"),
+        FieldPanel("page_title"),
+        FieldPanel("description"),
     ]
     max_count = 1
     parent_page_types = ["wagtailcore.Page"]
@@ -62,26 +62,28 @@ class NewsAndArticlesPage(Page):
 class NewsAndArticlesDetailPage(Page):
     preview = StreamField(
         [
-            ("image", ImageChooserBlock()),
-            ("video", VideoWithPreviewBlock()),
+            ("image", ImageChooserBlock(label="Изображение")),
+            ("video", VideoWithPreviewBlock(label="Видео")),
         ],
         max_num=1,
         min_num=1,
         use_json_field=True,
+        verbose_name="Превью",
     )
-    page_title = models.CharField()
+    page_title = models.CharField(verbose_name="Название")
     description = StreamField(
         [
-            ("text", RichTextBlock(min_num=1)),
-            ("image", ImageChooserBlock()),
-        ]
+            ("text", RichTextBlock(min_num=1, label="Текст")),
+            ("image", ImageChooserBlock(label="Изображение")),
+        ],
+        verbose_name="Информация",
     )
-    created_at = models.DateField(auto_now_add=True)
+    created_at = models.DateField(auto_now_add=True, verbose_name="Дата создания")
 
     content_panels = Page.content_panels + [
-        FieldPanel("preview", heading="Превью"),
-        FieldPanel("page_title", heading="Название"),
-        FieldPanel("description", heading="Информация"),
+        FieldPanel("preview"),
+        FieldPanel("page_title"),
+        FieldPanel("description"),
     ]
 
     parent_page_types = ["NewsAndArticlesPage"]

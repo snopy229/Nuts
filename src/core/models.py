@@ -13,21 +13,25 @@ class GardenInfo(models.Model):
         [("block", GardenInfoBlock())],
         use_json_field=True,
         max_num=1,
+        verbose_name="Вкладка 1",
     )
     tab_2 = StreamField(
         [("block", GardenInfoBlock())],
         use_json_field=True,
         max_num=1,
+        verbose_name="Вкладка 2",
     )
     tab_3 = StreamField(
         [("block", GardenInfoBlock())],
         use_json_field=True,
         max_num=1,
+        verbose_name="Вкладка 3",
     )
     tab_4 = StreamField(
         [("block", GardenInfoBlock())],
         use_json_field=True,
         max_num=1,
+        verbose_name="Вкладка 4",
     )
 
     def __str__(self):
@@ -47,6 +51,7 @@ class GardenInfo(models.Model):
 
     class Meta:
         verbose_name = "Информация о саде"
+        verbose_name_plural = "Информация о саде"
 
 
 class GardenInfoViewSet(SnippetViewSet):

@@ -12,8 +12,12 @@ from src.core.blocks import VideoBlock, PhotoBlock
 
 
 class GalleryPage(Page):
-    banner = StreamField([("banner", VideoBlock())], max_num=1, blank=True)
-
+    banner = StreamField(
+        [("banner", VideoBlock(label="Баннер"))],
+        max_num=1,
+        blank=True,
+        verbose_name="Баннер",
+    )
     parent_page_types = ["wagtailcore.Page"]
     max_count = 1
     template = "gallery_page.html"
@@ -25,10 +29,11 @@ class GalleryPage(Page):
 class Gallery(models.Model):
     content = StreamField(
         [
-            ("image", PhotoBlock()),
-            ("video", VideoBlock()),
+            ("image", PhotoBlock(label="Изображение")),
+            ("video", VideoBlock(label="Видео")),
         ],
         use_json_field=True,
+        verbose_name="Контент",
     )
     panels = [
         FieldPanel("content"),
@@ -51,6 +56,7 @@ class Gallery(models.Model):
 
     class Meta:
         verbose_name = "Галерея"
+        verbose_name_plural = "Галерея"
 
 
 class GalleryViewSet(SnippetViewSet):

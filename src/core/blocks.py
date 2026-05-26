@@ -5,56 +5,63 @@ from wagtailmedia.blocks import VideoChooserBlock
 
 
 class VideoBlock(blocks.StructBlock):
-    title = blocks.CharBlock()
-    description = blocks.CharBlock()
-    video = VideoChooserBlock()
-    preview_image = ImageChooserBlock()
+    title = blocks.CharBlock(label="Заголовок")
+    description = blocks.CharBlock(label="Описание")
+    video = VideoChooserBlock(label="Видео")
+    preview_image = ImageChooserBlock(label="Превью")
 
 
 class PhotoBlock(blocks.StructBlock):
-    title = blocks.CharBlock()
-    description = blocks.CharBlock()
-    image = ImageChooserBlock()
+    title = blocks.CharBlock(label="Заголовок")
+    description = blocks.CharBlock(label="Описание")
+    image = ImageChooserBlock(label="Изображение")
 
 
 class GardenInfoBlock(blocks.StructBlock):
-    metric = blocks.IntegerBlock()
-    unit = blocks.CharBlock()
-    title = blocks.CharBlock()
+    metric = blocks.IntegerBlock(label="Метрика")
+    unit = blocks.CharBlock(label="Единица измерения")
+    title = blocks.CharBlock(label="Заголовок")
 
 
 class TabBlock(blocks.StructBlock):
-    title = blocks.CharBlock()
-    description = blocks.RichTextBlock()
-    image = ImageChooserBlock()
+    title = blocks.CharBlock(label="Заголовок")
+    description = blocks.RichTextBlock(label="Описание")
+    image = ImageChooserBlock(label="Изображение")
 
 
 class TwoColumnsBlock(blocks.StructBlock):
-    first_block = blocks.RichTextBlock()
-    second_block = blocks.RichTextBlock()
+    first_block = blocks.RichTextBlock(label="Левая колонка")
+    second_block = blocks.RichTextBlock(label="Правая колонка")
 
 
 class ListForTabBlock(blocks.StructBlock):
-    icon = ImageChooserBlock()
-    title = blocks.CharBlock()
-    description = blocks.CharBlock()
+    icon = ImageChooserBlock(label="Иконка")
+    title = blocks.CharBlock(label="Заголовок")
+    description = blocks.CharBlock(label="Описание")
 
 
 class PhotoWithoutDescriptionBlock(blocks.StructBlock):
-    title = blocks.CharBlock()
-    image = ImageChooserBlock()
+    title = blocks.CharBlock(label="Заголовок")
+    image = ImageChooserBlock(label="Изображение")
 
 
 class VideoWithPreviewBlock(blocks.StructBlock):
-    preview_image = ImageChooserBlock()
-    video = VideoChooserBlock()
+    preview_image = ImageChooserBlock(label="Превью")
+    video = VideoChooserBlock(label="Видео")
+
+
+class VideoWithoutDescriptionBlock(blocks.StructBlock):
+    title = blocks.CharBlock(label="Заголовок")
+    video = VideoChooserBlock(label="Видео")
+    preview_image = ImageChooserBlock(label="Превью")
 
 
 class TabListBlock(blocks.StructBlock):
-    title = blocks.CharBlock()
+    title = blocks.CharBlock(label="Заголовок")
     content = StreamBlock(
         [
             ("Paragraph", ListForTabBlock()),
-        ]
+        ],
+        label="Содержимое",
     )
-    image = ImageChooserBlock()
+    image = ImageChooserBlock(label="Изображение")

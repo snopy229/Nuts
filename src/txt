@@ -1,0 +1,391 @@
+<div class="row justify-content-center">
+				<div class="col-lg-4 col-md-6	col-12">
+					<div class="wrap">
+						<div class="production__item">
+							<div class="sticker">
+								<i class="nut-icon icons-actciya"></i>
+								<p>Акция</p>
+							</div>
+							<!-- Slider main container -->
+							<div class="products-container swiper-container">
+								<!-- Additional required wrapper -->
+								<div class="swiper-wrapper">
+									<!-- Slides -->
+									<div class="swiper-slide">
+										<a href="#"><img src="img/KOND-40g.png" alt="alt"/></a>
+									</div>
+									<div class="swiper-slide">
+										<a href="#"><img src="img/KOND-40g.png" alt="alt"/></a>
+									</div>
+									<div class="swiper-slide">
+										<a href="#"><img src="img/KOND-40g.png" alt="alt"/></a>
+									</div>
+								</div>
+
+								<!-- If we need navigation buttons -->
+								<div class="swiper-button-prev"></div>
+								<div class="swiper-button-next"></div>
+								<img class="zoom" src="img/zoom.svg" alt="alt">
+							</div>
+							<div class="wrap">
+								<div class="production__item_title">
+									Грецкий орех
+								</div>
+								<div class="production__item_art">
+									<span>Арт:</span> 0091
+								</div>
+								<div class="production__item_descr">
+									Орех сладкий, классический,<br> очищенный
+								</div>
+								<div class="production__item_weight">
+									<div class="weight_item">
+										<div class="weight_item_icon">
+											<i class="nut-icon icons-food-scale-tool"></i>
+										</div>
+										<div class="weight_item_descr">
+											<p>Масса</p>
+											<p><span>40<i>г.</i></span></p>
+										</div>
+									</div>
+									<div class="weight_item">
+										<div class="weight_item_icon">
+											<i class="nut-icon icons-group"></i>
+										</div>
+										<div class="weight_item_descr">
+											<p>Упаковка</p>
+											<p><span>вакуумная</span></p>
+										</div>
+									</div>
+								</div>
+								<div class="production__item_sum">
+									<div class="sum_item">
+										<div class="sum_item_title">
+											<p>Цена: </p>
+										</div>
+										<div class="sum_item_new">
+											<p>19 <i>грн.</i></p>
+										</div>
+										<div class="sum_item_old">
+											<p>21 <i>грн.</i></p>
+										</div>
+									</div>
+									<div class="sum_item">
+										<div class="sum_item_button">
+											<a href="#" class="button">Купить</a>
+										</div>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+				<div class="col-lg-4 col-md-6	col-12">
+					<div class="wrap">
+						<div class="production__item">
+							<!-- Slider main container -->
+							<div class="products-container swiper-container">
+								<!-- Additional required wrapper -->
+								<div class="swiper-wrapper">
+									<!-- Slides -->
+									<div class="swiper-slide">
+										<a href="#"><img src="img/KOND-40g.png" alt="alt"/></a>
+									</div>
+									<div class="swiper-slide">
+										<a href="#"><img src="img/KOND-40g.png" alt="alt"/></a>
+									</div>
+									<div class="swiper-slide">
+										<a href="#"><img src="img/KOND-40g.png" alt="alt"/></a>
+									</div>
+								</div>
+
+								<!-- If we need navigation buttons -->
+								<div class="swiper-button-prev"></div>
+								<div class="swiper-button-next"></div>
+								<img class="zoom" src="img/zoom.svg" alt="alt">
+							</div>
+							<div class="wrap">
+								<div class="production__item_title">
+									Грецкий орех
+								</div>
+								<div class="production__item_art">
+									<span>Арт:</span> 0091
+								</div>
+								<div class="production__item_descr">
+									Орех сладкий, классический,<br> очищенный
+								</div>
+								<div class="production__item_weight">
+									<div class="weight_item">
+										<div class="weight_item_icon">
+											<i class="nut-icon icons-food-scale-tool"></i>
+										</div>
+										<div class="weight_item_descr">
+											<p>Масса</p>
+											<p><span>40<i>г.</i></span></p>
+										</div>
+									</div>
+									<div class="weight_item">
+										<div class="weight_item_icon">
+											<i class="nut-icon icons-group"></i>
+										</div>
+										<div class="weight_item_descr">
+											<p>Упаковка</p>
+											<p><span>вакуумная</span></p>
+										</div>
+									</div>
+								</div>
+								<div class="production__item_sum">
+									<div class="sum_item">
+										<div class="sum_item_title">
+											<p>Цена: </p>
+										</div>
+										<div class="sum_item_new">
+											<p>19 <i>грн.</i></p>
+										</div>
+										<div class="sum_item_old">
+											<p>21 <i>грн.</i></p>
+										</div>
+									</div>
+									<div class="sum_item">
+										<div class="sum_item_button">
+											<a href="#" class="button">Купить</a>
+										</div>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+				<div class="col-lg-4 col-md-6	col-12">
+					<div class="wrap">
+						<div class="production__item">
+							<!-- Slider main container -->
+							<div class="products-container swiper-container">
+								<!-- Additional required wrapper -->
+								<div class="swiper-wrapper">
+									<!-- Slides -->
+									<div class="swiper-slide">
+										<a href="#"><img src="img/22222.png" alt="alt"/></a>
+									</div>
+									<div class="swiper-slide">
+										<a href="#"><img src="img/22222.png" alt="alt"/></a>
+									</div>
+									<div class="swiper-slide">
+										<a href="#"><img src="img/22222.png" alt="alt"/></a>
+									</div>
+								</div>
+
+								<!-- If we need navigation buttons -->
+								<div class="swiper-button-prev"></div>
+								<div class="swiper-button-next"></div>
+								<img class="zoom" src="img/zoom.svg" alt="alt">
+							</div>
+							<div class="wrap">
+								<div class="production__item_title">
+									Грецкий орех
+								</div>
+								<div class="production__item_art">
+									<span>Арт:</span> 0091
+								</div>
+								<div class="production__item_descr">
+									Орех сладкий, классический,<br> очищенный
+								</div>
+								<div class="production__item_weight">
+									<div class="weight_item">
+										<div class="weight_item_icon">
+											<i class="nut-icon icons-food-scale-tool"></i>
+										</div>
+										<div class="weight_item_descr">
+											<p>Масса</p>
+											<p><span>40<i>г.</i></span></p>
+										</div>
+									</div>
+									<div class="weight_item">
+										<div class="weight_item_icon">
+											<i class="nut-icon icons-group"></i>
+										</div>
+										<div class="weight_item_descr">
+											<p>Упаковка</p>
+											<p><span>вакуумная</span></p>
+										</div>
+									</div>
+								</div>
+								<div class="production__item_sum">
+									<div class="sum_item">
+										<div class="sum_item_title">
+											<p>Цена: </p>
+										</div>
+										<div class="sum_item_new">
+											<p>19 <i>грн.</i></p>
+										</div>
+										<div class="sum_item_old">
+											<p>21 <i>грн.</i></p>
+										</div>
+									</div>
+									<div class="sum_item">
+										<div class="sum_item_button">
+											<a href="#" class="button">Купить</a>
+										</div>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+				<div class="col-lg-4 col-md-6	col-12">
+					<div class="wrap">
+						<div class="production__item">
+							<!-- Slider main container -->
+							<div class="products-container swiper-container">
+								<!-- Additional required wrapper -->
+								<div class="swiper-wrapper">
+									<!-- Slides -->
+									<div class="swiper-slide">
+										<a href="#"><img src="img/22222.png" alt="alt"/></a>
+									</div>
+									<div class="swiper-slide">
+										<a href="#"><img src="img/22222.png" alt="alt"/></a>
+									</div>
+									<div class="swiper-slide">
+										<a href="#"><img src="img/22222.png" alt="alt"/></a>
+									</div>
+								</div>
+
+								<!-- If we need navigation buttons -->
+								<div class="swiper-button-prev"></div>
+								<div class="swiper-button-next"></div>
+								<img class="zoom" src="img/zoom.svg" alt="alt">
+							</div>
+							<div class="wrap">
+								<div class="production__item_title">
+									Грецкий орех
+								</div>
+								<div class="production__item_art">
+									<span>Арт:</span> 0091
+								</div>
+								<div class="production__item_descr">
+									Орех сладкий, классический,<br> очищенный
+								</div>
+								<div class="production__item_weight">
+									<div class="weight_item">
+										<div class="weight_item_icon">
+											<i class="nut-icon icons-food-scale-tool"></i>
+										</div>
+										<div class="weight_item_descr">
+											<p>Масса</p>
+											<p><span>40<i>г.</i></span></p>
+										</div>
+									</div>
+									<div class="weight_item">
+										<div class="weight_item_icon">
+											<i class="nut-icon icons-group"></i>
+										</div>
+										<div class="weight_item_descr">
+											<p>Упаковка</p>
+											<p><span>вакуумная</span></p>
+										</div>
+									</div>
+								</div>
+								<div class="production__item_sum">
+									<div class="sum_item">
+										<div class="sum_item_title">
+											<p>Цена: </p>
+										</div>
+										<div class="sum_item_new">
+											<p>19 <i>грн.</i></p>
+										</div>
+										<div class="sum_item_old">
+											<p>21 <i>грн.</i></p>
+										</div>
+									</div>
+									<div class="sum_item">
+										<div class="sum_item_button">
+											<a href="#" class="button">Купить</a>
+										</div>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+				<div class="col-lg-4 col-md-6	col-12">
+					<div class="wrap">
+						<div class="production__item">
+							<!-- Slider main container -->
+							<div class="products-container swiper-container">
+								<!-- Additional required wrapper -->
+								<div class="swiper-wrapper">
+									<!-- Slides -->
+									<div class="swiper-slide">
+										<a href="#"><img src="img/22222.png" alt="alt"/></a>
+									</div>
+									<div class="swiper-slide">
+										<a href="#"><img src="img/22222.png" alt="alt"/></a>
+									</div>
+									<div class="swiper-slide">
+										<a href="#"><img src="img/22222.png" alt="alt"/></a>
+									</div>
+								</div>
+
+								<!-- If we need navigation buttons -->
+								<div class="swiper-button-prev"></div>
+								<div class="swiper-button-next"></div>
+								<img class="zoom" src="img/zoom.svg" alt="alt">
+							</div>
+							<div class="wrap">
+								<div class="production__item_title">
+									Грецкий орех
+								</div>
+								<div class="production__item_art">
+									<span>Арт:</span> 0091
+								</div>
+								<div class="production__item_descr">
+									Орех сладкий, классический,<br> очищенный
+								</div>
+								<div class="production__item_weight">
+									<div class="weight_item">
+										<div class="weight_item_icon">
+											<i class="nut-icon icons-food-scale-tool"></i>
+										</div>
+										<div class="weight_item_descr">
+											<p>Масса</p>
+											<p><span>40<i>г.</i></span></p>
+										</div>
+									</div>
+									<div class="weight_item">
+										<div class="weight_item_icon">
+											<i class="nut-icon icons-group"></i>
+										</div>
+										<div class="weight_item_descr">
+											<p>Упаковка</p>
+											<p><span>вакуумная</span></p>
+										</div>
+									</div>
+								</div>
+								<div class="production__item_sum">
+									<div class="sum_item">
+										<div class="sum_item_title">
+											<p>Цена: </p>
+										</div>
+										<div class="sum_item_new">
+											<p>19 <i>грн.</i></p>
+										</div>
+										<div class="sum_item_old">
+											<p>21 <i>грн.</i></p>
+										</div>
+									</div>
+									<div class="sum_item">
+										<div class="sum_item_button">
+											<a href="#" class="button">Купить</a>
+										</div>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+			<div class="row">
+				<div class="wrapper">
+					<a href="#" class="button button_transparent">Загрузить еще</a>
+				</div>
+			</div>
