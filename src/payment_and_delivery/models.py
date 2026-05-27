@@ -55,5 +55,5 @@ class PaymentAndDeliveryPage(Page):
         FieldPanel("down_banner"),
     ]
     max_count = 1
-    parent_page_types = ["wagtailcore.Page"]
+    parent_page_types = ["main.MainPage"]
     template = "payment_and_delivery.html"

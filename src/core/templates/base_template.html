@@ -58,12 +58,14 @@
 					<div class="col-lg-4 col-12">
 						<div class="wrap">
 							<ul class="log_in d-lg-flex d-none">
+                                {% if not user.is_authenticated %}
 								<li>
-									<a href="#"><i class="nut-icon icons-man-user"></i><span>Вход</span></a>
+									<a href="{% url "user:login" %}"><i class="nut-icon icons-man-user"></i><span>Вход</span></a>
 								</li>
 								<li>
 									<a href={% url 'user:registration' %}><span>Регистрация</span></a>
 								</li>
+                                {% endif %}
 							</ul>
 							<div id="lang-menu" class="lang-menu">
 								<span class="title">Ru</span>
@@ -160,7 +162,7 @@
 						<div class="mobile-line d-lg-none d-flex"></div>
 						<ul class="menu_main_ul">
 							<li>
-								<a href="{% pageurl shop %}">Магазин</a>
+								<a href="{% pageurl shop_page %}">Магазин</a>
 							</li>
 							<li>
 								<a href="{% pageurl production %}">О производстве</a>

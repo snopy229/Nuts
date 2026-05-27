@@ -92,6 +92,7 @@ MIDDLEWARE = [
     "django.middleware.clickjacking.XFrameOptionsMiddleware",
     "wagtail.contrib.redirects.middleware.RedirectMiddleware",
 ]
+
 AUTH_USER_MODEL = 'user.User'
 ROOT_URLCONF = "config.urls"
 

@@ -1,4 +1,4 @@
-from cities_light.models import Region, City
+from cities_light.models import Region, City, Country
 from django import forms
 from django.contrib.auth.forms import UserCreationForm, AuthenticationForm
 
@@ -6,12 +6,15 @@ from src.user.models import User, Individual, LegalEntity
 
 
 class UserForm(UserCreationForm[User]):
-    region = forms.ModelChoiceField(
-        queryset=Region.objects.none(),  # пустой, будет заполняться через ajax
-        required=False,
-        widget=forms.Select(),
+    country = forms.ModelChoiceField(
+        queryset=Country.objects.all(), required=False, widget=forms.Select(), empty_label="Страна"
     )
-    city = forms.ModelChoiceField(queryset=City.objects.none(), required=False, widget=forms.Select())
+    region = forms.ModelChoiceField(
+        queryset=Region.objects.none(), required=False, widget=forms.Select(), empty_label="Область"
+    )
+    city = forms.ModelChoiceField(
+        queryset=City.objects.none(), required=False, widget=forms.Select(), empty_label="Город*"
+    )
 
     class Meta:
         model = User
@@ -31,7 +34,6 @@ class UserForm(UserCreationForm[User]):
             "password2",
         ]
         widgets = {
-            "country": forms.Select(),
             "fullname": forms.TextInput(
                 attrs={
                     "placeholder": "ФИО*",
@@ -80,22 +82,6 @@ class UserForm(UserCreationForm[User]):
                 "required": True,
             }
         )
-        data = args[0] if args else kwargs.get("data", None)
-        if data:
-            if "country" in data:
-                try:
-                    country_id = int(data.get("country"))
-                    self.fields["region"].queryset = Region.objects.filter(country_id=country_id)
-                    self.fields["region"].widget.attrs.pop("disabled", None)
-                except (ValueError, TypeError):
-                    pass
-            if "region" in data:
-                try:
-                    region_id = int(data.get("region"))
-                    self.fields["city"].queryset = City.objects.filter(region_id=region_id)
-                    self.fields["city"].widget.attrs.pop("disabled", None)
-                except (ValueError, TypeError):
-                    pass
 
 
 class IndividualForm(forms.ModelForm[Individual]):
@@ -106,16 +92,29 @@ class IndividualForm(forms.ModelForm[Individual]):
 
 
 class LegalEntityForm(forms.ModelForm[LegalEntity]):
-    legal_region = forms.ModelChoiceField(queryset=Region.objects.none(), required=False, widget=forms.Select())
-    legal_city = forms.ModelChoiceField(queryset=City.objects.none(), required=False, widget=forms.Select())
-    sp_region = forms.ModelChoiceField(queryset=Region.objects.none(), required=False, widget=forms.Select())
-    sp_city = forms.ModelChoiceField(queryset=City.objects.none(), required=False, widget=forms.Select())
+    legal_country = forms.ModelChoiceField(
+        queryset=Country.objects.all(), required=False, widget=forms.Select(), empty_label="Страна"
+    )
+    legal_region = forms.ModelChoiceField(
+        queryset=Region.objects.none(), required=False, widget=forms.Select(), empty_label="Область"
+    )
+    legal_city = forms.ModelChoiceField(
+        queryset=City.objects.none(), required=False, widget=forms.Select(), empty_label="Город*"
+    )
+    sp_country = forms.ModelChoiceField(
+        queryset=Country.objects.all(), required=False, widget=forms.Select(), empty_label="Страна"
+    )
+    sp_region = forms.ModelChoiceField(
+        queryset=Region.objects.none(), required=False, widget=forms.Select(), empty_label="Область"
+    )
+    sp_city = forms.ModelChoiceField(
+        queryset=City.objects.none(), required=False, widget=forms.Select(), empty_label="Город*"
+    )
 
     class Meta:
         model = LegalEntity
         fields = [
             "edrpou",
-            "legal_country",
             "legal_region",
             "legal_city",
             "legal_address",
@@ -127,8 +126,6 @@ class LegalEntityForm(forms.ModelForm[LegalEntity]):
             "sp_address",
         ]
         widgets = {
-            "legal_country": forms.Select(),
-            "sp_country": forms.Select(),
             "edrpou": forms.TextInput(
                 attrs={
                     "placeholder": "ОКПО",

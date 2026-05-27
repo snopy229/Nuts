@@ -73,7 +73,7 @@ class B2BClientPage(Page):
     )
     max_count = 1
     template = "b2b_client_page.html"
-    parent_page_types = ["wagtailcore.Page"]
+    parent_page_types = ["main.MainPage"]
     content_panels = Page.content_panels + [
         FieldPanel("upper_banner"),
         FieldPanel("page_title"),

@@ -99,4 +99,4 @@ class TermsPage(Page):
     template = "terms-of-use.html"
     max_count = 1
     min_count = 1
-    parent_page_types = ["wagtailcore.Page"]
+    parent_page_types = ["main.MainPage"]

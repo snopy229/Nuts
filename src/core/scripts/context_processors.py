@@ -1,5 +1,5 @@
-from main.models import MainPage
-from products.models import ProductsPage
+from src.main.models import MainPage
+from src.products.models import ProductsPage
 from src.b2b_client.models import B2BClientPage
 from src.production.models import ProductionPage
 from src.news_and_articles.models import NewsAndArticlesPage

@@ -385,6 +385,7 @@ function initMap() {
 	// select
 
     $('select').each(function(){
+        if ($(this).hasClass('select-hidden')) return;
         var $this = $(this), numberOfOptions = $(this).children('option').length;
 
         $this.addClass('select-hidden');

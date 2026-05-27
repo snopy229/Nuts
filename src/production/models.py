@@ -61,7 +61,7 @@ class ProductionPage(Page):
     ]
     template = "production_page.html"
     max_count = 1
-    parent_page_types = ["wagtailcore.Page"]
+    parent_page_types = ["main.MainPage"]
 
     def get_context(self, request):
         context = super().get_context(request)

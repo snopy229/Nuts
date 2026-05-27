@@ -19,7 +19,7 @@ class NewsAndArticlesPage(Page):
         FieldPanel("description"),
     ]
     max_count = 1
-    parent_page_types = ["wagtailcore.Page"]
+    parent_page_types = ["main.MainPage"]
     subpage_types = ["NewsAndArticlesDetailPage"]
     template = "news_and_articles.html"
 

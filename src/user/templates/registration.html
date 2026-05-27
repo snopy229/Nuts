@@ -165,33 +165,28 @@ $(function() {
     ];
 
     function rebuildCustomSelect(selectEl) {
-        const $this = $(selectEl);
+    const $this = $(selectEl);
+    const $styledSelect = $this.next('div.select-styled');
+    const $list = $styledSelect.next('ul.select-options');
 
-        if ($this.closest('.select').parent().hasClass('select')) {
-            $this.closest('.select').unwrap();
-        }
+    $styledSelect.text($this.children('option').eq(0).text());
+    $list.empty();
 
-        const $styledSelect = $this.next('div.select-styled');
-        const $list = $styledSelect.next('ul.select-options');
+    $this.children('option').each(function() {
+        $('<li />', {
+            text: $(this).text(),
+            rel: $(this).val()
+        }).appendTo($list);
+    });
 
-        $styledSelect.text($this.children('option').eq(0).text());
-        $list.empty();
-
-        $this.children('option').each(function() {
-            $('<li />', {
-                text: $(this).text(),
-                rel: $(this).val()
-            }).appendTo($list);
-        });
-
-        $list.off('click', 'li').on('click', 'li', function(e) {
-            e.stopPropagation();
-            $styledSelect.text($(this).text()).removeClass('active');
-            $this.val($(this).attr('rel'));
-            $this.trigger('change');
-            $list.hide();
-        });
-    }
+    $list.off('click', 'li').on('click', 'li', function(e) {
+        e.stopPropagation();
+        $styledSelect.text($(this).text()).removeClass('active');
+        $this.val($(this).attr('rel'));
+        $this.trigger('change');
+        $list.hide();
+    });
+}
 
     forms.forEach(function(f) {
         $(f.country).on('change', function() {
@@ -204,11 +199,11 @@ $(function() {
                     return r.json();
                 })
                 .then(data => {
-                    $(f.region).html('<option value="">---------</option>');
+                    $(f.region).html('<option value="">Область</option>');
                     (data.results || []).forEach(item => {
                         $(f.region).append(`<option value="${item.id}">${item.text}</option>`);
                     });
-                    $(f.city).html('<option value="">---------</option>');
+                    $(f.city).html('<option value="">Город*</option>');
 
                     setTimeout(() => {
                         rebuildCustomSelect(document.querySelector(f.region));
@@ -228,7 +223,7 @@ $(function() {
                     return r.json();
                 })
                 .then(data => {
-                    $(f.city).html('<option value="">---------</option>');
+                    $(f.city).html('<option value="">Город*</option>');
                     (data.results || []).forEach(item => {
                         $(f.city).append(`<option value="${item.id}">${item.text}</option>`);
                     });

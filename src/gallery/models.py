@@ -18,7 +18,7 @@ class GalleryPage(Page):
         blank=True,
         verbose_name="Баннер",
     )
-    parent_page_types = ["wagtailcore.Page"]
+    parent_page_types = ["main.MainPage"]
     max_count = 1
     template = "gallery_page.html"
     content_panels = Page.content_panels + [

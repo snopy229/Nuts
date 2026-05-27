@@ -28,7 +28,7 @@ class ProductsPage(Page):
         verbose_name="Галерея",
     )
     template = "products_page.html"
-    parent_page_types = ["wagtailcore.Page"]
+    parent_page_types = ["main.MainPage"]
     max_count = 1
     content_panels = Page.content_panels + [
         FieldPanel("upper_banner"),
