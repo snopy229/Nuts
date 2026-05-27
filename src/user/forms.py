@@ -25,9 +25,6 @@ class UserForm(UserCreationForm[User]):
             "fullname",
             "email",
             "phone_number",
-            "country",
-            "region",
-            "city",
             "address",
             "avatar",
             "password1",
@@ -164,3 +161,25 @@ class UserLoginForm(AuthenticationForm):
             }
         ),
     )
+
+
+class UserAddressForm(forms.ModelForm):
+    country = forms.ModelChoiceField(queryset=Country.objects.all(), widget=forms.Select(), empty_label="Страна")
+    region = forms.ModelChoiceField(queryset=Region.objects.none(), widget=forms.Select(), empty_label="Область")
+    city = forms.ModelChoiceField(queryset=City.objects.none(), widget=forms.Select(), empty_label="Город*")
+
+    class Meta:
+        model = User
+        fields = [
+            "country",
+            "region",
+            "city",
+            "address",
+        ]
+        widgets = {
+            "address": forms.TextInput(
+                attrs={
+                    "placeholder": "Адрес",
+                }
+            )
+        }
