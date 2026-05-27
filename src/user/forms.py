@@ -183,3 +183,36 @@ class UserAddressForm(forms.ModelForm):
                 }
             )
         }
+
+
+class LegalEntityAddressForm(forms.ModelForm[LegalEntity]):
+    legal_country = forms.ModelChoiceField(
+        queryset=Country.objects.all(), required=False, widget=forms.Select(), empty_label="Страна"
+    )
+    legal_region = forms.ModelChoiceField(
+        queryset=Region.objects.none(), required=False, widget=forms.Select(), empty_label="Область"
+    )
+    legal_city = forms.ModelChoiceField(
+        queryset=City.objects.none(), required=False, widget=forms.Select(), empty_label="Город*"
+    )
+
+    class Meta:
+        model = LegalEntity
+        fields = [
+            "edrpou",
+            "legal_region",
+            "legal_city",
+            "legal_address",
+        ]
+        widgets = {
+            "edrpou": forms.TextInput(
+                attrs={
+                    "placeholder": "ОКПО",
+                }
+            ),
+            "legal_address": forms.TextInput(
+                attrs={
+                    "placeholder": "Адрес",
+                }
+            ),
+        }
