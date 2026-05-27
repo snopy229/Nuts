@@ -13,7 +13,6 @@ urlpatterns: list[URLPattern | URLResolver] = [
     path("cms/", include(wagtailadmin_urls)),
     path("documents/", include(wagtaildocs_urls)),
     path("user/", include("src.user.urls", namespace="user")),
-    path("", include("src.main.urls", namespace="main")),
     path("gallery/", include("src.gallery.urls", namespace="gallery")),
     path("products/", include("src.products.urls", namespace="products")),
     path("api/", api.urls),

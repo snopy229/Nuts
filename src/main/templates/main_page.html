@@ -30,10 +30,17 @@
                 	<div class="col-lg-4 col-md-6	col-12">
     <div class="wrap">
         <div class="production__item">
+           {% if product.discount %}
+               <div class="sticker">
+                   <i class="nut-icon icons-actciya"></i>
+                   <p>Акция</p>
+               </div>
+           {% endif %}{% if product.is_new %}
             <div class="sticker">
                 <i class="nut-icon icons-novinka"></i>
                 <p>Новинка</p>
             </div>
+            {% endif %}
             <!-- Slider main container -->
             <div class="products-container swiper-container">
                 <!-- Additional required wrapper -->
@@ -126,7 +133,7 @@
 			<div class="row align-items-center">
 				<div class="col-md-5">
 					<h2>{{ production.page_title }}</h2>
-					<p class="manufacturer__descr"><span>{{ production.description }}</p>
+					<p class="manufacturer__descr">{{ production.description }}</p>
 					<a href="#" class="button button_transparent">Подробнее</a>
 				</div>
 				<div class="col-md-7">

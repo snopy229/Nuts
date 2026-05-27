@@ -2,10 +2,19 @@
 <div class="col-lg-4 col-md-6	col-12">
     <div class="wrap">
         <div class="production__item">
-            <div class="sticker">
+        {% if product.discount %}
+        	<div class="sticker">
+                <i class="nut-icon icons-actciya"></i>
+                <p>Акция</p>
+            </div>
+        {% endif %}
+        {% if product.is_new %}
+        	<div class="sticker">
                 <i class="nut-icon icons-novinka"></i>
                 <p>Новинка</p>
             </div>
+        {% endif %}
+
             <!-- Slider main container -->
             <div class="products-container swiper-container">
                 <!-- Additional required wrapper -->

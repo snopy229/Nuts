@@ -11,9 +11,9 @@ def register_contacts_menu_item() -> MenuItem:
     return MenuItem("Контакты", reverse("wagtailsettings:edit", args=("main", "contacts")), icon_name="mail", order=600)
 
 
-@hooks.register("construct_main_menu")
-def hide_settings_menu_item(request: HttpRequest, menu_items: List[MenuItem]) -> None:
-    menu_items[:] = [item for item in menu_items if item.name != "settings"]
+# @hooks.register("construct_main_menu")
+# def hide_settings_menu_item(request: HttpRequest, menu_items: List[MenuItem]) -> None:
+#     menu_items[:] = [item for item in menu_items if item.name != "settings"]
 
 
 @hooks.register("construct_main_menu")

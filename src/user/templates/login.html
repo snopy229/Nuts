@@ -5,7 +5,7 @@
 			<div class="breadcrumbs">
 				<ul>
 					<li>
-						<a href={% url "main:home" %}>Главная</a>
+						<a href="/">Главная</a>
 					</li>
 					<li>
 							Вход
@@ -19,12 +19,18 @@
 		<div class="container">
 			<div class="row justify-content-center">
 				<div class="col-lg-4 col-md-6">
-					<h1 class="text-center py-4">Вход</h1>
+					<h1 class="text-center py-4">Войти в личный кабинет</h1>
 					<form action={% url "user:login" %} method="post">
                         {% csrf_token %}
-                        {{ form.username }}
-                        {{ form.password }}
-							<button class="button" type="submit">Продолжить</button>
+							{{ form.username }}
+							{{ form.password }}
+							<div class="mini_link">
+								<a href="#">Забыли пароль?</a>
+							</div>
+							<button class="button" type="submit">Войти</button>
+							<div class="mini_link">
+								<a href="{% ur "user:registration" %}">Регистрация</a>
+							</div>
 					</form>
 				</div>
 			</div>

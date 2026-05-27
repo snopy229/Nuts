@@ -1,7 +1,9 @@
 # Create your models here.
 import random
+from datetime import timedelta
 
 from django.db import models
+from django.utils import timezone
 from wagtail.admin.panels import FieldPanel
 from wagtail.fields import StreamField, RichTextField
 from wagtail.images.blocks import ImageChooserBlock
@@ -111,6 +113,10 @@ class ProductDetailPage(Page):
         if self.discount:
             return self.cost - self.discount
         return self.cost
+
+    @property
+    def is_new(self):
+        return timezone.now() - self.created_at <= timedelta(days=30)
 
     def save(self, *args, **kwargs):
         if self.article:
