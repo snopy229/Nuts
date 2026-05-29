@@ -80,6 +80,24 @@ class UserForm(UserCreationForm[User]):
             }
         )
 
+        if f"{self.prefix}-country" in self.data:
+            try:
+                country_id = int(self.data.get(f"{self.prefix}-country"))
+
+                self.fields["region"].queryset = Region.objects.filter(country_id=country_id)
+
+            except (ValueError, TypeError):
+                pass
+
+        if f"{self.prefix}-region" in self.data:
+            try:
+                region_id = int(self.data.get(f"{self.prefix}-region"))
+
+                self.fields["city"].queryset = City.objects.filter(region_id=region_id)
+
+            except (ValueError, TypeError):
+                pass
+
 
 class IndividualForm(forms.ModelForm[Individual]):
     class Meta:
@@ -148,10 +166,16 @@ class LegalEntityForm(forms.ModelForm[LegalEntity]):
 
 
 class UserLoginForm(AuthenticationForm):
-    username = forms.CharField(
+    username = forms.EmailField(
         label="Email",
-        widget=forms.TextInput(attrs={"class": "form-control", "placeholder": "E-mail*"}),
+        widget=forms.EmailInput(
+            attrs={
+                "class": "form-control",
+                "placeholder": "E-mail*",
+            }
+        ),
     )
+
     password = forms.CharField(
         label="Пароль",
         widget=forms.PasswordInput(

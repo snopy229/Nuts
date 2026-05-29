@@ -1,10 +1,18 @@
+from django.contrib.auth.mixins import LoginRequiredMixin
 from django.contrib.auth.views import LoginView
 from django.shortcuts import render, redirect
-from django.urls import reverse_lazy
 from django.views import View
+from django.views.generic import UpdateView
 
-from src.user.forms import UserForm, IndividualForm, LegalEntityForm, UserLoginForm
-from .models import TermsPage
+from src.user.forms import (
+    UserForm,
+    IndividualForm,
+    LegalEntityForm,
+    UserLoginForm,
+    UserAddressForm,
+    LegalEntityAddressForm,
+)
+from .models import TermsPage, User
 
 
 # Create your views here.
@@ -39,7 +47,9 @@ class RegistrationView(View):
             profile = profile_form.save(commit=False)
             profile.user = user
             profile.save()
-            return redirect("main:home")
+            return "/"
+        else:
+            print(user_form.errors, profile_form.errors)
 
         return render(
             request,
@@ -58,4 +68,56 @@ class UserLoginView(LoginView):
     template_name = "login.html"
 
     def get_success_url(self):
-        return reverse_lazy("main:home")
+        return "/"
+
+
+class AddressUpdateView(LoginRequiredMixin, UpdateView):
+    model = User
+    fields = []
+
+    def get_object(self, queryset=None):
+        return self.request.user
+
+    def get_template_names(self):
+        user = self.request.user
+        if hasattr(user, "individual"):
+            return ["account/address_fiz.html"]
+        elif hasattr(user, "legal"):
+            return ["account/address_ur.html"]
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        user = self.request.user
+
+        if hasattr(user, "individual"):
+            context["form"] = UserAddressForm(instance=user)
+
+        elif hasattr(user, "legalentity"):
+            context["user_form"] = UserAddressForm(instance=user)
+            context["legal_form"] = LegalEntityAddressForm(instance=user.legalentity)
+
+        return context
+
+    def post(self, request, *args, **kwargs):
+        self.object = self.get_object()
+        user = request.user
+
+        if hasattr(user, "individual"):
+            form = UserAddressForm(request.POST, instance=self.object)
+            if form.is_valid():
+                form.save()
+                return redirect("/")
+            return self.render_to_response(self.get_context_data(form=form))
+
+        elif hasattr(user, "legalentity"):
+            user_form = UserAddressForm(request.POST, instance=user)
+            legal_form = LegalEntityAddressForm(request.POST, instance=user)
+            if user_form.is_valid() and legal_form.is_valid():
+                user_form.save()
+                legal_form.save()
+                return redirect("/")
+            return self.render_to_response(self.get_context_data(user_form=user_form, legal_form=legal_form))
+        return self.post(request, *args, **kwargs)
+
+    def get_success_url(self):
+        return redirect("/")

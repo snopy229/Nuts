@@ -65,6 +65,16 @@
 								<li>
 									<a href={% url 'user:registration' %}><span>Регистрация</span></a>
 								</li>
+                                {% elif user.is_authenticated %}
+								<li>
+									<a href="№"><i class="nut-icon icons-man-user"></i><span>Вход</span></a>
+								</li>
+								<li>
+                                    <form action="{% url 'user:logout' %}" method="post">
+                                        {% csrf_token %}
+                                        <button type="submit">Выход</button>
+                                    </form>
+								</li>
                                 {% endif %}
 							</ul>
 							<div id="lang-menu" class="lang-menu">

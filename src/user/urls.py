@@ -13,4 +13,5 @@ urlpatterns = [
         auth_views.LogoutView.as_view(next_page="/"),
         name="logout",
     ),
+    path("account/address/", views.AddressUpdateView.as_view(), name="account_address"),
 ]
