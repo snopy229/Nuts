@@ -80,6 +80,9 @@ INSTALLED_APPS = [
     "phonenumber_field",
     "wagtailmedia",
     "django_select2",
+    "wagtail_modeltranslation",
+    "wagtail_modeltranslation.makemigrations",
+    "wagtail_modeltranslation.migrate",
 ]
 
 MIDDLEWARE = [

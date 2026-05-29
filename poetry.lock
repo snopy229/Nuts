@@ -555,6 +555,22 @@ django-modelcluster = ">=6.4,<6.5"
 django-stubs = ">=5.2.0"
 
 [[package]]
+name = "django-modeltranslation"
+version = "0.20.3"
+description = "Translates Django models using a registration approach."
+optional = false
+python-versions = "<4,>=3.10"
+groups = ["main"]
+files = [
+    {file = "django_modeltranslation-0.20.3-py3-none-any.whl", hash = "sha256:0e1aaf77ce3dcf80c7ec67a6d67821635d07f4849c90363bc0afedb237b014f0"},
+    {file = "django_modeltranslation-0.20.3.tar.gz", hash = "sha256:53f5e33927b99e184f3100c965c45f306f370b7086c6b34e35468800be0916ea"},
+]
+
+[package.dependencies]
+django = ">=5.1"
+typing-extensions = ">=4.0.1"
+
+[[package]]
 name = "django-ninja"
 version = "1.6.2"
 description = "Django Ninja - Fast Django REST framework"
@@ -2151,6 +2167,23 @@ docs = ["Sphinx (>=7.3)", "myst_parser (==2.0.0)", "pyenchant (>=3.1.1,<4)", "sp
 testing = ["Jinja2 (>=3.0,<3.2)", "azure-mgmt-cdn (>=12.0,<13.0)", "azure-mgmt-frontdoor (>=1.0,<1.1)", "boto3 (>=1.28,<2)", "coverage (>=3.7.0)", "curlylint (==0.13.1)", "django-pattern-library (>=0.7)", "djhtml (==3.0.6)", "doc8 (==1.1.2)", "factory-boy (>=3.2)", "freezegun (>=0.3.8)", "polib (>=1.1,<2.0)", "python-dateutil (>=2.7)", "responses (>=0.25,<1)", "ruff (==0.9.6)", "semgrep (==1.150.0)", "tblib (>=2.0,<3.0)"]
 
 [[package]]
+name = "wagtail-modeltranslation"
+version = "0.16.0"
+description = "Translates Wagtail CMS models using a registration approach."
+optional = false
+python-versions = "<4.0,>=3.9"
+groups = ["main"]
+files = [
+    {file = "wagtail_modeltranslation-0.16.0-py3-none-any.whl", hash = "sha256:d0e8bd0fe4ce8310f5acd67c1362428eeb0c653e0fac00ee0a44707c791bc5d5"},
+    {file = "wagtail_modeltranslation-0.16.0.tar.gz", hash = "sha256:2978cbfd7ec173f9767880fa7fcb4f4c915426e636faf82b052053873dfd94bb"},
+]
+
+[package.dependencies]
+Django = ">=4.2"
+django-modeltranslation = ">=0.19"
+wagtail = ">=6.4,<8"
+
+[[package]]
 name = "wagtail-stubs"
 version = "7.3.0b1"
 description = "PEP 561 type stubs for wagtail"
@@ -2265,4 +2298,4 @@ willow = ">=1.11,<2.0"
 [metadata]
 lock-version = "2.1"
 python-versions = ">=3.13,<4.0"
-content-hash = "6aa5e2e532d3d85d2f9a5d126e1ea35d34daabf0aa61713867052b9ca044b0a2"
+content-hash = "3d95b8c858932ae53f3ab1488a7b584392f23b632550c525b8633a2220aef632"
