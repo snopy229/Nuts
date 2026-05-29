@@ -1,5 +1,5 @@
 from django.conf import settings
-from django.urls import include, path, URLPattern, URLResolver
+from django.urls import include, path
 from django.contrib import admin
 
 from wagtail.admin import urls as wagtailadmin_urls
@@ -8,7 +8,7 @@ from wagtail.documents import urls as wagtaildocs_urls
 
 from .api import api
 
-urlpatterns: list[URLPattern | URLResolver] = [
+urlpatterns = [
     path("crm/", admin.site.urls),
     path("cms/", include(wagtailadmin_urls)),
     path("documents/", include(wagtaildocs_urls)),
@@ -16,6 +16,7 @@ urlpatterns: list[URLPattern | URLResolver] = [
     path("gallery/", include("src.gallery.urls", namespace="gallery")),
     path("products/", include("src.products.urls", namespace="products")),
     path("api/", api.urls),
+    path("i18n/", include("django.conf.urls.i18n")),
 ]
 
 
