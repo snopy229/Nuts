@@ -6,9 +6,9 @@ from .models import GalleryPage, Gallery
 
 @register(GalleryPage)
 class GalleryPageTR(TranslationOptions):
-    fields = "banner"
+    fields = ("banner",)
 
 
 @register(Gallery)
 class GalleryTR(TranslationOptions):
-    fields = "content"
+    fields = ("content",)
