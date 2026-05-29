@@ -33,6 +33,9 @@ environ.Env.read_env(os.path.join(BASE_DIR, ".env"))
 # Application definition
 
 INSTALLED_APPS = [
+    "wagtail_modeltranslation",
+    "wagtail_modeltranslation.makemigrations",
+    "wagtail_modeltranslation.migrate",
     "src.user",
     "src.main",
     "src.core",
@@ -80,9 +83,6 @@ INSTALLED_APPS = [
     "phonenumber_field",
     "wagtailmedia",
     "django_select2",
-    "wagtail_modeltranslation",
-    "wagtail_modeltranslation.makemigrations",
-    "wagtail_modeltranslation.migrate",
 ]
 
 MIDDLEWARE = [
