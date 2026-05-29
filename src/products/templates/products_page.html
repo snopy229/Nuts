@@ -1,134 +1,139 @@
 {% extends "base_template.html" %}
-{% load wagtailcore_tags wagtailimages_tags my_tags product_tags %}
+{% load i18n wagtailcore_tags wagtailimages_tags my_tags product_tags %}
 {% block content %}
     {% for block in page.upper_banner %}
         {% image block.value.image original as img %}
-	<section class="first-section overlay" style="background-image: url({{ img.url }})">
-		<div class="container">
-			<div class="breadcrumbs">
-				<ul>
-					<li>
-						<a href="/">Главная</a>
-					</li>
-					<li>
-							Магазин
-					</li>
-				</ul>
-			</div>
-			<div class="row align-items-center justify-content-center">
-					<h1>{{ block.value.title }}</h1>
-			</div>
-		</div>
-	</section>
+    <section class="first-section overlay" style="background-image: url({{ img.url }})">
+       <div class="container">
+          <div class="breadcrumbs">
+             <ul>
+                <li>
+                        <a href="/">{{ page.get_site.root_page.title }}</a>
+                    </li>
+                    {% for ancestor in page.get_ancestors(inclusive=False).live().public() %}
+                        {% if not ancestor.is_root %}
+                            <li>
+                                <a href="{{ ancestor.url }}">{{ ancestor.title }}</a>
+                            </li>
+                        {% endif %}
+                    {% endfor %}
+                    <li>
+                        <span>{{ page.page_title }}</span>
+                    </li>
+             </ul>
+          </div>
+          <div class="row align-items-center justify-content-center">
+                <h1>{{ block.value.title }}</h1>
+          </div>
+       </div>
+    </section>
 {% endfor %}
-	<section class="production">
-		<div class="container">
-			<div class="row align-items-center justify-content-center">
-				<div class="col-12">
+    <section class="production">
+       <div class="container">
+          <div class="row align-items-center justify-content-center">
+             <div class="col-12">
                     <form id="filter-form">
-					<div class="production__filter">
-						<div class="row">
-							<div class="col-lg-7">
-								<div class="row align-items-center">
-									<div class="col-lg-3">
-										<div class="production__filter_title">
-											<p>Фильтр</p>
-											<i class="nut-icon icons-settings"></i>
-										</div>
-									</div>
-									<div class="col-lg-5">
-										<select name="taste">
-											<option value="">Вкус</option>
+                <div class="production__filter">
+                   <div class="row">
+                      <div class="col-lg-7">
+                         <div class="row align-items-center">
+                            <div class="col-lg-3">
+                               <div class="production__filter_title">
+                                  <p>{% translate "Фильтр" %}</p>
+                                  <i class="nut-icon icons-settings"></i>
+                               </div>
+                            </div>
+                            <div class="col-lg-5">
+                               <select name="taste">
+                                  <option value="">{% translate "Вкус" %}</option>
                                             {% for taste in tastes %}
-                                            	<option value="{{ taste.id }}">{{ taste.title }}</option>
+                                                <option value="{{ taste.id }}">{{ taste.title }}</option>
                                             {% endfor %}
-										</select>
-									</div>
-									<div class="col-lg-4">
-										<select name="mass">
-											<option value="">Масса</option>
-											{% for weight in weights %}
-												<option value="{{ weight.id }}">{{ weight.title }}</option>
-											{% endfor %}
-										</select>
-									</div>
-								</div>
-							</div>
-							<div class="col-lg-5 align-self-center">
-								<div class="row">
-									<div class="col-lg-5 align-self-center">
-										<div class="production__filter_price" id="price-sort" style="cursor: pointer;">
-											<span>
-													Стоимость
-											</span>
-											        <i class="nut-icon icons-arrow-down accent" id="icon-asc"></i>
+                               </select>
+                            </div>
+                            <div class="col-lg-4">
+                               <select name="mass">
+                                  <option value="">{% translate "Масса" %}</option>
+                                  {% for weight in weights %}
+                                     <option value="{{ weight.id }}">{{ weight.title }}</option>
+                                  {% endfor %}
+                               </select>
+                            </div>
+                         </div>
+                      </div>
+                      <div class="col-lg-5 align-self-center">
+                         <div class="row">
+                            <div class="col-lg-5 align-self-center">
+                               <div class="production__filter_price" id="price-sort" style="cursor: pointer;">
+                                  <span>
+                                        {% translate "Стоимость" %}
+                                  </span>
+                                          <i class="nut-icon icons-arrow-down accent" id="icon-asc"></i>
                                                     <i class="nut-icon icons-right-top accent" id="icon-desc" style="display:none"></i>
-										</div>
-									</div>
+                               </div>
+                            </div>
                                     <input type="hidden" name="order" id="price-order" value="asc">
-									<div class="col-lg-7">
-										<div class="col-lg-7">
+                            <div class="col-lg-7">
+                               <div class="col-lg-7">
                                         <div class="production__filter_button">
                                             <a class="button"
                                                hx-get="{% url 'products:product-more' %}"
                                                hx-include="#filter-form"
                                                hx-target="#product-grid"
                                                hx-swap="innerHTML">
-                                                Применить
+                                                {% translate "Применить" %}
                                             </a>
                                             <a class="button_close"
                                                hx-get="{% url 'products:product-more' %}"
                                                hx-target="#product-grid"
                                                hx-swap="innerHTML">
                                                 <i class="nut-icon icons-close-button"></i>
-                                                <span>Сбросить</span>
+                                                <span>{% translate "Сбросить" %}</span>
                                             </a>
                                         </div>
                                     </div>
-									</div>
-								</div>
-							</div>
-						</div>
-					</div>
+                            </div>
+                         </div>
+                      </div>
+                   </div>
+                </div>
                     </form>
-				</div>
-			</div>
+             </div>
+          </div>
             {% render_product %}
-		</div>
-	</section>
+       </div>
+    </section>
 
-	<section class="manufacturer gray_section">
-		<div class="container">
-			<div class="row align-items-center">
-				<div class="col-md-5">
-					<h2>Экологически чистый грецкий орех</h2>
-					<div class="wrapper">
-							{{ page.description|richtext }}
-					</div>
-				</div>
-				<div class="col-md-7">
-					<!-- Swiper -->
-					<div class="manufacturer-container swiper-container">
-						<div class="swiper-wrapper">
+    <section class="manufacturer gray_section">
+       <div class="container">
+          <div class="row align-items-center">
+             <div class="col-md-5">
+                <h2>{% translate "Экологически чистый грецкий орех" %}</h2>
+                <div class="wrapper">
+                      {{ page.description|richtext }}
+                </div>
+             </div>
+             <div class="col-md-7">
+                <div class="manufacturer-container swiper-container">
+                   <div class="swiper-wrapper">
                             {% for block in page.gallery %}
-                            	<div class="swiper-slide">
-							    	<div class="manufacturer__item">
+                                <div class="swiper-slide">
+                             <div class="manufacturer__item">
                                         {% image block.value original as img %}
-							    		<img src="{{ img.url }}" alt="alt">
-							    	</div>
-							    </div>
+                                <img src="{{ img.url }}" alt="{% translate 'Фото производства' %}">
+                             </div>
+                          </div>
                             {% endfor %}
-						</div>
-						<!-- Add Arrows -->
-						<div class="wrap">
-							<div class="swiper-button-next"></div>
-							<div class="swiper-button-prev"></div>
-						</div>
-					</div>
-				</div>
-			</div>
-		</div>
-	</section>
+                   </div>
+                   <div class="wrap">
+                      <div class="swiper-button-next"></div>
+                      <div class="swiper-button-prev"></div>
+                   </div>
+                </div>
+             </div>
+          </div>
+       </div>
+    </section>
 {% endblock content %}
 {% block scripts %}
     <script>

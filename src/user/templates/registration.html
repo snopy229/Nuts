@@ -1,159 +1,160 @@
 {% extends "base_template.html" %}
-{% block title %} Регистрация {% endblock title %}
+{% load i18n %}
+{% block title %} {% translate "Регистрация" %} {% endblock title %}
 {% block content %}
-	<section class="registration">
-		<div class="container">
-			<div class="row">
-				<div class="col-12">
-					<h1>Регистрация</h1>
-				</div>
-					<div class="col-12">
-						<div class="form__title">
-							1. Контактные данные
-						</div>
-					</div>
-					<div class="tabs">
-						<div class="row">
-							<div class="col-lg-5 col-md-6">
-								<div class="tabs__wrap">
-									<ul class="tabs__caption">
-										<li class="active">
-											Физическое лицо
-										</li>
-										<li>
-											Юридическое лицо
-										</li>
-									</ul>
-								</div>
-							</div>
-							<div class="col-lg-7 col-md-6"></div>
-						</div>
-						<div class="tabs__content active">
-								<form action="{% url 'user:registration' %}" method="post">
+    <section class="registration">
+       <div class="container">
+          <div class="row">
+             <div class="col-12">
+                <h1>{% translate "Регистрация" %}</h1>
+             </div>
+                <div class="col-12">
+                   <div class="form__title">
+                      {% translate "1. Контактные данные" %}
+                   </div>
+                </div>
+                <div class="tabs">
+                   <div class="row">
+                      <div class="col-lg-5 col-md-6">
+                         <div class="tabs__wrap">
+                            <ul class="tabs__caption">
+                               <li class="active">
+                                  {% translate "Физическое лицо" %}
+                               </li>
+                               <li>
+                                  {% translate "Юридическое лицо" %}
+                               </li>
+                            </ul>
+                         </div>
+                      </div>
+                      <div class="col-lg-7 col-md-6"></div>
+                   </div>
+                   <div class="tabs__content active">
+                         <form action="{% url 'user:registration' %}" method="post">
                                     <input type="hidden" name="tab" value="individual">
                                     {% csrf_token %}
-							<div class="row">
-								<div class="col-lg-5 col-md-6">
-									{{ user_form_individual.fullname }}
-									{{ user_form_individual.email }}
-									{{ user_form_individual.phone_number }}
-									<div class="form__title">
-											2. Адрес
-									</div>
-									{{ user_form_individual.country }}
-									{{ user_form_individual.region }}
-									{{ user_form_individual.city }}
-									{{ user_form_individual.address }}
-									<div class="form__title">
-											3. Пароль
-									</div>
-									{{ user_form_individual.password1 }}
-									{{ user_form_individual.password2 }}
-								</div>
-								<div class="col-lg-5 col-md-6 offset-lg-1">
-									<div class="wrapper">
-											<div class="file__wrap">
-													{{ user_form_individual.avatar }}
-													<label for="{{ user_form_individual.avatar.id_for_label }}"><span>Загрузить фото</span></label>
-											</div>
-											<div class="checkbox__wrap">
-													{{individual_form.is_sole_proprietor }}
-													<label for={{ individual_form.is_sole_proprietor.id_for_label }} class="checkbox-custom-label"><span>Являюсь ФОП</span></label>
-											</div>
-									</div>
-								</div>
-								<div class="col-lg-5 col-md-6">
-										<div class="checkbox__wrap">
-												<input id="checkbox-2" class="checkbox-custom" name="checkbox-1" type="checkbox" required>
-												<label for="checkbox-2" class="checkbox-custom-label"><span>Я согласен с <a href="{{  terms_url  }}">Условиями регистрации</a></span></label>
-										</div>
-										<button class="button" type="submit">Продолжить</button>
-								</div>
-								<div class="col-lg-7 col-md-6"></div>
-							</div>
-						</form>
-						</div>
-						<div class="tabs__content">
-								<form action="{% url 'user:registration' %}" method="post">
+                      <div class="row">
+                         <div class="col-lg-5 col-md-6">
+                            {{ user_form_individual.fullname }}
+                            {{ user_form_individual.email }}
+                            {{ user_form_individual.phone_number }}
+                            <div class="form__title">
+                                  {% translate "2. Адрес" %}
+                            </div>
+                            {{ user_form_individual.country }}
+                            {{ user_form_individual.region }}
+                            {{ user_form_individual.city }}
+                            {{ user_form_individual.address }}
+                            <div class="form__title">
+                                  {% translate "3. Пароль" %}
+                            </div>
+                            {{ user_form_individual.password1 }}
+                            {{ user_form_individual.password2 }}
+                         </div>
+                         <div class="col-lg-5 col-md-6 offset-lg-1">
+                            <div class="wrapper">
+                                  <div class="file__wrap">
+                                        {{ user_form_individual.avatar }}
+                                        <label for="{{ user_form_individual.avatar.id_for_label }}"><span>{% translate "Загрузить фото" %}</span></label>
+                                  </div>
+                                  <div class="checkbox__wrap">
+                                        {{individual_form.is_sole_proprietor }}
+                                        <label for={{ individual_form.is_sole_proprietor.id_for_label }} class="checkbox-custom-label"><span>{% translate "Являюсь ФОП" %}</span></label>
+                                  </div>
+                            </div>
+                         </div>
+                         <div class="col-lg-5 col-md-6">
+                               <div class="checkbox__wrap">
+                                     <input id="checkbox-2" class="checkbox-custom" name="checkbox-1" type="checkbox" required>
+                                     <label for="checkbox-2" class="checkbox-custom-label"><span>{% translate "Я согласен с" %} <a href="{{  terms_url  }}">{% translate "Условиями регистрации" %}</a></span></label>
+                               </div>
+                               <button class="button" type="submit">{% translate "Продолжить" %}</button>
+                         </div>
+                         <div class="col-lg-7 col-md-6"></div>
+                      </div>
+                   </form>
+                   </div>
+                   <div class="tabs__content">
+                         <form action="{% url 'user:registration' %}" method="post">
                                     <input type="hidden" name="tab" value="legal">
                                     {% csrf_token %}
-										<div class="row">
-											<div class="col-lg-5 col-md-6">
-												{{ user_form_legal.fullname }}
-									            {{ user_form_legal.email }}
-									            {{ user_form_legal.phone_number }}
-												<div class="form__title">
-														2. Адрес
-												</div>
+                               <div class="row">
+                                  <div class="col-lg-5 col-md-6">
+                                     {{ user_form_legal.fullname }}
+                                        {{ user_form_legal.email }}
+                                        {{ user_form_legal.phone_number }}
+                                     <div class="form__title">
+                                           {% translate "2. Адрес" %}
+                                     </div>
                                                 {{ user_form_legal.country }}
-									            {{ user_form_legal.region }}
-									            {{ user_form_legal.city }}
-									            {{ user_form_legal.address }}
-												<div class="form__title">
-														3. Пароль
-												</div>
-												{{ user_form_legal.password1 }}
-									            {{ user_form_legal.password2 }}
-											</div>
-											<div class="col-lg-5 col-md-6 offset-lg-1">
-												<div class="wrapper">
-														<div class="file__wrap">
-													{{ user_form_legal.avatar }}
-													<label for="{{ user_form_legal.avatar.id_for_label }}"><span>Загрузить фото</span></label>
-											</div>
-														<div class="radio__wrap">
-																<input id="radio-1" class="radio-custom" name="radio-group" value="ur" type="radio" checked>
-																<label for="radio-1" class="radio-custom-label"><span>Юр. лицо</span></label>
-																<input id="radio-2" class="radio-custom" name="radio-group" value="fop" type="radio">
-																<label for="radio-2" class="radio-custom-label"><span>ФОП</span></label>
-														</div>
-														<div class="box-wrap">
-																<div class="ur box">
-																		<div class="form__title">
-																				1. Реквизиты
+                                        {{ user_form_legal.region }}
+                                        {{ user_form_legal.city }}
+                                        {{ user_form_legal.address }}
+                                     <div class="form__title">
+                                           {% translate "3. Пароль" %}
+                                     </div>
+                                     {{ user_form_legal.password1 }}
+                                        {{ user_form_legal.password2 }}
+                                  </div>
+                                  <div class="col-lg-5 col-md-6 offset-lg-1">
+                                     <div class="wrapper">
+                                           <div class="file__wrap">
+                                        {{ user_form_legal.avatar }}
+                                        <label for="{{ user_form_legal.avatar.id_for_label }}"><span>{% translate "Загрузить фото" %}</span></label>
+                                  </div>
+                                           <div class="radio__wrap">
+                                                 <input id="radio-1" class="radio-custom" name="radio-group" value="ur" type="radio" checked>
+                                                 <label for="radio-1" class="radio-custom-label"><span>{% translate "Юр. лицо" %}</span></label>
+                                                 <input id="radio-2" class="radio-custom" name="radio-group" value="fop" type="radio">
+                                                 <label for="radio-2" class="radio-custom-label"><span>{% translate "ФОП" %}</span></label>
+                                           </div>
+                                           <div class="box-wrap">
+                                                 <div class="ur box">
+                                                       <div class="form__title">
+                                                             {% translate "1. Реквизиты" %}
                                                                                 {{ legal_form.edrpou }}
-																		</div>
+                                                       </div>
 
-																		<div class="form__title">
-																				2. Юридический адрес
-																		</div>
-																		    {{ legal_form.legal_country }}
-																			{{ legal_form.legal_region }}
-																			{{ legal_form.legal_city }}
-																			{{ legal_form.legal_address }}
+                                                       <div class="form__title">
+                                                             {% translate "2. Юридический адрес" %}
+                                                       </div>
+                                                           {{ legal_form.legal_country }}
+                                                          {{ legal_form.legal_region }}
+                                                          {{ legal_form.legal_city }}
+                                                          {{ legal_form.legal_address }}
                                                                             {{ legal_form.postal_code }}
-																</div>
-																<div class="fop box">
-																		<div class="form__title">
-																				1. Реквизиты
-																		</div>
-																		{{ legal_form.reg_number }}
-																		<div class="form__title">
-																				2. Адрес ФОП
-																		</div>
+                                                 </div>
+                                                 <div class="fop box">
+                                                       <div class="form__title">
+                                                             {% translate "1. Реквизиты" %}
+                                                       </div>
+                                                       {{ legal_form.reg_number }}
+                                                       <div class="form__title">
+                                                             {% translate "2. Адрес ФОП" %}
+                                                       </div>
                                                                             {{ legal_form.sp_country }}
                                                                             {{ legal_form.sp_region }}
                                                                             {{ legal_form.sp_city }}
                                                                             {{ legal_form.sp_address }}
-																</div>
-														</div>
-												</div>
-											</div>
-											<div class="col-lg-5 col-md-6">
-													<div class="checkbox__wrap">
-															<input id="checkbox-4" class="checkbox-custom" name="checkbox-1" type="checkbox" required>
-															<label for="checkbox-4" class="checkbox-custom-label"><span>Я согласен с <a href="{{ terms_url }}">Условиями регистрации</a></span></label>
-													</div>
-													<button class="button" type="submit">Продолжить</button>
-											</div>
-											<div class="col-lg-7 col-md-6"></div>
-										</div>
-									</form>
-						</div>
-					</div>
-			</div>
-		</div>
-	</section>
+                                                 </div>
+                                           </div>
+                                     </div>
+                                  </div>
+                                  <div class="col-lg-5 col-md-6">
+                                        <div class="checkbox__wrap">
+                                              <input id="checkbox-4" class="checkbox-custom" name="checkbox-1" type="checkbox" required>
+                                              <label for="checkbox-4" class="checkbox-custom-label"><span>{% translate "Я согласен с" %} <a href="{{ terms_url }}">{% translate "Условиями регистрации" %}</a></span></label>
+                                        </div>
+                                        <button class="button" type="submit">{% translate "Продолжить" %}</button>
+                                  </div>
+                                  <div class="col-lg-7 col-md-6"></div>
+                               </div>
+                            </form>
+                   </div>
+                </div>
+          </div>
+       </div>
+    </section>
 {% endblock content %}
 {% block scripts %}
 <script>
@@ -199,11 +200,11 @@ $(function() {
                     return r.json();
                 })
                 .then(data => {
-                    $(f.region).html('<option value="">Область</option>');
+                    $(f.region).html('<option value="">{% translate "Область" asvar t_region %}{{ t_region|escapejs }}</option>');
                     (data.results || []).forEach(item => {
                         $(f.region).append(`<option value="${item.id}">${item.text}</option>`);
                     });
-                    $(f.city).html('<option value="">Город*</option>');
+                    $(f.city).html('<option value="">{% translate "Город*" asvar t_city %}{{ t_city|escapejs }}</option>');
 
                     setTimeout(() => {
                         rebuildCustomSelect(document.querySelector(f.region));
@@ -223,7 +224,7 @@ $(function() {
                     return r.json();
                 })
                 .then(data => {
-                    $(f.city).html('<option value="">Город*</option>');
+                    $(f.city).html('<option value="">{% translate "Город*" asvar t_city %}{{ t_city|escapejs }}</option>');
                     (data.results || []).forEach(item => {
                         $(f.city).append(`<option value="${item.id}">${item.text}</option>`);
                     });

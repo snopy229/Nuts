@@ -1,5 +1,5 @@
 {% extends 'base_template.html' %}
-{% load wagtailimages_tags wagtailcore_tags gallery_tags my_tags %}
+{% load i18n wagtailimages_tags wagtailcore_tags gallery_tags my_tags %}
 {% block content %}
     {% for block in page.upper_banner %}
         {% image block.value.preview_image original as img %}
@@ -16,36 +16,33 @@
 	</section>
     {% endfor %}
 
-
 	<section class="production">
 		<div class="container">
 			<div class="row align-items-center justify-content-center">
 				<div class="col-12">
 					<h2>{{ page.products_title }}</h2>
-					<p>{{page.products_description}}</p>
+					<p>{{ page.products_description }}</p>
 				</div>
 			</div>
 			<div class="row justify-content-center">
                 {% for product in products %}
-                	<div class="col-lg-4 col-md-6	col-12">
+                	<div class="col-lg-4 col-md-6 col-12">
     <div class="wrap">
         <div class="production__item">
            {% if product.discount %}
                <div class="sticker">
                    <i class="nut-icon icons-actciya"></i>
-                   <p>Акция</p>
+                   <p>{% trans "Акция" %}</p>
                </div>
-           {% endif %}{% if product.is_new %}
+           {% endif %}
+           {% if product.is_new %}
             <div class="sticker">
                 <i class="nut-icon icons-novinka"></i>
-                <p>Новинка</p>
+                <p>{% trans "Новинка" %}</p>
             </div>
             {% endif %}
-            <!-- Slider main container -->
             <div class="products-container swiper-container">
-                <!-- Additional required wrapper -->
                 <div class="swiper-wrapper">
-                    <!-- Slides -->
                     {% for block in product.gallery %}
                         {% image block.value original as img %}
                         <div class="swiper-slide">
@@ -53,7 +50,6 @@
                         </div>
                     {% endfor %}
                 </div>
-                <!-- If we need navigation buttons -->
                 <div class="swiper-button-prev"></div>
                 <div class="swiper-button-next"></div>
                 <img class="zoom" src="static/img/zoom.svg" alt="alt">
@@ -63,7 +59,7 @@
                     {{ product.nuts_type }}
                 </div>
                 <div class="production__item_art">
-                    <span>Арт:</span> {{ product.article }}
+                    <span>{% trans "Арт:" %}</span> {{ product.article }}
                 </div>
                 <div class="production__item_descr">
                     {{ product.title }}
@@ -74,7 +70,7 @@
                             <i class="nut-icon icons-food-scale-tool"></i>
                         </div>
                         <div class="weight_item_descr">
-                            <p>Масса</p>
+                            <p>{% trans "Масса" %}</p>
                             <p><span>{{ product.mass }}</span></p>
                         </div>
                     </div>
@@ -83,7 +79,7 @@
                             <i class="nut-icon icons-group"></i>
                         </div>
                         <div class="weight_item_descr">
-                            <p>Упаковка</p>
+                            <p>{% trans "Упаковка" %}</p>
                             <p><span>{{ product.package }}</span></p>
                         </div>
                     </div>
@@ -91,24 +87,24 @@
                 <div class="production__item_sum">
                     <div class="sum_item">
                         <div class="sum_item_title">
-                            <p>Цена: </p>
+                            <p>{% trans "Цена:" %}</p>
                         </div>
                         {% if product.discount %}
                             <div class="sum_item_new">
-                                <p>{{ product.cost_with_discount }} <i>грн.</i></p>
+                                <p>{{ product.cost_with_discount }} <i>{% trans "грн." %}</i></p>
                             </div>
                             <div class="sum_item_old">
-                                <p>{{ product.cost }} <i>грн.</i></p>
+                                <p>{{ product.cost }} <i>{% trans "грн." %}</i></p>
                             </div>
                             {% else %}
                             <div class="sum_item_new">
-                                <p>{{ product.cost }}<i>грн.</i></p>
+                                <p>{{ product.cost }}<i>{% trans "грн." %}</i></p>
                             </div>
                         {% endif %}
                     </div>
                     <div class="sum_item">
                         <div class="sum_item_button">
-                            <a href="#" class="button">Купить</a>
+                            <a href="#" class="button">{% trans "Купить" %}</a>
                         </div>
                     </div>
                 </div>
@@ -116,13 +112,11 @@
         </div>
     </div>
 </div>
-
                 {% endfor %}
-
 </div>
 			<div class="row">
 				<div class="wrapper">
-					<a href="{% pageurl shop_page %}" class="button button_transparent">Перейти в магазин</a>
+					<a href="{% pageurl shop_page %}" class="button button_transparent">{% trans "Перейти в магазин" %}</a>
 				</div>
 			</div>
 		</div>
@@ -134,10 +128,9 @@
 				<div class="col-md-5">
 					<h2>{{ production.page_title }}</h2>
 					<p class="manufacturer__descr">{{ production.description }}</p>
-					<a href="#" class="button button_transparent">Подробнее</a>
+					<a href="#" class="button button_transparent">{% trans "Подробнее" %}</a>
 				</div>
 				<div class="col-md-7">
-					<!-- Swiper -->
 					<div class="manufacturer-container swiper-container">
 						<div class="swiper-wrapper">
                             {% for block in production.gallery %}
@@ -150,8 +143,7 @@
                                {% if block.block_type == "video" %}
                                   {% image block.value.preview_image original as img %}
                                   <div class="swiper-slide">
-                                     <a href="{{ block.value.video.file.url }}"
-                                        target="_blank">
+                                     <a href="{{ block.value.video.file.url }}" target="_blank">
                                          <div class="manufacturer__item manufacturer__item_video">
 					    				<img src="{{ img.url }}" alt="alt">
 					    			</div>
@@ -160,7 +152,6 @@
                                {% endif %}
                             {% endfor %}
 						</div>
-						<!-- Add Arrows -->
 						<div class="wrap">
 							<div class="swiper-button-next"></div>
 							<div class="swiper-button-prev"></div>
@@ -181,7 +172,7 @@
 					<a href="{{ block.value.video.file.url }}" data-scrollax="properties: { 'translateY': '5%', 'opacity': 1 }">
 						<h2>{{ block.value.title }}</h2>
 						<span><i class="nut-icon icons-play-icon"></i></span>
-						<p><i>Cмотреть видео о производстве</i></p>
+						<p><i>{% trans "Смотреть видео о производстве" %}</i></p>
 					</a>
 				</div>
 			</div>
@@ -193,12 +184,12 @@
 		<div class="container">
 			<div class="row align-items-center justify-content-center">
 				<div class="col-12">
-					<h2>О пользе продукта</h2>
-					<p>Каждый вид ореха содержит свой неповторимый уникальный<br> баланс витаминов, и микроэлементов</p>
+					<h2>{% trans "О пользе продукта" %}</h2>
+					<p>{% trans "Каждый вид ореха содержит свой неповторимый уникальный баланс витаминов, и микроэлементов" %}</p>
 				</div>
 			</div>
 			<div class="row justify-content-center">
-				<div class="col-lg-4 col-md-6	col-12">
+				<div class="col-lg-4 col-md-6 col-12">
                     {% for block in page.walnut %}
                     <div class="wrap">
 						{% image block.value.image original as img %}
@@ -214,7 +205,7 @@
 					</div>
                     {% endfor %}
 				</div>
-				<div class="col-lg-4 col-md-6	col-12">
+				<div class="col-lg-4 col-md-6 col-12">
                     {% for block in page.walnut %}
 					<div class="wrap">
                     {% image block.value.image original as img %}
@@ -227,105 +218,4 @@
 							<h3>{{ block.value.title }}</h3>
 							<p>{{ block.value.description }}</p>
 						</div>
-					</div>
-                    {% endfor %}
-				</div>
-				<div class="col-lg-4 col-md-6	col-12">
-                    {% for block in page.rose_hip %}
-					<div class="wrap">
-						{% image block.value.image original as img %}
-						<div class="benefit__item overlay" style="background-image: url({{ img.url }})">
-							<i class="nut-icon icons-group5"></i>
-							<h3>{{ block.value.title }}</h3>
-						</div>
-						<div class="benefit__item item_hover overlay_green">
-							<i class="nut-icon icons-group5"></i>
-							<h3>{{ block.value.title }}</h3>
-							<p>{{ block.value.description }}</p>
-						</div>
-					</div>
-                    {% endfor %}
-				</div>
-			</div>
-		</div>
-	</section>
-    {% for block in page.down_banner %}
-	<div class="parallax" data-scrollax-parent="true">
-    {% image block.value.preview_image original as img %}
-		<section class="eco overlay" style="background-image: url({{ img.url }})" data-scrollax="properties: { translateY: '30%' }">
-			<div class="container">
-				<div class="row align-items-center justify-content-center">
-					<a href="{{ block.value.video.file.url }}" data-scrollax="properties: { 'translateY': '5%', 'opacity': 1 }">
-						<i class="nut-icon icons-eco"></i>
-						<h2>{{ block.value.title }}</h2>
-						<p>{{ block.value.description }}</p>
-					</a>
-				</div>
-			</div>
-		</section>
-	</div>
-    {% endfor %}
-
-	<section class="news gray_section">
-		<div class="container">
-			<div class="row align-items-center">
-				<div class="col-md-6 col-12">
-					<h2>Новости</h2>
-					<p class="news__descr">Свежие новости и полезная информация</p>
-
-				</div>
-				<div class="col-md-6 col-12 d-flex justify-content-end">
-					<div class="wrap">
-						<div class="navigation"></div>
-					</div>
-				</div>
-				<div class="col-12">
-					<!-- Swiper -->
-					<div class="news-container swiper-container">
-						<!-- Add Arrows -->
-						<div class="swiper-button-next"></div>
-						<div class="swiper-button-prev"></div>
-						<div class="swiper-wrapper">
-                            {% for new in news %}
-							<div class="swiper-slide">
-								<div class="news__item">
-									{% for block in new.preview %}
-                                       {% if block.block_type == "image" %}
-                                          {% image block.value original as img %}
-                                          <div class="video_wrap" style="width:100%; overflow:hidden; margin-bottom:12px;">
-                                             <img src="{{ img.url }}" alt="alt" style="width:100%; height:280px; object-fit:cover; display:block;">
-                                          </div>
-                                       {% endif %}
-                                       {% if block.block_type == "video" %}
-                                          {% image block.value.preview_image original as img %}
-                                          <div class="video_wrap" style="width:100%; overflow:hidden; margin-bottom:12px; position:relative;">
-                                             <a href="{{ block.value.video.file.url }}" class="overlay benefit-news__item_video_text" style="background-image: url({{ img.url }}); display:block; width:100%; height:280px; background-size:cover; background-position:center; position:relative;">
-                                                <span style="position:absolute; top:50%; left:50%; transform:translate(-50%,-50%);">
-                                                   <i class="nut-icon icons-play-icon"></i>
-                                                </span>
-                                             </a>
-                                          </div>
-                                       {% endif %}
-                                    {% endfor %}
-									<div class="wraper" style="padding: 0 0 8px 0;">
-                                        <div class="item_data">{{ new.created_at|date:"d.m.Y" }}</div>
-                                        <h3>{{ new.page_title }}</h3>
-                                        <p>{{ new.first_text|striptags|truncatechars:150 }}</p>
-                                        <a href="{% pageurl new %}">Читать <i class="nut-icon icons-read-more"></i></a>
-                                    </div>
-								</div>
-
-							</div>
-                            {% endfor %}
-						</div>
-					</div>
-				</div>
-			</div>
-			<div class="row">
-				<div class="wrapper">
-					<a href="{% pageurl news_page %}" class="button button_transparent">Смотреть все новости</a>
-				</div>
-			</div>
-		</div>
-	</section>
-{% endblock content %}
+					</

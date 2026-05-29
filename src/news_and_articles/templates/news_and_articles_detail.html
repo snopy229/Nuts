@@ -1,16 +1,23 @@
 {% extends "base_template.html" %}
-{% load wagtailcore_tags wagtailimages_tags my_tags %}
+{% load i18n wagtailcore_tags wagtailimages_tags my_tags %}
 {% block content %}
     <section class="first-section no-bg">
        <div class="container">
           <div class="breadcrumbs">
              <ul>
                 <li>
-                   <a href="/">Главная</a>
+                    <a href="/">{{ page.get_site.root_page.title }}</a>
                 </li>
-                <li>
-                   {{ page.page_title }}
-                </li>
+                 {% for ancestor in page.get_ancestors(inclusive=False).live().public() %}
+                     {% if not ancestor.is_root %}
+                         <li>
+                             <a href="{{ ancestor.url }}">{{ ancestor.title }}</a>
+                         </li>
+                     {% endif %}
+                 {% endfor %}
+                 <li>
+                     <span>{{ page.page_title }}</span>
+                 </li>
              </ul>
           </div>
        </div>
@@ -33,7 +40,7 @@
                         {% for block in page.description %}
                             {% if block.block_type == "image" %}
                                {% image block.value original as img %}
-                                <img src="{{ img.url }}" alt="alt">
+                                <img src="{{ img.url }}" alt="{% translate 'Изображение' %}">
                             {% endif %}
                             {% if block.block_type == "text" %}
                                 {{ block.value | richtext }}
@@ -45,7 +52,7 @@
                 <aside class="aside">
                    <div class="sidebar__inner sticky">
                       <div class="aside__title">
-                         Последние публикации
+                         {% translate "Последние публикации" %}
                       </div>
                       <ul>
                                 {% for news in latest_news %}
@@ -66,7 +73,7 @@
                                             {% endif %}
                                         {% empty %}
                                                <div class="aside__item_img">
-                                                  <img src="img/pic6.jpg" alt="default">
+                                                  <img src="img/pic6.jpg" alt="{% translate 'По умолчанию' %}">
                                                </div>
                                         {% endfor %}
 
@@ -76,17 +83,17 @@
                                <div class="aside__item_title">
                                             <p>{{ news.page_title }}</p>
                                </div>
-                               <a href="{% pageurl news %}">Читать <i class="nut-icon icons-read-more"></i></a>
+                               <a href="{% pageurl news %}">{% translate "Читать" %} <i class="nut-icon icons-read-more"></i></a>
                             </div>
                          </li>
                                 {% endfor %}
                       </ul>
                       <div class="banner">
                          <div class="banner__title">
-                            ОРЕХ ПРИЧЕРНОМОРЬЯ
+                            {% translate "ОРЕХ ПРИЧЕРНОМОРЬЯ" %}
                          </div>
                          <div class="banner__descr">
-                            Присоединяйтесь к нам в соц. сетях
+                            {% translate "Присоединяйтесь к нам в соц. сетях" %}
                          </div>
                          <ul class="banner__social">
                             <li>

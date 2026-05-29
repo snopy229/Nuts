@@ -1,5 +1,5 @@
 {% extends "base_template.html" %}
-{% load wagtailcore_tags wagtailimages_tags my_tags %}
+{% load i18n wagtailcore_tags wagtailimages_tags my_tags %}
 {% block content %}
     {% for block in page.upper_banner %}
         {% image block.value.image original as img %}
@@ -8,10 +8,17 @@
             <div class="breadcrumbs">
                 <ul>
                     <li>
-                        <a href="/">Главная</a>
+                        <a href="/">{{ page.get_site.root_page.title }}</a>
                     </li>
+                    {% for ancestor in page.get_ancestors(inclusive=False).live().public() %}
+                        {% if not ancestor.is_root %}
+                            <li>
+                                <a href="{{ ancestor.url }}">{{ ancestor.title }}</a>
+                            </li>
+                        {% endif %}
+                    {% endfor %}
                     <li>
-                        Оптовым и корпоративным клиентам
+                        <span>{{ page.page_title }}</span>
                     </li>
                 </ul>
             </div>
@@ -30,7 +37,7 @@
 			<div class="row no-gutters">
 				<div class="col-lg-5">
 					<div class="customers__title">
-							{{ page.page_title  }}
+							{{ page.page_title }}
 					</div>
 				</div>
 				<div class="col-lg-7">
@@ -54,11 +61,11 @@
 				<div class="container">
 						<div class="row">
 							<ul class="tabs__caption">
-								<li class="active"><i class="nut-icon icons-supermarket"></i> <span>Крупные<br> супермаркеты</span></li>
-								<li><i class="nut-icon icons-shop"></i> <span>Розничные<br> магазины</span></li>
-								<li><i class="nut-icon icons-dinner-table"></i> <span>Компании<br> HoReCa</span></li>
-								<li><i class="nut-icon icons-vector11"></i> <span>Фитнес<br> и спорт клубы</span></li>
-								<li><i class="nut-icon icons-cake"></i> <span>Кондитерские<br> и пекарни</span></li>
+								<li class="active"><i class="nut-icon icons-supermarket"></i> <span>{% trans "Крупные супермаркеты" %}</span></li>
+								<li><i class="nut-icon icons-shop"></i> <span>{% trans "Розничные магазины" %}</span></li>
+								<li><i class="nut-icon icons-dinner-table"></i> <span>{% trans "Компании HoReCa" %}</span></li>
+								<li><i class="nut-icon icons-vector11"></i> <span>{% trans "Фитнес и спорт клубы" %}</span></li>
+								<li><i class="nut-icon icons-cake"></i> <span>{% trans "Кондитерские и пекарни" %}</span></li>
 							</ul>
 						</div>
 					</div>
@@ -82,7 +89,7 @@
                         {% endfor %}
 					</div>
 					<div class="tabs__content">
-						{% for block in page.shops%}
+						{% for block in page.shops %}
 						<div class="row">
 							<div class="col-md-5 col-12 align-self-center">
 								<div class="tabs__content_block">
@@ -112,7 +119,7 @@
                         {% endfor %}
 					</div>
 					<div class="tabs__content">
-						{% for block in page.fitness_club%}
+						{% for block in page.fitness_club %}
 						<div class="row">
 							<div class="col-md-5 col-12 align-self-center">
 								<div class="tabs__content_block">
@@ -127,7 +134,7 @@
                         {% endfor %}
 					</div>
 					<div class="tabs__content">
-						{% for block in page.cake_baker  %}
+						{% for block in page.cake_baker %}
 						<div class="row">
 							<div class="col-md-5 col-12 align-self-center">
 								<div class="tabs__content_block">

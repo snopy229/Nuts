@@ -1,5 +1,5 @@
 {% extends "base_template.html" %}
-{% load wagtailcore_tags wagtailimages_tags my_tags gallery_tags %}
+{% load i18n wagtailcore_tags wagtailimages_tags my_tags gallery_tags %}
 {% block content %}
     <section class="benefit-news">
        <div class="container">
@@ -35,7 +35,7 @@
                       <div class="item_data">{{ latest_news.created_at|date:"d.m.Y" }}</div>
                       <h3>{{ latest_news.page_title }}</h3>
                       <p>{{ latest_news_first_text|striptags|truncatechars:300 }}</p>
-                      <a href="{% pageurl latest_news %}">Читать <i class="nut-icon icons-read-more"></i></a>
+                      <a href="{% pageurl latest_news %}">{% translate "Читать" %} <i class="nut-icon icons-read-more"></i></a>
                    </div>
                 </div>
              </div>
@@ -67,7 +67,7 @@
                       <div class="item_data">{{ news.created_at|date:"d.m.Y" }}</div>
                       <h3>{{ news.page_title }}</h3>
                       <p>{{ news.first_text|striptags|truncatechars:150 }}</p>
-                      <a href="{% pageurl news %}">Читать <i class="nut-icon icons-read-more"></i></a>
+                      <a href="{% pageurl news %}">{% translate "Читать" %} <i class="nut-icon icons-read-more"></i></a>
                    </div>
 
                 </div>

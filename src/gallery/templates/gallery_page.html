@@ -8,11 +8,18 @@
         			<div class="breadcrumbs">
         				<ul>
         					<li>
-        						<a href="/">Главная</a>
-        					</li>
-        					<li>
-        							Галерея
-        					</li>
+                                <a href="/">{{ page.get_site.root_page.title }}</a>
+                            </li>
+                            {% for ancestor in page.get_ancestors(inclusive=False).live().public() %}
+                                {% if not ancestor.is_root %}
+                                    <li>
+                                        <a href="{{ ancestor.url }}">{{ ancestor.title }}</a>
+                                    </li>
+                                {% endif %}
+                            {% endfor %}
+                            <li>
+                                <span>{{ page.page_title }}</span>
+                            </li>
         				</ul>
         			</div>
         			<div class="row align-items-center justify-content-center">
