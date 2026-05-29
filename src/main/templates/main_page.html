@@ -1,5 +1,6 @@
 {% extends 'base_template.html' %}
-{% load i18n wagtailimages_tags wagtailcore_tags gallery_tags my_tags %}
+{% load i18n %}
+{% load wagtailimages_tags wagtailcore_tags gallery_tags my_tags %}
 {% block content %}
     {% for block in page.upper_banner %}
         {% image block.value.preview_image original as img %}
@@ -218,4 +219,102 @@
 							<h3>{{ block.value.title }}</h3>
 							<p>{{ block.value.description }}</p>
 						</div>
-					</
+					</div>
+                    {% endfor %}
+				</div>
+				<div class="col-lg-4 col-md-6 col-12">
+                    {% for block in page.rose_hip %}
+					<div class="wrap">
+						{% image block.value.image original as img %}
+						<div class="benefit__item overlay" style="background-image: url({{ img.url }})">
+							<i class="nut-icon icons-group5"></i>
+							<h3>{{ block.value.title }}</h3>
+						</div>
+						<div class="benefit__item item_hover overlay_green">
+							<i class="nut-icon icons-group5"></i>
+							<h3>{{ block.value.title }}</h3>
+							<p>{{ block.value.description }}</p>
+						</div>
+					</div>
+                    {% endfor %}
+				</div>
+			</div>
+		</div>
+	</section>
+
+    {% for block in page.down_banner %}
+	<div class="parallax" data-scrollax-parent="true">
+    {% image block.value.preview_image original as img %}
+		<section class="eco overlay" style="background-image: url({{ img.url }})" data-scrollax="properties: { translateY: '30%' }">
+			<div class="container">
+				<div class="row align-items-center justify-content-center">
+					<a href="{{ block.value.video.file.url }}" data-scrollax="properties: { 'translateY': '5%', 'opacity': 1 }">
+						<i class="nut-icon icons-eco"></i>
+						<h2>{{ block.value.title }}</h2>
+						<p>{{ block.value.description }}</p>
+					</a>
+				</div>
+			</div>
+		</section>
+	</div>
+    {% endfor %}
+
+	<section class="news gray_section">
+		<div class="container">
+			<div class="row align-items-center">
+				<div class="col-md-6 col-12">
+					<h2>{% trans "Новости" %}</h2>
+					<p class="news__descr">{% trans "Свежие новости и полезная информация" %}</p>
+				</div>
+				<div class="col-md-6 col-12 d-flex justify-content-end">
+					<div class="wrap">
+						<div class="navigation"></div>
+					</div>
+				</div>
+				<div class="col-12">
+					<div class="news-container swiper-container">
+						<div class="swiper-button-next"></div>
+						<div class="swiper-button-prev"></div>
+						<div class="swiper-wrapper">
+                            {% for new in news %}
+							<div class="swiper-slide">
+								<div class="news__item">
+									{% for block in new.preview %}
+                                       {% if block.block_type == "image" %}
+                                          {% image block.value original as img %}
+                                          <div class="video_wrap" style="width:100%; overflow:hidden; margin-bottom:12px;">
+                                             <img src="{{ img.url }}" alt="alt" style="width:100%; height:280px; object-fit:cover; display:block;">
+                                          </div>
+                                       {% endif %}
+                                       {% if block.block_type == "video" %}
+                                          {% image block.value.preview_image original as img %}
+                                          <div class="video_wrap" style="width:100%; overflow:hidden; margin-bottom:12px; position:relative;">
+                                             <a href="{{ block.value.video.file.url }}" class="overlay benefit-news__item_video_text" style="background-image: url({{ img.url }}); display:block; width:100%; height:280px; background-size:cover; background-position:center; position:relative;">
+                                                <span style="position:absolute; top:50%; left:50%; transform:translate(-50%,-50%);">
+                                                   <i class="nut-icon icons-play-icon"></i>
+                                                </span>
+                                             </a>
+                                          </div>
+                                       {% endif %}
+                                    {% endfor %}
+									<div class="wraper" style="padding: 0 0 8px 0;">
+                                        <div class="item_data">{{ new.created_at|date:"d.m.Y" }}</div>
+                                        <h3>{{ new.page_title }}</h3>
+                                        <p>{{ new.first_text|striptags|truncatechars:150 }}</p>
+                                        <a href="{% pageurl new %}">{% trans "Читать" %} <i class="nut-icon icons-read-more"></i></a>
+                                    </div>
+								</div>
+							</div>
+                            {% endfor %}
+						</div>
+					</div>
+				</div>
+			</div>
+			<div class="row">
+				<div class="wrapper">
+					<a href="{% pageurl news_page %}" class="button button_transparent">{% trans "Смотреть все новости" %}</a>
+				</div>
+			</div>
+		</div>
+	</section>
+{% endblock content %}

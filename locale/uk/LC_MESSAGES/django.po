@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2026-05-29 16:51+0300\n"
+"POT-Creation-Date: 2026-05-29 20:46+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -20,6 +20,18 @@ msgstr ""
 "11 ? 0 : n % 1 == 0 && n % 10 >= 2 && n % 10 <= 4 && (n % 100 < 12 || n % "
 "100 > 14) ? 1 : n % 1 == 0 && (n % 10 ==0 || (n % 10 >=5 && n % 10 <=9) || "
 "(n % 100 >=11 && n % 100 <=14 )) ? 2: 3);\n"
+
+#: config/settings/base.py:181
+msgid "English"
+msgstr "Англійська"
+
+#: config/settings/base.py:182
+msgid "Russian"
+msgstr "Російська"
+
+#: config/settings/base.py:183
+msgid "Ukrainian"
+msgstr "Українська"
 
 #: src/b2b_client/templates/b2b_client_page.html:64
 msgid "Крупные супермаркеты"
@@ -42,139 +54,143 @@ msgid "Кондитерские и пекарни"
 msgstr "Кондитерські та пекарні"
 
 #: src/core/templates/base_template.html:55
-#: src/core/templates/base_template.html:164
+#: src/core/templates/base_template.html:189
 #, python-format
 msgid "Ваша персональная скидка - 5%%"
 msgstr "Ваша персональна знижка - 5%%"
 
 #: src/core/templates/base_template.html:62
-#: src/core/templates/base_template.html:69 src/user/templates/login.html:12
+#: src/core/templates/base_template.html:69 src/user/templates/login.html:16
+#: src/user/templates/terms-of-use.html:3
+#: src/user/templates/terms-of-use.html:16
 msgid "Вход"
 msgstr "Вхід"
 
-#: src/core/templates/base_template.html:65 src/user/templates/login.html:33
-#: src/user/templates/registration.html:3
-#: src/user/templates/registration.html:9
+#: src/core/templates/base_template.html:65 src/user/templates/login.html:3
+#: src/user/templates/login.html:40 src/user/templates/registration.html:3
+#: src/user/templates/registration.html:13
+#: src/user/templates/registration.html:24
+#: src/user/templates/terms-of-use.html:13
 msgid "Регистрация"
 msgstr "Реєстрація"
 
-#: src/core/templates/base_template.html:74
+#: src/core/templates/base_template.html:77
 msgid "Выход"
 msgstr "Вихід"
 
-#: src/core/templates/base_template.html:101
-#: src/core/templates/base_template.html:267
+#: src/core/templates/base_template.html:126
+#: src/core/templates/base_template.html:292
 #: src/news_and_articles/templates/news_and_articles_detail.html:93
 msgid "ОРЕХ ПРИЧЕРНОМОРЬЯ"
 msgstr "ГОРІХ ПРИЧОРНОМОР'Я"
 
-#: src/core/templates/base_template.html:141
-#: src/core/templates/base_template.html:146
+#: src/core/templates/base_template.html:166
+#: src/core/templates/base_template.html:171
 msgid "Заказать звонок"
 msgstr "Замовити дзвінок"
 
-#: src/core/templates/base_template.html:149
+#: src/core/templates/base_template.html:174
 msgid "Ждем Вашего звонка ежедневно с 9 до 18"
 msgstr "Чекаємо Вашого дзвінка щодня з 9 до 18"
 
-#: src/core/templates/base_template.html:173
-#: src/core/templates/base_template.html:274
+#: src/core/templates/base_template.html:198
+#: src/core/templates/base_template.html:299
 msgid "Магазин"
 msgstr "Магазин"
 
-#: src/core/templates/base_template.html:176
-#: src/core/templates/base_template.html:277
+#: src/core/templates/base_template.html:201
+#: src/core/templates/base_template.html:302
 msgid "О производстве"
 msgstr "Про виробництво"
 
-#: src/core/templates/base_template.html:179
-#: src/core/templates/base_template.html:280
+#: src/core/templates/base_template.html:204
+#: src/core/templates/base_template.html:305
 msgid "Оплата и доставка"
 msgstr "Оплата і доставка"
 
-#: src/core/templates/base_template.html:182
-#: src/core/templates/base_template.html:283
+#: src/core/templates/base_template.html:207
+#: src/core/templates/base_template.html:308
 msgid "Оптовым и корпоративным клиентам"
 msgstr "Оптовим та корпоративним клієнтам"
 
-#: src/core/templates/base_template.html:185
-#: src/core/templates/base_template.html:286
+#: src/core/templates/base_template.html:210
+#: src/core/templates/base_template.html:311
 msgid "Новости и статьи"
 msgstr "Новини та статті"
 
-#: src/core/templates/base_template.html:188
-#: src/core/templates/base_template.html:206
-#: src/core/templates/base_template.html:289
+#: src/core/templates/base_template.html:213
+#: src/core/templates/base_template.html:231
+#: src/core/templates/base_template.html:314
 msgid "Контакты"
 msgstr "Контакти"
 
-#: src/core/templates/base_template.html:242
+#: src/core/templates/base_template.html:267
 msgid "Офис и отдел продаж"
 msgstr "Офіс та відділ продажів"
 
-#: src/core/templates/base_template.html:246
+#: src/core/templates/base_template.html:271
 msgid "Производство"
 msgstr "Виробництво"
 
-#: src/core/templates/base_template.html:301
+#: src/core/templates/base_template.html:326
 msgid "Разработано"
 msgstr "Розроблено"
 
-#: src/core/templates/base_template.html:304
+#: src/core/templates/base_template.html:329
 msgid "Copyright © 2019. Все права защищены"
 msgstr "Copyright © 2019. Всі права захищені"
 
-#: src/main/templates/main_page.html:35
+#: src/main/templates/main_page.html:36
 msgid "Акция"
 msgstr "Акція"
 
-#: src/main/templates/main_page.html:41
+#: src/main/templates/main_page.html:42
 msgid "Новинка"
 msgstr "Новинка"
 
-#: src/main/templates/main_page.html:62
+#: src/main/templates/main_page.html:63
 msgid "Арт:"
 msgstr "Арт:"
 
-#: src/main/templates/main_page.html:73
+#: src/main/templates/main_page.html:74
 #: src/products/templates/products_page.html:56
 msgid "Масса"
 msgstr "Маса"
 
-#: src/main/templates/main_page.html:82
+#: src/main/templates/main_page.html:83
 msgid "Упаковка"
 msgstr "Упаковка"
 
-#: src/main/templates/main_page.html:90
+#: src/main/templates/main_page.html:91
 msgid "Цена:"
 msgstr "Ціна:"
 
-#: src/main/templates/main_page.html:94 src/main/templates/main_page.html:97
-#: src/main/templates/main_page.html:101
+#: src/main/templates/main_page.html:95 src/main/templates/main_page.html:98
+#: src/main/templates/main_page.html:102
 msgid "грн."
 msgstr "грн."
 
-#: src/main/templates/main_page.html:107
+#: src/main/templates/main_page.html:108
 msgid "Купить"
 msgstr "Купити"
 
-#: src/main/templates/main_page.html:119
+#: src/main/templates/main_page.html:120
 msgid "Перейти в магазин"
 msgstr "Перейти до магазину"
 
-#: src/main/templates/main_page.html:131
+#: src/main/templates/main_page.html:132
 msgid "Подробнее"
 msgstr "Детальніше"
 
-#: src/main/templates/main_page.html:175
+#: src/main/templates/main_page.html:176
 msgid "Смотреть видео о производстве"
 msgstr "Дивитися відео про виробництво"
 
-#: src/main/templates/main_page.html:187
+#: src/main/templates/main_page.html:188
 msgid "О пользе продукта"
 msgstr "Про користь продукту"
 
-#: src/main/templates/main_page.html:188
+#: src/main/templates/main_page.html:189
 msgid ""
 "Каждый вид ореха содержит свой неповторимый уникальный баланс витаминов, и "
 "микроэлементов"
@@ -182,13 +198,29 @@ msgstr ""
 "Кожен вид горіха містить свій неповторний унікальний баланс вітамінів і "
 "мікроелементів"
 
-#: src/news_and_articles/templates/news_and_articles.html:38
-#: src/news_and_articles/templates/news_and_articles.html:70
+#: src/main/templates/main_page.html:266
+#: src/production/templates/production_page.html:146
+msgid "Новости"
+msgstr "Новини"
+
+#: src/main/templates/main_page.html:267
+#: src/production/templates/production_page.html:147
+msgid "Свежие новости и полезная информация"
+msgstr "Свіжі новини та корисна інформація"
+
+#: src/main/templates/main_page.html:304
+#: src/news_and_articles/templates/news_and_articles.html:59
+#: src/news_and_articles/templates/news_and_articles.html:91
 #: src/news_and_articles/templates/news_and_articles_detail.html:86
 #: src/production/templates/production_page.html:172
 #: src/production/templates/production_page.html:189
 msgid "Читать"
 msgstr "Читати"
+
+#: src/main/templates/main_page.html:315
+#: src/production/templates/production_page.html:201
+msgid "Смотреть все новости"
+msgstr "Дивитися всі новини"
 
 #: src/news_and_articles/templates/news_and_articles_detail.html:43
 #: src/payment_and_delivery/templates/payment_and_delivery.html:68
@@ -243,18 +275,6 @@ msgstr "Написати нам"
 msgid "История предприятия"
 msgstr "Історія підприємства"
 
-#: src/production/templates/production_page.html:146
-msgid "Новости"
-msgstr "Новини"
-
-#: src/production/templates/production_page.html:147
-msgid "Свежие новости и полезная информация"
-msgstr "Свіжі новини та корисна інформація"
-
-#: src/production/templates/production_page.html:201
-msgid "Смотреть все новости"
-msgstr "Дивитися всі новини"
-
 #: src/products/templates/products_page.html:42
 msgid "Фильтр"
 msgstr "Фільтр"
@@ -283,94 +303,93 @@ msgstr "Екологічно чистий волоський горіх"
 msgid "Фото производства"
 msgstr "Фото виробництва"
 
-#: src/user/templates/login.html:9
-msgid "Главная"
-msgstr "Головна"
-
-#: src/user/templates/login.html:23
+#: src/user/templates/login.html:30
 msgid "Войти в личный кабинет"
 msgstr "Увійти в особистий кабінет"
 
-#: src/user/templates/login.html:29
+#: src/user/templates/login.html:36
 msgid "Забыли пароль?"
 msgstr "Забули пароль?"
 
-#: src/user/templates/login.html:31
+#: src/user/templates/login.html:38
 msgid "Войти"
 msgstr "Увійти"
 
-#: src/user/templates/registration.html:13
+#: src/user/templates/registration.html:28
 msgid "1. Контактные данные"
 msgstr "1. Контактні дані"
 
-#: src/user/templates/registration.html:22
+#: src/user/templates/registration.html:37
 msgid "Физическое лицо"
 msgstr "Фізична особа"
 
-#: src/user/templates/registration.html:25
+#: src/user/templates/registration.html:40
 msgid "Юридическое лицо"
 msgstr "Юридична особа"
 
-#: src/user/templates/registration.html:42
-#: src/user/templates/registration.html:87
+#: src/user/templates/registration.html:57
+#: src/user/templates/registration.html:102
 msgid "2. Адрес"
 msgstr "2. Адреса"
 
-#: src/user/templates/registration.html:49
-#: src/user/templates/registration.html:94
+#: src/user/templates/registration.html:64
+#: src/user/templates/registration.html:109
 msgid "3. Пароль"
 msgstr "3. Пароль"
 
-#: src/user/templates/registration.html:58
-#: src/user/templates/registration.html:103
+#: src/user/templates/registration.html:73
+#: src/user/templates/registration.html:118
 msgid "Загрузить фото"
 msgstr "Завантажити фото"
 
-#: src/user/templates/registration.html:62
+#: src/user/templates/registration.html:77
 msgid "Являюсь ФОП"
 msgstr "Я є ФОП"
 
-#: src/user/templates/registration.html:69
-#: src/user/templates/registration.html:146
+#: src/user/templates/registration.html:84
+#: src/user/templates/registration.html:161
 msgid "Я согласен с"
 msgstr "Я згоден з"
 
-#: src/user/templates/registration.html:69
-#: src/user/templates/registration.html:146
+#: src/user/templates/registration.html:84
+#: src/user/templates/registration.html:161
 msgid "Условиями регистрации"
 msgstr "Умовами реєстрації"
 
-#: src/user/templates/registration.html:71
-#: src/user/templates/registration.html:148
+#: src/user/templates/registration.html:86
+#: src/user/templates/registration.html:163
 msgid "Продолжить"
 msgstr "Продовжити"
 
-#: src/user/templates/registration.html:107
+#: src/user/templates/registration.html:122
 msgid "Юр. лицо"
 msgstr "Юр. особа"
 
-#: src/user/templates/registration.html:109
+#: src/user/templates/registration.html:124
 msgid "ФОП"
 msgstr "ФОП"
 
-#: src/user/templates/registration.html:114
 #: src/user/templates/registration.html:129
+#: src/user/templates/registration.html:144
 msgid "1. Реквизиты"
 msgstr "1. Реквізити"
 
-#: src/user/templates/registration.html:119
+#: src/user/templates/registration.html:134
 msgid "2. Юридический адрес"
 msgstr "2. Юридична адреса"
 
-#: src/user/templates/registration.html:133
+#: src/user/templates/registration.html:148
 msgid "2. Адрес ФОП"
 msgstr "2. Адреса ФОП"
 
-#: src/user/templates/registration.html:203
+#: src/user/templates/registration.html:218
 msgid "Область"
 msgstr "Область"
 
-#: src/user/templates/registration.html:207
-#: src/user/templates/registration.html:227
+#: src/user/templates/registration.html:222
+#: src/user/templates/registration.html:242
 msgid "Город*"
 msgstr "Місто*"
+
+#~ msgid "Главная"
+#~ msgstr "Головна"

@@ -12,7 +12,7 @@
                     <li>
                         <a href="/">{{ page.get_site.root_page.title }}</a>
                     </li>
-                    {% for ancestor in page.get_ancestors(inclusive=False).live().public() %}
+                    {% for ancestor in page.get_ancestors.live.public %}
                         {% if not ancestor.is_root %}
                             <li>
                                 <a href="{{ ancestor.url }}">{{ ancestor.title }}</a>
@@ -22,7 +22,7 @@
                     <li>
                         <span>{{ page.page_title }}</span>
                     </li>
-                 </ul>
+                </ul>
               </div>
               <div class="row align-items-center justify-content-center">
                  <a href="{{ block.value.video.file.url }}">

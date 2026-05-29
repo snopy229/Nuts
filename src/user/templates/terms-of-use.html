@@ -1,6 +1,25 @@
 {% extends "base_template.html" %}
 {% load wagtailcore_tags wagtailimages_tags %}
+{% block title %} {% translate "Вход" %} {% endblock title %}
 {% block content %}
+    <section class="first-section no-bg">
+		<div class="container">
+			<div class="breadcrumbs">
+				<ul>
+					<li>
+						<a href="/">{{ page.get_site.root_page.title }}</a>
+					</li>
+                    <li>
+						<a href="{% url 'user:registration' %}">{% translate "Регистрация" %}</a>
+					</li>
+					<li>
+                        {% translate "Вход"}%}
+					</li>
+				</ul>
+			</div>
+		</div>
+	</section>
+
 	<section class="term">
 		<div class="container">
 			<div class="row">

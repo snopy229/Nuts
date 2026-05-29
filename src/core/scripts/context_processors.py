@@ -1,3 +1,6 @@
+from django.shortcuts import render
+from wagtail.models import Site
+
 from src.main.models import MainPage
 from src.products.models import ProductsPage
 from src.b2b_client.models import B2BClientPage
@@ -18,3 +21,10 @@ def nav_pages(request):
         "b2b_client": B2BClientPage.objects.live().first(),
         "production": ProductionPage.objects.live().first(),
     }
+
+
+def get_text(request):
+    current_site = Site.find_for_request(request)
+    root_page = current_site.root_page if current_site else None
+
+    return render(request, "register.html", {"root_page": root_page})

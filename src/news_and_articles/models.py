@@ -18,6 +18,7 @@ class NewsAndArticlesPage(Page):
         FieldPanel("page_title"),
         FieldPanel("description"),
     ]
+    min_count = 1
     max_count = 1
     parent_page_types = ["main.MainPage"]
     subpage_types = ["NewsAndArticlesDetailPage"]
