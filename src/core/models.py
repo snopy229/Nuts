@@ -67,3 +67,7 @@ class GardenInfoViewSet(SnippetViewSet):
 
 
 register_snippet(GardenInfo, viewset=GardenInfoViewSet)
+
+
+class Gallery(models.Model):
+    images = models.ImageField(upload_to="gallery/", verbose_name="Изображение")

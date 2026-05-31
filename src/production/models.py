@@ -31,7 +31,7 @@ class ProductionPage(Page):
     )
     founder_photo = models.ForeignKey(
         "wagtailimages.Image",
-        on_delete=models.CASCADE,
+        on_delete=models.PROTECT,
         verbose_name="Фото основателя",
     )
     founder_fullname = models.CharField(max_length=255, verbose_name="Имя основателя")

@@ -12,7 +12,7 @@ from wagtailgeowidget.panels import LeafletPanel
 
 from src.production.models import ProductionPage
 from src.news_and_articles.models import NewsAndArticlesDetailPage
-from src.products.models import ProductDetailPage, ProductsPage
+from src.products.models import ProductsPage, ProductDetailPage
 from src.core.blocks import VideoBlock, VideoWithoutDescriptionBlock, TabBlock
 
 

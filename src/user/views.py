@@ -12,7 +12,7 @@ from src.user.forms import (
     UserAddressForm,
     LegalEntityAddressForm,
 )
-from .models import TermsPage, User
+from .models import User
 
 
 # Create your views here.
@@ -20,9 +20,7 @@ class RegistrationView(View):
     template_name = "registration.html"
 
     def get_context(self, **kwargs):
-        page = TermsPage.objects.live().first()
         return {
-            "terms_url": page.url if page else "#",
             "user_form_individual": UserForm(prefix="individual"),
             "user_form_legal": UserForm(prefix="legal"),
             "individual_form": IndividualForm(),

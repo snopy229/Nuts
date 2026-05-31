@@ -16,6 +16,7 @@ import os
 from pathlib import Path
 
 import environ
+from django.urls import reverse_lazy
 
 env = environ.Env(
     # set casting, default value
@@ -31,20 +32,27 @@ environ.Env.read_env(os.path.join(BASE_DIR, ".env"))
 
 
 # Application definition
-
 INSTALLED_APPS = [
+    "unfold",
+    "unfold.contrib.filters",
+    "unfold.contrib.forms",
+    "unfold.contrib.inlines",
+    "unfold.contrib.import_export",
+    "unfold.contrib.guardian",
+    "unfold.contrib.simple_history",
+    "unfold.contrib.location_field",
+    "unfold.contrib.constance",
+    "src.user",
+    "django.contrib.admin",
+    "django.contrib.auth",
+    "django.contrib.contenttypes",
+    "django.contrib.sessions",
+    "django.contrib.messages",
+    "django.contrib.staticfiles",
+    "django.contrib.postgres",
     "wagtail_modeltranslation",
     "wagtail_modeltranslation.makemigrations",
     "wagtail_modeltranslation.migrate",
-    "src.user",
-    "src.main",
-    "src.core",
-    "src.gallery",
-    "src.production",
-    "src.payment_and_delivery",
-    "src.b2b_client",
-    "src.news_and_articles",
-    "src.products",
     "wagtail.contrib.forms",
     "wagtail.contrib.redirects",
     "wagtail.contrib.settings",
@@ -57,25 +65,18 @@ INSTALLED_APPS = [
     "wagtail.search",
     "wagtail.admin",
     "wagtail",
+    "src.main",
+    "src.core",
+    "src.gallery",
+    "src.production",
+    "src.payment_and_delivery",
+    "src.b2b_client",
+    "src.news_and_articles",
+    "src.products",
     "modelcluster",
     "taggit",
     "django_filters",
-    "unfold",
-    "unfold.contrib.filters",
-    "unfold.contrib.forms",
-    "unfold.contrib.inlines",
-    "unfold.contrib.import_export",
-    "unfold.contrib.guardian",
-    "unfold.contrib.simple_history",
-    "unfold.contrib.location_field",
-    "unfold.contrib.constance",
-    "django.contrib.admin",
-    "django.contrib.auth",
-    "django.contrib.contenttypes",
-    "django.contrib.sessions",
-    "django.contrib.messages",
-    "django.contrib.staticfiles",
-    "django.contrib.postgres",
+    "trix",
     "django_vite",
     "wagtailgeowidget",
     "cities_light",
@@ -263,3 +264,45 @@ CITIES_LIGHT_INCLUDE_COUNTRIES=['UA', 'PL']
 CITIES_LIGHT_INCLUDE_CITY_TYPES = [
     'PPL', 'PPLA', 'PPLA2', 'PPLA3', 'PPLA4', 'PPLC', 'PPLF', 'PPLG', 'PPLL', 'PPLR', 'PPLS', 'STLMT',
 ]
+
+UNFOLD = {
+    "SITE_TITLE": "Чистая Админка",
+    "DASHBOARD_CALLBACK": "src.core.views.dashboard_callback",
+    "show_all_applications": False,
+    "show_changelist_navigation": True,
+    "EXTENSIONS": {
+        "wagtail_modeltranslation": {
+            "flags": {
+                "en": "🇬🇧",
+                "ru": "🇫🇷",
+                "uk": "🇺🇦",
+            },
+        },
+    },
+    "SIDEBAR": {
+        "show_search": True,
+        "navigation": [
+            {
+                "title": "Продукция",
+                "separator": True,
+                "items": [
+                    {
+                        "title": "Упаковка",
+                        "icon": "box",
+                        "link": reverse_lazy("admin:products_productpackage_changelist"),
+                    },
+                    {
+                        "title": "Вес",
+                        "icon": "weight",
+                        "link": reverse_lazy("admin:products_productweight_changelist"),
+                    },
+                    {
+                        "title": "Вкус",
+                        "icon": "restaurant_menu",
+                        "link": reverse_lazy("admin:products_producttaste_changelist"),
+                    },
+                ],
+            },
+        ],
+    },
+}

@@ -8,7 +8,7 @@ authors = [
 requires-python = ">=3.13,<4.0"
 dependencies = [
     "wagtail (>=7.3.1,<8.0.0)",
-    "django-unfold (>=0.92.0,<0.93.0)",
+    "django-unfold[dashboard] (>=0.94.0,<0.95.0)",
     "celery (>=5.6.3,<6.0.0)",
     "redis (>=7.4.0,<8.0.0)",
     "django-environ (>=0.13.0,<0.14.0)",
@@ -22,6 +22,8 @@ dependencies = [
     "django-select2 (>=8.4.8,<9.0.0)",
     "django-ninja (>=1.6.2,<2.0.0)",
     "wagtail-modeltranslation (>=0.16.0,<0.17.0)",
+    "django-trix (>=0.3.0,<0.4.0)",
+    "django-ckeditor-5 (>=0.2.20,<0.3.0)",
 ]
 
 

@@ -1,10 +1,31 @@
 from cities_light.models import City, Country, Region
+from django.contrib.auth.base_user import BaseUserManager
 from django.contrib.auth.models import AbstractUser
 from django.db import models
 from phonenumber_field.modelfields import PhoneNumberField
-from wagtail.admin.panels import FieldPanel
-from wagtail.fields import RichTextField
-from wagtail.models import Page
+
+
+class MyUserManager(BaseUserManager):
+    def create_user(self, email, password=None, **extra_fields):
+        if not email:
+            raise ValueError("Email обязателен")
+        email = self.normalize_email(email)
+        user = self.model(email=email, **extra_fields)
+        user.set_password(password)
+        user.save(using=self._db)
+        return user
+
+    def create_superuser(self, email, password=None, **extra_fields):
+        extra_fields.setdefault("is_staff", True)
+        extra_fields.setdefault("is_superuser", True)
+        extra_fields.setdefault("is_active", True)
+
+        if extra_fields.get("is_staff") is not True:
+            raise ValueError("Superuser must have is_staff=True.")
+        if extra_fields.get("is_superuser") is not True:
+            raise ValueError("Superuser must have is_superuser=True.")
+
+        return self.create_user(email, password, **extra_fields)
 
 
 class User(AbstractUser):
@@ -18,7 +39,11 @@ class User(AbstractUser):
     address = models.CharField(max_length=255, blank=True, null=True, verbose_name="Адрес")
     avatar = models.FileField(upload_to="avatars", blank=True, null=True, verbose_name="Аватар")
     USERNAME_FIELD: str = "email"
-    REQUIRED_FIELDS = ["username"]
+    REQUIRED_FIELDS = []
+    objects = MyUserManager()
+
+    def __str__(self):
+        return self.email
 
 
 class Individual(models.Model):
@@ -87,17 +112,3 @@ class LegalEntity(models.Model):
     class Meta:
         verbose_name = "Юридическое лицо"
         verbose_name_plural = "Юридические лица"
-
-
-class TermsPage(Page):
-    content = RichTextField(verbose_name="Условия")
-    page_title = models.CharField(max_length=255, verbose_name="Соглашение")
-    content_panels = Page.content_panels + [
-        FieldPanel("page_title"),
-        FieldPanel("content"),
-    ]
-
-    template = "terms-of-use.html"
-    max_count = 1
-    min_count = 1
-    parent_page_types = ["main.MainPage"]
