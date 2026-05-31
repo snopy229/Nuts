@@ -16,7 +16,7 @@
                             {% endif %}
                         {% endfor %}
                         <li>
-                            <span>{{ page.page_title }}</span>
+                            <span>{{ product.title }}</span>
                         </li>
                     </ul>
 				</div>
@@ -29,13 +29,13 @@
 					<div class="col-lg-5 col-md-6">
 							<div class="wrap">
 									<div class="product__item">
-                                    {% if page.discount %}
+                                    {% if product.discount %}
                                     	<div class="sticker">
 											<i class="nut-icon icons-actciya"></i>
 											<p>Акция</p>
 										</div>
                                     {% endif %}
-                                    {% if page.is_new %}
+                                    {% if product.is_new %}
 										<div class="sticker">
 											<i class="nut-icon icons-novinka"></i>
 											<p>Новинка</p>
@@ -46,10 +46,9 @@
 											<!-- Additional required wrapper -->
 											<div class="swiper-wrapper">
 												<!-- Slides -->
-                                                {% for block in page.gallery %}
+                                                {% for gallery_item in product.gallery.all %}
                                                 	<div class="swiper-slide">
-                                                    {% image block.value original as img %}
-												    	<a href="#"><img src="{{ img.url }}" alt="alt"/></a>
+												    	<a href="#"><img src="{{ gallery_item.images.url }}" alt="alt"/></a>
 												    </div>
                                                 {% endfor %}
 											</div>
@@ -67,16 +66,16 @@
 							<div class="row">
 								<div class="col-md-6">
 									<div class="product__content_name">
-											{{ page.nuts_type }}
+											{{ product.nuts_type }}
 									</div>
 								</div>
 								<div class="col-md-6">
 									<div class="product__content_art">
-											Арт:<span> {{ page.article }}</span>
+											Арт:<span> {{ product.article }}</span>
 									</div>
 								</div>
 								<div class="col-lg-9">
-									<h1>{{ page.nuts_title }}</h1>
+									<h1>{{ product.nuts_title }}</h1>
 								</div>
 								<div class="col-lg-3"></div>
 								<div class="col-12">
@@ -88,7 +87,7 @@
 															<strong>Состав:</strong>
 														</div>
 														<div class="col-md-7">
-															<span>{{ page.compound }}</span>
+															<span>{{ product.compound|safe }}</span>
 														</div>
 													</div>
 											</li>
@@ -98,7 +97,7 @@
 														<strong>Масса нетто:</strong>
 													</div>
 													<div class="col-md-7">
-														<span>{{ page.mass }}</span>
+														<span>{{ product.mass }}</span>
 													</div>
 												</div>
 											</li>
@@ -108,7 +107,7 @@
 															<strong>Энергетическая ценность:</strong>
 														</div>
 														<div class="col-md-7">
-															<span>{{ page.energy_value }}</span>
+															<span>{{ product.energy_value }}</span>
 														</div>
 													</div>
 												</li>
@@ -118,7 +117,7 @@
 																<strong>Срок годности:</strong>
 															</div>
 															<div class="col-md-7">
-																<span>{{ page.shelf_life }}</span>
+																<span>{{ product.shelf_life }}</span>
 															</div>
 														</div>
 													</li>
@@ -137,16 +136,16 @@
 													<div class="sum_item_title">
 														<p>Ваша цена: </p>
 													</div>
-                                                    {% if page.discount %}
+                                                    {% if product.discount %}
                                                     	<div class="sum_item_new">
-														<p>{{ page.cost_with_discount}} <i>грн.</i></p>
+														<p>{{ product.cost_with_discount}} <i>грн.</i></p>
 													</div>
 													<div class="sum_item_old">
-														<p>{{ page.cost }} <i>грн.</i></p>
+														<p>{{ product.cost }} <i>грн.</i></p>
 													</div>
                                                         {% else %}
                                                         <div class="sum_item_new">
-														<p>{{ page.cost }} <i>грн.</i></p>
+														<p>{{ product.cost }} <i>грн.</i></p>
 													</div>
                                                     {% endif %}
 												</div>
@@ -170,35 +169,65 @@
 						<div class="container">
 								<div class="row">
 									<ul class="tabs__caption">
-                                        {% for block in page.blocks%}
-                                        	{% if forloop.counter == 1 %}
-                                        		<li class="active"><span>{{ block.value.title }}</span></li>
-                                            {% else %}
-                                                <li><span>{{ block.value.title }}</span></li>
-                                        	{% endif %}
-                                        {% endfor %}
-									</ul>
+                                        <li class="active"><span>Описание</span></li>
+									    <li><span>Упаковка</span></li>
+									    <li><span>Оплата</span></li>
+									    <li><span>Доставка</span></li>
+                                    </ul>
 								</div>
 							</div>
 					</div>
 				<div class="container">
 					<div class="row">
 						<div class="col-12">
-                            {% for block in page.blocks %}
 							<div class="tabs__content active">
 								<div class="row">
 									<div class="col-lg-4 col-md-6 col-12">
-                                        {% image block.value.image original as img %}
-										<img src="{{ img.url }}" class="tabs__content_img" alt="alt">
+										<img src="{{ product.description_photo.url }}" class="tabs__content_img" alt="alt">
 									</div>
 									<div class="col-lg-8 col-md-6 col-12 align-self-center">
 										<div class="tabs__content_product">
-											{{ block.value.description|richtext }}
+											{{ product.description|safe }}
 										</div>
 									</div>
 								</div>
 							</div>
-                            {% endfor %}
+                            <div class="tabs__content">
+								<div class="row">
+									<div class="col-lg-4 col-md-6 col-12">
+										<img src="{{ product.package_photo.url }}" class="tabs__content_img" alt="alt">
+									</div>
+									<div class="col-lg-8 col-md-6 col-12 align-self-center">
+										<div class="tabs__content_product">
+											{{ product.package_description|safe }}
+										</div>
+									</div>
+								</div>
+							</div>
+                            <div class="tabs__content">
+								<div class="row">
+									<div class="col-lg-4 col-md-6 col-12">
+										<img src="{{ product.payment_photo.url }}" class="tabs__content_img" alt="alt">
+									</div>
+									<div class="col-lg-8 col-md-6 col-12 align-self-center">
+										<div class="tabs__content_product">
+											{{ product.payment|safe }}
+										</div>
+									</div>
+								</div>
+							</div>
+                            <div class="tabs__content">
+								<div class="row">
+									<div class="col-lg-4 col-md-6 col-12">
+										<img src="{{ product.delivery_photo.url }}" class="tabs__content_img" alt="alt">
+									</div>
+									<div class="col-lg-8 col-md-6 col-12 align-self-center">
+										<div class="tabs__content_product">
+											{{ product.delivery|safe }}
+										</div>
+									</div>
+								</div>
+							</div>
                         </div>
                     </div>
                 </div>

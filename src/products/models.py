@@ -1,6 +1,8 @@
 # Create your models here.
+from datetime import timedelta
 
 from django.db import models
+from django.utils import timezone
 from django.utils.text import slugify
 from wagtail.admin.panels import FieldPanel
 from wagtail.fields import StreamField, RichTextField
@@ -69,6 +71,9 @@ class ProductDetailPage(models.Model):
     title = models.CharField(verbose_name="Заголовок", max_length=255)
     slug = models.SlugField(verbose_name="Slug", max_length=255, unique=True, blank=True)
     cost = models.IntegerField(verbose_name="Цена")
+    compound = models.TextField(verbose_name="Состав")
+    nuts_type = models.CharField(verbose_name="Тип ореха", max_length=255)
+    article = models.IntegerField(verbose_name="Артикул")
     discount = models.IntegerField(verbose_name="Скидка(грн)", blank=True, null=True)
     gallery = models.ManyToManyField("core.Gallery", verbose_name="gallery")
     mass = models.ForeignKey(ProductWeight, on_delete=models.CASCADE, verbose_name="Масса")
@@ -84,6 +89,9 @@ class ProductDetailPage(models.Model):
     payment_photo = models.ImageField(upload_to="product/payment", verbose_name="Оплата фото")
     delivery = models.TextField(verbose_name="Доставка")
     delivery_photo = models.ImageField(upload_to="product/delivery", verbose_name="Доставка фото")
+    created_at = models.DateField(
+        auto_now_add=True,
+    )
 
     def _transliterate(self, text):
         try:
@@ -110,3 +118,21 @@ class ProductDetailPage(models.Model):
         if not self.slug:
             self.slug = self.generate_slug()
         super().save(*args, **kwargs)
+
+    @property
+    def cost_with_discount(self):
+        if self.discount:
+            return self.cost - self.discount
+        return self.cost
+
+    @property
+    def is_new(self):
+        if not self.created_at:
+            return False
+
+        current_date = timezone.now().date()
+        seven_days_ago = current_date - timedelta(days=7)
+
+        object_date = getattr(self.created_at, "date", lambda: self.created_at)()
+
+        return object_date >= seven_days_ago

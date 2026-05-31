@@ -38,14 +38,6 @@ class GalleryInline(TabularInline):
     verbose_name = "Фото"
     verbose_name_plural = "Галерея"
 
-    def save_new_objects(self, formset, commit=True):
-        saved = super().save_new_objects(formset, commit)
-        for form in formset.extra_forms:
-            if form.cleaned_data.get("image"):
-                gallery = Gallery.objects.create(images=form.cleaned_data["image"])
-                form.instance.gallery = gallery
-        return saved
-
 
 @admin.register(ProductDetailPage)
 class ProductDetailPageAdmin(ModelAdmin):
@@ -67,12 +59,77 @@ class ProductDetailPageAdmin(ModelAdmin):
             "Основная информация",
             {
                 "classes": ["tab"],
-                "fields": ["title", "cost", "discount", "mass", "energy_value", "taste", "package", "shelf_life"],
+                "fields": [
+                    "title_ru",
+                    "title_uk",
+                    "title_en",
+                    "cost",
+                    "discount",
+                    "mass",
+                    "energy_value",
+                    "taste",
+                    "package",
+                    "shelf_life_ru",
+                    "shelf_life_uk",
+                    "shelf_life_en",
+                ],
             },
         ),
-        ("Описание продукта", {"classes": ["tab"], "fields": ["description", "description_photo"]}),
-        ("Упаковка", {"classes": ["tab"], "fields": ["package_description", "package_photo"]}),
-        ("Оплата", {"classes": ["tab"], "fields": ["payment", "payment_photo"]}),
-        ("Доставка", {"classes": ["tab"], "fields": ["delivery", "delivery_photo"]}),
+        (
+            "Описание продукта",
+            {
+                "classes": ["tab"],
+                "fields": [
+                    "description_ru",
+                    "description_uk",
+                    "description_en",
+                    "description_photo",
+                ],
+            },
+        ),
+        (
+            "Упаковка",
+            {
+                "classes": ["tab"],
+                "fields": [
+                    "package_description_ru",
+                    "package_description_uk",
+                    "package_description_en",
+                    "package_photo",
+                ],
+            },
+        ),
+        (
+            "Оплата",
+            {
+                "classes": ["tab"],
+                "fields": [
+                    "payment_ru",
+                    "payment_uk",
+                    "payment_en",
+                    "payment_photo",
+                ],
+            },
+        ),
+        (
+            "Доставка",
+            {
+                "classes": ["tab"],
+                "fields": [
+                    "delivery_ru",
+                    "delivery_uk",
+                    "delivery_en",
+                    "delivery_photo",
+                ],
+            },
+        ),
     ]
     exclude = ["gallery"]
+
+    def save_formset(self, request, form, formset, change):
+        if formset.model == ProductDetailPage.gallery.through:
+            for inline_form in formset.forms:
+                if inline_form.cleaned_data.get("image") and not inline_form.cleaned_data.get("DELETE"):
+                    gallery = Gallery.objects.create(images=inline_form.cleaned_data["image"])
+                    inline_form.instance.gallery = gallery
+        super().save_formset(request, form, formset, change)

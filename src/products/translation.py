@@ -29,4 +29,4 @@ class ProductsPageTR(TranslationOptions):
 
 @register(ProductDetailPage)
 class ProductDetailPageTR(TranslationOptions):
-    pass
+    fields = ("title", "shelf_life", "description", "package_description", "payment", "delivery")

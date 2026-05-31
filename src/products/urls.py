@@ -4,6 +4,4 @@ from src.products import views
 
 app_name = "products"
 
-urlpatterns = [
-    path("product-more/", views.products_more, name="product-more"),
-]
+urlpatterns = [path("<slug:slug>/", views.ProductDetailPageDetailView.as_view(), name="product")]
