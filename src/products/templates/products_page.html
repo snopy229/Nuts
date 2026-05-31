@@ -76,17 +76,10 @@
                             <div class="col-lg-7">
                                <div class="col-lg-7">
                                         <div class="production__filter_button">
-                                            <a class="button"
-                                               hx-get="{% url 'products:product-more' %}"
-                                               hx-include="#filter-form"
-                                               hx-target="#product-grid"
-                                               hx-swap="innerHTML">
+                                            <a class="button" onclick="applyFilter()">
                                                 {% translate "Применить" %}
                                             </a>
-                                            <a class="button_close"
-                                               hx-get="{% url 'products:product-more' %}"
-                                               hx-target="#product-grid"
-                                               hx-swap="innerHTML">
+                                            <a class="button_close" onclick="resetFilter()">
                                                 <i class="nut-icon icons-close-button"></i>
                                                 <span>{% translate "Сбросить" %}</span>
                                             </a>
@@ -137,20 +130,65 @@
 {% endblock content %}
 {% block scripts %}
     <script>
-    document.getElementById("price-sort").addEventListener("click", function () {
-    const input = document.getElementById("price-order");
-    const iconAsc = document.getElementById("icon-asc");
-    const iconDesc = document.getElementById("icon-desc");
+    function fetchProducts(params) {
+  fetch(`/api/products/products-more?${params}`)
+    .then(r => r.json())
+    .then(data => {
+      document.querySelector('#product-grid').innerHTML = data.html;
 
-    if (input.value === "asc") {
-        input.value = "desc";
-        iconAsc.style.display = "none";
-        iconDesc.style.display = "";
-    } else {
-        input.value = "asc";
-        iconAsc.style.display = "";
-        iconDesc.style.display = "none";
-    }
-});
+      const moreBlock = document.querySelector('#product-more');
+      if (data.has_more) {
+        moreBlock.innerHTML = `
+          <div class="wrapper">
+            <a class="button button_transparent"
+               data-offset="${data.next_offset}"
+               data-taste="${params.get('taste') || ''}"
+               data-mass="${params.get('mass') || ''}"
+               data-order="${params.get('order') || 'asc'}"
+               onclick="loadMore(this)">
+              Показать ещё
+            </a>
+          </div>`;
+      } else {
+        moreBlock.innerHTML = '';
+      }
+    });
+}
+
+function applyFilter() {
+  const form = document.querySelector('#filter-form');
+  const params = new URLSearchParams(new FormData(form));
+  params.set('offset', 0);
+  fetchProducts(params);
+}
+
+function resetFilter() {
+  fetchProducts(new URLSearchParams({ offset: 0 }));
+}
+
+function loadMore(btn) {
+  const params = new URLSearchParams({
+    offset: btn.dataset.offset,
+    taste: btn.dataset.taste || '',
+    mass: btn.dataset.mass || '',
+    order: btn.dataset.order || 'asc',
+  });
+
+  fetch(`/api/products/products-more?${params}`)
+    .then(r => r.json())
+    .then(data => {
+      document.querySelector('#product-grid').insertAdjacentHTML('beforeend', data.html);
+
+      const moreBlock = document.querySelector('#product-more');
+      if (data.has_more) {
+        btn.dataset.offset = data.next_offset;
+        btn.dataset.taste = params.get('taste');
+        btn.dataset.mass = params.get('mass');
+        btn.dataset.order = params.get('order');
+      } else {
+        moreBlock.innerHTML = '';
+      }
+    });
+}
     </script>
 {% endblock scripts %}

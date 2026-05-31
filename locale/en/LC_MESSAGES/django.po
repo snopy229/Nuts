@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2026-05-29 20:46+0000\n"
+"POT-Creation-Date: 2026-05-31 16:42+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -18,15 +18,15 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
-#: config/settings/base.py:181
+#: config/settings/base.py:182
 msgid "English"
 msgstr "English"
 
-#: config/settings/base.py:182
+#: config/settings/base.py:183
 msgid "Russian"
 msgstr "Russian"
 
-#: config/settings/base.py:183
+#: config/settings/base.py:184
 msgid "Ukrainian"
 msgstr "Ukrainian"
 
@@ -50,6 +50,10 @@ msgstr "Fitness and sports clubs"
 msgid "Кондитерские и пекарни"
 msgstr "Confectioneries and bakeries"
 
+#: src/core/templates/admin/index.html:10
+msgid "Django site admin"
+msgstr "Django site admin"
+
 #: src/core/templates/base_template.html:55
 #: src/core/templates/base_template.html:189
 #, python-format
@@ -58,8 +62,6 @@ msgstr "Your personal discount is 5%%"
 
 #: src/core/templates/base_template.html:62
 #: src/core/templates/base_template.html:69 src/user/templates/login.html:16
-#: src/user/templates/terms-of-use.html:3
-#: src/user/templates/terms-of-use.html:16
 msgid "Вход"
 msgstr "Log in"
 
@@ -379,14 +381,23 @@ msgstr "2. Legal address"
 msgid "2. Адрес ФОП"
 msgstr "2. Sole proprietor's address"
 
-#: src/user/templates/registration.html:218
+#: src/user/templates/registration.html:175
 msgid "Область"
 msgstr "Region"
 
-#: src/user/templates/registration.html:222
-#: src/user/templates/registration.html:242
+#: src/user/templates/registration.html:176
 msgid "Город*"
 msgstr "City*"
+
+#: src/user/templates/terms-of-use.html:3
+#: src/user/templates/terms-of-use.html:16
+msgid "Пользовательское соглашение"
+msgstr "Terms of Use"
+
+#, fuzzy
+#~| msgid "1. Контактные данные"
+#~ msgid "<p><b>3. Персональные данные.</b></p>"
+#~ msgstr "1. Contact details"
 
 #~ msgid "Главная"
 #~ msgstr "Home"

@@ -2031,6 +2031,21 @@ django-stubs = ">=5.2.0"
 telepath = ">=0.3,<1.0"
 
 [[package]]
+name = "transliterate"
+version = "1.10.2"
+description = "Bi-directional transliterator for Python"
+optional = false
+python-versions = "*"
+groups = ["main"]
+files = [
+    {file = "transliterate-1.10.2-py2.py3-none-any.whl", hash = "sha256:010a5021bf6021689c4fade0985f3f7b3db1f2f16a48a09a56797f171c08ed42"},
+    {file = "transliterate-1.10.2.tar.gz", hash = "sha256:bc608e0d48e687db9c2b1d7ea7c381afe0d1849cad216087d8e03d8d06a57c85"},
+]
+
+[package.dependencies]
+six = ">=1.1.0"
+
+[[package]]
 name = "types-pyyaml"
 version = "6.0.12.20260408"
 description = "Typing stubs for PyYAML"
@@ -2328,4 +2343,4 @@ willow = ">=1.11,<2.0"
 [metadata]
 lock-version = "2.1"
 python-versions = ">=3.13,<4.0"
-content-hash = "3ee123fb928350af5d9552b12a8f9f430b7f40f15adc04d0f87587ad7343b63e"
+content-hash = "7dd033bf2d39fc59c652c912fc736b564b75a8fe0fbc429f00fc863aa9477021"

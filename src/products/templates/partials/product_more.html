@@ -4,16 +4,18 @@
     {% include "partials/product_block.html" with product=product%}
 {% endfor %}
 
-<div class="row justify-content-center" id="product-more" hx-swap-oob="true">
+<div class="row justify-content-center" id="product-more">
   {% if has_more %}
   <div class="wrapper">
     <a class="button button_transparent"
-       hx-get="{% url 'products:product-more' %}?offset={{ next_offset }}"
-       hx-target="#product-grid"
-       hx-swap="beforeend">
+       id="load-more-btn"
+       data-offset="{{ next_offset }}"
+       data-taste="{{ taste }}"
+       data-mass="{{ mass }}"
+       data-order="{{ order }}"
+       onclick="loadMore(this)">
       Показать ещё
     </a>
   </div>
-  {% else %}
   {% endif %}
 </div>

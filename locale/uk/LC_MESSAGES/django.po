@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2026-05-29 20:46+0000\n"
+"POT-Creation-Date: 2026-05-31 16:42+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -21,15 +21,15 @@ msgstr ""
 "100 > 14) ? 1 : n % 1 == 0 && (n % 10 ==0 || (n % 10 >=5 && n % 10 <=9) || "
 "(n % 100 >=11 && n % 100 <=14 )) ? 2: 3);\n"
 
-#: config/settings/base.py:181
+#: config/settings/base.py:182
 msgid "English"
 msgstr "Англійська"
 
-#: config/settings/base.py:182
+#: config/settings/base.py:183
 msgid "Russian"
 msgstr "Російська"
 
-#: config/settings/base.py:183
+#: config/settings/base.py:184
 msgid "Ukrainian"
 msgstr "Українська"
 
@@ -53,6 +53,10 @@ msgstr "Фітнес і спорт клуби"
 msgid "Кондитерские и пекарни"
 msgstr "Кондитерські та пекарні"
 
+#: src/core/templates/admin/index.html:10
+msgid "Django site admin"
+msgstr "Django site admin"
+
 #: src/core/templates/base_template.html:55
 #: src/core/templates/base_template.html:189
 #, python-format
@@ -61,8 +65,6 @@ msgstr "Ваша персональна знижка - 5%%"
 
 #: src/core/templates/base_template.html:62
 #: src/core/templates/base_template.html:69 src/user/templates/login.html:16
-#: src/user/templates/terms-of-use.html:3
-#: src/user/templates/terms-of-use.html:16
 msgid "Вход"
 msgstr "Вхід"
 
@@ -382,14 +384,23 @@ msgstr "2. Юридична адреса"
 msgid "2. Адрес ФОП"
 msgstr "2. Адреса ФОП"
 
-#: src/user/templates/registration.html:218
+#: src/user/templates/registration.html:175
 msgid "Область"
 msgstr "Область"
 
-#: src/user/templates/registration.html:222
-#: src/user/templates/registration.html:242
+#: src/user/templates/registration.html:176
 msgid "Город*"
 msgstr "Місто*"
+
+#: src/user/templates/terms-of-use.html:3
+#: src/user/templates/terms-of-use.html:16
+msgid "Пользовательское соглашение"
+msgstr "Угода користувача"
+
+#, fuzzy
+#~| msgid "1. Контактные данные"
+#~ msgid "<p><b>3. Персональные данные.</b></p>"
+#~ msgstr "1. Контактні дані"
 
 #~ msgid "Главная"
 #~ msgstr "Головна"

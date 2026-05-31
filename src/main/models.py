@@ -12,7 +12,7 @@ from wagtailgeowidget.panels import LeafletPanel
 
 from src.production.models import ProductionPage
 from src.news_and_articles.models import NewsAndArticlesDetailPage
-from src.products.models import ProductsPage, ProductDetailPage
+from src.products.models import ProductsPage
 from src.core.blocks import VideoBlock, VideoWithoutDescriptionBlock, TabBlock
 
 
@@ -141,8 +141,6 @@ class MainPage(Page):
 
     def get_context(self, request):
         context = super().get_context(request)
-        products = ProductDetailPage.objects.live()
-        context["products"] = products[:6]
         context["product_page"] = ProductsPage.objects.live().first()
         news = NewsAndArticlesDetailPage.objects.live()
         context["news"] = news[:6]

@@ -287,6 +287,11 @@ UNFOLD = {
                 "separator": True,
                 "items": [
                     {
+                      "title":"Продукт",
+                        "icon": "box",
+                        "link": reverse_lazy("admin:products_productdetailpage_changelist")
+                    },
+                    {
                         "title": "Упаковка",
                         "icon": "box",
                         "link": reverse_lazy("admin:products_productpackage_changelist"),

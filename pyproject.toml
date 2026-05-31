@@ -24,6 +24,7 @@ dependencies = [
     "wagtail-modeltranslation (>=0.16.0,<0.17.0)",
     "django-trix (>=0.3.0,<0.4.0)",
     "django-ckeditor-5 (>=0.2.20,<0.3.0)",
+    "transliterate (>=1.10.2,<2.0.0)",
 ]
 
 

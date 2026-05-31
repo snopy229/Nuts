@@ -1,5 +1,3 @@
-from typing import List
-
 from ninja import Schema
 
 
@@ -9,5 +7,5 @@ class Select2Option(Schema):
 
 
 class Select2Response(Schema):
-    results: List[Select2Option]
-    pagination: dict
+    results: list[dict]
+    pagination: dict = {"more": False}
