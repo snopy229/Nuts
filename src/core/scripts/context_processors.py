@@ -1,6 +1,7 @@
 from django.shortcuts import render
 from wagtail.models import Site
 
+from checkouts.models import CartItem
 from src.main.models import MainPage
 from src.products.models import ProductsPage
 from src.b2b_client.models import B2BClientPage
@@ -32,5 +33,13 @@ def nav_pages(request):
 def get_text(request):
     current_site = Site.find_for_request(request)
     root_page = current_site.root_page if current_site else None
-
     return render(request, "register.html", {"root_page": root_page})
+
+
+def get_order(request):
+    if not request.user.is_authenticated:
+        return {"cart_items": [], "total_items": 0, "total_sum": 0}
+    cart_items = list(CartItem.objects.filter(user=request.user).select_related("product"))
+    total_items = sum(item.quantity for item in cart_items)
+    total_sum = sum(item.product.cost_with_discount * item.quantity for item in cart_items)
+    return {"cart_items": cart_items, "total_items": total_items, "total_sum": total_sum}
