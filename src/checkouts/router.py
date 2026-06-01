@@ -1,7 +1,8 @@
 from functools import wraps
 
 from django.db.models import Sum
-from ninja import Router
+from django.http import HttpResponse
+from ninja import Router, Form
 from ninja.security import django_auth
 
 from checkouts.models import CartItem
@@ -66,3 +67,32 @@ def minus_product(request, product_id: int):
         "quantity": cart_item.quantity,
         "total_items": CartItem.objects.filter(user=request.user).aggregate(total=Sum("quantity"))["total"] or 0,
     }
+
+
+@router.post("/set-quantity", auth=django_auth)
+@not_staff
+def set_quantity(request, product_id: int = Form(...), quantity: int = Form(...)):
+    if quantity < 1:
+        quantity = 1
+
+    cart_item = CartItem.objects.filter(user=request.user, product_id=product_id).first()
+    if not cart_item:
+        return 404, {"detail": "Not found"}
+
+    cart_item.quantity = quantity
+    cart_item.save(update_fields=["quantity"])
+    new_qty = quantity
+
+    html_string = f"""
+        <input type="text"
+               name="quantity"
+               value="{new_qty}"
+               id="quantity-{product_id}"
+               class="quantity_input"
+               hx-post="/api/checkouts/set-quantity"
+               hx-vals='{{"product_id": {product_id}}}'
+               hx-trigger="change, keyup delay:500ms"
+               hx-target="this"
+               hx-swap="outerHTML">
+    """
+    return HttpResponse(html_string)
