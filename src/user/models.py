@@ -4,9 +4,11 @@ from django.contrib.auth.models import AbstractUser
 from django.db import models
 from phonenumber_field.modelfields import PhoneNumberField
 from wagtail.admin.panels import FieldPanel
+from wagtail.contrib.settings.models import BaseSiteSetting
+from wagtail.contrib.settings.registry import register_setting
 from wagtail.fields import StreamField
 
-from core.blocks import PhotoBlock
+from src.core.blocks import PhotoBlock
 
 
 class MyUserManager(BaseUserManager):
@@ -118,7 +120,8 @@ class LegalEntity(models.Model):
         verbose_name_plural = "Юридические лица"
 
 
-class UserAccountSettings(models.Model):
+@register_setting
+class UserAccountSettings(BaseSiteSetting):
     manager_name = models.CharField(max_length=255, verbose_name="Имя менеджера")
     manager_phone_number = PhoneNumberField(blank=True, null=True, verbose_name="Номер телефона менеджера")
     banner = StreamField(
@@ -134,3 +137,6 @@ class UserAccountSettings(models.Model):
         FieldPanel("manager_phone_number"),
         FieldPanel("banner"),
     ]
+
+    class Meta:
+        verbose_name = "Настройки сайта"
