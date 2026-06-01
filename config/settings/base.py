@@ -73,6 +73,7 @@ INSTALLED_APPS = [
     "src.b2b_client",
     "src.news_and_articles",
     "src.products",
+    "src.checkouts",
     "modelcluster",
     "taggit",
     "django_filters",
