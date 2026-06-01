@@ -45,9 +45,7 @@ class RegistrationView(View):
             profile = profile_form.save(commit=False)
             profile.user = user
             profile.save()
-            return "/"
-        else:
-            print(user_form.errors, profile_form.errors)
+            return redirect("/")
 
         return render(
             request,

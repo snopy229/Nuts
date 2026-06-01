@@ -1,6 +1,5 @@
 from typing import List
-
-from django.http import HttpRequest
+from django.http import HttpRequest, Http404
 from django.urls import reverse
 from wagtail import hooks
 from wagtail.admin.menu import MenuItem
@@ -11,9 +10,9 @@ def register_contacts_menu_item() -> MenuItem:
     return MenuItem("Контакты", reverse("wagtailsettings:edit", args=("main", "contacts")), icon_name="mail", order=600)
 
 
-# @hooks.register("construct_main_menu")
-# def hide_settings_menu_item(request: HttpRequest, menu_items: List[MenuItem]) -> None:
-#     menu_items[:] = [item for item in menu_items if item.name != "settings"]
+@hooks.register("construct_main_menu")
+def hide_settings_menu_item(request: HttpRequest, menu_items: List[MenuItem]) -> None:
+    menu_items[:] = [item for item in menu_items if item.name != "settings"]
 
 
 @hooks.register("construct_main_menu")
@@ -34,3 +33,9 @@ def hide_images_menu_item(request: HttpRequest, menu_items: List[MenuItem]) -> N
 @hooks.register("construct_main_menu")
 def hide_documents_menu_item(request: HttpRequest, menu_items: List[MenuItem]) -> None:
     menu_items[:] = [item for item in menu_items if item.name != "documents"]
+
+
+@hooks.register("before_serve_page")
+def block_account_page(request, *args, **kwargs):
+    if request.path.startswith("/cms/account/"):
+        raise Http404

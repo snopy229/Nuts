@@ -1,89 +1,28 @@
-{% extends "base_template.html" %}
-{% block content %}
-    <section class="accaunt">
-		<div class="container">
-			<div class="row">
-				<div class="col-lg-3 col-md-6">
-					<h1>Учетная запись</h1>
-				</div>
-				<div class="col-lg-9 col-md-6">
-					<div class="accaunt__manager">
-						<ul>
-							<li><p>Ваш личный менеджер Олег</p></li>
-							<li><i class="nut-icon icons-phone"></i> <a href="tel:+380677771412">+38 067 777 14 12</a></li>
-						</ul>
-					</div>
-				</div>
-				<div class="col-md-3">
-					<nav class="navigation">
-						<p>Мои заказы</p>
-						<ul>
-							<li><a href="#">История заказов</a></li>
-							<li><a href="#">История транзакций</a></li>
-						</ul>
-						<p>Моя учетная запись</p>
-						<ul>
-							<li><a href="#">Контактная информация</a></li>
-							<li><a href="#">Пароль</a></li>
-							<li><a href="#" class="active">Адрес и реквизиты</a></li>
-						</ul>
-					</nav>
-				</div>
-				<div class="col-md-9">
+{% extends "account/base_account.html" %}
+{% block account_content %}
+	<div class="col-md-9">
 					<div class="row">
 						<div class="col-md-6">
 							<form action="#">
 									<div class="form__title">
 											1. Реквизиты
 									</div>
-									<input type="text"  placeholder="ОКПО">
+									{{ legal_form.edrpou }}
 									<div class="form__title">
 											2. Адрес
 									</div>
-									<select>
-											<option value="hide">Страна</option>
-											<option value="lorem">lorem</option>
-											<option value="lorem">lorem</option>
-											<option value="lorem">lorem</option>
-											<option value="lorem">lorem</option>
-											<option value="lorem">lorem</option>
-											<option value="lorem">lorem</option>
-										</select>
-										<select>
-											<option value="hide">Область</option>
-											<option value="lorem">lorem</option>
-											<option value="lorem">lorem</option>
-											<option value="lorem">lorem</option>
-											<option value="lorem">lorem</option>
-											<option value="lorem">lorem</option>
-											<option value="lorem">lorem</option>
-										</select>
-										<input type="text" required="required" placeholder="Город*">
-										<input type="text"  placeholder="Адрес">
+									{{ user_torm.country }}
+									{{ user_torm.region }}
+										{{ user_torm.city }}
+										{{ user_torm.address }}
 										<div class="form__title">
 												2. Юридический адрес
 										</div>
-										<select>
-												<option value="hide">Страна</option>
-												<option value="lorem">lorem</option>
-												<option value="lorem">lorem</option>
-												<option value="lorem">lorem</option>
-												<option value="lorem">lorem</option>
-												<option value="lorem">lorem</option>
-												<option value="lorem">lorem</option>
-											</select>
-											<select>
-												<option value="hide">Область</option>
-												<option value="lorem">lorem</option>
-												<option value="lorem">lorem</option>
-												<option value="lorem">lorem</option>
-												<option value="lorem">lorem</option>
-												<option value="lorem">lorem</option>
-												<option value="lorem">lorem</option>
-											</select>
-											<input type="text" required="required" placeholder="Город*">
-											<input type="text"  placeholder="Адрес">
-											<input type="text"  placeholder="Индекс">
+										{{ legal_form.country }}
+										{{ legal_form.region }}
+										{{ legal_form.city }}
+                                        {{ legal_form.address }}
+                                        {{ legal_form.postal_code }}
 											<button class="button" type="submit">Сохранить</button>
 							</form>
 						</div>
@@ -97,7 +36,88 @@
 						</div>
 					</div>
 				</div>
-			</div>
-		</div>
-	</section>
-{% endblock content %}
+{% endblock account_content %}
+
+{% block scripts %}
+    <script>
+$(function() {
+    const forms = [
+        { country: '#id_country', region: '#id_region', city: '#id_city' },
+    ];
+    const tRegion = "{{ t_region|escapejs }}";
+    const tCity = "{{ t_city|escapejs }}";
+
+    function rebuildCustomSelect(selectEl) {
+        const $this = $(selectEl);
+        const $styledSelect = $this.next('div.select-styled');
+        const $list = $styledSelect.next('ul.select-options');
+
+        $styledSelect.text($this.children('option').eq(0).text());
+        $list.empty();
+
+        $this.children('option').each(function() {
+            $('<li />', {
+                text: $(this).text(),
+                rel: $(this).val()
+            }).appendTo($list);
+        });
+
+        $list.off('click', 'li').on('click', 'li', function(e) {
+            e.stopPropagation();
+            $styledSelect.text($(this).text()).removeClass('active');
+            $this.val($(this).attr('rel'));
+            $this.trigger('change');
+            $list.hide();
+        });
+    }
+
+    forms.forEach(function(f) {
+        $(f.country).on('change', function() {
+            const val = $(this).val();
+            if (!val) return;
+
+            fetch(`/api/user/get-region?country_id=${val}`)
+                .then(r => {
+                    if (!r.ok) throw new Error(`HTTP ${r.status}`);
+                    return r.json();
+                })
+                .then(data => {
+                    $(f.region).html(`<option value="">${tRegion}</option>`);
+                    (data.results || []).forEach(item => {
+                        $(f.region).append(`<option value="${item.id}">${item.text}</option>`);
+                    });
+                    $(f.city).html(`<option value="">${tCity}</option>`);
+
+                    setTimeout(() => {
+                        rebuildCustomSelect(document.querySelector(f.region));
+                        rebuildCustomSelect(document.querySelector(f.city));
+                    }, 50);
+                })
+                .catch(err => console.error('Fetch error:', err));
+        });
+
+        $(f.region).on('change', function() {
+            const val = $(this).val();
+            if (!val) return;
+
+            fetch(`/api/user/get-city?region_id=${val}`)
+                .then(r => {
+                    if (!r.ok) throw new Error(`HTTP ${r.status}`);
+                    return r.json();
+                })
+                .then(data => {
+                    $(f.city).html(`<option value="">${tCity}</option>`);
+                    (data.results || []).forEach(item => {
+                        $(f.city).append(`<option value="${item.id}">${item.text}</option>`);
+                    });
+
+                    setTimeout(() => {
+                        rebuildCustomSelect(document.querySelector(f.city));
+                    }, 50);
+                })
+                .catch(err => console.error('Fetch error:', err));
+        });
+    });
+});
+</script>
+{% endblock %}

@@ -66,7 +66,7 @@
 								</li>
                                 {% elif user.is_authenticated %}
 								<li>
-									<a href="№"><i class="nut-icon icons-man-user"></i><span>{% trans "Вход" %}</span></a>
+									<a href="#"><i class="nut-icon icons-man-user"></i><span>{% trans "Учетная запись" %}</span></a>
 								</li>
 								<li>
                                     <form action="{% url 'user:logout' %}" method="post" id="logout-form" style="display: none;">

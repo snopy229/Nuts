@@ -51,20 +51,31 @@
                       <div class="row">
                          <div class="col-lg-5 col-md-6">
                             {{ user_form_individual.fullname }}
+                            <div class="danger">{{ user_form_individual.fullname.errors }}</div>
+
                             {{ user_form_individual.email }}
+                            <div class="danger">{{ user_form_individual.email.errors }}</div>
+
                             {{ user_form_individual.phone_number }}
+                            <div class="danger">{{ user_form_individual.phone_number.errors }}</div>
                             <div class="form__title">
                                   {% translate "2. Адрес" %}
                             </div>
                             {{ user_form_individual.country }}
+                             <div class="danger">{{ user_form_individual.country.errors }}</div>
                             {{ user_form_individual.region }}
+                             <div class="danger">{{ user_form_individual.region.errors }}</div>
                             {{ user_form_individual.city }}
+                             <div class="danger">{{ user_form_individual.city.errors }}</div>
                             {{ user_form_individual.address }}
+                             <div class="danger">{{ user_form_individual.address.errors }}</div>
                             <div class="form__title">
                                   {% translate "3. Пароль" %}
                             </div>
                             {{ user_form_individual.password1 }}
+                             <div class="danger">{{ user_form_individual.password1.errors }}</div>
                             {{ user_form_individual.password2 }}
+                             <div class="danger">{{ user_form_individual.password2.errors }}</div>
                          </div>
                          <div class="col-lg-5 col-md-6 offset-lg-1">
                             <div class="wrapper">
@@ -95,21 +106,33 @@
                                     {% csrf_token %}
                                <div class="row">
                                   <div class="col-lg-5 col-md-6">
-                                     {{ user_form_legal.fullname }}
-                                        {{ user_form_legal.email }}
-                                        {{ user_form_legal.phone_number }}
+                                     {{ user_form_individual.fullname }}
+                                      <div class="danger">{{ user_form_individual.fullname.errors }}</div>
+
+                                      {{ user_form_individual.email }}
+                                      <div class="danger">{{ user_form_individual.email.errors }}</div>
+
+                                      {{ user_form_individual.phone_number }}
+                                      <div class="danger">{{ user_form_individual.phone_number.errors }}</div>
+
                                      <div class="form__title">
                                            {% translate "2. Адрес" %}
                                      </div>
                                                 {{ user_form_legal.country }}
+                                        <div class="danger">{{ user_form_legal.country.errors }}</div>
                                         {{ user_form_legal.region }}
+                                        <div class="danger">{{ user_form_legal.region.errors }}</div>
                                         {{ user_form_legal.city }}
+                                        <div class="danger">{{ user_form_legal.city.errors }}</div>
                                         {{ user_form_legal.address }}
+                                        <div class="danger">{{ user_form_legal.address.errors }}</div>
                                      <div class="form__title">
                                            {% translate "3. Пароль" %}
                                      </div>
-                                     {{ user_form_legal.password1 }}
-                                        {{ user_form_legal.password2 }}
+                                     {{ user_form_individual.password1 }}
+                                      <div class="danger">{{ user_form_individual.password1.errors }}</div>
+                                      {{ user_form_individual.password2 }}
+                                      <div class="danger">{{ user_form_individual.password2.errors }}</div>
                                   </div>
                                   <div class="col-lg-5 col-md-6 offset-lg-1">
                                      <div class="wrapper">
@@ -127,17 +150,24 @@
                                                  <div class="ur box">
                                                        <div class="form__title">
                                                              {% translate "1. Реквизиты" %}
-                                                                                {{ legal_form.edrpou }}
+                                                           {{ legal_form.edrpou }}
+                                                           <div class="danger">{{ legal_form.edrpou.errors }}</div>
+
                                                        </div>
 
                                                        <div class="form__title">
                                                              {% translate "2. Юридический адрес" %}
                                                        </div>
                                                            {{ legal_form.legal_country }}
+                                                          <div class="danger">{{ legal_form.legal_country.errors }}</div>
                                                           {{ legal_form.legal_region }}
+                                                          <div class="danger">{{ legal_form.legal_region.errors }}</div>
                                                           {{ legal_form.legal_city }}
+                                                          <div class="danger">{{ legal_form.legal_city.errors }}</div>
                                                           {{ legal_form.legal_address }}
-                                                                            {{ legal_form.postal_code }}
+                                                          <div class="danger">{{ legal_form.legal_address.errors }}</div>
+                                                          {{ legal_form.postal_code }}
+                                                          <div class="danger">{{ legal_form.postal_code.errors }}</div>
                                                  </div>
                                                  <div class="fop box">
                                                        <div class="form__title">
@@ -147,10 +177,14 @@
                                                        <div class="form__title">
                                                              {% translate "2. Адрес ФОП" %}
                                                        </div>
-                                                                            {{ legal_form.sp_country }}
-                                                                            {{ legal_form.sp_region }}
-                                                                            {{ legal_form.sp_city }}
-                                                                            {{ legal_form.sp_address }}
+                                                        {{ legal_form.sp_country }}
+                                                     <div class="danger">{{ legal_form.sp_country.errors }}</div>
+                                                        {{ legal_form.sp_region }}
+                                                     <div class="danger">{{ legal_form.sp_region.errors }}</div>
+                                                        {{ legal_form.sp_city }}
+                                                     <div class="danger">{{ legal_form.sp_city.errors }}</div>
+                                                        {{ legal_form.sp_address }}
+                                                     <div class="danger">{{ legal_form.sp_address.errors }}</div>
                                                  </div>
                                            </div>
                                      </div>

@@ -1,19 +1,20 @@
 from cities_light.models import Region, City, Country
 from django import forms
 from django.contrib.auth.forms import UserCreationForm, AuthenticationForm
+from django.utils.translation import gettext_lazy as _
 
 from src.user.models import User, Individual, LegalEntity
 
 
 class UserForm(UserCreationForm[User]):
     country = forms.ModelChoiceField(
-        queryset=Country.objects.all(), required=False, widget=forms.Select(), empty_label="Страна"
+        queryset=Country.objects.all(), required=False, widget=forms.Select(), empty_label=_("Страна")
     )
     region = forms.ModelChoiceField(
-        queryset=Region.objects.none(), required=False, widget=forms.Select(), empty_label="Область"
+        queryset=Region.objects.none(), required=False, widget=forms.Select(), empty_label=_("Область")
     )
     city = forms.ModelChoiceField(
-        queryset=City.objects.none(), required=False, widget=forms.Select(), empty_label="Город*"
+        queryset=City.objects.none(), required=False, widget=forms.Select(), empty_label=_("Город*")
     )
 
     class Meta:
@@ -33,25 +34,25 @@ class UserForm(UserCreationForm[User]):
         widgets = {
             "fullname": forms.TextInput(
                 attrs={
-                    "placeholder": "ФИО*",
+                    "placeholder": _("ФИО*"),
                     "required": True,
                 }
             ),
             "email": forms.EmailInput(
                 attrs={
-                    "placeholder": "Email*",
+                    "placeholder": _("Email*"),
                     "required": True,
                 }
             ),
             "phone_number": forms.TextInput(
                 attrs={
-                    "placeholder": "Телефон*",
+                    "placeholder": _("Телефон*"),
                     "required": True,
                 }
             ),
             "address": forms.TextInput(
                 attrs={
-                    "placeholder": "Адрес",
+                    "placeholder": _("Адрес"),
                 }
             ),
             "avatar": forms.FileInput(
@@ -60,7 +61,7 @@ class UserForm(UserCreationForm[User]):
                     "name": "file",
                     "id": "file2",
                     "class": "inputfile",
-                    "placeholder": "Загрузить фото",
+                    "placeholder": _("Загрузить фото"),
                 }
             ),
         }
@@ -69,13 +70,13 @@ class UserForm(UserCreationForm[User]):
         super().__init__(*args, **kwargs)
         self.fields["password1"].widget = forms.PasswordInput(
             attrs={
-                "placeholder": "Пароль*",
+                "placeholder": _("Пароль*"),
                 "required": True,
             }
         )
         self.fields["password2"].widget = forms.PasswordInput(
             attrs={
-                "placeholder": "Подтвердите пароль*",
+                "placeholder": _("Подтвердите пароль*"),
                 "required": True,
             }
         )
@@ -108,22 +109,22 @@ class IndividualForm(forms.ModelForm[Individual]):
 
 class LegalEntityForm(forms.ModelForm[LegalEntity]):
     legal_country = forms.ModelChoiceField(
-        queryset=Country.objects.all(), required=False, widget=forms.Select(), empty_label="Страна"
+        queryset=Country.objects.all(), required=False, widget=forms.Select(), empty_label=_("Страна")
     )
     legal_region = forms.ModelChoiceField(
-        queryset=Region.objects.none(), required=False, widget=forms.Select(), empty_label="Область"
+        queryset=Region.objects.none(), required=False, widget=forms.Select(), empty_label=_("Область")
     )
     legal_city = forms.ModelChoiceField(
-        queryset=City.objects.none(), required=False, widget=forms.Select(), empty_label="Город*"
+        queryset=City.objects.none(), required=False, widget=forms.Select(), empty_label=_("Город*")
     )
     sp_country = forms.ModelChoiceField(
-        queryset=Country.objects.all(), required=False, widget=forms.Select(), empty_label="Страна"
+        queryset=Country.objects.all(), required=False, widget=forms.Select(), empty_label=_("Страна")
     )
     sp_region = forms.ModelChoiceField(
-        queryset=Region.objects.none(), required=False, widget=forms.Select(), empty_label="Область"
+        queryset=Region.objects.none(), required=False, widget=forms.Select(), empty_label=_("Область")
     )
     sp_city = forms.ModelChoiceField(
-        queryset=City.objects.none(), required=False, widget=forms.Select(), empty_label="Город*"
+        queryset=City.objects.none(), required=False, widget=forms.Select(), empty_label=_("Город*")
     )
 
     class Meta:
@@ -143,54 +144,54 @@ class LegalEntityForm(forms.ModelForm[LegalEntity]):
         widgets = {
             "edrpou": forms.TextInput(
                 attrs={
-                    "placeholder": "ОКПО",
+                    "placeholder": _("ОКПО"),
                 }
             ),
             "legal_address": forms.TextInput(
                 attrs={
-                    "placeholder": "Адрес",
+                    "placeholder": _("Адрес"),
                 }
             ),
             "postal_card": forms.TextInput(
                 attrs={
-                    "placeholder": "Индекс",
+                    "placeholder": _("Индекс"),
                 }
             ),
             "reg_number": forms.TextInput(
                 attrs={
-                    "placeholder": "ЕДРПО",
+                    "placeholder": _("ЕДРПО"),
                 }
             ),
-            "sp_address": forms.TextInput(attrs={"placeholder": "Адрес"}),
+            "sp_address": forms.TextInput(attrs={"placeholder": _("Адрес")}),
         }
 
 
 class UserLoginForm(AuthenticationForm):
     username = forms.EmailField(
-        label="Email",
+        label=_("Email"),
         widget=forms.EmailInput(
             attrs={
                 "class": "form-control",
-                "placeholder": "E-mail*",
+                "placeholder": _("E-mail*"),
             }
         ),
     )
 
     password = forms.CharField(
-        label="Пароль",
+        label=_("Пароль"),
         widget=forms.PasswordInput(
             attrs={
                 "class": "form-control custom-password",
-                "placeholder": "Введите ваш пароль*",
+                "placeholder": _("Введите ваш пароль*"),
             }
         ),
     )
 
 
 class UserAddressForm(forms.ModelForm):
-    country = forms.ModelChoiceField(queryset=Country.objects.all(), widget=forms.Select(), empty_label="Страна")
-    region = forms.ModelChoiceField(queryset=Region.objects.none(), widget=forms.Select(), empty_label="Область")
-    city = forms.ModelChoiceField(queryset=City.objects.none(), widget=forms.Select(), empty_label="Город*")
+    country = forms.ModelChoiceField(queryset=Country.objects.all(), widget=forms.Select(), empty_label=_("Страна"))
+    region = forms.ModelChoiceField(queryset=Region.objects.none(), widget=forms.Select(), empty_label=_("Область"))
+    city = forms.ModelChoiceField(queryset=City.objects.none(), widget=forms.Select(), empty_label=_("Город*"))
 
     class Meta:
         model = User
@@ -203,7 +204,7 @@ class UserAddressForm(forms.ModelForm):
         widgets = {
             "address": forms.TextInput(
                 attrs={
-                    "placeholder": "Адрес",
+                    "placeholder": _("Адрес"),
                 }
             )
         }
@@ -211,13 +212,13 @@ class UserAddressForm(forms.ModelForm):
 
 class LegalEntityAddressForm(forms.ModelForm[LegalEntity]):
     legal_country = forms.ModelChoiceField(
-        queryset=Country.objects.all(), required=False, widget=forms.Select(), empty_label="Страна"
+        queryset=Country.objects.all(), required=False, widget=forms.Select(), empty_label=_("Страна")
     )
     legal_region = forms.ModelChoiceField(
-        queryset=Region.objects.none(), required=False, widget=forms.Select(), empty_label="Область"
+        queryset=Region.objects.none(), required=False, widget=forms.Select(), empty_label=_("Область")
     )
     legal_city = forms.ModelChoiceField(
-        queryset=City.objects.none(), required=False, widget=forms.Select(), empty_label="Город*"
+        queryset=City.objects.none(), required=False, widget=forms.Select(), empty_label=_("Город*")
     )
 
     class Meta:
@@ -227,16 +228,22 @@ class LegalEntityAddressForm(forms.ModelForm[LegalEntity]):
             "legal_region",
             "legal_city",
             "legal_address",
+            "postal_card",
         ]
         widgets = {
             "edrpou": forms.TextInput(
                 attrs={
-                    "placeholder": "ОКПО",
+                    "placeholder": _("ОКПО"),
                 }
             ),
             "legal_address": forms.TextInput(
                 attrs={
-                    "placeholder": "Адрес",
+                    "placeholder": _("Адрес"),
+                }
+            ),
+            "postal_card": forms.TextInput(
+                attrs={
+                    "placeholder": _("Индекс"),
                 }
             ),
         }
