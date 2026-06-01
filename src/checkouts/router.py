@@ -1,3 +1,4 @@
+import json
 from functools import wraps
 
 from django.db.models import Sum
@@ -35,6 +36,24 @@ def add_product(request, product_id: int, quantity: int):
     }
 
 
+def render_quantity_input(request, product_id: int, quantity: int) -> HttpResponse:
+    total_items = CartItem.objects.filter(user=request.user).aggregate(total=Sum("quantity"))["total"] or 0
+    response = HttpResponse(f"""
+        <input type="text"
+               name="quantity"
+               value="{quantity}"
+               id="quantity-{product_id}"
+               class="quantity_input"
+               hx-post="/api/checkouts/set-quantity"
+               hx-vals='{{"product_id": {product_id}}}'
+               hx-trigger="change, keyup delay:500ms"
+               hx-target="this"
+               hx-swap="outerHTML">
+    """)
+    response["HX-Trigger"] = json.dumps({"cartUpdated": {"total_items": total_items}})
+    return response
+
+
 @router.post("/plus-product", auth=django_auth)
 @not_staff
 def plus_product(request, product_id: int):
@@ -43,10 +62,7 @@ def plus_product(request, product_id: int):
         return 404, {"detail": "Not found"}
     cart_item.quantity += 1
     cart_item.save(update_fields=["quantity"])
-    return {
-        "quantity": cart_item.quantity,
-        "total_items": CartItem.objects.filter(user=request.user).aggregate(total=Sum("quantity"))["total"] or 0,
-    }
+    return render_quantity_input(product_id, cart_item.quantity)
 
 
 @router.post("/minus-product", auth=django_auth)
@@ -58,15 +74,9 @@ def minus_product(request, product_id: int):
     cart_item.quantity -= 1
     if cart_item.quantity <= 0:
         cart_item.delete()
-        return {
-            "deleted": True,
-            "total_items": CartItem.objects.filter(user=request.user).aggregate(total=Sum("quantity"))["total"] or 0,
-        }
+        return HttpResponse("", status=200)
     cart_item.save(update_fields=["quantity"])
-    return {
-        "quantity": cart_item.quantity,
-        "total_items": CartItem.objects.filter(user=request.user).aggregate(total=Sum("quantity"))["total"] or 0,
-    }
+    return render_quantity_input(product_id, cart_item.quantity)
 
 
 @router.post("/set-quantity", auth=django_auth)
