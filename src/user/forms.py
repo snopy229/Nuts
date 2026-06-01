@@ -1,6 +1,6 @@
 from cities_light.models import Region, City, Country
 from django import forms
-from django.contrib.auth.forms import UserCreationForm, AuthenticationForm
+from django.contrib.auth.forms import UserCreationForm, AuthenticationForm, PasswordChangeForm
 from django.utils.translation import gettext_lazy as _
 
 from src.user.models import User, Individual, LegalEntity
@@ -273,3 +273,11 @@ class LegalEntityInfoForm(forms.ModelForm[LegalEntity]):
     class Meta:
         model = LegalEntity
         fields = ["edrpou"]
+
+
+class CustomPasswordChangeForm(PasswordChangeForm):
+    def __init__(self, *args, **kwargs):
+        super().__init__(*args, **kwargs)
+        self.fields["old_password"].widget.attrs["placeholder"] = "Текущий пароль*"
+        self.fields["new_password1"].widget.attrs["placeholder"] = "Новый пароль*"
+        self.fields["new_password2"].widget.attrs["placeholder"] = "Повторите пароль*"

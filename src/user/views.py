@@ -1,8 +1,10 @@
+from django.contrib.auth import update_session_auth_hash
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.contrib.auth.views import LoginView
 from django.shortcuts import render, redirect
+from django.urls import reverse_lazy
 from django.views import View
-from django.views.generic import UpdateView
+from django.views.generic import UpdateView, FormView
 
 from src.user.forms import (
     UserForm,
@@ -13,6 +15,7 @@ from src.user.forms import (
     LegalEntityAddressForm,
     UserInfoForm,
     LegalEntityInfoForm,
+    CustomPasswordChangeForm,
 )
 from .models import User
 
@@ -172,3 +175,19 @@ class InfoUpdateView(LoginRequiredMixin, UpdateView):
 
     def get_success_url(self):
         return redirect("user:account_address")
+
+
+class ChangePassword(LoginRequiredMixin, FormView):
+    form_class = CustomPasswordChangeForm
+    template_name = "account/recovery_password.html"
+    success_url = reverse_lazy("user:account_address")
+
+    def get_form_kwargs(self):
+        kwargs = super().get_form_kwargs()
+        kwargs["user"] = self.request.user
+        return kwargs
+
+    def form_valid(self, form):
+        form.save()
+        update_session_auth_hash(self.request, form.user)
+        return super().form_valid(form)

@@ -4,6 +4,7 @@
 					<div class="row">
 						<div class="col-md-6">
 							<form action="{% url 'user:account_info' %}">
+                                {% csrf_token %}
 								{{ form.fullname }}
                                 {{ form.email }}
                                 {{ form.phone_number }}

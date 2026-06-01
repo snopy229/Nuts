@@ -38,9 +38,9 @@
 						</ul>
 						<p>Моя учетная запись</p>
 						<ul>
-							<li><a href="#">Контактная информация</a></li>
-							<li><a href="#">Пароль</a></li>
-							<li><a href="#" class="active">Адрес и реквизиты</a></li>
+							<li><a href="{% url 'user:account_info' %}" class="{% if 'info' in request.path %}active{% endif %}" >Контrecovery_passwordактная информация</a></li>
+							<li><a href="{% url 'user:account_recovery_password' %}" class="{% if 'recovery_password' in request.path %}active{% endif %}">Пароль</a></li>
+							<li><a href="{% url 'user:account_address' %}" class="{% if 'address' in request.path %}active{% endif %}" >Адрес и реквизиты</a></li>
 						</ul>
 					</nav>
 				</div>
