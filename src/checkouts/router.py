@@ -7,7 +7,7 @@ from checkouts.models import CartItem
 router = Router()
 
 
-@router.post("/add-product")
+@router.post("/add-product", auth=django_auth)
 def add_product(request, product_id: int, quantity: int):
     cart_item, created = CartItem.objects.get_or_create(
         user=request.user, product_id=product_id, defaults={"quantity": quantity}
@@ -42,9 +42,12 @@ def minus_product(request, product_id: int):
     cart_item.quantity -= 1
     if cart_item.quantity <= 0:
         cart_item.delete()
-        return {"deleted": True}
+        return {
+            "deleted": True,
+            "total_items": CartItem.objects.filter(user=request.user).aggregate(total=Sum("quantity"))["total"] or 0,
+        }
     cart_item.save(update_fields=["quantity"])
     return {
-        "deleted": True,
+        "quantity": cart_item.quantity,
         "total_items": CartItem.objects.filter(user=request.user).aggregate(total=Sum("quantity"))["total"] or 0,
     }
