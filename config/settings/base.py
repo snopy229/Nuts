@@ -118,6 +118,7 @@ TEMPLATES = [
                 "django.contrib.messages.context_processors.messages",
                 "wagtail.contrib.settings.context_processors.settings",
                 "src.core.scripts.context_processors.nav_pages",
+                "src.core.scripts.context_processors.get_order",
             ],
         },
     },

@@ -210,11 +210,12 @@ function initMap() {
 
 	// окно корзины
 
-    $('.logo_number').click(function() {
-        $('.popup__cart').stop().slideToggle('swing');
-    });
+    $('.logo_number').off('click').click(function(e) {
+    e.stopPropagation();
+    $('.popup__cart').stop().slideToggle('swing');
+});
 
-    $(document).mouseup(function (e){ // событие клика по веб-документу
+    $(document).click(function (e){ // событие клика по веб-документу
         var div = $(".popup__cart"); // тут указываем класс элемента
         if (!div.is(e.target) // если клик был не по нашему блоку
             && div.has(e.target).length === 0) { // и не по его дочерним элементам

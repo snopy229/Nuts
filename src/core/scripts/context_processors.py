@@ -1,7 +1,7 @@
 from django.shortcuts import render
 from wagtail.models import Site
 
-from checkouts.models import CartItem
+from src.checkouts.models import CartItem
 from src.main.models import MainPage
 from src.products.models import ProductsPage
 from src.b2b_client.models import B2BClientPage
