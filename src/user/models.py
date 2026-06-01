@@ -3,6 +3,10 @@ from django.contrib.auth.base_user import BaseUserManager
 from django.contrib.auth.models import AbstractUser
 from django.db import models
 from phonenumber_field.modelfields import PhoneNumberField
+from wagtail.admin.panels import FieldPanel
+from wagtail.fields import StreamField
+
+from core.blocks import PhotoBlock
 
 
 class MyUserManager(BaseUserManager):
@@ -112,3 +116,21 @@ class LegalEntity(models.Model):
     class Meta:
         verbose_name = "Юридическое лицо"
         verbose_name_plural = "Юридические лица"
+
+
+class UserAccountSettings(models.Model):
+    manager_name = models.CharField(max_length=255, verbose_name="Имя менеджера")
+    manager_phone_number = PhoneNumberField(blank=True, null=True, verbose_name="Номер телефона менеджера")
+    banner = StreamField(
+        [("banner", PhotoBlock(label="Баннер"))],
+        max_num=1,
+        min_num=1,
+        use_json_field=True,
+        verbose_name="Баннер",
+    )
+
+    panels = [
+        FieldPanel("manager_name"),
+        FieldPanel("manager_phone_number"),
+        FieldPanel("banner"),
+    ]
