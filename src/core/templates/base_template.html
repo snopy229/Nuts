@@ -234,13 +234,21 @@
 							<div class="row align-items-center no-gutters">
 								<div class="col-6">
 									<div class="item_quantity">
-										<button type="button" class="quantity_minus">
-											<i class="nut-icon icons-qty-left"></i>
-										</button>
-										<input type="text" name="quantity" value="{{ item.quantity }}" class="quantity_input">
-										<button type="button" class="quantity_plus">
-											<i class="nut-icon icons-qty-right"></i>
-										</button>
+										<button hx-post="/api/checkouts/minus-product"
+                                                hx-vals='{"product_id": {{ item.product.id }}}'
+                                                hx-target="#quantity-{{ item.product.id }}"
+                                                hx-swap="outerHTML">
+                                            <i class="nut-icon icons-qty-left"></i>
+                                        </button>
+
+                                        <input type="text" name="quantity" value="{{ item.quantity }}" id="quantity-{{ item.product.id }}" class="quantity_input">
+
+                                        <button hx-post="/api/checkouts/plus-product"
+                                                hx-vals='{"product_id": {{ item.product.id }}}'
+                                                hx-target="#quantity-{{ item.product.id }}"
+                                                hx-swap="outerHTML">
+                                            <i class="nut-icon icons-qty-right"></i>
+                                        </button>
 									</div>
 								</div>
 								<div class="col-5">
