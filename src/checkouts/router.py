@@ -1,3 +1,5 @@
+from functools import wraps
+
 from django.db.models import Sum
 from ninja import Router
 from ninja.security import django_auth
@@ -7,7 +9,18 @@ from checkouts.models import CartItem
 router = Router()
 
 
+def not_staff(func):
+    @wraps(func)
+    def wrapper(request, *args, **kwargs):
+        if request.user.is_staff:
+            return 403, {"detail": "Forbidden"}
+        return func(request, *args, **kwargs)
+
+    return wrapper
+
+
 @router.post("/add-product", auth=django_auth)
+@not_staff
 def add_product(request, product_id: int, quantity: int):
     cart_item, created = CartItem.objects.get_or_create(
         user=request.user, product_id=product_id, defaults={"quantity": quantity}
@@ -22,6 +35,7 @@ def add_product(request, product_id: int, quantity: int):
 
 
 @router.post("/plus-product", auth=django_auth)
+@not_staff
 def plus_product(request, product_id: int):
     cart_item = CartItem.objects.filter(user=request.user, product_id=product_id).first()
     if not cart_item:
@@ -35,6 +49,7 @@ def plus_product(request, product_id: int):
 
 
 @router.post("/minus-product", auth=django_auth)
+@not_staff
 def minus_product(request, product_id: int):
     cart_item = CartItem.objects.filter(user=request.user, product_id=product_id).first()
     if not cart_item:
