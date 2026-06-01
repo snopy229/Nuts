@@ -1,3 +1,4 @@
+from django.db.models import Sum
 from ninja import Router
 
 from checkouts.models import CartItem
@@ -13,4 +14,7 @@ def add_product(request, product_id: int, quantity: int):
     if not created:
         cart_item.quantity += quantity
         cart_item.save(update_fields=["quantity"])
-    return {"quantity": cart_item.quantity}
+    return {
+        "quantity": cart_item.quantity,
+        "total_items": CartItem.objects.filter(user=request.user).aggregate(total=Sum("quantity"))["total"] or 0,
+    }
