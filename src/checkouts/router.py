@@ -96,3 +96,16 @@ def set_quantity(request, product_id: int = Form(...), quantity: int = Form(...)
                hx-swap="outerHTML">
     """
     return HttpResponse(html_string)
+
+
+@router.post("/delete-product", auth=django_auth)
+@not_staff
+def delete_product(request, product_id: int):
+    cart_item = CartItem.objects.filter(user=request.user, product_id=product_id).first()
+
+    if not cart_item:
+        return 404, ""
+
+    cart_item.delete()
+
+    return ""
