@@ -14,4 +14,5 @@ urlpatterns = [
         name="logout",
     ),
     path("account/address/", views.AddressUpdateView.as_view(), name="account_address"),
+    path("account/info/", views.InfoUpdateView.as_view(), name="account_info"),
 ]

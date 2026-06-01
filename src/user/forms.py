@@ -247,3 +247,29 @@ class LegalEntityAddressForm(forms.ModelForm[LegalEntity]):
                 }
             ),
         }
+
+
+class UserInfoForm(forms.ModelForm[User]):
+    class Meta:
+        model = User
+        fields = ["fullname", "email", "phone_number", "avatar"]
+        widgets = {
+            "fullname": forms.TextInput(attrs={"placeholder": _("ФИО*"), "required": True}),
+            "email": forms.EmailInput(attrs={"placeholder": _("Email*"), "required": True}),
+            "phone_number": forms.TextInput(attrs={"placeholder": _("Телефон*"), "required": True}),
+            "avatar": forms.FileInput(
+                attrs={
+                    "type": "file",
+                    "name": "file",
+                    "id": "file2",
+                    "class": "inputfile",
+                    "placeholder": _("Загрузить фото"),
+                }
+            ),
+        }
+
+
+class LegalEntityInfoForm(forms.ModelForm[LegalEntity]):
+    class Meta:
+        model = LegalEntity
+        fields = ["edrpou"]
