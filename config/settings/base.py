@@ -74,6 +74,7 @@ INSTALLED_APPS = [
     "src.news_and_articles",
     "src.products",
     "src.checkouts",
+    "src.transaction",
     "modelcluster",
     "taggit",
     "django_filters",
