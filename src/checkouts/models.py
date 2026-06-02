@@ -56,3 +56,15 @@ class IndividualOrderContact(models.Model):
     fullname = models.CharField(max_length=255, verbose_name=_("ФИО"))
     email = models.EmailField(verbose_name=_("E-mail"))
     phone = PhoneNumberField(max_length=20, verbose_name=_("Телефон"))
+
+
+class LegalEntityOrderContact(models.Model):
+    order = models.OneToOneField(
+        Orders,
+        on_delete=models.CASCADE,
+        related_name="individual_contact",
+    )
+    company = models.CharField(max_length=255, verbose_name=_("Компания"))
+    contact_person = models.CharField(max_length=255, verbose_name=_("Контактное лицо"))
+    email = models.EmailField(verbose_name=_("Email"))
+    phone = models.CharField(max_length=20, verbose_name=_("Телефон"))
