@@ -209,6 +209,29 @@ class UserAddressForm(forms.ModelForm):
             )
         }
 
+    def __init__(self, *args, **kwargs):
+        super().__init__(*args, **kwargs)
+
+        if "country" in self.data:
+            try:
+                country_id = int(self.data.get("country"))
+                self.fields["region"].queryset = Region.objects.filter(country_id=country_id)
+            except (ValueError, TypeError):
+                pass
+
+        elif self.instance and self.instance.pk and self.instance.country:
+            self.fields["region"].queryset = Region.objects.filter(country=self.instance.country)
+
+        if "region" in self.data:
+            try:
+                region_id = int(self.data.get("region"))
+                self.fields["city"].queryset = City.objects.filter(region_id=region_id)
+            except (ValueError, TypeError):
+                pass
+
+        elif self.instance and self.instance.pk and self.instance.region:
+            self.fields["city"].queryset = City.objects.filter(region=self.instance.region)
+
 
 class LegalEntityAddressForm(forms.ModelForm[LegalEntity]):
     legal_country = forms.ModelChoiceField(
