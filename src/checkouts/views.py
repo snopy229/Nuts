@@ -1,6 +1,9 @@
 # Create your views here.
-from django.views.generic import ListView
+from django.shortcuts import redirect
+from django.views.generic import ListView, CreateView
 
+from src.checkouts.forms import IndividualOrderContactForm, LegalEntityOrderContactsForm, OrdersForm
+from src.checkouts.models import Orders
 from src.checkouts.models import CartItem
 
 
@@ -11,3 +14,55 @@ class CartListView(ListView):
 
     def get_queryset(self):
         return CartItem.objects.filter(user=self.request.user).select_related("product")
+
+
+class OrderCreateView(CreateView):
+    model = Orders
+    fields = []
+
+    def get_template_names(self):
+        user = self.request.user
+        if hasattr(user, "individual"):
+            return ["order_fiz.html"]
+        elif hasattr(user, "legal"):
+            return ["order_ur.html"]
+        return None
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        user = self.request.user
+        context["cart_items"] = CartItem.objects.filter(user=user).select_related("product")
+
+        if "checkout_form" not in context:
+            context["checkout_form"] = OrdersForm()
+        if "contact_form" not in context:
+            context["contact_form"] = (
+                IndividualOrderContactForm() if hasattr(user, "individual") else LegalEntityOrderContactsForm()
+            )
+        return context
+
+    def post(self, request, *args, **kwargs):
+        user = request.user
+        checkout_form = OrdersForm(request.POST)
+
+        if hasattr(user, "individual"):
+            contact_form = IndividualOrderContactForm(request.POST)
+        else:
+            contact_form = LegalEntityOrderContactsForm(request.POST)
+
+        if checkout_form.is_valid() and contact_form.is_valid():
+            order = checkout_form.save(commit=False)
+            order.user = user
+            order.save()
+            order.cart.set(CartItem.objects.filter(user=user))
+
+            contact = contact_form.save(commit=False)
+            contact.order = order
+            contact.save()
+
+            return redirect("user:account_info")
+
+        return self.render_to_response(self.get_context_data(checkout_form=checkout_form, contact_form=contact_form))
+
+    def get_success_url(self):
+        return redirect("user:account_info")
