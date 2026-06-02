@@ -1,24 +1,33 @@
 {% extends "account/base_account.html" %}
 {% block account_content %}
-	<div class="col-md-9">
-					<div class="row">
-						<div class="col-md-6">
-							<form action="{% url 'user:account_info' %}">
-                                {% csrf_token %}
-								{{ form.fullname }}
-                                {{ form.email }}
-                                {{ form.phone_number }}
-								<button class="button float-left" type="submit">Сохранить</button>
-							</form>
-						</div>
-						<div class="col-md-6 align-self-center">
-                            <div class="wrapper">
-                                <div class="file__wrap">
-                                    <input type="file" name="file" id="file" class="inputfile" />
-                                    <label for="file" class="label__photo" style="background-image: url('static/img/istockphoto-674199444-612x612.jpg');"><span>Загрузить фото</span></label>
-                                </div>
-                            </div>
-						</div>
-					</div>
-				</div>
+    <div class="col-md-9">
+        <form action="{% url 'user:account_info' %}" method="POST" enctype="multipart/form-data">
+            {% csrf_token %}
+            <div class="row">
+                <div class="col-md-6">
+                    {{ form.fullname }}
+                    {{ form.email }}
+                    {{ form.phone_number }}
+                    <button class="button float-left" type="submit">Сохранить</button>
+                </div>
+                <div class="col-md-6 align-self-center">
+                    <div class="wrapper">
+                        <div class="file__wrap">
+                            {{ form.avatar }}
+
+                            {% if request.user.avatar %}
+                                <label for="file2r" class="label__photo" style="background-image: url('{{ request.user.avatar.url }}');">
+                                    <span>Загрузить фото</span>
+                                </label>
+                            {% else %}
+                                <label for="file2" class="label__photo" style="background-image: url('/static/img/istockphoto-674199444-612x612.jpg');">
+                                    <span>Загрузить фото</span>
+                                </label>
+                            {% endif %}
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </form>
+    </div>
 {% endblock account_content %}
