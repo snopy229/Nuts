@@ -10,5 +10,9 @@ class CartItem(models.Model):
     product = models.ForeignKey(ProductDetailPage, on_delete=models.CASCADE)
     quantity = models.PositiveIntegerField(default=1)
 
+    @property
+    def full_cost(self):
+        return self.product.cost * self.quantity
+
     class Meta:
         unique_together = ("user", "product")
