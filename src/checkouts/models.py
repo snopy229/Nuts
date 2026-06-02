@@ -1,5 +1,6 @@
 from cities_light.models import Region, City, Country
 from django.db import models
+from django.db.models import IntegerField
 
 from src.checkouts.enum.payment_type import PaymentType
 from src.checkouts.enum.delivert_type import DeliveryType
@@ -21,8 +22,9 @@ class CartItem(models.Model):
         unique_together = ("user", "product")
 
 
-class Checkouts(models.Model):
-    cart = models.ForeignKey(CartItem, on_delete=models.CASCADE, related_name="checkouts")
+class Orders(models.Model):
+    user = models.ForeignKey(User, on_delete=models.CASCADE, related_name="user")
+    cart = models.ManyToManyField(CartItem, related_name="checkouts")
     delivery_type = models.CharField(
         verbose_name="Способ доставки",
         max_length=20,
@@ -41,4 +43,10 @@ class Checkouts(models.Model):
         choices=PaymentType.choices,
         default=PaymentType.BANK_TRANSFER,
     )
+    created_at = models.DateTimeField(auto_now_add=True)
+
+
+class Transaction(models.Model):
+    order = models.ForeignKey(Orders, on_delete=models.CASCADE, related_name="transactions")
+    cost = models, IntegerField(verbose_name="Стоимость")
     created_at = models.DateTimeField(auto_now_add=True)
