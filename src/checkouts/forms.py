@@ -3,7 +3,7 @@ from django import forms
 
 
 from checkouts.enum.delivert_type import DeliveryType
-from src.checkouts.models import Orders
+from src.checkouts.models import Orders, IndividualOrderContact, LegalEntityOrderContact
 
 
 class OrdersForm(forms.ModelForm):
@@ -75,7 +75,7 @@ class OrdersForm(forms.ModelForm):
 
 class IndividualOrderContact(forms.ModelForm):
     class Meta:
-        model = Orders
+        model = IndividualOrderContact
         fields = [
             "fullname",
             "email",
@@ -83,6 +83,23 @@ class IndividualOrderContact(forms.ModelForm):
         ]
         widgets = {
             "fullname": forms.TextInput(attrs={"placeholder": "ФИО*"}),
+            "email": forms.EmailInput(attrs={"placeholder": "Email*"}),
+            "phone": forms.TextInput(attrs={"placeholder": "Телефон*"}),
+        }
+
+
+class LegalEntityOrderContacts(forms.ModelForm):
+    class Meta:
+        model = LegalEntityOrderContact
+        fields = [
+            "company",
+            "contact_person",
+            "email",
+            "phone",
+        ]
+        widgets = {
+            "company": forms.TextInput(attrs={"placeholder": "Компания"}),
+            "contact_person": forms.TextInput(attrs={"placeholder": "Контактное лицо"}),
             "email": forms.EmailInput(attrs={"placeholder": "Email*"}),
             "phone": forms.TextInput(attrs={"placeholder": "Телефон*"}),
         }
