@@ -66,7 +66,7 @@
 								</li>
                                 {% elif user.is_authenticated %}
 								<li>
-									<a href="#"><i class="nut-icon icons-man-user"></i><span>{% trans "Учетная запись" %}</span></a>
+									<a href="{% url 'user:account_info' %}"><i class="nut-icon icons-man-user"></i><span>{% trans "Учетная запись" %}</span></a>
 								</li>
 								<li>
                                     <form action="{% url 'user:logout' %}" method="post" id="logout-form" style="display: none;">
@@ -176,7 +176,10 @@
 									</ul>
 									<a href="#" class="logo_number">
 										<i class="nut-icon icons-number"></i>
-										<span class="quantity">{{ total_items }}</span>
+										<span id="cart-count"
+                                              hx-on:cart-updated="this.innerHTML = event.detail.total_items">
+                                            {{ total_items }}
+                                        </span>
 									</a>
 								</div>
 							</div>
@@ -221,70 +224,22 @@
     <div class="container pr">
 		<div class="popup__cart">
 			<div class="wrap">
-                {% if cart_items %}
-                {% for item in cart_items %}
-				<div class="popup__cart_item">
-					<div class="row align-items-center no-gutters item_row">
-						<div class="col-md-5 col-12">
-							<div class="item_title">
-								<p>{{ item.product.title }} {{ item.product.mass }}.</p>
-							</div>
-						</div>
-						<div class="col-md-7 col-12">
-							<div class="row align-items-center no-gutters">
-								<div class="col-6">
-									<div class="item_quantity">
-										<button hx-post="/api/checkouts/minus-product"
-                                                hx-vals='{"product_id": {{ item.product.id }}}'
-                                                hx-target="#quantity-{{ item.product.id }}"
-                                                hx-swap="outerHTML">
-                                            <i class="nut-icon icons-qty-left"></i>
-                                        </button>
 
-                                        <input type="text"
-                                            name="quantity"
-                                            value="{{ item.quantity }}"
-                                            id="quantity-{{ item.product.id }}"
-                                            class="quantity_input"
-                                            hx-post="/api/checkouts/set-quantity"
-                                            hx-vals='{"product_id": {{ item.product.id }}}'
-                                            hx-trigger="change, keyup delay:500ms"
-                                            hx-target="this"
-                                            hx-swap="outerHTML">
-
-                                        <button hx-post="/api/checkouts/plus-product"
-                                                hx-vals='{"product_id": {{ item.product.id }}}'
-                                                hx-target="#quantity-{{ item.product.id }}"
-                                                hx-swap="outerHTML">
-                                            <i class="nut-icon icons-qty-right"></i>
-                                        </button>
-									</div>
-								</div>
-								<div class="col-5">
-									<div class="item_sum">
-										<p>{{ item.product.with_discount }} <span>грн.</span></p>
-									</div>
-								</div>
-								<div class="col-1">
-									<div class="item_close">
-										<a href="#">
-											<i class="nut-icon icons-close-button"></i>
-										</a>
-									</div>
-								</div>
-							</div>
-						</div>
-					</div>
-				</div>
-                {% endfor %}
+                    <div id="cart-items-container">
+                    {% for item in cart_items %}
+                        {% include "partials/cart_item.html" %}
+                    {% endfor %}
+                </div>
 				<div class="popup__cart_sum">
 					<div class="sum_item">
 						<div class="sum_item_title">
 							<p>Всего </p>
 						</div>
 						<div class="sum_item_new">
-							<p>{{ total_sum }} <i>грн.</i></p>
-						</div>
+                           <p id="cart-total-sum">
+                               {{ total_sum }} <i>грн.</i>
+                           </p>
+                        </div>
 					</div>
 					<div class="sum_item">
 						<div class="sum_item_button">
@@ -292,11 +247,9 @@
 						</div>
 					</div>
 				</div>
-                {% else %}
-				 <div class="popup__cart_clean">
-					<p>Ваша корзина пуста</p>
-				</div>
-                {% endif %}
+{#				 <div class="popup__cart_clean">#}
+{#					<p>Ваша корзина пуста</p>#}
+{#				</div>#}
 			</div>
 		</div>
 	</div>
@@ -434,6 +387,12 @@ function submitLanguageForm(langCode) {
     document.getElementById('selected-language').value = langCode;
     document.getElementById('language-form').submit();
 }
+</script>
+<script>
+document.body.addEventListener("cartUpdated", function(e) {
+    document.getElementById("cart-total-sum").innerHTML = e.detail.total_sum + " <i>грн.</i>";
+    document.getElementById("cart-count").innerHTML = e.detail.total_items;
+});
 </script>
 {% block scripts %}
 
