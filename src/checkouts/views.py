@@ -6,7 +6,7 @@ from src.checkouts.models import CartItem
 
 class CartListView(ListView):
     model = CartItem
-    template_name = "checkouts.html"
+    template_name = "cart.html"
     context_object_name = "cart_items"
 
     def get_queryset(self):
