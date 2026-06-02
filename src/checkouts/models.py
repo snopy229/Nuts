@@ -48,7 +48,11 @@ class Orders(models.Model):
 
 
 class IndividualOrderContact(models.Model):
-    order = models.ForeignKey(Orders, on_delete=models.CASCADE, related_name="contact")
+    order = models.OneToOneField(
+        Orders,
+        on_delete=models.CASCADE,
+        related_name="individual_contact",
+    )
     fullname = models.CharField(max_length=255, verbose_name=_("ФИО"))
     email = models.EmailField(verbose_name=_("E-mail"))
     phone = PhoneNumberField(max_length=20, verbose_name=_("Телефон"))
