@@ -12,7 +12,7 @@ class CartItem(models.Model):
 
     @property
     def full_cost(self):
-        return self.product.cost * self.quantity
+        return self.product.cost_with_discount * self.quantity
 
     class Meta:
         unique_together = ("user", "product")
