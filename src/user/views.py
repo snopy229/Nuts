@@ -107,7 +107,9 @@ class AddressUpdateView(LoginRequiredMixin, UpdateView):
             form = UserAddressForm(request.POST, instance=self.object)
             if form.is_valid():
                 form.save()
-                return redirect("user:account_address")
+                return redirect("user:account_info")
+            else:
+                print(form.errors)
             return self.render_to_response(self.get_context_data(form=form))
 
         elif hasattr(user, "legalentity"):
@@ -116,12 +118,15 @@ class AddressUpdateView(LoginRequiredMixin, UpdateView):
             if user_form.is_valid() and legal_form.is_valid():
                 user_form.save()
                 legal_form.save()
-                return redirect("user:account_address")
+                return redirect("user:account_info")
+            else:
+                print(user_form.errors)
+                print(legal_form.errors)
             return self.render_to_response(self.get_context_data(user_form=user_form, legal_form=legal_form))
         return self.post(request, *args, **kwargs)
 
     def get_success_url(self):
-        return redirect("user:account_address")
+        return redirect("user:account_info")
 
 
 class InfoUpdateView(LoginRequiredMixin, UpdateView):
@@ -157,30 +162,35 @@ class InfoUpdateView(LoginRequiredMixin, UpdateView):
         user = request.user
 
         if hasattr(user, "individual"):
-            form = UserAddressForm(request.POST, instance=self.object)
+            form = UserInfoForm(request.POST, request.FILES, instance=self.object)
             if form.is_valid():
                 form.save()
-                return redirect("user:account_address")
+                return redirect("user:account_info")
+            else:
+                print(form.errors)
             return self.render_to_response(self.get_context_data(form=form))
 
         elif hasattr(user, "legalentity"):
-            user_form = UserAddressForm(request.POST, instance=user)
-            legal_form = LegalEntityAddressForm(request.POST, instance=user)
+            user_form = UserInfoForm(request.POST, request.FILES, instance=user)
+            legal_form = LegalEntityInfoForm(request.POST, instance=user)
             if user_form.is_valid() and legal_form.is_valid():
                 user_form.save()
                 legal_form.save()
-                return redirect("user:account_address")
+                return redirect("user:account_info")
+            else:
+                print(user_form.errors)
+                print(legal_form.errors)
             return self.render_to_response(self.get_context_data(user_form=user_form, legal_form=legal_form))
         return self.post(request, *args, **kwargs)
 
     def get_success_url(self):
-        return redirect("user:account_address")
+        return redirect("user:account_info")
 
 
 class ChangePassword(LoginRequiredMixin, FormView):
     form_class = CustomPasswordChangeForm
     template_name = "account/recovery_password.html"
-    success_url = reverse_lazy("user:account_address")
+    success_url = reverse_lazy("user:account_info")
 
     def get_form_kwargs(self):
         kwargs = super().get_form_kwargs()
