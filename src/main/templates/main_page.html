@@ -106,7 +106,12 @@
                     </div>
                     <div class="sum_item">
                         <div class="sum_item_button">
-                            <a href="#" class="button">{% trans "Купить" %}</a>
+                            <a hx-post="/api/checkouts/add-product"
+                                hx-vals='{"product_id": {{ product.id }}, "quantity": 1}'
+                                hx-target="#cart-items-container"
+                                hx-swap="beforeend swap:0ms"
+                                hx-trigger="click"
+                                class="button">{% trans "Купить" %}</a>
                         </div>
                     </div>
                 </div>
@@ -319,3 +324,13 @@
 		</div>
 	</section>
 {% endblock content %}
+{% block scripts %}
+	<meta name="csrf-token" content="{{ csrf_token }}">
+<script>
+    document.addEventListener("DOMContentLoaded", function() {
+        document.body.addEventListener("htmx:configRequest", function(e) {
+            e.detail.headers["X-CSRFToken"] = document.querySelector("meta[name='csrf-token']").content;
+        });
+    });
+</script>
+{% endblock scripts %}
