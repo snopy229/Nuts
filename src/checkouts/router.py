@@ -34,15 +34,24 @@ def render_quantity_input(request, product_id: int, quantity: int) -> HttpRespon
         <input type="text"
                name="quantity"
                value="{quantity}"
-               id="quantity-{product_id}"
                class="quantity_input"
+               data-product-id="{product_id}"
                hx-post="/api/checkouts/set-quantity"
                hx-vals='{{"product_id": {product_id}}}'
                hx-trigger="change, keyup delay:500ms"
                hx-target="this"
                hx-swap="outerHTML">
     """)
-    response["HX-Trigger"] = json.dumps({"cartUpdated": {"total_items": total_items, "total_sum": total_sum}})
+    response["HX-Trigger"] = json.dumps(
+        {
+            "cartUpdated": {
+                "total_items": total_items,
+                "total_sum": total_sum,
+                "product_id": product_id,
+                "quantity": quantity,
+            }
+        }
+    )
     return response
 
 
