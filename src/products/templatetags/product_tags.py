@@ -9,7 +9,7 @@ register = template.Library()
 @register.inclusion_tag("partials/products.html", takes_context=True)
 def render_product(context):
     request = context["request"]
-    products = ProductDetailPage.objects.live()
+    products = ProductDetailPage.objects.all()
     taste = request.GET.get("taste")
     mass = request.GET.get("mass")
 
