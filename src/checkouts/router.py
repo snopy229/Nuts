@@ -30,6 +30,8 @@ def not_staff(func):
 
 def render_quantity_input(request, product_id: int, quantity: int) -> HttpResponse:
     total_items, total_sum = get_cart_totals(request.user)
+    cart_item = CartItem.objects.select_related("product").get(user=request.user, product_id=product_id)
+    full_cost = cart_item.product.cost_with_discount * quantity
     response = HttpResponse(f"""
         <input type="text"
                name="quantity"
@@ -49,6 +51,7 @@ def render_quantity_input(request, product_id: int, quantity: int) -> HttpRespon
                 "total_sum": total_sum,
                 "product_id": product_id,
                 "quantity": quantity,
+                "full_cost": str(full_cost),
             }
         }
     )
