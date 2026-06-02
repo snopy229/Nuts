@@ -64,7 +64,7 @@ class LegalEntityOrderContact(models.Model):
         on_delete=models.CASCADE,
         related_name="individual_contact",
     )
-    company = models.CharField(max_length=255, verbose_name=_("Компания"))
-    contact_person = models.CharField(max_length=255, verbose_name=_("Контактное лицо"))
+    company = models.CharField(max_length=255, verbose_name=_("Компания"), blank=True, null=True)
+    contact_person = models.CharField(max_length=255, verbose_name=_("Контактное лицо"), blank=True, null=True)
     email = models.EmailField(verbose_name=_("Email"))
     phone = models.CharField(max_length=20, verbose_name=_("Телефон"))
