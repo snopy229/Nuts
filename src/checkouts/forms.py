@@ -1,6 +1,7 @@
 from cities_light.models import Region, City
 from django import forms
 
+
 from checkouts.enum.delivert_type import DeliveryType
 from src.checkouts.models import Orders
 
@@ -70,3 +71,18 @@ class OrdersForm(forms.ModelForm):
             clean_data["delivery_region"] = None
             clean_data["delivery_city"] = None
             clean_data["delivery_city"] = None
+
+
+class IndividualOrderContact(forms.ModelForm):
+    class Meta:
+        model = Orders
+        fields = [
+            "fullname",
+            "email",
+            "phone",
+        ]
+        widgets = {
+            "fullname": forms.TextInput(attrs={"placeholder": "ФИО*"}),
+            "email": forms.EmailInput(attrs={"placeholder": "Email*"}),
+            "phone": forms.TextInput(attrs={"placeholder": "Телефон*"}),
+        }
