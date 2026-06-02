@@ -3,7 +3,7 @@
 	<div class="col-md-9">
 					<div class="row">
 						<div class="col-md-6">
-							<form action="{% url "user:account_address" %}">
+							<form action="{% url "user:account_address" %}" method="post">
                                 {% csrf_token %}
 									<div class="form__title">
 											1. Реквизиты
