@@ -22,6 +22,7 @@
            value="{{ item.quantity }}"
            class="quantity_input"
            data-product-id="{{ item.product.id }}"
+           autocomplete="off"
            hx-post="/api/checkouts/set-quantity"
            hx-vals='{"product_id": {{ item.product.id }}}'
            hx-trigger="change, keyup delay:500ms"
