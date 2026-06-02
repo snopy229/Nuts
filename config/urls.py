@@ -18,6 +18,7 @@ urlpatterns = [
     path("products/", include("src.products.urls", namespace="products")),
     path("api/", api.urls),
     path("i18n/", include("django.conf.urls.i18n")),
+    path("checkouts/", include("src.checkouts.urls", namespace="checkouts")),
 ]
 
 
