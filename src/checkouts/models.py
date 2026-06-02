@@ -1,5 +1,7 @@
 from cities_light.models import Region, City, Country
 from django.db import models
+from django.utils.translation import gettext_lazy as _
+from phonenumber_field.modelfields import PhoneNumberField
 
 from src.checkouts.enum.payment_type import PaymentType
 from src.checkouts.enum.delivert_type import DeliveryType
@@ -43,3 +45,10 @@ class Orders(models.Model):
         default=PaymentType.BANK_TRANSFER,
     )
     created_at = models.DateTimeField(auto_now_add=True)
+
+
+class IndividualOrderContact(models.Model):
+    order = models.ForeignKey(Orders, on_delete=models.CASCADE, related_name="contact")
+    fullname = models.CharField(max_length=255, verbose_name=_("ФИО"))
+    email = models.EmailField(verbose_name=_("E-mail"))
+    phone = PhoneNumberField(max_length=20, verbose_name=_("Телефон"))
