@@ -58,6 +58,7 @@
                                             value="{{ cart_item.quantity }}"
                                             class="quantity_input"
                                                data-product-id="{{ cart_item.product.id }}"
+                                               autocomplete="off"
                                             hx-post="/api/checkouts/set-quantity"
                                             hx-vals='{"product_id": {{ cart_item.product.id }}}'
                                             hx-trigger="change, keyup delay:500ms"
@@ -73,7 +74,7 @@
 									</div>
 								</td>
 								<td>{{ cart_item.product.cost_with_discount }} грн.</td>
-								<td><p> {{ total_sum }} <i>грн.</i>
+								<td><p data-full-cost="{{ cart_item.product.id }}"> {{ cart_item.full_cost }} <i>грн.</i></p></td>
                            </p></td>
 							</tr>
 							{% endfor %}
@@ -126,10 +127,15 @@ document.body.addEventListener("cartUpdated", function(e) {
     document.getElementById("cart-total-sum-page") &&
         (document.getElementById("cart-total-sum-page").innerHTML = e.detail.total_sum + " <i>грн.</i>");
 
-    // обновляем все инпуты с этим product_id
-    document.querySelectorAll('.quantity_input[data-product-id="' + e.detail.product_id + '"]').forEach(function(input) {
-        input.value = e.detail.quantity;
-    });
+    if (e.detail.product_id) {
+        document.querySelectorAll('.quantity_input[data-product-id="' + e.detail.product_id + '"]').forEach(function(input) {
+            input.value = e.detail.quantity;
+        });
+
+        document.querySelectorAll('[data-full-cost="' + e.detail.product_id + '"]').forEach(function(el) {
+            el.innerHTML = e.detail.full_cost + " <i>грн.</i>";
+        });
+    }
 });
 </script>
 {% endblock scripts %}
