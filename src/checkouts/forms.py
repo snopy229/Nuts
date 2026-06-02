@@ -73,7 +73,7 @@ class OrdersForm(forms.ModelForm):
             clean_data["delivery_city"] = None
 
 
-class IndividualOrderContact(forms.ModelForm):
+class IndividualOrderContactForm(forms.ModelForm):
     class Meta:
         model = IndividualOrderContact
         fields = [
@@ -88,7 +88,7 @@ class IndividualOrderContact(forms.ModelForm):
         }
 
 
-class LegalEntityOrderContacts(forms.ModelForm):
+class LegalEntityOrderContactsForm(forms.ModelForm):
     class Meta:
         model = LegalEntityOrderContact
         fields = [
