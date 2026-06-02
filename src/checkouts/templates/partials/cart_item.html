@@ -1,0 +1,57 @@
+<div class="popup__cart_item" id="cart-row-{{ item.product.id }}">
+    <div class="row align-items-center no-gutters item_row">
+        <div class="col-md-5 col-12">
+            <div class="item_title">
+                <p>{{ item.product.title }} {{ item.product.mass }}.</p>
+            </div>
+        </div>
+        <div class="col-md-7 col-12">
+            <div class="row align-items-center no-gutters">
+                <div class="col-6">
+                    <div class="item_quantity">
+                        <button hx-post="/api/checkouts/minus-product"
+                                hx-vals='{"product_id": {{ item.product.id }}}'
+                                hx-target="#quantity-{{ item.product.id }}"
+                                hx-swap="outerHTML">
+                            <i class="nut-icon icons-qty-left"></i>
+                        </button>
+
+                        <input type="text"
+                               name="quantity"
+                               value="{{ item.quantity }}"
+                               id="quantity-{{ item.product.id }}"
+                               class="quantity_input"
+                               hx-post="/api/checkouts/set-quantity"
+                               hx-vals='{"product_id": {{ item.product.id }}}'
+                               hx-trigger="change, keyup delay:500ms"
+                               hx-target="this"
+                               hx-swap="outerHTML">
+
+                        <button hx-post="/api/checkouts/plus-product"
+                                hx-vals='{"product_id": {{ item.product.id }}}'
+                                hx-target="#quantity-{{ item.product.id }}"
+                                hx-swap="outerHTML">
+                            <i class="nut-icon icons-qty-right"></i>
+                        </button>
+                    </div>
+                </div>
+                <div class="col-5">
+                    <div class="item_sum">
+                        <p>{{ item.product.cost_with_discount }} <span>грн.</span></p>
+                    </div>
+                </div>
+                <div class="col-1">
+                    <div class="item_close">
+                        <a hx-post="/api/checkouts/delete-product"
+                           hx-vals='{"product_id": {{ item.product.id }}}'
+                           hx-target="#cart-row-{{ item.product.id }}"
+                           hx-swap="outerHTML"
+                           hx-trigger="click">
+                            <i class="nut-icon icons-close-button"></i>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
