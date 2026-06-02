@@ -8,31 +8,33 @@
         <div class="col-md-7 col-12">
             <div class="row align-items-center no-gutters">
                 <div class="col-6">
-                    <div class="item_quantity">
-                        <button hx-post="/api/checkouts/minus-product"
-                                hx-vals='{"product_id": {{ item.product.id }}}'
-                                hx-target="#quantity-{{ item.product.id }}"
-                                hx-swap="outerHTML">
-                            <i class="nut-icon icons-qty-left"></i>
-                        </button>
+                    <div class="item_quantity" hx-headers='{"X-CSRFToken": "{{ csrf_token }}"}'>
+                        <div class="item_quantity" hx-headers='{"X-CSRFToken": "{{ csrf_token }}"}'>
+    <button hx-post="/api/checkouts/minus-product"
+            hx-vals='{"product_id": {{ item.product.id }}}'
+            hx-target="next input"
+            hx-swap="outerHTML">
+        <i class="nut-icon icons-qty-left"></i>
+    </button>
 
-                        <input type="text"
-                               name="quantity"
-                               value="{{ item.quantity }}"
-                               id="quantity-{{ item.product.id }}"
-                               class="quantity_input"
-                               hx-post="/api/checkouts/set-quantity"
-                               hx-vals='{"product_id": {{ item.product.id }}}'
-                               hx-trigger="change, keyup delay:500ms"
-                               hx-target="this"
-                               hx-swap="outerHTML">
+    <input type="text"
+           name="quantity"
+           value="{{ item.quantity }}"
+           class="quantity_input"
+           data-product-id="{{ item.product.id }}"
+           hx-post="/api/checkouts/set-quantity"
+           hx-vals='{"product_id": {{ item.product.id }}}'
+           hx-trigger="change, keyup delay:500ms"
+           hx-target="this"
+           hx-swap="outerHTML">
 
-                        <button hx-post="/api/checkouts/plus-product"
-                                hx-vals='{"product_id": {{ item.product.id }}}'
-                                hx-target="#quantity-{{ item.product.id }}"
-                                hx-swap="outerHTML">
-                            <i class="nut-icon icons-qty-right"></i>
-                        </button>
+    <button hx-post="/api/checkouts/plus-product"
+            hx-vals='{"product_id": {{ item.product.id }}}'
+            hx-target="previous input"
+            hx-swap="outerHTML">
+        <i class="nut-icon icons-qty-right"></i>
+    </button>
+</div>
                     </div>
                 </div>
                 <div class="col-5">
