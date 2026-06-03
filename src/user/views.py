@@ -4,8 +4,9 @@ from django.contrib.auth.views import LoginView
 from django.shortcuts import render, redirect
 from django.urls import reverse_lazy
 from django.views import View
-from django.views.generic import UpdateView, FormView
+from django.views.generic import UpdateView, FormView, ListView
 
+from src.checkouts.models import Orders
 from src.user.forms import (
     UserForm,
     IndividualForm,
@@ -201,3 +202,12 @@ class ChangePassword(LoginRequiredMixin, FormView):
         form.save()
         update_session_auth_hash(self.request, form.user)
         return super().form_valid(form)
+
+
+class OrderHistoryListView(LoginRequiredMixin, ListView):
+    model = Orders
+    template_name = "account/order_history.html"
+    context_object_name = "orders"
+
+    def get_queryset(self):
+        return Orders.objects.filter(user=self.request.user)
