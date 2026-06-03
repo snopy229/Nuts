@@ -62,7 +62,7 @@ class LegalEntityOrderContact(models.Model):
     order = models.OneToOneField(
         Orders,
         on_delete=models.CASCADE,
-        related_name="individual_contact",
+        related_name="legal_entity_contact",
     )
     company = models.CharField(max_length=255, verbose_name=_("Компания"), blank=True, null=True)
     contact_person = models.CharField(max_length=255, verbose_name=_("Контактное лицо"), blank=True, null=True)
