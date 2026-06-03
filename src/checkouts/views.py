@@ -23,9 +23,9 @@ class OrderCreateView(CreateView):
     def get_template_names(self):
         user = self.request.user
         if hasattr(user, "individual"):
-            return ["order_fiz.html"]
+            return ["checkouts_fiz.html"]
         elif hasattr(user, "legal"):
-            return ["order_ur.html"]
+            return ["checkouts_ur.html"]
         return None
 
     def get_context_data(self, **kwargs):
@@ -42,6 +42,7 @@ class OrderCreateView(CreateView):
         return context
 
     def post(self, request, *args, **kwargs):
+        self.object = None
         user = request.user
         checkout_form = OrdersForm(request.POST)
 
@@ -61,6 +62,9 @@ class OrderCreateView(CreateView):
             contact.save()
 
             return redirect("user:account_info")
+        else:
+            print(checkout_form.errors)
+            print(contact_form.errors)
 
         return self.render_to_response(self.get_context_data(checkout_form=checkout_form, contact_form=contact_form))
 
