@@ -6,6 +6,7 @@ from wagtail.admin.panels import FieldPanel
 from wagtail.fields import StreamField
 from wagtail.models import Page
 
+from src.checkouts.enum.order_status import OrderStatus
 from src.core.blocks import PhotoBlock
 from src.checkouts.enum.payment_type import PaymentType
 from src.checkouts.enum.delivert_type import DeliveryType
@@ -30,6 +31,12 @@ class CartItem(models.Model):
 class Orders(models.Model):
     user = models.ForeignKey(User, on_delete=models.CASCADE, related_name="user")
     cart = models.ManyToManyField(CartItem, related_name="checkouts")
+    order_status = models.CharField(
+        verbose_name="Статус заказа",
+        max_length=20,
+        choices=OrderStatus.choices,
+        default=OrderStatus.WAITING,
+    )
     delivery_type = models.CharField(
         verbose_name="Способ доставки",
         max_length=20,
