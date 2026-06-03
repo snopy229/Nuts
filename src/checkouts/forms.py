@@ -1,12 +1,22 @@
-from cities_light.models import Region, City
+from cities_light.models import Region, City, Country
 from django import forms
 
 
-from checkouts.enum.delivert_type import DeliveryType
+from src.checkouts.enum.delivert_type import DeliveryType
 from src.checkouts.models import Orders, IndividualOrderContact, LegalEntityOrderContact
 
 
 class OrdersForm(forms.ModelForm):
+    delivery_country = forms.ModelChoiceField(
+        queryset=Country.objects.all(), required=False, widget=forms.Select, empty_label="Страна"
+    )
+    delivery_region = forms.ModelChoiceField(
+        queryset=Region.objects.all(), required=False, widget=forms.Select, empty_label="Регион"
+    )
+    delivery_city = forms.ModelChoiceField(
+        queryset=City.objects.all(), required=False, widget=forms.Select, empty_label="Город"
+    )
+
     class Meta:
         model = Orders
         fields = [
@@ -59,9 +69,6 @@ class OrdersForm(forms.ModelForm):
             clean_data["delivery_city"] = None
 
         elif delivery_type == DeliveryType.COURIER:
-            if not clean_data.get("delivery_country"):
-                self.add_error("delivery_country", "Выберите страну доставки")
-
             clean_data["delivery_country"] = None
             clean_data["delivery_region"] = None
             clean_data["delivery_city"] = None
