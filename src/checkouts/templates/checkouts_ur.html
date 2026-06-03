@@ -1,0 +1,234 @@
+{% extends "base_template.html" %}
+{% block content %}
+	<section class="first-section no-bg">
+		<div class="container">
+			<div class="breadcrumbs">
+				<ul>
+					<li>
+						<a href="/">Главная</a>
+					</li>
+					<li>
+						<a href="#">Корзина</a>
+					</li>
+					<li>
+						Оформление заказа
+					</li>
+				</ul>
+			</div>
+		</div>
+	</section>
+
+	<section class="accaunt">
+		<div class="container">
+			<div class="row">
+				<div class="col-lg-4 col-md-6">
+					<h1>Оформление заказа</h1>
+				</div>
+				<div class="col-lg-8 col-md-6">
+					<div class="accaunt__manager">
+						<ul>
+							<li><p>Ваш личный менеджер Олег</p></li>
+							<li><i class="nut-icon icons-phone"></i> <a href="tel:+380677771412">+38 067 777 14 12</a></li>
+						</ul>
+					</div>
+				</div>
+				<div class="col-12" hx-headers='{"X-CSRFToken": "{{ csrf_token }}"}'>
+					<table id="table">
+						<thead>
+							<tr>
+								<th><span>Товар</span></th>
+								<th><span>Кол - во</span></th>
+								<th><span>Цена за товар</span></th>
+								<th><span>Итоговая стоимость</span></th>
+							</tr>
+						</thead>
+						<tbody>
+{% for cart_item in cart_items %}
+    <tr>
+        <td>{{ cart_item.product.title }} {{ cart_item.product.mass }}</td>
+        <td>
+            <div class="item_quantity">
+                <button type="button"
+                        hx-post="/api/checkouts/minus-product"
+                        hx-vals='{"product_id": {{ cart_item.product.id }}}'
+                        hx-target="next input"
+                        hx-swap="outerHTML">
+                    <i class="nut-icon icons-qty-left"></i>
+                </button>
+                <input type="text"
+                       name="quantity"
+                       value="{{ cart_item.quantity }}"
+                       class="quantity_input"
+                       data-product-id="{{ cart_item.product.id }}"
+                       autocomplete="off"
+                       hx-post="/api/checkouts/set-quantity"
+                       hx-vals='{"product_id": {{ cart_item.product.id }}}'
+                       hx-trigger="change, keyup delay:500ms"
+                       hx-target="this"
+                       hx-swap="outerHTML">
+                <button type="button"
+                        hx-post="/api/checkouts/plus-product"
+                        hx-vals='{"product_id": {{ cart_item.product.id }}}'
+                        hx-target="previous input"
+                        hx-swap="outerHTML">
+                    <i class="nut-icon icons-qty-right"></i>
+                </button>
+            </div>
+        </td>
+        <td>{{ cart_item.product.cost_with_discount }} грн.</td>
+        <td>
+            <p data-full-cost="{{ cart_item.product.id }}">
+                {{ cart_item.full_cost }} <i>грн.</i>
+            </p>
+        </td>
+    </tr>
+{% endfor %}
+</tbody>
+					</table>
+				</div>
+				<div class="col-12">
+					<div class="after_table">
+						<div class="row">
+							<div class="col-md-6">
+
+							</div>
+							<div class="col-md-6">
+								<div class="popup__cart_sum">
+									<div class="sum_item">
+										<div class="sum_item_title">
+											<p>Всего </p>
+										</div>
+										<div class="sum_item_new">
+											<p id="cart-total-sum-page">{{ total_sum }} <i>грн.</i></p>
+										</div>
+									</div>
+									<div class="sum_item">
+										<!-- <div class="sum_item_button">
+											<a href="#" class="button">Оформить заказ</a>
+										</div> -->
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+				<div class="col-12">
+					<div class="checkout_form">
+						<form action="{% url 'checkouts:order' %}" method="post">
+                        {% csrf_token %}
+							<div class="row">
+								<div class="col-lg-5">
+									<div class="form__title">
+											1. Контактные данные
+									</div>
+									{{ contact_form.company }}
+									{{ contact_form.company.errors }}
+									{{ contact_form.contact_person }}
+									{{ contact_form.contact_person.errors }}
+									{{ contact_form.email }}
+									{{ contact_form.email.errors }}
+                                    {{ contact_form.phone }}
+									{{ contact_form.phone.errors }}
+									<div class="form__title">
+											2. Способ доставки
+									</div>
+										<fieldset id="group1" class="radio__wrapper radio__wrapper_click">
+                                            {% for radio in checkout_form.delivery_type %}
+                                                <input id="radio-{{ forloop.counter }}"
+                                                       class="radio-custom"
+                                                       name="{{ checkout_form.delivery_type.html_name }}"
+                                                       value="{{ radio.data.value }}"
+                                                       type="radio"
+                                                       {% if radio.data.selected %}checked{% endif %}>
+                                                <label for="radio-{{ forloop.counter }}" class="radio-custom-label"><span>{{ radio.choice_label }}</span>
+                                                    {% if radio.data.value == 'courier' %}
+                                                        <span class="sticker">
+                                                            <i class="nut-icon icons-novinka"></i>
+                                                            <span class="p">БЕСПЛАТНО</span>
+                                                        </span>
+                                                    {% endif %}</label>
+                                                {% if radio.data.value == 'new_post' %}
+                                                	<div class="new_post box">
+												        {{ checkout_form.delivery_country }}
+												        {{ checkout_form.delivery_country.errors }}
+												        {{ checkout_form.delivery_region }}
+												        {{ checkout_form.delivery_region.errors }}
+												        {{ checkout_form.delivery_city }}
+												        {{ checkout_form.delivery_city.errors }}
+											        </div>
+                                                {% endif %}
+                                                {% if radio.data.value == 'courier' %}
+                                                	<div class="adr box">
+													{{ checkout_form.courier_address }}
+													{{ checkout_form.courier_address.erroes }}
+											</div>
+                                                {% endif %}
+                                            {% endfor %}
+										</fieldset>
+									<div class="form__title">
+											3. Способ оплаты
+									</div>
+										<fieldset id="group2" class="radio__wrapper radio__wrapper_second">
+                                            {% for radio in checkout_form.payment_type %}
+                                            	<input id="radio-{{ forloop.counter|add:3 }}"
+                                                       class="radio-custom"
+                                                       name="{{ checkout_form.payment_type.html_name }}"
+                                                       value="{{ radio.data.value }}"
+                                                       type="radio"
+                                                       {% if radio.data.selected %}checked{% endif %}>
+											    <label for="radio-{{ forloop.counter|add:3 }}" class="radio-custom-label"><span>{{ radio.choice_label }}</span></label>
+                                            {% endfor %}
+										</fieldset>
+										<button class="button float-left" type="submit">Продолжить</button>
+								</div>
+								<div class="col-lg-7">
+
+								</div>
+							</div>
+						</form>
+					</div>
+				</div>
+			</div>
+		</div>
+	</section>
+{% endblock content %}
+{% block scripts %}
+	<script>
+    const map = {
+        'new_post': 'new_post',
+        'courier': 'adr',
+        'pickup': null,
+    };
+
+    document.querySelectorAll('#group1 .radio-custom').forEach(radio => {
+        radio.addEventListener('change', function () {
+            document.querySelectorAll('#group1 .box').forEach(box => box.style.display = 'none');
+            const cls = map[this.value];
+            if (cls) document.querySelector(`#group1 .${cls}.box`).style.display = 'block';
+        });
+    });
+
+    const checked = document.querySelector('#group1 .radio-custom:checked');
+    if (checked) {
+        document.querySelectorAll('#group1 .box').forEach(box => box.style.display = 'none');
+        const cls = map[checked.value];
+        if (cls) document.querySelector(`#group1 .${cls}.box`).style.display = 'block';
+    }
+</script>
+    <script>
+document.body.addEventListener("cartUpdated", function(e) {
+    document.getElementById("cart-total-sum-page") &&
+        (document.getElementById("cart-total-sum-page").innerHTML = e.detail.total_sum + " <i>грн.</i>");
+
+    if (e.detail.product_id) {
+        document.querySelectorAll('.quantity_input[data-product-id="' + e.detail.product_id + '"]').forEach(function(input) {
+            input.value = e.detail.quantity;
+        });
+
+        document.querySelectorAll('[data-full-cost="' + e.detail.product_id + '"]').forEach(function(el) {
+            el.innerHTML = e.detail.full_cost + " <i>грн.</i>";
+        });
+    }
+});
+</script>
+{% endblock scripts %}
