@@ -1,5 +1,6 @@
 from cities_light.models import Region, City, Country
 from django.db import models
+from django.db.models import Sum
 from django.utils.translation import gettext_lazy as _
 from phonenumber_field.modelfields import PhoneNumberField
 from wagtail.admin.panels import FieldPanel
@@ -56,6 +57,11 @@ class Orders(models.Model):
         default=PaymentType.BANK_TRANSFER,
     )
     created_at = models.DateTimeField(auto_now_add=True)
+    cost = models.PositiveIntegerField(verbose_name="Стоимость заказа")
+
+    @property
+    def product_count(self):
+        return self.cart.aggregate(total=Sum("quantity"))["total"] or 0
 
 
 class IndividualOrderContact(models.Model):
