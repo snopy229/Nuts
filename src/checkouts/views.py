@@ -3,7 +3,7 @@ from django.shortcuts import redirect
 from django.views.generic import ListView, CreateView
 
 from src.checkouts.forms import IndividualOrderContactForm, LegalEntityOrderContactsForm, OrdersForm
-from src.checkouts.models import Orders
+from src.checkouts.models import Orders, ThanksForOrderPage
 from src.checkouts.models import CartItem
 
 
@@ -61,7 +61,8 @@ class OrderCreateView(CreateView):
             contact.order = order
             contact.save()
 
-            return redirect("user:account_info")
+            page = ThanksForOrderPage.objects.first()
+            return redirect(page.url)
         else:
             print(checkout_form.errors)
             print(contact_form.errors)
@@ -69,4 +70,5 @@ class OrderCreateView(CreateView):
         return self.render_to_response(self.get_context_data(checkout_form=checkout_form, contact_form=contact_form))
 
     def get_success_url(self):
-        return redirect("user:account_info")
+        page = ThanksForOrderPage.objects.first()
+        return redirect(page.url)
