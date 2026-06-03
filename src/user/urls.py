@@ -16,4 +16,5 @@ urlpatterns = [
     path("account/address/", views.AddressUpdateView.as_view(), name="account_address"),
     path("account/info/", views.InfoUpdateView.as_view(), name="account_info"),
     path("account/recovery_password/", views.ChangePassword.as_view(), name="account_recovery_password"),
+    path("account/orders-history", views.OrderHistoryListView.as_view(), name="order_history"),
 ]
