@@ -1,7 +1,7 @@
 from django.db import models
 
 from src.checkouts.models import Orders
-from transaction.enum.transaction_status import TransactionStatus
+from src.transaction.enum.transaction_status import TransactionStatus
 
 
 # Create your models here.
