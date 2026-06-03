@@ -99,11 +99,7 @@ def minus_product(request, product_id: int = Form(...)):
         return 404, {"detail": "Not found"}
     cart_item.quantity -= 1
     if cart_item.quantity <= 0:
-        cart_item.delete()
-        total_items, total_sum = get_cart_totals(request.user)
-        response = HttpResponse("")
-        response["HX-Trigger"] = json.dumps({"cartUpdated": {"total_items": total_items, "total_sum": total_sum}})
-        return response
+        cart_item.quantity = 1
     cart_item.save(update_fields=["quantity"])
     return render_quantity_input(request, product_id, cart_item.quantity)
 
