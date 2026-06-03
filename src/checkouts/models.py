@@ -2,7 +2,11 @@ from cities_light.models import Region, City, Country
 from django.db import models
 from django.utils.translation import gettext_lazy as _
 from phonenumber_field.modelfields import PhoneNumberField
+from wagtail.admin.panels import FieldPanel
+from wagtail.fields import StreamField
+from wagtail.models import Page
 
+from src.core.blocks import PhotoBlock
 from src.checkouts.enum.payment_type import PaymentType
 from src.checkouts.enum.delivert_type import DeliveryType
 from src.products.models import ProductDetailPage
@@ -68,3 +72,14 @@ class LegalEntityOrderContact(models.Model):
     contact_person = models.CharField(max_length=255, verbose_name=_("Контактное лицо"), blank=True, null=True)
     email = models.EmailField(verbose_name=_("Email"))
     phone = models.CharField(max_length=20, verbose_name=_("Телефон"))
+
+
+class ThanksForOrderPage(Page):
+    banner = StreamField([("photo", PhotoBlock(label="Баннер"))], max_num=1, min_num=1, use_json_field=True)
+    max_count = 1
+    template = "thanks_for_order.html"
+    parent_page_types = ["main.MainPage"]
+    content_panels = Page.content_panels + [FieldPanel("banner")]
+
+    def can_delete(self, user):
+        return False
