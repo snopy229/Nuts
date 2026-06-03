@@ -19,6 +19,7 @@ from src.user.forms import (
     CustomPasswordChangeForm,
 )
 from .models import User
+from ..transaction.models import Transaction
 
 
 # Create your views here.
@@ -211,3 +212,12 @@ class OrderHistoryListView(LoginRequiredMixin, ListView):
 
     def get_queryset(self):
         return Orders.objects.filter(user=self.request.user)
+
+
+class TransactionListView(LoginRequiredMixin, ListView):
+    model = Transaction
+    template_name = "account/transaction_history.html"
+    context_object_name = "transaction"
+
+    def get_queryset(self):
+        return Transaction.objects.filter(user=self.request.user)
