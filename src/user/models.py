@@ -36,6 +36,7 @@ class MyUserManager(BaseUserManager):
 
 class User(AbstractUser):
     username = None
+    discount = models.PositiveIntegerField(default=5, verbose_name="Скидка")
     fullname = models.CharField(max_length=255, verbose_name="ФИО")
     email = models.EmailField(unique=True, verbose_name="Email")
     phone_number = PhoneNumberField(blank=True, null=True, verbose_name="Номер телефона")
