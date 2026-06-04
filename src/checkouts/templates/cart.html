@@ -47,11 +47,11 @@
 								<td>
 									<div class="item_quantity">
 										<button hx-post="/api/checkouts/minus-product"
-        hx-vals='{"product_id": {{ cart_item.product.id }}}'
-        hx-target="next input"
-        hx-swap="outerHTML">
-    <i class="nut-icon icons-qty-left"></i>
-</button>
+                                                hx-vals='{"product_id": {{ cart_item.product.id }}}'
+                                                hx-target="next input"
+                                                hx-swap="outerHTML">
+                                            <i class="nut-icon icons-qty-left"></i>
+                                        </button>
 
                                         <input type="text"
                                             name="quantity"
@@ -75,7 +75,6 @@
 								</td>
 								<td>{{ cart_item.product.cost_with_discount }} грн.</td>
 								<td><p data-full-cost="{{ cart_item.product.id }}"> {{ cart_item.full_cost }} <i>грн.</i></p></td>
-                           </p></td>
 							</tr>
 							{% endfor %}
 						</tbody>
@@ -99,7 +98,7 @@
 									</div>
 									<div class="sum_item">
 										<div class="sum_item_button">
-											<a href="#" class="button">Оформить заказ</a>
+											<a href="{% url 'checkouts:order' %}" class="button">Оформить заказ</a>
 										</div>
 									</div>
 								</div>
