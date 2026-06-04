@@ -30,13 +30,13 @@
                 	<div class="col-lg-4 col-md-6 col-12">
     <div class="wrap">
         <div class="production__item">
-           {% if product.discount %}
+           {% if product.product_tags == "discount"  %}
                <div class="sticker">
                    <i class="nut-icon icons-actciya"></i>
                    <p>{% trans "Акция" %}</p>
                </div>
            {% endif %}
-           {% if product.is_new %}
+           {% if product.product_tags == "new" %}
             <div class="sticker">
                 <i class="nut-icon icons-novinka"></i>
                 <p>{% trans "Новинка" %}</p>
@@ -91,7 +91,7 @@
                         <div class="sum_item_title">
                             <p>{% trans "Цена:" %}</p>
                         </div>
-                        {% if product.discount %}
+                        {% if product.product_tags == "discount" %}
                             <div class="sum_item_new">
                                 <p>{{ product.cost_with_discount }} <i>{% trans "грн." %}</i></p>
                             </div>
