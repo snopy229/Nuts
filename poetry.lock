@@ -540,6 +540,21 @@ Django = ">=5.2"
 drf = ["djangorestframework"]
 
 [[package]]
+name = "django-middleware-global-request"
+version = "0.3.6"
+description = "Django middleware that keep request instance for every thread."
+optional = false
+python-versions = "*"
+groups = ["main"]
+files = [
+    {file = "django_middleware_global_request-0.3.6-py3-none-any.whl", hash = "sha256:7eca276aabc6fb8b09c1a59811e5a131fcb1c826577506cb500a29b204590f23"},
+    {file = "django_middleware_global_request-0.3.6.tar.gz", hash = "sha256:a6012861113f323920d593304425fb8bd59981f9c42512830767e6857b67e573"},
+]
+
+[package.dependencies]
+django = "*"
+
+[[package]]
 name = "django-modelcluster"
 version = "6.4.1"
 description = "Django extension to allow working with 'clusters' of models as a single unit, independently of the database"
@@ -2343,4 +2358,4 @@ willow = ">=1.11,<2.0"
 [metadata]
 lock-version = "2.1"
 python-versions = ">=3.13,<4.0"
-content-hash = "7dd033bf2d39fc59c652c912fc736b564b75a8fe0fbc429f00fc863aa9477021"
+content-hash = "0e9ec7e527ba4063d739437ce9a50c9ed002cf3e216ef9043f4da2473897a5e9"

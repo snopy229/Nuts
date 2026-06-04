@@ -86,6 +86,7 @@ INSTALLED_APPS = [
     "phonenumber_field",
     "wagtailmedia",
     "django_select2",
+    'django_middleware_global_request',
 ]
 
 MIDDLEWARE = [
@@ -97,7 +98,8 @@ MIDDLEWARE = [
     "django.contrib.messages.middleware.MessageMiddleware",
     "django.middleware.clickjacking.XFrameOptionsMiddleware",
     "wagtail.contrib.redirects.middleware.RedirectMiddleware",
-    "django.middleware.locale.LocaleMiddleware"
+    "django.middleware.locale.LocaleMiddleware",
+    "django_middleware_global_request.middleware.GlobalRequestMiddleware",
 ]
 
 AUTH_USER_MODEL = 'user.User'
