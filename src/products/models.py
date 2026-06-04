@@ -4,6 +4,7 @@ from datetime import timedelta
 from django.db import models
 from django.utils import timezone
 from django.utils.text import slugify
+from django_middleware_global_request import get_request
 from wagtail.admin.panels import FieldPanel
 from wagtail.fields import StreamField, RichTextField
 from wagtail.images.blocks import ImageChooserBlock
@@ -11,6 +12,7 @@ from wagtail.models import Page
 from transliterate import translit
 
 from src.core.blocks import PhotoWithoutDescriptionBlock
+from src.products.enum.product_tags import ProductTags
 
 
 class ProductsPage(Page):
@@ -69,12 +71,17 @@ class ProductWeight(models.Model):
 
 class ProductDetailPage(models.Model):
     title = models.CharField(verbose_name="Заголовок", max_length=255)
+    product_tags = models.CharField(
+        max_length=20,
+        choices=ProductTags.choices,
+        default=ProductTags.NONE,
+        verbose_name="Теги",
+    )
     slug = models.SlugField(verbose_name="Slug", max_length=255, unique=True, blank=True)
     cost = models.IntegerField(verbose_name="Цена")
     compound = models.TextField(verbose_name="Состав")
     nuts_type = models.CharField(verbose_name="Тип ореха", max_length=255)
     article = models.IntegerField(verbose_name="Артикул")
-    discount = models.IntegerField(verbose_name="Скидка(грн)", blank=True, null=True)
     gallery = models.ManyToManyField("core.Gallery", verbose_name="gallery")
     mass = models.ForeignKey(ProductWeight, on_delete=models.CASCADE, verbose_name="Масса")
     energy_value = models.IntegerField(verbose_name="Энергетическая ценность")
@@ -121,8 +128,10 @@ class ProductDetailPage(models.Model):
 
     @property
     def cost_with_discount(self):
-        if self.discount:
-            return self.cost - self.discount
+        request = get_request()
+        user = request.user if request else None
+        if user and user.is_authenticated and user.discount and self.product_tags == ProductTags.DISCOUNT:
+            return round(self.cost * (100 - user.discount) / 100)
         return self.cost
 
     @property
