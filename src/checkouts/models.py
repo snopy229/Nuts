@@ -20,10 +20,11 @@ class CartItem(models.Model):
     user = models.ForeignKey(User, on_delete=models.CASCADE, related_name="cart_items")
     product = models.ForeignKey(ProductDetailPage, on_delete=models.CASCADE)
     quantity = models.PositiveIntegerField(default=1)
+    saved_cost = models.PositiveIntegerField(verbose_name="Цена на момент добавления")
 
     @property
     def full_cost(self):
-        return self.product.cost_with_discount * self.quantity
+        return self.product.cost_for_user(self.user) * self.quantity
 
     class Meta:
         unique_together = ("user", "product")
