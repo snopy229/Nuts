@@ -2,11 +2,13 @@ import json
 from functools import wraps
 
 from django.http import HttpResponse
+from django.shortcuts import get_object_or_404
 from django.template.loader import render_to_string
 from ninja import Router, Form
 from ninja.security import django_auth
 
 from src.checkouts.models import CartItem
+from src.products.models import ProductDetailPage
 
 router = Router()
 
@@ -61,8 +63,14 @@ def render_quantity_input(request, product_id: int, quantity: int) -> HttpRespon
 @router.post("/add-product", auth=django_auth)
 @not_staff
 def add_product(request, product_id: int = Form(...)):
+    product = get_object_or_404(ProductDetailPage, id=product_id)
     cart_item, created = CartItem.objects.get_or_create(
-        user=request.user, product_id=product_id, defaults={"quantity": 1}
+        user=request.user,
+        product_id=product_id,
+        defaults={
+            "quantity": 1,
+            "saved_cost": product.cost_for_user(request.user),
+        },
     )
     if not created:
         pass
