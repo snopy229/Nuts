@@ -2,18 +2,18 @@
 <div class="col-lg-4 col-md-6	col-12">
     <div class="wrap">
         <div class="production__item">
-        {% if product.discount %}
-        	<div class="sticker">
-                <i class="nut-icon icons-actciya"></i>
-                <p>Акция</p>
-            </div>
-        {% endif %}
-        {% if product.is_new %}
-        	<div class="sticker">
+        {% if product.product_tags == "discount"  %}
+               <div class="sticker">
+                   <i class="nut-icon icons-actciya"></i>
+                   <p>{% trans "Акция" %}</p>
+               </div>
+           {% endif %}
+           {% if product.product_tags == "new" %}
+            <div class="sticker">
                 <i class="nut-icon icons-novinka"></i>
-                <p>Новинка</p>
+                <p>{% trans "Новинка" %}</p>
             </div>
-        {% endif %}
+            {% endif %}
 
             <!-- Slider main container -->
             <div class="products-container swiper-container">
@@ -66,16 +66,16 @@
                         <div class="sum_item_title">
                             <p>Цена: </p>
                         </div>
-                        {% if product.discount %}
+                        {% if product.product_tags == "discount" %}
                             <div class="sum_item_new">
-                                <p>{{ product.cost_with_discount }} <i>грн.</i></p>
+                                <p>{{ product.cost_with_discount }} <i>{% trans "грн." %}</i></p>
                             </div>
                             <div class="sum_item_old">
-                                <p>{{ product.cost }} <i>грн.</i></p>
+                                <p>{{ product.cost }} <i>{% trans "грн." %}</i></p>
                             </div>
                             {% else %}
                             <div class="sum_item_new">
-                                <p>{{ product.cost }}<i>грн.</i></p>
+                                <p>{{ product.cost }}<i>{% trans "грн." %}</i></p>
                             </div>
                         {% endif %}
                     </div>
