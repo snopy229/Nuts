@@ -39,4 +39,3 @@ def products_more(
         request=request,
     )
     return html
-    return {"html": html, "has_more": has_more, "next_offset": offset + limit}
