@@ -1,4 +1,5 @@
 # Create your views here.
+from django.db.models import F, Sum
 from django.shortcuts import redirect
 from django.views.generic import ListView, CreateView
 
@@ -54,6 +55,9 @@ class OrderCreateView(CreateView):
         if checkout_form.is_valid() and contact_form.is_valid():
             order = checkout_form.save(commit=False)
             order.user = user
+            order.cost = (
+                CartItem.objects.filter(user=user).aggregate(total=Sum(F("saved_cost") * F("quantity")))["total"] or 0
+            )
             order.save()
             order.cart.set(CartItem.objects.filter(user=user))
 
