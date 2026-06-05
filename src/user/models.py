@@ -1,6 +1,7 @@
 from cities_light.models import City, Country, Region
 from django.contrib.auth.base_user import BaseUserManager
 from django.contrib.auth.models import AbstractUser
+from django.core.validators import MinValueValidator, MaxValueValidator
 from django.db import models
 from phonenumber_field.modelfields import PhoneNumberField
 from wagtail.admin.panels import FieldPanel
@@ -36,7 +37,9 @@ class MyUserManager(BaseUserManager):
 
 class User(AbstractUser):
     username = None
-    discount = models.PositiveIntegerField(default=5, verbose_name="Скидка")
+    discount = models.PositiveIntegerField(
+        default=5, verbose_name="Скидка", validators=[MinValueValidator(1), MaxValueValidator(99)]
+    )
     fullname = models.CharField(max_length=255, verbose_name="ФИО")
     email = models.EmailField(unique=True, verbose_name="Email")
     phone_number = PhoneNumberField(blank=True, null=True, verbose_name="Номер телефона")
