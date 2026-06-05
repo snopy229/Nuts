@@ -130,6 +130,9 @@ class ProductDetailPage(models.Model):
     def cost_with_discount(self):
         request = get_request()
         user = request.user if request else None
+        return self.cost_for_user(user)
+
+    def cost_for_user(self, user):
         if user and user.is_authenticated and user.discount and self.product_tags == ProductTags.DISCOUNT:
             return round(self.cost * (100 - user.discount) / 100)
         return self.cost
