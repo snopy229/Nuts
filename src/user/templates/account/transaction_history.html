@@ -1,5 +1,5 @@
 {% extends "account/base_account.html" %}
-{% block account_history %}
+{% block account_content %}
 	<div class="col-lg-9">
     <div class="row">
         <div class="col-12">
@@ -28,9 +28,9 @@
                 </tbody>
             </table>
         {% else %}
-            <div class="table__message">У вас не было транзакций!</div>
-        {% endif %}
+            <div class="table__message"><p>У вас не было транзакций!</p></div>
+{% endif %}
         </div>
     </div>
     </div>
-{% endblock account_history %}
+{% endblock account_content %}
