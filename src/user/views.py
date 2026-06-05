@@ -217,7 +217,7 @@ class OrderHistoryListView(LoginRequiredMixin, ListView):
 class TransactionListView(LoginRequiredMixin, ListView):
     model = Transaction
     template_name = "account/transaction_history.html"
-    context_object_name = "transaction"
+    context_object_name = "transactions"
 
     def get_queryset(self):
         return Transaction.objects.filter(user=self.request.user)
