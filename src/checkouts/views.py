@@ -1,7 +1,7 @@
 # Create your views here.
 from django.db.models import F, Sum
 from django.shortcuts import redirect
-from django.views.generic import ListView, CreateView
+from django.views.generic import ListView, CreateView, DetailView
 
 from src.checkouts.forms import IndividualOrderContactForm, LegalEntityOrderContactsForm, OrdersForm
 from src.checkouts.models import Orders, ThanksForOrderPage
@@ -76,3 +76,9 @@ class OrderCreateView(CreateView):
     def get_success_url(self):
         page = ThanksForOrderPage.objects.first()
         return redirect(page.url)
+
+
+class OrderDetailView(DetailView):
+    model = Orders
+    template_name = "order.html"
+    context_object_name = "order"
