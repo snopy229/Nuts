@@ -1,5 +1,6 @@
 {% extends "base_template.html" %}
 {% load i18n wagtailcore_tags wagtailimages_tags my_tags %}
+{% block title %} {% translate "Оптовым и корпоративным клиентам" %} {% endblock title %}
 {% block content %}
     {% for block in page.upper_banner %}
         {% image block.value.image original as img %}

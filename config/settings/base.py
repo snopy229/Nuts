@@ -87,6 +87,7 @@ INSTALLED_APPS = [
     "wagtailmedia",
     "django_select2",
     'django_middleware_global_request',
+    'anymail'
 ]
 
 MIDDLEWARE = [
@@ -260,7 +261,7 @@ WAGTAILDOCS_EXTENSIONS = [
     "zip",
 ]
 
-LOGIN_URL = '/'
+LOGIN_URL = reverse_lazy('user:login')
 
 CITIES_LIGHT_TRANSLATION_LANGUAGES = ['uk', 'en', 'ru']
 
@@ -313,6 +314,27 @@ UNFOLD = {
                     },
                 ],
             },
+            {
+                "title": "Пользователи",
+                "separator": True,
+                "items": [
+                    {
+                        "title": "Пользователи",
+                        "icon": "person",
+                        "link": reverse_lazy("admin:user_user_changelist"),
+                    },
+                    {
+                        "title": "Транзакции",
+                        "icon": "person",
+                        "link": reverse_lazy("admin:transaction_transaction_changelist"),
+                    },
+                    {
+                        "title": "Заказы",
+                        "icon": "list_alt",
+                        "link": reverse_lazy("admin:checkouts_orders_changelist")
+                    }
+                ],
+            },
         ],
     },
 }
@@ -320,3 +342,12 @@ UNFOLD = {
 CELERY_BROKER_URL = env("CELERY_BROKER_URL")
 CELERY_BROKER_CONNECTION_RETRY_ON_STARTUP = True
 CELERY_RESULT_BACKEND = env('CELERY_RESULT_BACKEND')
+CELERY_TIMEZONE = 'Europe/Kiev'
+
+EMAIL_BACKEND = "anymail.backends.brevo.EmailBackend"
+ANYMAIL = {
+    "BREVO_API_KEY": env('BREVO_API_KEY'),
+}
+DEFAULT_FROM_EMAIL = env('SENDER_EMAIL')
+
+SERVER_EMAIL = DEFAULT_FROM_EMAIL

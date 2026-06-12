@@ -1,4 +1,6 @@
 {% extends "account/base_account.html" %}
+{% load i18n %}
+{% block title %} {% translate "История транзакций" %} {% endblock title %}
 {% block account_content %}
 	<div class="col-lg-9">
     <div class="row">
@@ -7,9 +9,9 @@
             <table id="table">
                 <thead>
                 <tr>
-                    <th><span>Добавлено</span></th>
-                    <th><span>Статус</span></th>
-                    <th><span>Сумма</span></th>
+                    <th><span>{% translate "Добавлено" %}</span></th>
+                    <th><span>{% translate "Статус" %}</span></th>
+                    <th><span>{% translate "Сумма" %}</span></th>
                 </tr>
                 </thead>
                 <tbody>
@@ -19,8 +21,8 @@
                     <td>{{ transaction.get_status_display }}</td>
                     <td>
                         <div class="icons_wrap">
-                            <span>{{ transaction.cost }} грн.</span>
-                            <a href="#" class="tooltip" title="Просмотреть заказ"><i class="nut-icon icons-view"></i></a>
+                            <span>{{ transaction.order.cost }} грн.</span>
+                            <a href="{% url "checkouts:order_detail" transaction.order.id %}" class="tooltip" title="Просмотреть заказ"><i class="nut-icon icons-view"></i></a>
                         </div>
                     </td>
                 </tr>
@@ -28,7 +30,7 @@
                 </tbody>
             </table>
         {% else %}
-            <div class="table__message"><p>У вас не было транзакций!</p></div>
+            <div class="table__message"><p>{% translate "У вас не было транзакций!" %}</p></div>
 {% endif %}
         </div>
     </div>

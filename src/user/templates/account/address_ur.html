@@ -1,4 +1,5 @@
 {% extends "account/base_account.html" %}
+{% load i18n wagtailimages_tags %}
 {% block account_content %}
 	<div class="col-md-9">
 					<div class="row">
@@ -6,34 +7,37 @@
 							<form action="{% url "user:account_address" %}" method="post">
                                 {% csrf_token %}
 									<div class="form__title">
-											1. Реквизиты
+											{% translate "1. Реквизиты" %}
 									</div>
 									{{ legal_form.edrpou }}
 									<div class="form__title">
-											2. Адрес
+											{% translate "2. Адрес" %}
 									</div>
 									{{ user_torm.country }}
 									{{ user_torm.region }}
 										{{ user_torm.city }}
 										{{ user_torm.address }}
 										<div class="form__title">
-												2. Юридический адрес
+												{% translate "2. Юридический адрес" %}
 										</div>
 										{{ legal_form.country }}
 										{{ legal_form.region }}
 										{{ legal_form.city }}
                                         {{ legal_form.address }}
                                         {{ legal_form.postal_code }}
-											<button class="button" type="submit">Сохранить</button>
+											<button class="button" type="submit">{% translate "Сохранить" %}</button>
 							</form>
 						</div>
 						<div class="col-md-6 align-self-end">
-							<div class="address__img overlay" style="background-image: url(img/28.jpg)">
+                            {% for block in settings.user.UserAccountSettings.banner %}
+                                {% image block.value.photo original as img %}
+							<div class="address__img overlay" style="background-image: url({{ img.url }})">
 								<div class="wrap">
-										<h2>Орех Причерноморья</h2>
-										<p>Единственный в Украине сад совместного выращивания фундука и грецкого ореха</p>
+										<h2>{{ block.value.title }}</h2>
+										<p>{{ block.value_description }}</p>
 								</div>
 							</div>
+                            {% endfor %}
 						</div>
 					</div>
 				</div>

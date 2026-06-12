@@ -1,11 +1,14 @@
 # Create your views here.
+from django.contrib.auth.mixins import LoginRequiredMixin
 from django.db.models import F, Sum
 from django.shortcuts import redirect
 from django.views.generic import ListView, CreateView, DetailView
 
+from src.checkouts.cookie import get_guest_cart, _make_guest_item
 from src.checkouts.forms import IndividualOrderContactForm, LegalEntityOrderContactsForm, OrdersForm
 from src.checkouts.models import Orders, ThanksForOrderPage
 from src.checkouts.models import CartItem
+from src.products.models import ProductDetailPage
 
 
 class CartListView(ListView):
@@ -14,10 +17,22 @@ class CartListView(ListView):
     context_object_name = "cart_items"
 
     def get_queryset(self):
+        if not self.request.user.is_authenticated:
+            return []
         return CartItem.objects.filter(user=self.request.user).select_related("product")
 
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        if not self.request.user.is_authenticated:
+            cart = get_guest_cart(self.request)
+            products = {p.id: p for p in ProductDetailPage.objects.filter(id__in=cart.keys())}
+            context["cart_items"] = [
+                _make_guest_item(products[pid], qty) for pid, qty in cart.items() if pid in products
+            ]
+        return context
 
-class OrderCreateView(CreateView):
+
+class OrderCreateView(LoginRequiredMixin, CreateView):
     model = Orders
     fields = []
 

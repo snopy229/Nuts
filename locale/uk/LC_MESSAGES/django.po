@@ -3,12 +3,11 @@
 # This file is distributed under the same license as the PACKAGE package.
 # FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
 #
-#, fuzzy
 msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2026-06-01 09:43+0000\n"
+"POT-Creation-Date: 2026-06-10 13:05+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -21,181 +20,422 @@ msgstr ""
 "100 > 14) ? 1 : n % 1 == 0 && (n % 10 ==0 || (n % 10 >=5 && n % 10 <=9) || "
 "(n % 100 >=11 && n % 100 <=14 )) ? 2: 3);\n"
 
-#: config/settings/base.py:182
+#: config/settings/base.py:188
 msgid "English"
 msgstr "Англійська"
 
-#: config/settings/base.py:183
+#: config/settings/base.py:189
 msgid "Russian"
 msgstr "Російська"
 
-#: config/settings/base.py:184
+#: config/settings/base.py:190
 msgid "Ukrainian"
 msgstr "Українська"
 
-#: src/b2b_client/templates/b2b_client_page.html:64
+#: src/b2b_client/templates/b2b_client_page.html:3
+#: src/core/templates/base_template.html:211
+#: src/core/templates/base_template.html:344
+msgid "Оптовым и корпоративным клиентам"
+msgstr "Оптовим та корпоративним клієнтам"
+
+#: src/b2b_client/templates/b2b_client_page.html:58
 msgid "Крупные супермаркеты"
 msgstr "Великі супермаркети"
 
-#: src/b2b_client/templates/b2b_client_page.html:65
+#: src/b2b_client/templates/b2b_client_page.html:59
 msgid "Розничные магазины"
 msgstr "Роздрібні магазини"
 
-#: src/b2b_client/templates/b2b_client_page.html:66
+#: src/b2b_client/templates/b2b_client_page.html:60
 msgid "Компании HoReCa"
 msgstr "Компанії HoReCa"
 
-#: src/b2b_client/templates/b2b_client_page.html:67
+#: src/b2b_client/templates/b2b_client_page.html:61
 msgid "Фитнес и спорт клубы"
 msgstr "Фітнес і спорт клуби"
 
-#: src/b2b_client/templates/b2b_client_page.html:68
+#: src/b2b_client/templates/b2b_client_page.html:62
 msgid "Кондитерские и пекарни"
 msgstr "Кондитерські та пекарні"
+
+#: src/checkouts/enum/delivert_type.py:6
+msgid "Новая почта (по Украине оплата за счет Клиента)"
+msgstr "Нова пошта (по Україні оплата за рахунок Клієнта)"
+
+#: src/checkouts/enum/delivert_type.py:7
+msgid "Курьер по Одессе"
+msgstr "Кур'єр по Одесі"
+
+#: src/checkouts/enum/delivert_type.py:8
+msgid "Самовывоз"
+msgstr "Самовивіз"
+
+#: src/checkouts/enum/order_status.py:6
+msgid "В ожидании"
+msgstr "В очікуванні"
+
+#: src/checkouts/enum/order_status.py:7
+msgid "Отправлено"
+msgstr "Відправлено"
+
+#: src/checkouts/enum/payment_type.py:6
+msgid "Безналичный расчет"
+msgstr "Безготівковий розрахунок"
+
+#: src/checkouts/enum/payment_type.py:7
+msgid "LiqPay / Приват24"
+msgstr "LiqPay / Приват24"
+
+#: src/checkouts/enum/payment_type.py:8
+msgid "Наличными при получении"
+msgstr "Готівкою при отриманні"
+
+#: src/checkouts/models.py:79
+msgid "ФИО"
+msgstr "ПІБ"
+
+#: src/checkouts/models.py:80
+msgid "E-mail"
+msgstr "E-mail"
+
+#: src/checkouts/models.py:81 src/checkouts/models.py:93
+msgid "Телефон"
+msgstr "Телефон"
+
+#: src/checkouts/models.py:90
+msgid "Компания"
+msgstr "Компанія"
+
+#: src/checkouts/models.py:91
+msgid "Контактное лицо"
+msgstr "Контактна особа"
+
+#: src/checkouts/models.py:92 src/user/forms.py:174
+msgid "Email"
+msgstr "Email"
+
+#: src/checkouts/templates/cart.html:3 src/checkouts/templates/cart.html:13
+#: src/checkouts/templates/cart.html:24
+#: src/checkouts/templates/checkouts_fiz.html:13
+#: src/checkouts/templates/checkouts_ur.html:13
+msgid "Корзина"
+msgstr "Кошик"
+
+#: src/checkouts/templates/cart.html:10
+#: src/checkouts/templates/checkouts_fiz.html:10
+#: src/checkouts/templates/checkouts_ur.html:10
+#: src/checkouts/templates/order.html:10
+#: src/user/templates/account/base_account.html:10
+msgid "Главная"
+msgstr "Головна"
+
+#: src/checkouts/templates/cart.html:29
+#: src/checkouts/templates/checkouts_fiz.html:32
+#: src/checkouts/templates/checkouts_ur.html:32
+#: src/checkouts/templates/order.html:29
+msgid "Ваш личный менеджер Олег"
+msgstr "Ваш особистий менеджер Олег"
+
+#: src/checkouts/templates/cart.html:38
+#: src/checkouts/templates/checkouts_fiz.html:41
+#: src/checkouts/templates/checkouts_ur.html:41
+#: src/checkouts/templates/order.html:38
+msgid "Товар"
+msgstr "Товар"
+
+#: src/checkouts/templates/cart.html:39
+#: src/checkouts/templates/checkouts_fiz.html:42
+#: src/checkouts/templates/checkouts_ur.html:42
+#: src/checkouts/templates/order.html:39
+msgid "Кол - во"
+msgstr "К-сть"
+
+#: src/checkouts/templates/cart.html:40
+#: src/checkouts/templates/checkouts_fiz.html:43
+#: src/checkouts/templates/checkouts_ur.html:43
+#: src/checkouts/templates/order.html:40
+msgid "Цена за товар"
+msgstr "Ціна за товар"
+
+#: src/checkouts/templates/cart.html:41
+#: src/checkouts/templates/checkouts_fiz.html:44
+#: src/checkouts/templates/checkouts_ur.html:44
+#: src/checkouts/templates/order.html:41
+msgid "Итоговая стоимость"
+msgstr "Підсумкова вартість"
+
+#: src/checkouts/templates/cart.html:77 src/checkouts/templates/cart.html:78
+#: src/checkouts/templates/cart.html:97
+#: src/checkouts/templates/checkouts_fiz.html:80
+#: src/checkouts/templates/checkouts_fiz.html:83
+#: src/checkouts/templates/checkouts_fiz.html:104
+#: src/checkouts/templates/checkouts_ur.html:80
+#: src/checkouts/templates/checkouts_ur.html:83
+#: src/checkouts/templates/checkouts_ur.html:104
+#: src/checkouts/templates/order.html:77 src/checkouts/templates/order.html:78
+#: src/checkouts/templates/order.html:97 src/main/templates/main_page.html:96
+#: src/main/templates/main_page.html:99 src/main/templates/main_page.html:103
+#: src/products/templates/partials/product_block.html:71
+#: src/products/templates/partials/product_block.html:74
+#: src/products/templates/partials/product_block.html:78
+#: src/products/templates/products_detail_page.html:139
+#: src/products/templates/products_detail_page.html:142
+#: src/products/templates/products_detail_page.html:146
+msgid "грн."
+msgstr "грн."
+
+#: src/checkouts/templates/cart.html:88
+msgid "Продолжить покупки"
+msgstr "Продовжити покупки"
+
+#: src/checkouts/templates/cart.html:94
+#: src/checkouts/templates/checkouts_fiz.html:101
+#: src/checkouts/templates/checkouts_ur.html:101
+#: src/checkouts/templates/order.html:94
+msgid "Всего"
+msgstr "Всього"
+
+#: src/checkouts/templates/cart.html:102 src/checkouts/templates/order.html:102
+msgid "Оформить заказ"
+msgstr "Оформити замовлення"
+
+#: src/checkouts/templates/cart.html:112
+msgid "Для оформления заказа необходимо"
+msgstr "Для оформлення замовлення необхідно"
+
+#: src/checkouts/templates/cart.html:114
+msgid "Авторизоваться"
+msgstr "Авторизуватися"
+
+#: src/checkouts/templates/cart.html:115
+msgid "или"
+msgstr "або"
+
+#: src/checkouts/templates/cart.html:116
+msgid "Зарегистрироваться"
+msgstr "Зареєструватися"
+
+#: src/checkouts/templates/checkouts_fiz.html:3
+#: src/checkouts/templates/checkouts_fiz.html:16
+#: src/checkouts/templates/checkouts_fiz.html:27
+#: src/checkouts/templates/checkouts_ur.html:3
+#: src/checkouts/templates/checkouts_ur.html:16
+#: src/checkouts/templates/checkouts_ur.html:27
+msgid "Оформление заказа"
+msgstr "Оформлення замовлення"
+
+#: src/checkouts/templates/checkouts_fiz.html:124
+#: src/checkouts/templates/checkouts_ur.html:124
+#: src/user/templates/registration.html:28
+msgid "1. Контактные данные"
+msgstr "1. Контактні дані"
+
+#: src/checkouts/templates/checkouts_fiz.html:133
+#: src/checkouts/templates/checkouts_ur.html:135
+msgid "2. Способ доставки"
+msgstr "2. Спосіб доставки"
+
+#: src/checkouts/templates/checkouts_fiz.html:147
+#: src/checkouts/templates/checkouts_ur.html:149
+msgid "БЕСПЛАТНО"
+msgstr "БЕЗКОШТОВНО"
+
+#: src/checkouts/templates/checkouts_fiz.html:169
+#: src/checkouts/templates/checkouts_ur.html:171
+msgid "3. Способ оплаты"
+msgstr "3. Спосіб оплати"
+
+#: src/checkouts/templates/checkouts_fiz.html:182
+#: src/checkouts/templates/checkouts_ur.html:184
+#: src/user/templates/account/recovery_password.html:14
+#: src/user/templates/registration.html:97
+#: src/user/templates/registration.html:197
+msgid "Продолжить"
+msgstr "Продовжити"
+
+#: src/checkouts/templates/order.html:3
+msgid "Заказ"
+msgstr "Замовлення"
+
+#: src/checkouts/templates/order.html:13 src/checkouts/templates/order.html:24
+msgid "Заказ №"
+msgstr "Замовлення №"
+
+#: src/checkouts/templates/thanks_for_order.html:3
+msgid "Спасибо за заказ"
+msgstr "Дякуємо за замовлення"
+
+#: src/core/templates/404_page.html:4 src/core/templates/404_page.html:19
+msgid "Страница не найдена"
+msgstr "Сторінку не знайдено"
+
+#: src/core/templates/404_page.html:20
+msgid "Вернуться на Главную страницу"
+msgstr "Повернутися на Головну сторінку"
 
 #: src/core/templates/admin/index.html:10
 msgid "Django site admin"
 msgstr "Django site admin"
 
-#: src/core/templates/base_template.html:55
-#: src/core/templates/base_template.html:189
+#: src/core/templates/base_template.html:56
+#: src/core/templates/base_template.html:193
 #, python-format
 msgid "Ваша персональная скидка - 5%%"
 msgstr "Ваша персональна знижка - 5%%"
 
-#: src/core/templates/base_template.html:62 src/user/templates/login.html:16
+#: src/core/templates/base_template.html:63 src/user/templates/login.html:3
+#: src/user/templates/login.html:16
 msgid "Вход"
 msgstr "Вхід"
 
-#: src/core/templates/base_template.html:65 src/user/templates/login.html:3
-#: src/user/templates/login.html:40 src/user/templates/registration.html:3
+#: src/core/templates/base_template.html:66 src/user/templates/login.html:40
+#: src/user/templates/registration.html:3
 #: src/user/templates/registration.html:13
 #: src/user/templates/registration.html:24
 #: src/user/templates/terms-of-use.html:13
 msgid "Регистрация"
 msgstr "Реєстрація"
 
-#: src/core/templates/base_template.html:69
+#: src/core/templates/base_template.html:70
+#: src/user/templates/account/base_account.html:3
+#: src/user/templates/account/base_account.html:24
 msgid "Учетная запись"
 msgstr "Обліковий запис"
 
-#: src/core/templates/base_template.html:77
+#: src/core/templates/base_template.html:78
 msgid "Выход"
 msgstr "Вихід"
 
-#: src/core/templates/base_template.html:126
-#: src/core/templates/base_template.html:292
-#: src/news_and_articles/templates/news_and_articles_detail.html:93
+#: src/core/templates/base_template.html:127
+#: src/core/templates/base_template.html:328
+#: src/news_and_articles/templates/news_and_articles_detail.html:89
 msgid "ОРЕХ ПРИЧЕРНОМОРЬЯ"
 msgstr "ГОРІХ ПРИЧОРНОМОР'Я"
 
-#: src/core/templates/base_template.html:166
-#: src/core/templates/base_template.html:171
+#: src/core/templates/base_template.html:167
+#: src/core/templates/base_template.html:172
 msgid "Заказать звонок"
 msgstr "Замовити дзвінок"
 
-#: src/core/templates/base_template.html:174
+#: src/core/templates/base_template.html:175
 msgid "Ждем Вашего звонка ежедневно с 9 до 18"
 msgstr "Чекаємо Вашого дзвінка щодня з 9 до 18"
 
-#: src/core/templates/base_template.html:198
-#: src/core/templates/base_template.html:299
+#: src/core/templates/base_template.html:202
+#: src/core/templates/base_template.html:335
 msgid "Магазин"
 msgstr "Магазин"
 
-#: src/core/templates/base_template.html:201
-#: src/core/templates/base_template.html:302
+#: src/core/templates/base_template.html:205
+#: src/core/templates/base_template.html:338
 msgid "О производстве"
 msgstr "Про виробництво"
 
-#: src/core/templates/base_template.html:204
-#: src/core/templates/base_template.html:305
+#: src/core/templates/base_template.html:208
+#: src/core/templates/base_template.html:341
 msgid "Оплата и доставка"
 msgstr "Оплата і доставка"
 
-#: src/core/templates/base_template.html:207
-#: src/core/templates/base_template.html:308
-msgid "Оптовым и корпоративным клиентам"
-msgstr "Оптовим та корпоративним клієнтам"
-
-#: src/core/templates/base_template.html:210
-#: src/core/templates/base_template.html:311
+#: src/core/templates/base_template.html:214
+#: src/core/templates/base_template.html:347
 msgid "Новости и статьи"
 msgstr "Новини та статті"
 
-#: src/core/templates/base_template.html:213
-#: src/core/templates/base_template.html:231
-#: src/core/templates/base_template.html:314
+#: src/core/templates/base_template.html:217
+#: src/core/templates/base_template.html:267
+#: src/core/templates/base_template.html:350
 msgid "Контакты"
 msgstr "Контакти"
 
-#: src/core/templates/base_template.html:267
+#: src/core/templates/base_template.html:303
 msgid "Офис и отдел продаж"
 msgstr "Офіс та відділ продажів"
 
-#: src/core/templates/base_template.html:271
+#: src/core/templates/base_template.html:307
 msgid "Производство"
 msgstr "Виробництво"
 
-#: src/core/templates/base_template.html:326
+#: src/core/templates/base_template.html:362
 msgid "Разработано"
 msgstr "Розроблено"
 
-#: src/core/templates/base_template.html:329
+#: src/core/templates/base_template.html:365
 msgid "Copyright © 2019. Все права защищены"
 msgstr "Copyright © 2019. Всі права захищені"
 
+#: src/gallery/templates/partials/gallery.html:4
+msgid "Галерея"
+msgstr "Галерея"
+
+#: src/gallery/templates/partials/gallery.html:5
+msgid "Кадры социальной активности компании"
+msgstr "Кадри соціальної активності компанії"
+
+#: src/gallery/templates/partials/gallery.html:22
+#: src/gallery/templates/partials/gallery_more.html:14
+#: src/gallery/templates/partials/gallery_one.html:16
+#: src/products/templates/partials/products.html:16
+#: src/products/templates/products_page.html:142
+msgid "Показать ещё"
+msgstr "Показати ще"
+
 #: src/main/templates/main_page.html:36
+#: src/products/templates/partials/product_block.html:8
+#: src/products/templates/products_detail_page.html:33
 msgid "Акция"
 msgstr "Акція"
 
 #: src/main/templates/main_page.html:42
+#: src/products/templates/partials/product_block.html:14
+#: src/products/templates/products_detail_page.html:39
 msgid "Новинка"
 msgstr "Новинка"
 
 #: src/main/templates/main_page.html:64
+#: src/products/templates/partials/product_block.html:39
+#: src/products/templates/products_detail_page.html:72
 msgid "Арт:"
 msgstr "Арт:"
 
 #: src/main/templates/main_page.html:75
-#: src/products/templates/products_page.html:56
+#: src/products/templates/partials/product_block.html:50
+#: src/products/templates/products_page.html:49
 msgid "Масса"
 msgstr "Маса"
 
 #: src/main/templates/main_page.html:84
+#: src/products/templates/partials/product_block.html:59
+#: src/products/templates/products_detail_page.html:175
 msgid "Упаковка"
 msgstr "Упаковка"
 
 #: src/main/templates/main_page.html:92
+#: src/products/templates/partials/product_block.html:67
 msgid "Цена:"
 msgstr "Ціна:"
 
-#: src/main/templates/main_page.html:96 src/main/templates/main_page.html:99
-#: src/main/templates/main_page.html:103
-msgid "грн."
-msgstr "грн."
-
-#: src/main/templates/main_page.html:109
+#: src/main/templates/main_page.html:114
+#: src/products/templates/partials/product_block.html:89
 msgid "Купить"
 msgstr "Купити"
 
-#: src/main/templates/main_page.html:121
+#: src/main/templates/main_page.html:126
 msgid "Перейти в магазин"
 msgstr "Перейти до магазину"
 
-#: src/main/templates/main_page.html:133
+#: src/main/templates/main_page.html:138
 msgid "Подробнее"
 msgstr "Детальніше"
 
-#: src/main/templates/main_page.html:177
+#: src/main/templates/main_page.html:182
 msgid "Смотреть видео о производстве"
 msgstr "Дивитися відео про виробництво"
 
-#: src/main/templates/main_page.html:189
+#: src/main/templates/main_page.html:194
 msgid "О пользе продукта"
 msgstr "Про користь продукту"
 
-#: src/main/templates/main_page.html:190
+#: src/main/templates/main_page.html:195
 msgid ""
 "Каждый вид ореха содержит свой неповторимый уникальный баланс витаминов, и "
 "микроэлементов"
@@ -203,185 +443,378 @@ msgstr ""
 "Кожен вид горіха містить свій неповторний унікальний баланс вітамінів і "
 "мікроелементів"
 
-#: src/main/templates/main_page.html:267
-#: src/production/templates/production_page.html:146
+#: src/main/templates/main_page.html:272
+#: src/production/templates/production_page.html:138
 msgid "Новости"
 msgstr "Новини"
 
-#: src/main/templates/main_page.html:268
-#: src/production/templates/production_page.html:147
+#: src/main/templates/main_page.html:273
+#: src/production/templates/production_page.html:139
 msgid "Свежие новости и полезная информация"
 msgstr "Свіжі новини та корисна інформація"
 
-#: src/main/templates/main_page.html:305
-#: src/news_and_articles/templates/news_and_articles.html:59
-#: src/news_and_articles/templates/news_and_articles.html:91
-#: src/news_and_articles/templates/news_and_articles_detail.html:86
-#: src/production/templates/production_page.html:172
-#: src/production/templates/production_page.html:189
+#: src/main/templates/main_page.html:310
+#: src/news_and_articles/templates/news_and_articles.html:52
+#: src/news_and_articles/templates/news_and_articles.html:84
+#: src/news_and_articles/templates/news_and_articles_detail.html:82
+#: src/production/templates/production_page.html:164
+#: src/production/templates/production_page.html:181
 msgid "Читать"
 msgstr "Читати"
 
-#: src/main/templates/main_page.html:316
-#: src/production/templates/production_page.html:201
+#: src/main/templates/main_page.html:321
+#: src/production/templates/production_page.html:193
 msgid "Смотреть все новости"
 msgstr "Дивитися всі новини"
 
-#: src/news_and_articles/templates/news_and_articles_detail.html:43
-#: src/payment_and_delivery/templates/payment_and_delivery.html:68
-#: src/payment_and_delivery/templates/payment_and_delivery.html:94
-#: src/payment_and_delivery/templates/payment_and_delivery.html:120
+#: src/news_and_articles/templates/news_and_articles_detail.html:39
+#: src/payment_and_delivery/templates/payment_and_delivery.html:61
+#: src/payment_and_delivery/templates/payment_and_delivery.html:87
+#: src/payment_and_delivery/templates/payment_and_delivery.html:113
 msgid "Изображение"
 msgstr "Зображення"
 
-#: src/news_and_articles/templates/news_and_articles_detail.html:55
+#: src/news_and_articles/templates/news_and_articles_detail.html:51
 msgid "Последние публикации"
 msgstr "Останні публікації"
 
-#: src/news_and_articles/templates/news_and_articles_detail.html:76
+#: src/news_and_articles/templates/news_and_articles_detail.html:72
 msgid "По умолчанию"
 msgstr "За замовчуванням"
 
-#: src/news_and_articles/templates/news_and_articles_detail.html:96
+#: src/news_and_articles/templates/news_and_articles_detail.html:92
 msgid "Присоединяйтесь к нам в соц. сетях"
 msgstr "Приєднуйтесь до нас у соц. мережах"
 
-#: src/payment_and_delivery/templates/payment_and_delivery.html:37
+#: src/payment_and_delivery/templates/payment_and_delivery.html:30
 msgid "Оплата заказа"
 msgstr "Оплата замовлення"
 
-#: src/payment_and_delivery/templates/payment_and_delivery.html:38
+#: src/payment_and_delivery/templates/payment_and_delivery.html:31
 msgid "Доставка партии"
 msgstr "Доставка партії"
 
-#: src/payment_and_delivery/templates/payment_and_delivery.html:39
+#: src/payment_and_delivery/templates/payment_and_delivery.html:32
 msgid "Возврат товара"
 msgstr "Повернення товару"
 
-#: src/payment_and_delivery/templates/payment_and_delivery.html:59
-#: src/payment_and_delivery/templates/payment_and_delivery.html:85
-#: src/payment_and_delivery/templates/payment_and_delivery.html:111
+#: src/payment_and_delivery/templates/payment_and_delivery.html:52
+#: src/payment_and_delivery/templates/payment_and_delivery.html:78
+#: src/payment_and_delivery/templates/payment_and_delivery.html:104
 msgid "Иконка"
 msgstr "Іконка"
 
-#: src/production/templates/production_page.html:54
+#: src/production/templates/production_page.html:46
 msgid "Фото галереи"
 msgstr "Фото галереї"
 
-#: src/production/templates/production_page.html:63
+#: src/production/templates/production_page.html:55
 msgid "Превью видео"
 msgstr "Прев'ю відео"
 
-#: src/production/templates/production_page.html:99
+#: src/production/templates/production_page.html:91
 msgid "Написать нам"
 msgstr "Написати нам"
 
-#: src/production/templates/production_page.html:107
+#: src/production/templates/production_page.html:99
 msgid "История предприятия"
 msgstr "Історія підприємства"
 
-#: src/products/templates/products_page.html:42
+#: src/products/enum/product_tags.py:6
+msgid "Нету"
+msgstr "Немає"
+
+#: src/products/enum/product_tags.py:7
+msgid "Новый"
+msgstr "Новий"
+
+#: src/products/enum/product_tags.py:8
+msgid "Скидка"
+msgstr "Знижка"
+
+#: src/products/templates/products_detail_page.html:3
+msgid "Страница товара"
+msgstr "Сторінка товару"
+
+#: src/products/templates/products_detail_page.html:85
+msgid "Состав:"
+msgstr "Склад:"
+
+#: src/products/templates/products_detail_page.html:95
+msgid "Масса нетто:"
+msgstr "Маса нетто:"
+
+#: src/products/templates/products_detail_page.html:105
+msgid "Энергетическая ценность:"
+msgstr "Енергетична цінність:"
+
+#: src/products/templates/products_detail_page.html:115
+msgid "Срок годности:"
+msgstr "Термін придатності:"
+
+#: src/products/templates/products_detail_page.html:128
+#, python-format
+msgid ""
+"Хранить в помещениях, защищенных от попадания прямых, солнечных лучей, при "
+"температуре от +3 °C до +20 °C, и относительной влажности воздуха не более "
+"75 %%"
+msgstr ""
+"Зберігати в приміщеннях, захищених від попадання прямих сонячних променів, "
+"при температурі від +3 °C до +20 °C, і відносній вологості повітря не "
+"більше 75 %%"
+
+#: src/products/templates/products_detail_page.html:135
+msgid "Ваша цена:"
+msgstr "Ваша ціна:"
+
+#: src/products/templates/products_detail_page.html:156
+msgid "Заказать"
+msgstr "Замовити"
+
+#: src/products/templates/products_detail_page.html:174
+msgid "Описание"
+msgstr "Опис"
+
+#: src/products/templates/products_detail_page.html:176
+msgid "Оплата"
+msgstr "Оплата"
+
+#: src/products/templates/products_detail_page.html:177
+msgid "Доставка"
+msgstr "Доставка"
+
+#: src/products/templates/products_page.html:35
 msgid "Фильтр"
 msgstr "Фільтр"
 
-#: src/products/templates/products_page.html:48
+#: src/products/templates/products_page.html:41
 msgid "Вкус"
 msgstr "Смак"
 
-#: src/products/templates/products_page.html:69
+#: src/products/templates/products_page.html:62
+#: src/user/templates/account/order_history.html:15
 msgid "Стоимость"
 msgstr "Вартість"
 
-#: src/products/templates/products_page.html:80
+#: src/products/templates/products_page.html:73
 msgid "Применить"
 msgstr "Застосувати"
 
-#: src/products/templates/products_page.html:84
+#: src/products/templates/products_page.html:77
 msgid "Сбросить"
 msgstr "Скинути"
 
-#: src/products/templates/products_page.html:104
+#: src/products/templates/products_page.html:97
 msgid "Экологически чистый грецкий орех"
 msgstr "Екологічно чистий волоський горіх"
 
-#: src/products/templates/products_page.html:116
+#: src/products/templates/products_page.html:109
 msgid "Фото производства"
 msgstr "Фото виробництва"
 
-#: src/user/forms.py:11 src/user/forms.py:112 src/user/forms.py:121
-#: src/user/forms.py:192 src/user/forms.py:215
+#: src/transaction/enum/transaction_status.py:6
+msgid "Платеж принят"
+msgstr "Платіж прийнято"
+
+#: src/transaction/enum/transaction_status.py:7
+msgid "В ожидании оплаты"
+msgstr "В очікуванні оплати"
+
+#: src/user/forms.py:14 src/user/forms.py:115 src/user/forms.py:124
+#: src/user/forms.py:195 src/user/forms.py:241
 msgid "Страна"
 msgstr "Країна"
 
-#: src/user/forms.py:14 src/user/forms.py:115 src/user/forms.py:124
-#: src/user/forms.py:193 src/user/forms.py:218
+#: src/user/forms.py:17 src/user/forms.py:118 src/user/forms.py:127
+#: src/user/forms.py:196 src/user/forms.py:244
 #: src/user/templates/registration.html:209
 msgid "Область"
 msgstr "Область"
 
-#: src/user/forms.py:17 src/user/forms.py:118 src/user/forms.py:127
-#: src/user/forms.py:194 src/user/forms.py:221
+#: src/user/forms.py:20 src/user/forms.py:121 src/user/forms.py:130
+#: src/user/forms.py:197 src/user/forms.py:247
 #: src/user/templates/registration.html:210
 msgid "Город*"
 msgstr "Місто*"
 
-#: src/user/forms.py:37
+#: src/user/forms.py:40 src/user/forms.py:283
 msgid "ФИО*"
 msgstr "ПІБ*"
 
-#: src/user/forms.py:43
+#: src/user/forms.py:46 src/user/forms.py:284 src/user/forms.py:314
 msgid "Email*"
 msgstr "Email*"
 
-#: src/user/forms.py:49
+#: src/user/forms.py:52 src/user/forms.py:285
 msgid "Телефон*"
 msgstr "Телефон*"
 
-#: src/user/forms.py:55 src/user/forms.py:152 src/user/forms.py:165
-#: src/user/forms.py:207 src/user/forms.py:241
+#: src/user/forms.py:58 src/user/forms.py:155 src/user/forms.py:168
+#: src/user/forms.py:210 src/user/forms.py:267
+#: src/user/templates/account/address_fiz.html:3
+#: src/user/templates/account/address_fiz.html:11
+#: src/user/templates/account/base_account.html:13
 msgid "Адрес"
 msgstr "Адреса"
 
-#: src/user/forms.py:64 src/user/templates/registration.html:84
+#: src/user/forms.py:67 src/user/forms.py:292
+#: src/user/templates/account/info_fiz.html:22
+#: src/user/templates/account/info_fiz.html:26
+#: src/user/templates/account/info_ur.html:21
+#: src/user/templates/registration.html:84
 #: src/user/templates/registration.html:141
 msgid "Загрузить фото"
 msgstr "Завантажити фото"
 
-#: src/user/forms.py:73
+#: src/user/forms.py:76
 msgid "Пароль*"
 msgstr "Пароль*"
 
-#: src/user/forms.py:79
+#: src/user/forms.py:82
 msgid "Подтвердите пароль*"
 msgstr "Підтвердіть пароль*"
 
-#: src/user/forms.py:147 src/user/forms.py:236
+#: src/user/forms.py:150 src/user/forms.py:262
 msgid "ОКПО"
 msgstr "ЄДРПОУ"
 
-#: src/user/forms.py:157 src/user/forms.py:246
+#: src/user/forms.py:160 src/user/forms.py:272
 msgid "Индекс"
 msgstr "Індекс"
 
-#: src/user/forms.py:162
+#: src/user/forms.py:165
 msgid "ЕДРПО"
 msgstr "ЄДРПОУ"
 
-#: src/user/forms.py:171
-msgid "Email"
-msgstr "Email"
-
-#: src/user/forms.py:175
+#: src/user/forms.py:178
 msgid "E-mail*"
 msgstr "E-mail*"
 
-#: src/user/forms.py:181
+#: src/user/forms.py:184 src/user/templates/account/base_account.html:44
+#: src/user/templates/account/recovery_password.html:8
 msgid "Пароль"
 msgstr "Пароль"
 
-#: src/user/forms.py:185
+#: src/user/forms.py:188
 msgid "Введите ваш пароль*"
 msgstr "Введіть ваш пароль*"
+
+#: src/user/forms.py:307
+msgid "Текущий пароль*"
+msgstr "Поточний пароль*"
+
+#: src/user/forms.py:308
+msgid "Новый пароль*"
+msgstr "Новий пароль*"
+
+#: src/user/forms.py:309
+msgid "Повторите пароль*"
+msgstr "Повторіть пароль*"
+
+#: src/user/forms.py:317
+msgid "Сброс пароля"
+msgstr "Скидання пароля"
+
+#: src/user/forms.py:325
+msgid "новый пароль*"
+msgstr "новий пароль*"
+
+#: src/user/forms.py:326
+msgid "Подтвердите новый пароль*"
+msgstr "Підтвердіть новий пароль*"
+
+#: src/user/templates/account/address_fiz.html:21
+#: src/user/templates/account/address_ur.html:28
+#: src/user/templates/account/info_fiz.html:13
+#: src/user/templates/account/info_ur.html:14
+msgid "Сохранить"
+msgstr "Зберегти"
+
+#: src/user/templates/account/address_ur.html:10
+#: src/user/templates/registration.html:152
+#: src/user/templates/registration.html:174
+msgid "1. Реквизиты"
+msgstr "1. Реквізити"
+
+#: src/user/templates/account/address_ur.html:14
+#: src/user/templates/registration.html:62
+#: src/user/templates/registration.html:119
+msgid "2. Адрес"
+msgstr "2. Адреса"
+
+#: src/user/templates/account/address_ur.html:21
+#: src/user/templates/registration.html:159
+msgid "2. Юридический адрес"
+msgstr "2. Юридична адреса"
+
+#: src/user/templates/account/base_account.html:29
+msgid "Ваш личный менеджер"
+msgstr "Ваш особистий менеджер"
+
+#: src/user/templates/account/base_account.html:36
+msgid "Мои заказы"
+msgstr "Мої замовлення"
+
+#: src/user/templates/account/base_account.html:38
+#: src/user/templates/account/order_history.html:3
+msgid "История заказов"
+msgstr "Історія замовлень"
+
+#: src/user/templates/account/base_account.html:39
+#: src/user/templates/account/transaction_history.html:3
+msgid "История транзакций"
+msgstr "Історія транзакцій"
+
+#: src/user/templates/account/base_account.html:41
+msgid "Моя учетная запись"
+msgstr "Мій обліковий запис"
+
+#: src/user/templates/account/base_account.html:43
+#: src/user/templates/account/info_fiz.html:3
+#: src/user/templates/account/info_ur.html:3
+msgid "Контактная информация"
+msgstr "Контактна інформація"
+
+#: src/user/templates/account/base_account.html:45
+msgid "Адрес и реквизиты"
+msgstr "Адреса та реквізити"
+
+#: src/user/templates/account/order_history.html:11
+msgid "№ Заказа"
+msgstr "№ Замовлення"
+
+#: src/user/templates/account/order_history.html:12
+msgid "Дата"
+msgstr "Дата"
+
+#: src/user/templates/account/order_history.html:13
+msgid "Кол - во товаров"
+msgstr "К-сть товарів"
+
+#: src/user/templates/account/order_history.html:14
+#: src/user/templates/account/transaction_history.html:13
+msgid "Статус"
+msgstr "Статус"
+
+#: src/user/templates/account/order_history.html:16
+msgid "Функции"
+msgstr "Функції"
+
+#: src/user/templates/account/recovery_password.html:3
+msgid "Смена пароля"
+msgstr "Зміна пароля"
+
+#: src/user/templates/account/transaction_history.html:12
+msgid "Добавлено"
+msgstr "Додано"
+
+#: src/user/templates/account/transaction_history.html:14
+msgid "Сумма"
+msgstr "Сума"
+
+#: src/user/templates/account/transaction_history.html:33
+msgid "У вас не было транзакций!"
+msgstr "У вас не було транзакцій!"
 
 #: src/user/templates/login.html:30
 msgid "Войти в личный кабинет"
@@ -395,9 +828,41 @@ msgstr "Забули пароль?"
 msgid "Войти"
 msgstr "Увійти"
 
-#: src/user/templates/registration.html:28
-msgid "1. Контактные данные"
-msgstr "1. Контактні дані"
+#: src/user/templates/password_change_form.html:3
+#: src/user/templates/password_change_form.html:9
+#: src/user/templates/password_reset_done.html:3
+#: src/user/templates/password_reset_form.html:3
+#: src/user/templates/password_reset_form.html:9
+#: src/user/templates/recovery_password.html:3
+#: src/user/templates/recovery_password.html:9
+msgid "Восстановление пароля"
+msgstr "Відновлення пароля"
+
+#: src/user/templates/password_change_form.html:11
+msgid "Введите новый пароль"
+msgstr "Введіть новий пароль"
+
+#: src/user/templates/password_change_form.html:17
+msgid "Сменить пароль"
+msgstr "Змінити пароль"
+
+#: src/user/templates/password_reset_complete.html:3
+msgid "Пароль изменен"
+msgstr "Пароль змінено"
+
+#: src/user/templates/password_reset_form.html:11
+#: src/user/templates/recovery_password.html:11
+msgid ""
+"Введите Email Вашего аккаунта, Вам будет выслана ссылка для восстановления "
+"пароля."
+msgstr ""
+"Введіть Email Вашого облікового запису, Вам буде надіслано посилання для "
+"відновлення пароля."
+
+#: src/user/templates/password_reset_form.html:16
+#: src/user/templates/recovery_password.html:15
+msgid "Отправить ссылку"
+msgstr "Надіслати посилання"
 
 #: src/user/templates/registration.html:37
 msgid "Физическое лицо"
@@ -406,11 +871,6 @@ msgstr "Фізична особа"
 #: src/user/templates/registration.html:40
 msgid "Юридическое лицо"
 msgstr "Юридична особа"
-
-#: src/user/templates/registration.html:62
-#: src/user/templates/registration.html:119
-msgid "2. Адрес"
-msgstr "2. Адреса"
 
 #: src/user/templates/registration.html:73
 #: src/user/templates/registration.html:130
@@ -431,11 +891,6 @@ msgstr "Я згоден з"
 msgid "Условиями регистрации"
 msgstr "Умовами реєстрації"
 
-#: src/user/templates/registration.html:97
-#: src/user/templates/registration.html:197
-msgid "Продолжить"
-msgstr "Продовжити"
-
 #: src/user/templates/registration.html:145
 msgid "Юр. лицо"
 msgstr "Юр. особа"
@@ -444,233 +899,31 @@ msgstr "Юр. особа"
 msgid "ФОП"
 msgstr "ФОП"
 
-#: src/user/templates/registration.html:152
-#: src/user/templates/registration.html:174
-msgid "1. Реквизиты"
-msgstr "1. Реквізити"
-
-#: src/user/templates/registration.html:159
-msgid "2. Юридический адрес"
-msgstr "2. Юридична адреса"
-
 #: src/user/templates/registration.html:178
 msgid "2. Адрес ФОП"
 msgstr "2. Адреса ФОП"
+
+#: src/user/templates/reset_password_email.html:3
+msgid "Привіт"
+msgstr "Привіт"
+
+#: src/user/templates/reset_password_email.html:5
+msgid "Хтось запросив скидання пароля для акаунту з цією поштою."
+msgstr "Хтось запросив скидання пароля для акаунту з цією поштою."
+
+#: src/user/templates/reset_password_email.html:6
+msgid "Якщо це були ви, перейдіть за посиланням:"
+msgstr "Якщо це були ви, перейдіть за посиланням:"
+
+#: src/user/templates/reset_password_email.html:10
+msgid "Посилання дійсне 24 години."
+msgstr "Посилання дійсне 24 години."
+
+#: src/user/templates/reset_password_email.html:12
+msgid "Якщо ви не запитували скидання — просто проігноруйте цей лист."
+msgstr "Якщо ви не запитували скидання — просто проігноруйте цей лист."
 
 #: src/user/templates/terms-of-use.html:3
 #: src/user/templates/terms-of-use.html:16
 msgid "Пользовательское соглашение"
 msgstr "Угода користувача"
-
-msgid "<p>	Если Вы не согласны с этими условиями, то не используйте этот сайт. Использование данного сайта, в том числе заполнение различных форм, заявок, а также заказ вами товаров/услуг с использованием данного сайта означает ваше согласие с условиями данного Пользовательского соглашения.</p>"
-msgstr "<p>	Якщо Ви не згодні з цими умовами, не використовуйте цей сайт. Використання цього сайту, в тому числі заповнення різноманітних форм, заявок, а також замовлення вами товарів/послуг з використанням цього сайту означає вашу згоду з умовами цієї Угоди користувача.</p>"
-
-msgid "<p><b>Термины, употребляемые в данном Пользовательском соглашении:</b></p>"
-msgstr "<p><b>Терміни, що вживаються в цій Угоді користувача:</b></p>"
-
-msgid "<p><b>Администрация</b> – администрация веб-сайта интернет-магазина www.orekhi.ua.</p>"
-msgstr "<p><b>Адміністрація</b> – адміністрація веб-сайту інтернет-магазину www.orekhi.ua.</p>"
-
-msgid "<p><b>Сайт</b> – веб-сайт интернет-магазина www.orekhi.ua, включая все веб-страницы.</p>"
-msgstr "<p><b>Сайт</b> – веб-сайт інтернет-магазину www.orekhi.ua, включаючи всі веб-сторінки.</p>"
-
-msgid "<p><b>Соглашение</b> – данное пользовательское соглашение.</p>"
-msgstr "<p><b>Угода</b> – ця угода користувача.</p>"
-
-msgid "<p><b>Продавец</b> – юридическое лицо или физическое лицо-предприниматель, которые размещают на Сайте информацию о реализуемых им товарах/услугах. Продавцом может быть как Администрация, так и любое другое лицо, которому Администрация Сайта предоставила разрешение на размещение сведений о товара/услугах такого лица. Наименование Продавца указывается в документах на передачу Товара Получателю (акте приёма-передачи либо иных документах, подтверждающих факт передачи Товара Получателю).</p>"
-msgstr "<p><b>Продавець</b> – юридична особа або фізична особа-підприємець, які розміщують на Сайті інформацію про товари/послуги, що ними реалізуються. Продавцем може бути як Адміністрація, так і будь-яка інша особа, якій Адміністрація Сайту надала дозвіл на розміщення відомостей про товари/послуги такої особи. Найменування Продавця зазначається в документах на передачу Товару Одержувачу (акті приймання-передачі або інших документах, що підтверджують факт передачі Товару Одержувачу).</p>"
-
-msgid "<p><b>Товар</b> – товары, услуги, работы, имущественные права, иные материальные и нематериальные объекты, информация о которых размещена на Сайте.</p>"
-msgstr "<p><b>Товар</b> – товари, послуги, роботи, майнові права, інші матеріальні та нематеріальні об'єкти, інформація про які розміщена на Сайті.</p>"
-
-msgid "<p><b>Пользователь</b> – лицо, просматривающее информацию на Сайте и/или заказывающее и/или получающее Товары с использованием инструментов Сайта. Получатель и Плательщик являются Пользователями.</p>"
-msgstr "<p><b>Користувач</b> – особа, яка переглядає інформацію на Сайті та/або замовляє та/або отримує Товари з використанням інструментів Сайту. Одержувач та Платник є Користувачами.</p>"
-
-msgid "<p><b>Заказ</b> – обращение Пользователя через Сайт к Продавцу с просьбой продать Товар, а также совокупность Товаров, заказанных Пользователем.</p>"
-msgstr "<p><b>Замовлення</b> – звернення Користувача через Сайт до Продавця з проханням продати Товар, а також сукупність Товарів, замовлених Користувачем.</p>"
-
-msgid "<p><b>Плательщик</b> – лицо, оплачивающее Заказ.</p>"
-msgstr "<p><b>Платник</b> – особа, яка оплачує Замовлення.</p>"
-
-msgid "<p><b>Получатель</b> – лицо, указанное Плательщиком в качестве лица, уполномоченного получить Товар согласно Заказа. Если иное не указано в форме Заказа, Получателем является Плательщик.</p>"
-msgstr "<p><b>Одержувач</b> – особа, зазначена Платником як особа, уповноважена отримати Товар згідно із Замовленням. Якщо інше не зазначено у формі Замовлення, Одержувачем є Платник.</p>"
-
-msgid "<p><b>Верификация</b> – это проверка персональных данных Клиента, при которой запрос маршрутизируется при помощи Сайта. При вводе правильного Логина и Пароля Пользователем и подтверждением Одноразовым паролем Сайта, Сайт разрешает вход в Личный кабинет пользователя на Сайте.</p>"
-msgstr "<p><b>Верифікація</b> – це перевірка персональних даних Клієнта, під час якої запит маршрутизується за допомогою Сайту. При введенні правильного Логіна та Пароля Користувачем та підтвердженням Одноразовим паролем Сайту, Сайт дозволяє вхід до Особистого кабінету користувача на Сайті.</p>"
-
-msgid "<p><b>Личный кабинет</b> – Регистрация Пользователя осуществляется путём заполнения регистрационной формы, после чего он получает доступ в \"Личный кабинет\". В случае регистрации с помощью профиля в социальных сетях некоторые Личные данные могут быть автоматически указаны в вашем профиле, но их полноту и достоверность перед оформлением заказов необходимо проверить. Пользователь обязуется не использовать \"Личный кабинет\" для совершения противозаконных действий, а также действий, нарушающих права или интересы третьих лиц. В случае нарушения данного правила Пользователь обязуется возместить Сайту все затраты, понесённые в связи с такими действиями.</p>"
-msgstr "<p><b>Особистий кабінет</b> – Реєстрація Користувача здійснюється шляхом заповнення реєстраційної форми, після чого він отримує доступ до \"Особистого кабінету\". У разі реєстрації за допомогою профілю в соціальних мережах деякі Особисті дані можуть бути автоматично вказані у вашому профілі, але їх повноту та достовірність перед оформленням замовлень необхідно перевірити. Користувач зобов'язується не використовувати \"Особистий кабінет\" для вчинення протизаконних дій, а також дій, що порушують права чи інтереси третіх осіб. У разі порушення цього правила Користувач зобов'язується відшкодувати Сайту всі витрати, понесені у зв'язку з такими діями.</p>"
-
-msgid "<p><b>Предложение</b> – информация, размещённая на Сайте о конкретном Товаре, который может быть приобретён потребителем. Предложение включает в себя: информацию о самом товаре, информацию о его цене, способах оплаты и доставки, а также другие условия приобретения Товара потребителем. Условия Предложения определяются Продавцом. Предложение не является офертой, а лишь информацией о возможных условиях приобретения Товара. </p>"
-msgstr "<p><b>Пропозиція</b> – інформація, розміщена на Сайті про конкретний Товар, який може бути придбаний споживачем. Пропозиція включає: інформацію про сам товар, інформацію про його ціну, способи оплати та доставки, а також інші умови придбання Товару споживачем. Умови Пропозиції визначаються Продавцем. Пропозиція не є офертою, а лише інформацією про можливі умови придбання Товару. </p>"
-
-msgid "<p><b>1.Общие условия использования Сайта.</b></p>"
-msgstr "<p><b>1.Загальні умови використання Сайту.</b></p>"
-
-msgid "<p>1.2. Настоящее Соглашение является публичной офертой. Получая доступ к материалам Сайта, Пользователь считается присоединившимся к настоящему Соглашению.</p>"
-msgstr "<p>1.2. Ця Угода є публічною офертою. Отримуючи доступ до матеріалів Сайту, Користувач вважається таким, що приєднався до цієї Угоди.</p>"
-
-msgid "<p>1.3. Администрация Сайта вправе в любое время в одностороннем порядке изменять условия настоящего Соглашения. Такие изменения вступают в силу с момента размещения новой версии Соглашения на сайте. </p>"
-msgstr "<p>1.3. Адміністрація Сайту має право в будь-який час в односторонньому порядку змінювати умови цієї Угоди. Такі зміни набувають чинності з моменту розміщення нової версії Угоди на сайті. </p>"
-
-msgid "<p>1.4. Предложение на Сайте не является офертой. Однако, Пользователь после ознакомления з Предложением вправе сделать оферту Продавцу (Продавцам) путём заполнения формы Заказа. Заполнение формы Заказа считается офертой Пользователя Продавцу (Продавцам) на приобретение Пользователем соответствующего Товара на условиях, указанных в Предложении.</p>"
-msgstr "<p>1.4. Пропозиція на Сайті не є офертою. Однак, Користувач після ознайомлення з Пропозицією має право зробити оферту Продавцю (Продавцям) шляхом заповнення форми Замовлення. Заповнення форми Замовлення вважається офертою Користувача Продавцю (Продавцям) на придбання Користувачем відповідного Товару на умовах, зазначених у Пропозиції.</p>"
-
-msgid "<p>1.5. Пользователь понимает, что его оферта перенаправляется Администрацией Продавцу, выбранному Администрацией. Данное положение никоим образом не означает, что Администрация действует как агент Продавца и/или принимает на себя какую-либо ответственность за выполнение Заказа Продавцом.</p>"
-msgstr "<p>1.5. Користувач розуміє, що його оферта перенаправляється Адміністрацією Продавцю, обраному Адміністрацією. Це положення жодним чином не означає, що Адміністрація діє як агент Продавця та/або бере на себе будь-яку відповідальність за виконання Замовлення Продавцем.</p>"
-
-msgid "<p>1.6. Оферта считается принятой Продавцом, если последний осуществил действия, свидетельствующие о принятии оферты Пользователя, а именно: фактически отгрузил товар, приступил к оказанию услуг или выполнению работ в соответствии с условиями, предусмотренными офертой Пользователя.</p>"
-msgstr "<p>1.6. Оферта вважається прийнятою Продавцем, якщо останній здійснив дії, що свідчать про прийняття оферти Користувача, а саме: фактично відвантажив товар, розпочав надання послуг або виконання робіт відповідно до умов, передбачених офертою Користувача.</p>"
-
-msgid "<p>1.7. После получения оферты Пользователя Продавец имеет право предложить приобрести Товар на иных условиях, нежели было предусмотрено офертой Пользователя. В этом случае такое предложение считается встречной офертой и должно быть принято Пользователем. Принятием встречной оферты считается фактическое получение Пользователем (Получателем) Товара на условиях, оговоренных встречной офертой. Продавец имеет право отозвать такую встречную оферту до момента выдачи товара Покупателю.</p>"
-msgstr "<p>1.7. Після отримання оферти Користувача Продавець має право запропонувати придбати Товар на інших умовах, ніж було передбачено офертою Користувача. У цьому випадку така пропозиція вважається зустрічною офертою і має бути прийнята Користувачем. Прийняттям зустрічної оферти вважається фактичне отримання Користувачем (Одержувачем) Товару на умовах, обумовлених зустрічною офертою. Продавець має право відкликати таку зустрічну оферту до моменту видачі товару Покупцеві.</p>"
-
-msgid "<p>1.8. Достаточным доказательством принятия оферты Продавцом или встречной оферты (т.е. согласования Сторонами всех существенных условий продажи Товара) является фактическое получение и принятие Товара Получателем.</p>"
-msgstr "<p>1.8. Достатнім доказом прийняття оферти Продавцем або зустрічної оферти (тобто узгодження Сторонами всіх істотних умов продажу Товару) є фактичне отримання та прийняття Товару Одержувачем.</p>"
-
-msgid "<p>1.9. Не считается принятием Продавцом Оферты Пользователя направление Продавцом и/или Администрацией средствами электротехнической (sms-информирование, электронная почта, телефон и т.п.) либо иной связи уведомления Продавца/ Администрации о получении Заказа Пользователя и/или о сроках его получения и/или о цене Товара. Данное уведомление является исключительно уведомлением о получении Продавцом оферты Пользователя (но не о её принятии) и содержит воспроизведение условий оферты, предоставленной Пользователем.</p>"
-msgstr "<p>1.9. Не вважається прийняттям Продавцем Оферти Користувача направлення Продавцем та/або Адміністрацією засобами електротехнічного (sms-інформування, електронна пошта, телефон тощо) або іншого зв'язку повідомлення Продавця/Адміністрації про отримання Замовлення Користувача та/або про терміни його отримання та/або про ціну Товару. Це повідомлення є виключно повідомленням про отримання Продавцем оферти Користувача (але не про її прийняття) і містить відтворення умов оферти, наданої Користувачем.</p>"
-
-msgid "<p>1.10. Единственным средством возмещения, которое предоставляется Пользователю в случае несоответствия фактических условий продажи оферты, является предоставление Пользователю (Получателю) права отказаться от получения и принятия соответствующего Товара и требовать возврата уплаченной за него стоимости, а также стоимости доставки Товара до пункта выдачи (если данные суммы фактически были оплачены Плательщиком). Получатель имеет право воспользоваться данным правом до момента подписания документов, подтверждающих получение Товара (в т.ч. документов перевозчика о доставке отправления с Товаром Получателю).</p>"
-msgstr "<p>1.10. Єдиним засобом відшкодування, що надається Користувачеві у разі невідповідності фактичних умов продажу оферти, є надання Користувачеві (Одержувачу) права відмовитися від отримання та прийняття відповідного Товару та вимагати повернення сплаченої за нього вартості, а також вартості доставки Товару до пункту видачі (якщо ці суми фактично були сплачені Платником). Одержувач має право скористатися цим правом до моменту підписання документів, що підтверджують отримання Товару (в т.ч. документів перевізника про доставку відправлення з Товаром Одержувачу).</p>"
-
-msgid "<p>1.11. Моментом получения и принятия Товара Получателем является момент (в зависимости от того, какой наступил раньше):</p>"
-msgstr "<p>1.11. Моментом отримання та прийняття Товару Одержувачем є момент (залежно від того, який настав раніше):</p>"
-
-msgid "<p>– подписания Получателем акта приёма-передачи Товара (или иного равнозначного по смыслу документа, подтверждающего факт передачи Товара Получателю), или</p>"
-msgstr "<p>– підписання Одержувачем акта приймання-передачі Товару (або іншого рівнозначного за змістом документа, що підтверджує факт передачі Товару Одержувачу), або</p>"
-
-msgid "<p>– подписания Получателем документов перевозчика, подтверждающих факт получения отправления, содержавшего Товар, или</p>"
-msgstr "<p>– підписання Одержувачем документів перевізника, що підтверджують факт отримання відправлення, що містило Товар, або</p>"
-
-msgid "<p>– фактическое получение Получателем Товара и совершение Получателем действий, свидетельствующих о принятии Товара (Получатель получил Товар и покинул пункт выдачи товара и т.п.).</p>"
-msgstr "<p>– фактичне отримання Одержувачем Товару та вчинення Одержувачем дій, що свідчать про прийняття Товару (Одержувач отримав Товар і залишив пункт видачі товару тощо).</p>"
-
-msgid "<p>1.12. Информация о Товаре.</p>"
-msgstr "<p>1.12. Інформація про Товар.</p>"
-
-msgid "<p>1.12.1. Информация в Товаре содержится на самом Товаре, его упаковке, в товаросопроводительных документах на Товар. Информация о Товаре также может предоставляться дистанционно (по телефону, путём размещения информации о Товаре на Сайте). Пользователь подтверждает своё согласие на получение информации о Товаре с помощью средств дистанционной связи +380 44 353 13 17.</p>"
-msgstr "<p>1.12.1. Інформація в Товарі міститься на самому Товарі, його упаковці, в товаросупровідних документах на Товар. Інформація про Товар також може надаватися дистанційно (телефоном, шляхом розміщення інформації про Товар на Сайті). Користувач підтверджує свою згоду на отримання інформації про Товар за допомогою засобів дистанційного зв'язку +380 44 353 13 17.</p>"
-
-msgid "<p>1.12.2. При получении Товара, до момента подписания документов, подтверждающих получение Товара, Получатель обязан ознакомиться с информацией о Товаре, содержащейся на Товаре и/или упаковке и/или в товаросопроводительных документах. В случае необходимости получения дополнительной информации о Товаре Получатель обязан связаться с Продавцом и получить необходимую информацию средствами дистанционной связи до момента принятия Получателем Товара.</p>"
-msgstr "<p>1.12.2. При отриманні Товару, до моменту підписання документів, що підтверджують отримання Товару, Одержувач зобов'язаний ознайомитися з інформацією про Товар, що міститься на Товарі та/або упаковці та/або в товаросупровідних документах. У разі необхідності отримання додаткової інформації про Товар Одержувач зобов'язаний зв'язатися з Продавцем та отримати необхідну інформацію засобами дистанційного зв'язку до моменту прийняття Одержувачем Товару.</p>"
-
-msgid "<p>1.12.3. Цена на Товар, указанная в Предложении, является ориентировочной. Цена на Товар, согласованная Сторонами в соответствии с п. 1.4.-1.8. Соглашения может быть изменены Продавцом до момента выдачи Товара Получателю.</p>"
-msgstr "<p>1.12.3. Ціна на Товар, зазначена в Пропозиції, є орієнтовною. Ціна на Товар, узгоджена Сторонами відповідно до п. 1.4.-1.8. Угоди може бути змінена Продавцем до моменту видачі Товару Одержувачу.</p>"
-
-msgid "<p>1.12.4. В случае изменения цены Товара, по сравнению с согласованными Сторонами, согласно п. 1.4. – 1.7. Соглашения условиями Получатель имеет право отказаться от получения и принятия Товара. При этом Получатель (Плательщик) имеет право требовать возврата оплаченных за Товар сумм, а также сумм, оплаченных за доставку Товара Получателю. Какие- либо другие компенсации (в т.ч. возмещение убытков, неустойка и прочее) – Продавцом или Администрацией не предоставляются.</p>"
-msgstr "<p>1.12.4. У разі зміни ціни Товару, порівняно з узгодженими Сторонами, згідно з п. 1.4. – 1.7. Угоди умовами Одержувач має право відмовитися від отримання та прийняття Товару. При цьому Одержувач (Платник) має право вимагати повернення сплачених за Товар сум, а також сум, сплачених за доставку Товару Одержувачу. Будь-які інші компенсації (в т.ч. відшкодування збитків, неустойка та інше) – Продавцем або Адміністрацією не надаються.</p>"
-
-msgid "<p>1.13. Ограничение ответственности.</p>"
-msgstr "<p>1.13. Обмеження відповідальності.</p>"
-
-msgid "<p>1.13.1. Сайт является платформой для размещения Предложений Продавцами. В связи с этим, Администрация (кроме случаев, когда Администрация является Продавцом) не несёт какой-либо ответственности перед Пользователями (Плательщиками, Получателями) за выполнение Заказа Продавцами и, связанные с этим вопросы, в том числе, но не исключительно:</p>"
-msgstr "<p>1.13.1. Сайт є платформою для розміщення Пропозицій Продавцями. У зв'язку з цим, Адміністрація (крім випадків, коли Адміністрація є Продавцем) не несе жодної відповідальності перед Користувачами (Платниками, Одержувачами) за виконання Замовлення Продавцями та пов'язані з цим питання, в тому числі, але не виключно:</p>"
-
-msgid "<p>– за соответствие условий Предложения фактическим условиям продажи Товаров, за отсутствие Товара,</p>"
-msgstr "<p>– за відповідність умов Пропозиції фактичним умовам продажу Товарів, за відсутність Товару,</p>"
-
-msgid "<p>– за просрочки доставки Товара,</p>"
-msgstr "<p>– за прострочення доставки Товару,</p>"
-
-msgid "<p>– за качество Товара,</p>"
-msgstr "<p>– за якість Товару,</p>"
-
-msgid "<p>– за надлежащее выполнение гарантийных обязательств Продавцами и/или производителями.</p>"
-msgstr "<p>– за належне виконання гарантійних зобов'язань Продавцями та/або виробниками.</p>"
-
-msgid "<p>1.13.2. Указанные в Предложении условия являются предварительными условиями приобретения Товара. Условия Предложения могут изменяться Продавцами, в том числе после принятия Заказа к исполнению. Конкретные условия продажи Товара Продавцами могут определять и изменяться Продавцами до момента передачи Товара Получателю.</p>"
-msgstr "<p>1.13.2. Зазначені в Пропозиції умови є попередніми умовами придбання Товару. Умови Пропозиції можуть змінюватися Продавцями, в тому числі після прийняття Замовлення до виконання. Конкретні умови продажу Товару Продавцями можуть визначати та змінюватися Продавцями до моменту передачі Товару Одержувачу.</p>"
-
-msgid "<p>1.13.3. В случае устаревания материалов (в т.ч. условий Предложения) на Сайте Администрация не обязуется обновлять их. Администрация ни при каких обстоятельствах не несет ответственности за любой ущерб (включая, но не ограничиваясь ущербом от потери прибыли, данных или от прерывания деловой активности), возникший вследствие использования, невозможности использования или результатов использования этого Сайта.</p>"
-msgstr "<p>1.13.3. У разі застарівання матеріалів (в т.ч. умов Пропозиції) на Сайті Адміністрація не зобов'язується оновлювати їх. Адміністрація за жодних обставин не несе відповідальності за будь-які збитки (включаючи, але не обмежуючись збитками від втрати прибутку, даних або від переривання ділової активності), що виникли внаслідок використання, неможливості використання або результатів використання цього Сайту.</p>"
-
-msgid "<p>1.13.4. Ответственность Продавца за изменения условий приобретения Товара по сравнению с указанными в Предложении ограничивается тем, что Получатель (Пользователь, Плательщик) имеет право отказаться от приобретения Товара и требовать возврата уплаченных за него денежных средств (если они оплачены). </p>"
-msgstr "<p>1.13.4. Відповідальність Продавця за зміни умов придбання Товару порівняно із зазначеними в Пропозиції обмежується тим, що Одержувач (Користувач, Платник) має право відмовитися від придбання Товару та вимагати повернення сплачених за нього грошових коштів (якщо вони сплачені). </p>"
-
-msgid "<p>1.13.5. В любом случае, сумма убытков (как материальных, так и неимущественных), которые могут быть выплачены Пользователю (Плательщику, Получателю) в связи с нарушением его прав при использовании Сайта (в т.ч. в связи с невыполнением Заказа или его ненадлежащим выполнением, иными нарушениями прав Пользователя) в соответствии со ст. 22 Гражданского кодекса Украины ограничена суммой в десять гривен.</p>"
-msgstr "<p>1.13.5. У будь-якому випадку, сума збитків (як матеріальних, так і немайнових), які можуть бути виплачені Користувачеві (Платнику, Одержувачу) у зв'язку з порушенням його прав під час використання Сайту (в т.ч. у зв'язку з невиконанням Замовлення або його неналежним виконанням, іншими порушеннями прав Користувача) відповідно до ст. 22 Цивільного кодексу України обмежена сумою в десять гривень.</p>"
-
-msgid "<p>1.13.6. На Товары, на которые установлен гарантийный срок, действуют гарантийные обязательства в соответствии с условиями, указанными в гарантийном талоне и/или в информационных материалах производителя. Если, в соответствии с законодательством Украины, на Товар должен быть установлен гарантийный срок, но, он не установлен производителем, гарантийный срок на такой Товар считается равным трём дням.</p>"
-msgstr "<p>1.13.6. На Товари, на які встановлено гарантійний термін, діють гарантійні зобов'язання відповідно до умов, зазначених у гарантійному талоні та/або в інформаційних матеріалах виробника. Якщо, відповідно до законодавства України, на Товар має бути встановлений гарантійний термін, але він не встановлений виробником, гарантійний термін на такий Товар вважається рівним трьом дням.</p>"
-
-msgid "<p>1.3. Пользователь несёт ответственность за достоверность данных, указанных в форме Заказа. В случае, если неточное (неправильное) указание данных в Заказе привело к дополнительным расходам Продавца, связанным с доставкой Товара по неверному адресу или выдачу Товара ненадлежащему Получателю, все связанные с этим убытки и расходы возлагаются на Пользователя. Продавец имеет право удерживать сумму таких убытков или расходов из сумм, уплаченных Плательщиком в качестве оплаты Товара (проводить зачёт встречных требований).</p>"
-msgstr "<p>1.3. Користувач несе відповідальність за достовірність даних, зазначених у формі Замовлення. У разі, якщо неточне (неправильне) зазначення даних у Замовленні призвело до додаткових витрат Продавця, пов'язаних з доставкою Товару за невірною адресою або видачу Товару неналежному Одержувачу, всі пов'язані з цим збитки та витрати покладаються на Користувача. Продавець має право утримувати суму таких збитків або витрат із сум, сплачених Платником як оплата Товару (проводити залік зустрічних вимог).</p>"
-
-msgid "<p><b>2. Обязательства Сторон.</b></p>"
-msgstr "<p><b>2. Зобов'язання Сторін.</b></p>"
-
-msgid "<p>2.1. Пользователь обязуется внимательно ознакомиться с данным Соглашением. В случае несогласия с его условиями т Пользователь обязуется немедленно прекратить использование Сайта.</p>"
-msgstr "<p>2.1. Користувач зобов'язується уважно ознайомитися з цією Угодою. У разі незгоди з її умовами Користувач зобов'язується негайно припинити використання Сайту.</p>"
-
-msgid "<p>2.2. Пользователь соглашается не предпринимать действий, которые могут рассматриваться как нарушающие украинское законодательство или нормы международного права, в том числе в сфере интеллектуальной собственности, авторских и/ или смежных правах, а также любых действий, которые приводят или могут привести к нарушению нормальной работы Сайта и сервисов Сайта.</p>"
-msgstr "<p>2.2. Користувач погоджується не вчиняти дій, які можуть розглядатися як такі, що порушують українське законодавство або норми міжнародного права, в тому числі у сфері інтелектуальної власності, авторських та/або суміжних правах, а також будь-яких дій, які призводять або можуть призвести до порушення нормальної роботи Сайту та сервісів Сайту.</p>"
-
-msgid "<p>2.3. Использование материалов Сайта без согласия правообладателей не допускается. Для правомерного использования материалов Сайта необходимо заключение лицензионных договоров (получение лицензий) от Правообладателей.</p>"
-msgstr "<p>2.3. Використання матеріалів Сайту без згоди правовласників не допускається. Для правомірного використання матеріалів Сайту необхідно укладення ліцензійних договорів (отримання ліцензій) від Правовласників.</p>"
-
-msgid "<p>2.4. При цитировании материалов Сайта, включая охраняемые авторские произведения, ссылка на Сайт обязательна.</p>"
-msgstr "<p>2.4. При цитуванні матеріалів Сайту, включаючи охоронювані авторські твори, посилання на Сайт є обов'язковим.</p>"
-
-msgid "<p>2.5. Комментарии и иные записи Пользователя на Сайте не должны вступать в противоречие с требованиями законодательства Украины и общепринятых норм морали и нравственности. Комментарии/Отзывы Пользователя, размещённые на Сайте, не являются конфиденциальной информацией и могут быть использованы Администрацией сайта без ограничений.</p>"
-msgstr "<p>2.5. Коментарі та інші записи Користувача на Сайті не повинні суперечити вимогам законодавства України та загальноприйнятих норм моралі та етики. Коментарі/Відгуки Користувача, розміщені на Сайті, не є конфіденційною інформацією та можуть бути використані Адміністрацією сайту без обмежень.</p>"
-
-msgid "<p>2.6. Пользователь предупреждён о том, что Администрация Сайта не несёт ответственности за посещение и использование им внешних ресурсов, ссылки на которые могут содержаться на сайте.</p>"
-msgstr "<p>2.6. Користувач попереджений про те, що Адміністрація Сайту не несе відповідальності за відвідування та використання ним зовнішніх ресурсів, посилання на які можуть міститися на сайті.</p>"
-
-msgid "<p>2.7. Пользователь принимает положение о том, что все материалы и сервисы Сайта или любая их часть могут сопровождаться рекламой. Пользователь согласен с тем, что Администрация Сайта не несёт какой-либо ответственности и не имеет каких-либо обязательств в связи с такой рекламой.</p>"
-msgstr "<p>2.7. Користувач приймає положення про те, що всі матеріали та сервіси Сайту або будь-яка їх частина можуть супроводжуватися рекламою. Користувач згоден з тим, що Адміністрація Сайту не несе жодної відповідальності та не має жодних зобов'язань у зв'язку з такою рекламою.</p>"
-
-msgid "<p>2.8. Пользователь понимает, что Продавцы являются отдельными субъектами хозяйствования, не подконтрольными Администрации. Пользователь осознаёт, что Администрация не имеет каких-либо полномочий относительно влияния на исполнение Продавцами своих обязательств относительно принятия и/или исполнения Заказа, а также обязательств, возникающих после продажи Товара.</p>"
-msgstr "<p>2.8. Користувач розуміє, що Продавці є окремими суб'єктами господарювання, не підконтрольними Адміністрації. Користувач усвідомлює, що Адміністрація не має жодних повноважень щодо впливу на виконання Продавцями своїх зобов'язань щодо прийняття та/або виконання Замовлення, а також зобов'язань, що виникають після продажу Товару.</p>"
-
-msgid "<p>2.9. Регистрируясь на Сайте, пользователь соглашаетесь предоставить достоверную и точную информацию о себе и своих контактных данных. В результате регистрации Вы получаете логин и пароль для входа в Личный Кабинет, за безопасность которых вы несёте ответственность. Вы также несёте ответственность за все действия под вашим логином и паролем на Сайте. В случае утери регистрационных данных Вы обязуетесь сообщить нам об этом. Администрация сайта оставляет за собой право рассылки наших акционных предложений на номер пользователя, указанный в заказе. При отказе мы обязуемся исключит ваш адрес из смс рассылки.</p>"
-msgstr "<p>2.9. Реєструючись на Сайті, користувач погоджується надати достовірну та точну інформацію про себе та свої контактні дані. В результаті реєстрації Ви отримуєте логін та пароль для входу до Особистого Кабінету, за безпеку яких ви несете відповідальність. Ви також несете відповідальність за всі дії під вашим логіном та паролем на Сайті. У разі втрати реєстраційних даних Ви зобов'язуєтесь повідомити нас про це. Адміністрація сайту залишає за собою право розсилки наших акційних пропозицій на номер користувача, вказаний у замовленні. При відмові ми зобов'язуємось виключити вашу адресу з смс розсилки.</p>"
-
-msgid "<p>2.10. Администрация сайта обладает правом в одностороннем порядке аннулировать учётную запись (Личный кабинет) Пользователя, если она не использовалась более 12 месяцев календарных месяцев подряд без уведомления Пользователя.</p>"
-msgstr "<p>2.10. Адміністрація сайту має право в односторонньому порядку анулювати обліковий запис (Особистий кабінет) Користувача, якщо він не використовувався більше 12 календарних місяців поспіль без повідомлення Користувача.</p>"
-
-msgid "<p><b>3. Персональные данные.</b></p>"
-msgstr "<p><b>3. Персональні дані.</b></p>"
-
-msgid "<p>3.1. Оформляя Заказ на Cайте Пользователь даёт своё согласие Администрации на сбор и обработку (накопление, хранение, адаптирование, возобновление, использование, распространение, обезличивание и уничтожение) указанных им данных, а именно: фамилия, имя, отчество, электронная почта, телефон, адрес, с целью обеспечения реализации отношений купли-продажи, отношений в сфере защиты прав потребителей, в сфере рекламы и маркетинговых исследований, а также даёт своё согласие на передачу (распространение) его данных ООО «НОВАЯ ПОЧТА» (ЕГРПОУ 31316718), другим транспортно-экспедиторским и курьерским организациям, и иным третьим лицам (без ограничения) на усмотрение Администрации сайта. Данное положение действует без ограничения срока действия.</p>"
-msgstr "<p>3.1. Оформлюючи Замовлення на Сайті, Користувач дає свою згоду Адміністрації на збір та обробку (накопичення, зберігання, адаптування, поновлення, використання, поширення, знеособлення та знищення) зазначених ним даних, а саме: прізвище, ім'я, по батькові, електронна пошта, телефон, адреса, з метою забезпечення реалізації відносин купівлі-продажу, відносин у сфері захисту прав споживачів, у сфері реклами та маркетингових досліджень, а також дає свою згоду на передачу (поширення) його даних ТОВ «НОВА ПОШТА» (ЄДРПОУ 31316718), іншим транспортно-експедиторським та кур'єрським організаціям, та іншим третім особам (без обмеження) на розсуд Адміністрації сайту. Це положення діє без обмеження терміну дії.</p>"
-
-msgid "<p>3.2. Источником сбора персональных данных является информация, непосредственно и добровольно предоставленная Пользователем.</p>"
-msgstr "<p>3.2. Джерелом збору персональних даних є інформація, безпосередньо та добровільно надана Користувачем.</p>"
-
-msgid "<p>3.3. Владельцем предоставленных Пользователем персональных данных является Администрация сайта.</p>"
-msgstr "<p>3.3. Власником наданих Користувачем персональних даних є Адміністрація сайту.</p>"
-
-msgid "<p>3.4 Субъект персональных данных, в соответствии с Законом Украины «О защите персональных данных», имеет право: знать об источниках сбора, местонахождения своих персональных данных, цель их обработки, местонахождения или местожительство (пребывание) владельца или распорядителя персональных данных или дать соответствующее поручение относительно получения этой информации уполномоченным им лицам, кроме случаев, установленных законом; получать информацию об условиях предоставления доступа к персональным данным, в частности информацию о третьих лицах, которым передаются его персональные данные; на доступ к своим персональным данным; получать не позднее, чем за тридцать календарных дней со дня поступления запроса, кроме случаев, предусмотренных законом, ответ о том, обрабатываются ли его персональные данные, а также получать содержание таких персональных данных; предъявлять мотивируемое требование владельцу персональных данных с возражением против обработки своих персональных данных; предъявлять мотивируемое требование относительно изменения или уничтожения своих персональных данных любым владельцем и распорядителем персональных данных, если эти данные обрабатываются незаконно или являются недостоверными; на защиту своих персональных данных от незаконной обработки и случайной потери, уничтожения, повреждения в связи с преднамеренным скрытием, непредоставлением или несвоевременным их предоставлением, а также на защиту от предоставления сведений, которые являются недостоверными или позорят честь, достоинство и деловую репутацию физического лица; обращаться с жалобами на обработку своих персональных данных к Уполномоченному лицу или в суд; применять средства правовой защиты в случае нарушения законодательства о защите персональных данных; вносить предостережение относительно ограничения права на обработку своих персональных данных во время предоставления согласия; отозвать согласие на обработку персональных данных; знать механизм автоматической обработки персональных данных; на защиту от автоматизированного решения, которое имеет для него правовые последствия.</p>"
-msgstr "<p>3.4 Суб'єкт персональних даних, відповідно до Закону України «Про захист персональних даних», має право: знати про джерела збору, місцезнаходження своїх персональних даних, мету їх обробки, місцезнаходження або місце проживання (перебування) власника чи розпорядника персональних даних або дати відповідне доручення щодо отримання цієї інформації уповноваженим ним особам, крім випадків, встановлених законом; отримувати інформацію про умови надання доступу до персональних даних, зокрема інформацію про третіх осіб, яким передаються його персональні дані; на доступ до своїх персональних даних; отримувати не пізніше, ніж за тридцять календарних днів з дня надходження запиту, крім випадків, передбачених законом, відповідь про те, чи обробляються його персональні дані, а також отримувати зміст таких персональних даних; пред'являти вмотивовану вимогу власнику персональних даних із запереченням проти обробки своїх персональних даних; пред'являти вмотивовану вимогу щодо зміни або знищення своїх персональних даних будь-яким власником та розпорядником персональних даних, якщо ці дані обробляються незаконно чи є недостовірними; на захист своїх персональних даних від незаконної обробки та випадкової втрати, знищення, пошкодження у зв'язку з умисним приховуванням, ненаданням або несвоєчасним їх наданням, а також на захист від надання відомостей, що є недостовірними чи ганьблять честь, гідність та ділову репутацію фізичної особи; звертатися зі скаргами на обробку своїх персональних даних до Уповноваженого або до суду; застосовувати засоби правового захисту у разі порушення законодавства про захист персональних даних; вносити застереження щодо обмеження права на обробку своїх персональних даних під час надання згоди; відкликати згоду на обробку персональних даних; знати механізм автоматичної обробки персональних даних; на захист від автоматизованого рішення, яке має для нього правові наслідки.</p>"
-
-msgid "<p>3.5. Как и многие другие компании, мы используем технологию cookies на нашем сайте и за его пределами. Cookies – это обрывки информации, которые веб-сайт передает на жесткий диск потребителя для хранения информации, связанной с веб- сайтом. Эта технология расширяет Ваши возможности использования интернета, сохраняя Ваши приоритеты при просмотре определённого сайта. Технология cookies не содержит личной информации и не может никоим образом настраивать вашу систему или считывать информацию с Вашего жесткого диска. При просмотре сайта мы можем разместить cookies на вашем компьютере. Такие временные cookies используют для подсчёта количества визитов на наш сайт. Они удаляются, когда Вы выходите из браузера. Постоянные cookies могут храниться на вашем компьютере вашим браузером. При регистрации этот тип cookies сообщает, что Вы впервые к нам пожаловали или заходили на наш сайт раньше. Cookie не содержат персональных данных и могут быть заблокированы Вами в любой момент. Маркеры не получают личной информации о Вас и не передают нам вашу контактную информацию, а также не получают никакой информации с вашего компьютера. Мы используем cookies для определения характеристик сайта и предложений, которые Вам нравятся с целью предоставления Вам больше информации, в которой Вы заинтересованы. Кроме того, файлы cookie используются, чтобы сделать веб-сайт www.orehi.ua безопасным, защищённым и удобным. Файлы cookie обеспечивают поддержку функций безопасности и их запуск. Файлы cookie также позволяют отслеживать нарушения ПОЛИТИКИ КОНФИДЕНЦИАЛЬНОСТИ посетителями или устройствами. Файлы cookie помогают оценить количество и частоту запросов, а также выявлять и блокировать тех посетителей или устройства, которые пытаются выполнить пакетные загрузки информации с веб-сайта.</p>"
-msgstr "<p>3.5. Як і багато інших компаній, ми використовуємо технологію cookies на нашому сайті та за його межами. Cookies – це уривки інформації, які веб-сайт передає на жорсткий диск споживача для зберігання інформації, пов'язаної з веб-сайтом. Ця технологія розширює Ваші можливості використання інтернету, зберігаючи Ваші пріоритети під час перегляду певного сайту. Технологія cookies не містить особистої інформації і не може жодним чином налаштовувати вашу систему або зчитувати інформацію з Вашого жорсткого диска. Під час перегляду сайту ми можемо розмістити cookies на вашому комп'ютері. Такі тимчасові cookies використовують для підрахунку кількості візитів на наш сайт. Вони видаляються, коли Ви виходите з браузера. Постійні cookies можуть зберігатися на вашому комп'ютері вашим браузером. Під час реєстрації цей тип cookies повідомляє, що Ви вперше до нас завітали або заходили на наш сайт раніше. Cookie не містять персональних даних і можуть бути заблоковані Вами в будь-який момент. Маркери не отримують особистої інформації про Вас і не передають нам вашу контактну інформацію, а також не отримують жодної інформації з вашого комп'ютера. Ми використовуємо cookies для визначення характеристик сайту та пропозицій, які Вам подобаються з метою надання Вам більше інформації, в якій Ви зацікавлені. Крім того, файли cookie використовуються, щоб зробити веб-сайт www.orehi.ua безпечним, захищеним та зручним. Файли cookie забезпечують підтримку функцій безпеки та їх запуск. Файли cookie також дозволяють відстежувати порушення ПОЛІТИКИ КОНФІДЕНЦІЙНОСТІ відвідувачами або пристроями. Файли cookie допомагають оцінити кількість та частоту запитів, а також виявляти та блокувати тих відвідувачів або пристрої, які намагаються виконати пакетні завантаження інформації з веб-сайту.</p>"
-
-msgid "<p><b>4. Прочие условия.</b></p>"
-msgstr "<p><b>4. Інші умови.</b></p>"
-
-msgid "<p>4.1. Пользователь имеет право назначить Получателем приобретаемого Товара третье лицо. В этом случае Получатель обязан указать в форме Заказа данные, необходимые для идентификации Получателя и доставки ему Товара. На отношения сторон, в таком случае, распространяются положения ст. 636 Гражданского кодекса Украины.</p>"
-msgstr "<p>4.1. Користувач має право призначити Одержувачем придбаного Товару третю особу. У цьому випадку Одержувач зобов'язаний зазначити у формі Замовлення дані, необхідні для ідентифікації Одержувача та доставки йому Товару. На відносини сторін, у такому разі, поширюються положення ст. 636 Цивільного кодексу України.</p>"
-
-msgid "<p>4.2.Для выдачи Товара Получателю последний обязан предъявить при получении Товара документ, удостоверяющий личность (паспорт).</p>"
-msgstr "<p>4.2.Для видачі Товару Одержувачу останній зобов'язаний пред'явити при отриманні Товару документ, що засвідчує особу (паспорт).</p>"
-
-msgid "<p>4.3. При получении Товара Получатель обязан расписаться в документах, подтверждающих получение Товара.</p>"
-msgstr "<p>4.3. При отриманні Товару Одержувач зобов'язаний розписатися в документах, що підтверджують отримання Товару.</p>"
-
-msgid "<p>4.4. Все возможные споры, вытекающие из настоящего Соглашения или связанные с ним, подлежат разрешению в соответствии с действующим законодательством Украины.</p>"
-msgstr "<p>4.4. Усі можливі суперечки, що випливають з цієї Угоди або пов'язані з нею, підлягають вирішенню відповідно до чинного законодавства України.</p>"
-
-msgid "<p>4.5. Ничто в Соглашении не может пониматься как установление между Пользователем и Администрации Сайта агентских отношений, отношений товарищества, отношений по совместной деятельности, отношений личного найма, либо каких-то иных отношений, прямо не предусмотренных Соглашением.</p>"
-msgstr "<p>4.5. Ніщо в Угоді не може розумітися як встановлення між Користувачем та Адміністрацією Сайту агентських відносин, відносин товариства, відносин щодо спільної діяльності, відносин особистого найму, або якихось інших відносин, прямо не передбачених Угодою.</p>"
-
-msgid "<p>4.6. Признание судом какого-либо положения Соглашения недействительным или не подлежащим принудительному исполнению не влечёт недействительности иных положений Соглашения.</p>"
-msgstr "<p>4.6. Визнання судом будь-якого положення Угоди недійсним або таким, що не підлягає примусовому виконанню, не тягне за собою недійсності інших положень Угоди.</p>"
-
-msgid "<p>4.7. Бездействие со стороны Администрации Сайта в случае нарушения кем-либо из Пользователей положений Соглашения не лишает Администрацию Сайта права предпринять позднее соответствующие действия в защиту своих интересов и защиту авторских прав на охраняемые в соответствии с законодательством материалы Сайта. Пользователь подтверждает, что ознакомлен со всеми пунктами настоящего Соглашения и безусловно принимает их.</p>"
-msgstr "<p>4.7. Бездіяльність з боку Адміністрації Сайту у разі порушення ким-небудь з Користувачів положень Угоди не позбавляє Адміністрацію Сайту права вжити пізніше відповідні дії на захист своїх інтересів та захист авторських прав на охоронювані відповідно до законодавства матеріали Сайту. Користувач підтверджує, що ознайомлений з усіма пунктами цієї Угоди і безумовно приймає їх.</p>"
-
-msgid "<p>4.8.Настоящее Соглашение регулируется и толкуется в соответствии с законодательством Украины. Вопросы, не урегулированные Соглашением, подлежат разрешению в соответствии с законодательством Украины.</p>"
-msgstr "<p>4.8.Ця Угода регулюється і тлумачиться відповідно до законодавства України. Питання, не врегульовані Угодою, підлягають вирішенню відповідно до законодавства України.</p>"

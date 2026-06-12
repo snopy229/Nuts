@@ -30,6 +30,7 @@
     <link rel="apple-touch-icon" sizes="128x128" href="{% static 'img/apple.png' %}">
     <script src="https://cdn.jsdelivr.net/npm/htmx.org@2.0.10/dist/htmx.min.js" integrity="sha384-H5SrcfygHmAuTDZphMHqBJLc3FhssKjG7w/CeCpFReSfwBWDTKpkzPP8c+cLsK+V" crossorigin="anonymous"></script>
     <link href="https://cdn.jsdelivr.net/npm/tom-select@2.3.1/dist/css/tom-select.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
     <script src="https://cdn.jsdelivr.net/npm/tom-select@2.3.1/dist/js/tom-select.complete.min.js"></script>
 
 </head>
@@ -227,8 +228,8 @@
 
                     <div id="cart-items-container">
                     {% for item in cart_items %}
-                        {% include "partials/cart_item.html" %}
-                    {% endfor %}
+        {% include "partials/cart_item.html" %}
+    {% endfor %}
                 </div>
 				<div class="popup__cart_sum">
 					<div class="sum_item">
@@ -311,7 +312,7 @@
 						</div>
 					</div>
 					<div class="col-lg-7 col-12">
-						<div id="map"></div>
+						<div id="map1" style="height: 600px;"></div>
 					</div>
 				</div>
 			</div>
@@ -381,6 +382,8 @@
 		</div>
 	</footer>
 <script src="https://cdn.jsdelivr.net/npm/jquery@3.7.1/dist/jquery.min.js"></script>
+
+<script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
     {% vite_asset 'src/core/static/js/common.js' %}
 <script>
 function submitLanguageForm(langCode) {
@@ -393,6 +396,23 @@ document.body.addEventListener("cartUpdated", function(e) {
     document.getElementById("cart-total-sum").innerHTML = e.detail.total_sum + " <i>грн.</i>";
     document.getElementById("cart-count").innerHTML = e.detail.total_items;
 });
+</script>
+
+<link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
+<script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+
+
+<script>
+    const lat = {{ settings.main.Contacts.lat }};
+    const lng = {{ settings.main.Contacts.lng }};
+
+    const map = L.map('map1').setView([lat, lng], 13);
+
+    L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+        attribution: '© OpenStreetMap'
+    }).addTo(map);
+
+    L.marker([lat, lng]).addTo(map).bindPopup('{{ object.address }}');
 </script>
 {% block scripts %}
 

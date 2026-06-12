@@ -451,6 +451,31 @@ argon2 = ["argon2-cffi (>=23.1.0)"]
 bcrypt = ["bcrypt (>=4.1.1)"]
 
 [[package]]
+name = "django-anymail"
+version = "15.0"
+description = "Django email backends and webhooks for Amazon SES, Brevo,  MailerSend, Mailgun, Mailjet, Mailtrap, Mandrill, Postal, Postmark, Resend,  Scaleway TEM, SendGrid, SparkPost, and Unisender Go  (EmailBackend, transactional email tracking and inbound email signals)"
+optional = false
+python-versions = ">=3.10"
+groups = ["main"]
+files = [
+    {file = "django_anymail-15.0-py3-none-any.whl", hash = "sha256:64d33dd1084bfc8e4e12245f56629be40aa0b0498fc7fc7544d87b9b2048be1e"},
+    {file = "django_anymail-15.0.tar.gz", hash = "sha256:23d8ab6589afe8cc1ae7665c26879814ad192f4c3ed837a2a1868b0a056869e0"},
+]
+
+[package.dependencies]
+django = ">=5.0"
+idna = "*"
+requests = ">=2.4.3"
+urllib3 = ">=1.25.0"
+
+[package.extras]
+amazon-ses = ["boto3 (>=1.24.6)"]
+postal = ["cryptography"]
+resend = ["svix"]
+sendgrid = ["cryptography"]
+uts46 = ["uts46"]
+
+[[package]]
 name = "django-appconf"
 version = "1.2.0"
 description = "A helper class for handling configuration defaults of packaged apps gracefully."
@@ -2373,4 +2398,4 @@ willow = ">=1.11,<2.0"
 [metadata]
 lock-version = "2.1"
 python-versions = ">=3.13,<4.0"
-content-hash = "17085ecec66c2e545f8f680d43a6a536f2c6ba355820c7756338378e84f12363"
+content-hash = "647e49cd081c3cde67f4fc1a49090433b51fb37e5c373b191fdc9d0e69a9feeb"

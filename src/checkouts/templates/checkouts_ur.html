@@ -1,17 +1,19 @@
 {% extends "base_template.html" %}
+{% load i18n %}
+{% block title %} {% translate "Оформление заказа" %} {% endblock title %}
 {% block content %}
 	<section class="first-section no-bg">
 		<div class="container">
 			<div class="breadcrumbs">
 				<ul>
 					<li>
-						<a href="/">Главная</a>
+						<a href="/">{% translate "Главная" %}</a>
 					</li>
 					<li>
-						<a href="#">Корзина</a>
+						<a href="#">{% translate "Корзина" %}</a>
 					</li>
 					<li>
-						Оформление заказа
+						{% translate "Оформление заказа" %}
 					</li>
 				</ul>
 			</div>
@@ -22,12 +24,12 @@
 		<div class="container">
 			<div class="row">
 				<div class="col-lg-4 col-md-6">
-					<h1>Оформление заказа</h1>
+					<h1>{% translate "Оформление заказа" %}</h1>
 				</div>
 				<div class="col-lg-8 col-md-6">
 					<div class="accaunt__manager">
 						<ul>
-							<li><p>Ваш личный менеджер Олег</p></li>
+							<li><p>{% translate "Ваш личный менеджер Олег" %}</p></li>
 							<li><i class="nut-icon icons-phone"></i> <a href="tel:+380677771412">+38 067 777 14 12</a></li>
 						</ul>
 					</div>
@@ -36,10 +38,10 @@
 					<table id="table">
 						<thead>
 							<tr>
-								<th><span>Товар</span></th>
-								<th><span>Кол - во</span></th>
-								<th><span>Цена за товар</span></th>
-								<th><span>Итоговая стоимость</span></th>
+								<th><span>{% translate "Товар" %}</span></th>
+								<th><span>{% translate "Кол - во" %}</span></th>
+								<th><span>{% translate "Цена за товар" %}</span></th>
+								<th><span>{% translate "Итоговая стоимость" %}</span></th>
 							</tr>
 						</thead>
 						<tbody>
@@ -75,10 +77,10 @@
                 </button>
             </div>
         </td>
-        <td>{{ cart_item.product.cost_with_discount }} грн.</td>
+        <td>{{ cart_item.product.cost_with_discount }} {% translate "грн." %}</td>
         <td>
             <p data-full-cost="{{ cart_item.product.id }}">
-                {{ cart_item.full_cost }} <i>грн.</i>
+                {{ cart_item.full_cost }} <i>{% translate "грн." %}</i>
             </p>
         </td>
     </tr>
@@ -96,10 +98,10 @@
 								<div class="popup__cart_sum">
 									<div class="sum_item">
 										<div class="sum_item_title">
-											<p>Всего </p>
+											<p>{% translate "Всего" %} </p>
 										</div>
 										<div class="sum_item_new">
-											<p id="cart-total-sum-page">{{ total_sum }} <i>грн.</i></p>
+											<p id="cart-total-sum-page">{{ total_sum }} <i>{% translate "грн." %}</i></p>
 										</div>
 									</div>
 									<div class="sum_item">
@@ -119,7 +121,7 @@
 							<div class="row">
 								<div class="col-lg-5">
 									<div class="form__title">
-											1. Контактные данные
+											{% translate "1. Контактные данные" %}
 									</div>
 									{{ contact_form.company }}
 									{{ contact_form.company.errors }}
@@ -130,7 +132,7 @@
                                     {{ contact_form.phone }}
 									{{ contact_form.phone.errors }}
 									<div class="form__title">
-											2. Способ доставки
+											{% translate "2. Способ доставки" %}
 									</div>
 										<fieldset id="group1" class="radio__wrapper radio__wrapper_click">
                                             {% for radio in checkout_form.delivery_type %}
@@ -144,7 +146,7 @@
                                                     {% if radio.data.value == 'courier' %}
                                                         <span class="sticker">
                                                             <i class="nut-icon icons-novinka"></i>
-                                                            <span class="p">БЕСПЛАТНО</span>
+                                                            <span class="p">{% translate "БЕСПЛАТНО" %}</span>
                                                         </span>
                                                     {% endif %}</label>
                                                 {% if radio.data.value == 'new_post' %}
@@ -166,7 +168,7 @@
                                             {% endfor %}
 										</fieldset>
 									<div class="form__title">
-											3. Способ оплаты
+											{% translate "3. Способ оплаты" %}
 									</div>
 										<fieldset id="group2" class="radio__wrapper radio__wrapper_second">
                                             {% for radio in checkout_form.payment_type %}
@@ -179,7 +181,7 @@
 											    <label for="radio-{{ forloop.counter|add:3 }}" class="radio-custom-label"><span>{{ radio.choice_label }}</span></label>
                                             {% endfor %}
 										</fieldset>
-										<button class="button float-left" type="submit">Продолжить</button>
+										<button class="button float-left" type="submit">{% translate "Продолжить" %}</button>
 								</div>
 								<div class="col-lg-7">
 

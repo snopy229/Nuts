@@ -5,8 +5,8 @@ from django.http import HttpResponse
 from django.shortcuts import get_object_or_404
 from django.template.loader import render_to_string
 from ninja import Router, Form
-from ninja.security import django_auth
 
+from src.checkouts.cookie import get_guest_cart, set_guest_cart, render_quantity_input_guest, _make_guest_item
 from src.checkouts.models import CartItem
 from src.products.models import ProductDetailPage
 
@@ -60,81 +60,144 @@ def render_quantity_input(request, product_id: int, quantity: int) -> HttpRespon
     return response
 
 
-@router.post("/add-product", auth=django_auth)
-@not_staff
+@router.post("/add-product")
 def add_product(request, product_id: int = Form(...)):
     product = get_object_or_404(ProductDetailPage, id=product_id)
-    cart_item, created = CartItem.objects.get_or_create(
-        user=request.user,
-        product_id=product_id,
-        defaults={
-            "quantity": 1,
-            "saved_cost": product.cost_for_user(request.user),
-        },
-    )
-    if not created:
-        pass
 
-    total_items, total_sum = get_cart_totals(request.user)
-
-    if not created:
-        response = HttpResponse(status=204)
+    if request.user.is_authenticated:
+        if request.user.is_staff:
+            return HttpResponse(status=403)
+        cart_item, created = CartItem.objects.get_or_create(
+            user=request.user,
+            product_id=product_id,
+            defaults={"quantity": 1, "saved_cost": product.cost_for_user(request.user)},
+        )
+        total_items, total_sum = get_cart_totals(request.user)
+        if not created:
+            response = HttpResponse(status=204)
+        else:
+            html = render_to_string("partials/cart_item.html", {"item": cart_item}, request=request)
+            response = HttpResponse(html)
         response["HX-Trigger"] = json.dumps({"cartUpdated": {"total_items": total_items, "total_sum": total_sum}})
         return response
 
-    html = render_to_string("partials/cart_item.html", {"item": cart_item}, request=request)
+    cart = get_guest_cart(request)
+    cart[product_id] = cart.get(product_id, 0) + 1
+    products = {p.id: p for p in ProductDetailPage.objects.filter(id__in=cart.keys())}
+    total_sum = sum(products[pid].cost_with_discount * qty for pid, qty in cart.items() if pid in products)
+    html = render_to_string(
+        "partials/cart_item.html", {"item": _make_guest_item(product, cart[product_id])}, request=request
+    )
     response = HttpResponse(html)
-    response["HX-Trigger"] = json.dumps({"cartUpdated": {"total_items": total_items, "total_sum": total_sum}})
+    response["HX-Trigger"] = json.dumps(
+        {
+            "cartUpdated": {
+                "total_items": sum(cart.values()),
+                "total_sum": str(total_sum),
+            }
+        }
+    )
+    set_guest_cart(response, cart)
     return response
 
 
-@router.post("/plus-product", auth=django_auth)
-@not_staff
+@router.post("/plus-product")
 def plus_product(request, product_id: int = Form(...)):
-    cart_item = CartItem.objects.filter(user=request.user, product_id=product_id).first()
-    if not cart_item:
+    if request.user.is_authenticated:
+        if request.user.is_staff:
+            return HttpResponse(status=403)
+        cart_item = CartItem.objects.filter(user=request.user, product_id=product_id).first()
+        if not cart_item:
+            return 404, {"detail": "Not found"}
+        cart_item.quantity += 1
+        cart_item.save(update_fields=["quantity"])
+        return render_quantity_input(request, product_id, cart_item.quantity)
+
+    cart = get_guest_cart(request)
+    print("CART:", cart)
+    print("PRODUCT_ID:", product_id, type(product_id))
+    print("IN CART:", product_id in cart)
+    if product_id not in cart:
         return 404, {"detail": "Not found"}
-    cart_item.quantity += 1
-    cart_item.save(update_fields=["quantity"])
-    return render_quantity_input(request, product_id, cart_item.quantity)
+    cart[product_id] += 1
+    response = render_quantity_input_guest(request, product_id, cart[product_id], cart)  # <- передаём cart
+    set_guest_cart(response, cart)
+    return response
 
 
-@router.post("/minus-product", auth=django_auth)
-@not_staff
+@router.post("/minus-product")
 def minus_product(request, product_id: int = Form(...)):
-    cart_item = CartItem.objects.filter(user=request.user, product_id=product_id).first()
-    if not cart_item:
-        return 404, {"detail": "Not found"}
-    cart_item.quantity -= 1
-    if cart_item.quantity <= 0:
-        cart_item.quantity = 1
-    cart_item.save(update_fields=["quantity"])
-    return render_quantity_input(request, product_id, cart_item.quantity)
+    if request.user.is_authenticated:
+        if request.user.is_staff:
+            return HttpResponse(status=403)
+        cart_item = CartItem.objects.filter(user=request.user, product_id=product_id).first()
+        if not cart_item:
+            return HttpResponse(status=404)
+        cart_item.quantity -= 1
+        if cart_item.quantity <= 0:
+            cart_item.quantity = 1
+        cart_item.save(update_fields=["quantity"])
+        return render_quantity_input(request, product_id, cart_item.quantity)
+
+    cart = get_guest_cart(request)
+    if product_id not in cart:
+        return HttpResponse(status=404)
+    cart[product_id] = max(1, cart[product_id] - 1)
+    response = render_quantity_input_guest(request, product_id, cart[product_id], cart)
+    set_guest_cart(response, cart)
+    return response
 
 
-@router.post("/set-quantity", auth=django_auth)
-@not_staff
+@router.post("/set-quantity")
 def set_quantity(request, product_id: int = Form(...), quantity: int = Form(...)):
     if quantity < 1:
         quantity = 1
 
-    cart_item = CartItem.objects.filter(user=request.user, product_id=product_id).first()
-    if not cart_item:
-        return 404, {"detail": "Not found"}
+    if request.user.is_authenticated:
+        if request.user.is_staff:
+            return HttpResponse(status=403)
+        cart_item = CartItem.objects.filter(user=request.user, product_id=product_id).first()
+        if not cart_item:
+            return HttpResponse(status=404)
+        cart_item.quantity = quantity
+        cart_item.save(update_fields=["quantity"])
+        return render_quantity_input(request, product_id, quantity)
 
-    cart_item.quantity = quantity
-    cart_item.save(update_fields=["quantity"])
-    return render_quantity_input(request, product_id, quantity)
+    cart = get_guest_cart(request)
+    if product_id not in cart:
+        return HttpResponse(status=404)
+    cart[product_id] = quantity
+    response = render_quantity_input_guest(request, product_id, quantity, cart)
+    set_guest_cart(response, cart)
+    return response
 
 
-@router.post("/delete-product", auth=django_auth)
-@not_staff
+@router.post("/delete-product")
 def delete_product(request, product_id: int = Form(...)):
-    cart_item = CartItem.objects.filter(user=request.user, product_id=product_id).first()
-    if not cart_item:
-        return 404, ""
-    cart_item.delete()
-    total_items, total_sum = get_cart_totals(request.user)
+    if request.user.is_authenticated:
+        if request.user.is_staff:
+            return HttpResponse(status=403)
+        cart_item = CartItem.objects.filter(user=request.user, product_id=product_id).first()
+        if not cart_item:
+            return HttpResponse(status=404)
+        cart_item.delete()
+        total_items, total_sum = get_cart_totals(request.user)
+        response = HttpResponse("")
+        response["HX-Trigger"] = json.dumps({"cartUpdated": {"total_items": total_items, "total_sum": total_sum}})
+        return response
+
+    cart = get_guest_cart(request)
+    cart.pop(product_id, None)
+    products = {p.id: p for p in ProductDetailPage.objects.filter(id__in=cart.keys())}
+    total_sum = sum(products[pid].cost_with_discount * qty for pid, qty in cart.items() if pid in products)
     response = HttpResponse("")
-    response["HX-Trigger"] = json.dumps({"cartUpdated": {"total_items": total_items, "total_sum": total_sum}})
+    response["HX-Trigger"] = json.dumps(
+        {
+            "cartUpdated": {
+                "total_items": sum(cart.values()),
+                "total_sum": str(total_sum),
+            }
+        }
+    )
+    set_guest_cart(response, cart)
     return response

@@ -1,4 +1,4 @@
-{% load gallery_tags wagtailimages_tags %}
+{% load gallery_tags wagtailimages_tags i18n %}
 
 {% for block in blocks %}
     {% include "partials/gallery_block.html" with block=block counter=forloop.counter %}
@@ -11,7 +11,7 @@
        hx-get="{% url 'gallery:gallery-more' %}?offset={{ next_offset }}"
        hx-target="#gallery-grid"
        hx-swap="beforeend">
-      Показать ещё
+      {% translate "Показать ещё" %}
     </a>
   </div>
   {% else %}

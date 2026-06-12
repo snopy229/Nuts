@@ -1,10 +1,10 @@
 from django.contrib.auth import update_session_auth_hash
 from django.contrib.auth.mixins import LoginRequiredMixin
-from django.contrib.auth.views import LoginView
+from django.contrib.auth.views import LoginView, PasswordResetView, PasswordResetConfirmView
 from django.shortcuts import render, redirect
 from django.urls import reverse_lazy
 from django.views import View
-from django.views.generic import UpdateView, FormView, ListView
+from django.views.generic import UpdateView, FormView, ListView, TemplateView
 
 from src.checkouts.models import Orders
 from src.user.forms import (
@@ -17,8 +17,11 @@ from src.user.forms import (
     UserInfoForm,
     LegalEntityInfoForm,
     CustomPasswordChangeForm,
+    CustomSetPasswordForm,
+    CustomPasswordResetForm,
 )
 from .models import User
+from .tasks import send_password_reset_email
 from ..transaction.models import Transaction
 
 
@@ -65,6 +68,11 @@ class RegistrationView(View):
             ),
         )
 
+    def dispatch(self, request, *args, **kwargs):
+        if request.user.is_authenticated:
+            return redirect("user:account_info")
+        return super().dispatch(request, *args, **kwargs)
+
 
 class UserLoginView(LoginView):
     form_class = UserLoginForm
@@ -72,6 +80,11 @@ class UserLoginView(LoginView):
 
     def get_success_url(self):
         return "/"
+
+    def dispatch(self, request, *args, **kwargs):
+        if request.user.is_authenticated:
+            return redirect("user:account_info")
+        return super().dispatch(request, *args, **kwargs)
 
 
 class AddressUpdateView(LoginRequiredMixin, UpdateView):
@@ -221,3 +234,31 @@ class TransactionListView(LoginRequiredMixin, ListView):
 
     def get_queryset(self):
         return Transaction.objects.filter(user=self.request.user)
+
+
+class AsyncPasswordResetView(PasswordResetView):
+    template_name = "password_reset_form.html"
+    form_class = CustomPasswordResetForm
+    success_url = reverse_lazy("user:password_reset_done")
+
+    def form_valid(self, form):
+        send_password_reset_email.delay(
+            email=form.cleaned_data["email"],
+            domain=self.request.headers["host"],
+            use_https=self.request.is_secure(),
+        )
+        return redirect(self.get_success_url())
+
+
+class AsyncPasswordResetViewDone(TemplateView):
+    template_name = "password_reset_done.html"
+
+
+class CustomPasswordResetConfirmView(PasswordResetConfirmView):
+    template_name = "password_change_form.html"
+    form_class = CustomSetPasswordForm
+    success_url = reverse_lazy("user:password_reset_complete")
+
+
+class PasswordResetCompleteView(TemplateView):
+    template_name = "password_reset_complete.html"

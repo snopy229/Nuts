@@ -1,6 +1,14 @@
 from cities_light.models import Region, City, Country
 from django import forms
-from django.contrib.auth.forms import UserCreationForm, AuthenticationForm, PasswordChangeForm
+from django.contrib.auth.forms import (
+    UserCreationForm,
+    AuthenticationForm,
+    PasswordChangeForm,
+    PasswordResetForm,
+    SetPasswordForm,
+)
+from django.core.mail import EmailMultiAlternatives
+from django.template import loader
 from django.utils.translation import gettext_lazy as _
 
 from src.user.models import User, Individual, LegalEntity
@@ -301,6 +309,27 @@ class LegalEntityInfoForm(forms.ModelForm[LegalEntity]):
 class CustomPasswordChangeForm(PasswordChangeForm):
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
-        self.fields["old_password"].widget.attrs["placeholder"] = "Текущий пароль*"
-        self.fields["new_password1"].widget.attrs["placeholder"] = "Новый пароль*"
-        self.fields["new_password2"].widget.attrs["placeholder"] = "Повторите пароль*"
+        self.fields["old_password"].widget.attrs["placeholder"] = _("Текущий пароль*")
+        self.fields["new_password1"].widget.attrs["placeholder"] = _("Новый пароль*")
+        self.fields["new_password2"].widget.attrs["placeholder"] = _("Повторите пароль*")
+
+
+class CustomPasswordResetForm(PasswordResetForm):
+    def __init__(self, *args, **kwargs):
+        super().__init__(*args, **kwargs)
+        self.fields["email"].widget.attrs.update({"placeholder": _("Email*")})
+
+    def send_mail(
+        self, subject_template_name, email_template_name, context, from_email, to_email, html_email_template_name=None
+    ):
+        subject = _("Сброс пароля")
+        body = loader.render_to_string(email_template_name, context)
+        email_message = EmailMultiAlternatives(subject, body, from_email, [to_email])
+        email_message.send()
+
+
+class CustomSetPasswordForm(SetPasswordForm):
+    def __init__(self, *args, **kwargs):
+        super().__init__(*args, **kwargs)
+        self.fields["new_password1"].widget.attrs.update({"placeholder": _("новый пароль*")})
+        self.fields["new_password2"].widget.attrs.update({"placeholder": _("Подтвердите новый пароль*")})

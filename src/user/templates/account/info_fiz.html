@@ -1,4 +1,6 @@
 {% extends "account/base_account.html" %}
+{% load i18n %}
+{% block title %} {% translate "Контактная информация" %} {% endblock title %}
 {% block account_content %}
     <div class="col-md-9">
         <form action="{% url 'user:account_info' %}" method="POST" enctype="multipart/form-data">
@@ -8,7 +10,7 @@
                     {{ form.fullname }}
                     {{ form.email }}
                     {{ form.phone_number }}
-                    <button class="button float-left" type="submit">Сохранить</button>
+                    <button class="button float-left" type="submit">{% translate "Сохранить" %}</button>
                 </div>
                 <div class="col-md-6 align-self-center">
                     <div class="wrapper">
@@ -17,11 +19,11 @@
 
                             {% if request.user.avatar %}
                                 <label for="file2r" class="label__photo" style="background-image: url('{{ request.user.avatar.url }}');">
-                                    <span>Загрузить фото</span>
+                                    <span>{% translate "Загрузить фото" %}</span>
                                 </label>
                             {% else %}
                                 <label for="file2" class="label__photo" style="background-image: url('/static/img/istockphoto-674199444-612x612.jpg');">
-                                    <span>Загрузить фото</span>
+                                    <span>{% translate "Загрузить фото" %}</span>
                                 </label>
                             {% endif %}
                         </div>

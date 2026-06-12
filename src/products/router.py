@@ -1,6 +1,6 @@
 from ninja import Router, Query
 from django.template.loader import render_to_string
-
+from django.http import HttpResponse
 from src.products.models import ProductDetailPage
 
 router = Router()
@@ -34,8 +34,8 @@ def products_more(
             "has_more": has_more,
             "taste": taste or "",
             "mass": mass or "",
-            "order": order,
+            "order": order or "",
         },
         request=request,
     )
-    return html
+    return HttpResponse(html)

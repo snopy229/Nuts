@@ -1,4 +1,6 @@
 {% extends "account/base_account.html" %}
+{% load i18n %}
+{% block title %} {% translate "Адрес" %} {% endblock title %}
 {% block account_content %}
 	<div class="col-md-9">
         <div class="row">
@@ -6,7 +8,7 @@
                 <form action="{% url "user:account_address" %}" method="post">
                     {% csrf_token %}
                     <div class="form__title">
-                        Адрес
+                        {% translate "Адрес" %}
                     </div>
                     {{ form.country }}
                     <div class="danger">{{ form.country.errors }}</div>
@@ -16,7 +18,7 @@
                     <div class="danger">{{ form.city.errors }}</div>
                     {{ form.address }}
                     <div class="danger">{{ form.address.errors }}</div>
-                    <button class="button" type="submit">Сохранить</button>
+                    <button class="button" type="submit">{% translate "Сохранить" %}</button>
                 </form>
             </div>
             <div class="col-lg-6 align-self-end"></div>

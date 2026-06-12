@@ -1,0 +1,26 @@
+{% extends "base_template.html" %}
+{% load wagtailcore_tags wagtailimages_tags i18n %}
+{% block title %}
+	{% translate "Страница не найдена" %}
+{% endblock title %}
+{% block content %}{% image settings.core.Page404Settings.image original as img %}
+<style>
+  .first-section__error h1 {
+    background-image: url("{{ img.url }}") !important;
+      background-size: cover !important;
+  }
+</style>
+	<section class="first-section first-section__error no-bg">
+		<div class="container">
+			<div class="row justify-content-center align-content-center">
+				<div class="col-lg-8">
+					<div class="wrap">
+							<h1>404</h1>
+							<p>{% translate "Страница не найдена" %}</p>
+							<a href="{% pageurl main_page %}" class="button_transparent with_arrow"><i class="nut-icon icons-left-arrow"></i> <b>{% translate "Вернуться на Главную страницу" %}</b></a>
+					</div>
+				</div>
+			</div>
+		</div>
+	</section>
+{% endblock content %}

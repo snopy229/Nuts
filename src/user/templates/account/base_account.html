@@ -1,14 +1,16 @@
 {% extends "base_template.html" %}
+{% load i18n %}
+{% block title %} {% translate "Учетная запись" %} {% endblock title %}
 {% block content %}
 <section class="first-section no-bg">
 		<div class="container">
 			<div class="breadcrumbs">
 				<ul>
 					<li>
-						<a href="/">Главная</a>
+						<a href="/">{% translate "Главная" %}</a>
 					</li>
 					<li>
-						Адрес
+						{% translate "Адрес" %}
 					</li>
 				</ul>
 			</div>
@@ -19,28 +21,28 @@
 		<div class="container">
 			<div class="row">
 				<div class="col-lg-3 col-md-6">
-					<h1>Учетная запись</h1>
+					<h1>{% translate "Учетная запись" %}</h1>
 				</div>
 				<div class="col-lg-9 col-md-6">
 					<div class="accaunt__manager">
 						<ul>
-							<li><p>Ваш личный менеджер Олег</p></li>
-							<li><i class="nut-icon icons-phone"></i> <a href="tel:+380677771412">+38 067 777 14 12</a></li>
+							<li><p>{% translate "Ваш личный менеджер" %} {{ settings.user.UserAccountSettings.manger_name }}</p></li>
+							<li><i class="nut-icon icons-phone"></i> <a href="tel:{{ settings.user.UserAccountSettings.manager_phone_number }}">{{ settings.user.UserAccountSettings.manager_phone_number }}</a></li>
 						</ul>
 					</div>
 				</div>
 				<div class="col-md-3">
 					<nav class="navigation">
-						<p>Мои заказы</p>
+						<p>{% translate "Мои заказы" %}</p>
 						<ul>
-							<li><a href="{% url 'user:order_history' %}">История заказов</a></li>
-							<li><a href="{% url "user:transaction_history" %}">История транзакций</a></li>
+							<li><a href="{% url 'user:order_history' %}">{% translate "История заказов" %}</a></li>
+							<li><a href="{% url "user:transaction_history" %}">{% translate "История транзакций" %}</a></li>
 						</ul>
-						<p>Моя учетная запись</p>
+						<p>{% translate "Моя учетная запись" %}</p>
 						<ul>
-							<li><a href="{% url 'user:account_info' %}" class="{% if 'info' in request.path %}active{% endif %}" >Контактная информация</a></li>
-							<li><a href="{% url 'user:account_recovery_password' %}" class="{% if 'recovery_password' in request.path %}active{% endif %}">Пароль</a></li>
-							<li><a href="{% url 'user:account_address' %}" class="{% if 'address' in request.path %}active{% endif %}" >Адрес и реквизиты</a></li>
+							<li><a href="{% url 'user:account_info' %}" class="{% if 'info' in request.path %}active{% endif %}" >{% translate "Контактная информация" %}</a></li>
+							<li><a href="{% url 'user:account_recovery_password' %}" class="{% if 'recovery_password' in request.path %}active{% endif %}">{% translate "Пароль" %}</a></li>
+							<li><a href="{% url 'user:account_address' %}" class="{% if 'address' in request.path %}active{% endif %}" >{% translate "Адрес и реквизиты" %}</a></li>
 						</ul>
 					</nav>
 				</div>

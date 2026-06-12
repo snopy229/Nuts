@@ -1,5 +1,6 @@
 {% extends "base_template.html" %}
-{% load wagtailcore_tags wagtailimages_tags %}
+{% load wagtailcore_tags wagtailimages_tags i18n %}
+{% block title %} {% translate "Спасибо за заказ" %} {% endblock title %}
 {% block content %}
     {% for block in page.banner %}
         {% image block.value.image original as img %}

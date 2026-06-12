@@ -1,4 +1,6 @@
 {% extends "account/base_account.html" %}
+{% load i18n %}
+{% block title %} {% translate "История заказов" %} {% endblock title %}
 {% block account_content %}
 <div class="col-lg-9">
     <div class="row">
@@ -6,12 +8,12 @@
             <table id="table">
                 <thead>
                 <tr>
-                    <th><span>№ Заказа</span></th>
-                    <th><span>Дата</span></th>
-                    <th><span>Кол - во товаров</span></th>
-                    <th><span>Статус</span></th>
-                    <th><span>Стоимость</span></th>
-                    <th><span>Функции</span></th>
+                    <th><span>{% translate "№ Заказа" %}</span></th>
+                    <th><span>{% translate "Дата" %}</span></th>
+                    <th><span>{% translate "Кол - во товаров" %}</span></th>
+                    <th><span>{% translate "Статус" %}</span></th>
+                    <th><span>{% translate "Стоимость" %}</span></th>
+                    <th><span>{% translate "Функции" %}</span></th>
                 </tr>
                 </thead>
                 <tbody>

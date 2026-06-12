@@ -1,6 +1,8 @@
 from django.db import models
 from django.shortcuts import redirect
 from django.urls import reverse
+from wagtail.contrib.settings.models import BaseGenericSetting
+from wagtail.contrib.settings.registry import register_setting
 from wagtail.fields import StreamField
 from wagtail.snippets.models import register_snippet
 from wagtail.snippets.views.snippets import SnippetViewSet
@@ -71,3 +73,14 @@ register_snippet(GardenInfo, viewset=GardenInfoViewSet)
 
 class Gallery(models.Model):
     images = models.ImageField(upload_to="gallery/", verbose_name="Изображение")
+
+
+@register_setting
+class Page404Settings(BaseGenericSetting):
+    image = models.ForeignKey(
+        "wagtailimages.Image",
+        null=True,
+        blank=True,
+        on_delete=models.PROTECT,
+        verbose_name="Фото основателя",
+    )

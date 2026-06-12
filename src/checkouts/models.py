@@ -29,6 +29,9 @@ class CartItem(models.Model):
     class Meta:
         unique_together = ("user", "product")
 
+    def __str__(self):
+        return self.product.title
+
 
 class Orders(models.Model):
     user = models.ForeignKey(User, on_delete=models.CASCADE, related_name="user")
@@ -63,6 +66,9 @@ class Orders(models.Model):
     @property
     def product_count(self):
         return self.cart.aggregate(total=Sum("quantity"))["total"] or 0
+
+    def __str__(self):
+        return str(self.id)
 
 
 class IndividualOrderContact(models.Model):

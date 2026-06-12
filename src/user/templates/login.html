@@ -1,6 +1,6 @@
 {% extends "base_template.html" %}
 {% load i18n %}
-{% block title %} {% translate "Регистрация" %} {% endblock title %}
+{% block title %} {% translate "Вход" %} {% endblock title %}
 {% block content %}
 <section class="first-section no-bg">
        <div class="container">
@@ -33,7 +33,7 @@
                       {{ form.username }}
                       {{ form.password }}
                       <div class="mini_link">
-                         <a href="#">{% translate "Забыли пароль?" %}</a>
+                         <a href="{% url 'user:password_reset' %}">{% translate "Забыли пароль?" %}</a>
                       </div>
                       <button class="button" type="submit">{% translate "Войти" %}</button>
                       <div class="mini_link">

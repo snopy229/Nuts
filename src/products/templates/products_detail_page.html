@@ -1,5 +1,6 @@
 {% extends "base_template.html" %}
-{% load wagtailcore_tags wagtailimages_tags %}
+{% load wagtailcore_tags static i18n %}
+{% block title %} {% translate "Страница товара" %} {% endblock title %}
 {% block content %}
 <section class="first-section no-bg">
 			<div class="container">
@@ -29,13 +30,13 @@
                                     {% if product.discount %}
                                     	<div class="sticker">
 											<i class="nut-icon icons-actciya"></i>
-											<p>Акция</p>
+											<p>{% translate "Акция" %}</p>
 										</div>
                                     {% endif %}
                                     {% if product.is_new %}
 										<div class="sticker">
 											<i class="nut-icon icons-novinka"></i>
-											<p>Новинка</p>
+											<p>{% translate "Новинка" %}</p>
 										</div>
                                     {% endif %}
 										<!-- Slider main container -->
@@ -53,7 +54,7 @@
 											<!-- If we need navigation buttons -->
 											<div class="swiper-button-prev"></div>
 											<div class="swiper-button-next"></div>
-											<img class="zoom" src="static/img/zoom.svg" alt="alt">
+											<img class="zoom" src="{% static 'img/zoom.svg' %}" alt="alt">
 										</div>
 									</div>
 								</div>
@@ -68,7 +69,7 @@
 								</div>
 								<div class="col-md-6">
 									<div class="product__content_art">
-											Арт:<span> {{ product.article }}</span>
+											{% translate "Арт:" %}<span> {{ product.article }}</span>
 									</div>
 								</div>
 								<div class="col-lg-9">
@@ -81,17 +82,17 @@
 											<li>
 												<div class="row">
 														<div class="col-md-5">
-															<strong>Состав:</strong>
+															<strong>{% translate "Состав:" %}</strong>
 														</div>
 														<div class="col-md-7">
-															<span>{{ product.compound|safe }}</span>
+															<span>{{ product.compound | safe }}</span>
 														</div>
 													</div>
 											</li>
 											<li>
 												<div class="row">
 													<div class="col-md-5">
-														<strong>Масса нетто:</strong>
+														<strong>{% translate "Масса нетто:" %}</strong>
 													</div>
 													<div class="col-md-7">
 														<span>{{ product.mass }}</span>
@@ -101,7 +102,7 @@
 											<li>
 													<div class="row">
 														<div class="col-md-5">
-															<strong>Энергетическая ценность:</strong>
+															<strong>{% translate "Энергетическая ценность:" %}</strong>
 														</div>
 														<div class="col-md-7">
 															<span>{{ product.energy_value }}</span>
@@ -111,10 +112,10 @@
 												<li>
 														<div class="row">
 															<div class="col-md-5">
-																<strong>Срок годности:</strong>
+																<strong>{% translate "Срок годности:" %}</strong>
 															</div>
 															<div class="col-md-7">
-																<span>{{ product.shelf_life }}</span>
+																<span>{{ product.shelf_life|safe }}</span>
 															</div>
 														</div>
 													</li>
@@ -124,31 +125,35 @@
 								<div class="col-12">
 									<div class="warning">
 											<i class="nut-icon icons-warning-sigh"></i>
-											<p>Хранить в помещениях, защищенных от попадания прямых, солнечных лучей, при температуре от +3 °C до +20 °C, и относительной влажности воздуха не более 75 %</p>
+											<p>{% translate "Хранить в помещениях, защищенных от попадания прямых, солнечных лучей, при температуре от +3 °C до +20 °C, и относительной влажности воздуха не более 75 %" %}</p>
 									</div>
 								</div>
 								<div class="col-12">
 										<div class="product__content_sum">
 												<div class="sum_item">
 													<div class="sum_item_title">
-														<p>Ваша цена: </p>
+														<p>{% translate "Ваша цена:" %} </p>
 													</div>
                                                     {% if product.discount %}
                                                     	<div class="sum_item_new">
-														<p>{{ product.cost_with_discount}} <i>грн.</i></p>
+														<p>{{ product.cost_with_discount}} <i>{% translate "грн." %}</i></p>
 													</div>
 													<div class="sum_item_old">
-														<p>{{ product.cost }} <i>грн.</i></p>
+														<p>{{ product.cost }} <i>{% translate "грн." %}</i></p>
 													</div>
                                                         {% else %}
                                                         <div class="sum_item_new">
-														<p>{{ product.cost }} <i>грн.</i></p>
+														<p>{{ product.cost }} <i>{% translate "грн." %}</i></p>
 													</div>
                                                     {% endif %}
 												</div>
 												<div class="sum_item">
 													<div class="sum_item_button">
-														<a href="#" class="button">Заказать</a>
+														<a hx-post="/api/checkouts/add-product"
+                                                           hx-vals='{"product_id": {{ product.id }}, "quantity": 1}'
+                                                           hx-target="#cart-items-container"
+                                                           hx-swap="beforeend swap:0ms"
+                                                           hx-trigger="click" class="button">{% translate "Заказать" %}</a>
 													</div>
 												</div>
 											</div>
@@ -166,10 +171,10 @@
 						<div class="container">
 								<div class="row">
 									<ul class="tabs__caption">
-                                        <li class="active"><span>Описание</span></li>
-									    <li><span>Упаковка</span></li>
-									    <li><span>Оплата</span></li>
-									    <li><span>Доставка</span></li>
+                                        <li class="active"><span>{% translate "Описание" %}</span></li>
+									    <li><span>{% translate "Упаковка" %}</span></li>
+									    <li><span>{% translate "Оплата" %}</span></li>
+									    <li><span>{% translate "Доставка" %}</span></li>
                                     </ul>
 								</div>
 							</div>

@@ -36,7 +36,7 @@
                     {{ product.nuts_type }}
                 </div>
                 <div class="production__item_art">
-                    <span>Арт:</span> {{ product.article }}
+                    <span>{% translate "Арт:" %}</span> {{ product.article }}
                 </div>
                 <div class="production__item_descr">
                     {{ product.title }}
@@ -47,7 +47,7 @@
                             <i class="nut-icon icons-food-scale-tool"></i>
                         </div>
                         <div class="weight_item_descr">
-                            <p>Масса</p>
+                            <p>{% translate "Масса" %}</p>
                             <p><span>{{ product.mass }}</span></p>
                         </div>
                     </div>
@@ -56,7 +56,7 @@
                             <i class="nut-icon icons-group"></i>
                         </div>
                         <div class="weight_item_descr">
-                            <p>Упаковка</p>
+                            <p>{% translate "Упаковка" %}</p>
                             <p><span>{{ product.package }}</span></p>
                         </div>
                     </div>
@@ -64,7 +64,7 @@
                 <div class="production__item_sum">
                     <div class="sum_item">
                         <div class="sum_item_title">
-                            <p>Цена: </p>
+                            <p>{% translate "Цена:" %} </p>
                         </div>
                         {% if product.product_tags == "discount" %}
                             <div class="sum_item_new">

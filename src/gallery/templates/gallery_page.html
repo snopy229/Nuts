@@ -1,5 +1,5 @@
 {% extends "base_template.html" %}
-{% load wagtailcore_tags wagtailimages_tags gallery_tags%}
+{% load wagtailcore_tags wagtailimages_tags gallery_tags i18n %}
 {% block content %}
     {% for block in page.banner %}
         {% image block.value.preview_image original as img %}
