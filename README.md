@@ -1,4 +1,4 @@
-# PythonProject
+# Nuts
 
 This is a web application built with Python and Django, using the Wagtail CMS for content management.
 
